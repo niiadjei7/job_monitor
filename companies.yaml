@@ -15,17 +15,17 @@
 #           Leave empty ([]) to get pinged on every new posting.
 
 companies:
-  - name: "Example Co (Greenhouse)"
+  - name: "Amazon"
     ats: greenhouse
-    slug: "exampleco"
-    keywords: ["engineer", "developer", "security"]
+    slug: "amazon"
+    keywords: ["engineer", "developer", "backend"]
 
-  - name: "Example Co (Lever)"
+  - name: "Meta"
     ats: lever
-    slug: "exampleco"
-    keywords: []
+    slug: "meta"
+    keywords: ["engineer", "developer", "backend", "Devops"]
 
-  - name: "Example Co (Ashby)"
+  - name: "Google"
     ats: ashby
-    slug: "exampleco"
-    keywords: ["cybersecurity", "infrastructure"]
+    slug: "google"
+    keywords: ["engineer", "developer", "backend", "Devops"]
