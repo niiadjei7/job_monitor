@@ -1,0 +1,31 @@
+# Companies to monitor for new job postings.
+#
+# ats: one of "greenhouse", "lever", "ashby"
+# slug: the company's identifier on that ATS platform. How to find it:
+#
+#   Greenhouse: career page URL is usually job-boards.greenhouse.io/<slug>
+#               or boards.greenhouse.io/<slug>
+#   Lever:      career page URL is usually jobs.lever.co/<slug>
+#   Ashby:      career page URL is usually jobs.ashby.hq.com/<slug>
+#               (sometimes a custom domain — check page source for
+#               "ashbyhq.com/api/... /<slug>" if unsure)
+#
+# keywords: optional. If set, a posting only triggers a Discord ping when
+#           its title contains at least one of these (case-insensitive).
+#           Leave empty ([]) to get pinged on every new posting.
+
+companies:
+  - name: "Example Co (Greenhouse)"
+    ats: greenhouse
+    slug: "exampleco"
+    keywords: ["engineer", "developer", "security"]
+
+  - name: "Example Co (Lever)"
+    ats: lever
+    slug: "exampleco"
+    keywords: []
+
+  - name: "Example Co (Ashby)"
+    ats: ashby
+    slug: "exampleco"
+    keywords: ["cybersecurity", "infrastructure"]
