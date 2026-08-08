@@ -15,17 +15,32 @@
 #           Leave empty ([]) to get pinged on every new posting.
 
 companies:
-  - name: "Amazon"
+  - name: "Greenhouse"
     ats: greenhouse
-    slug: "amazon"
-    keywords: ["engineer", "developer", "backend"]
+    slug: "greenhouse"
+    keywords: ["engineer", "developer", "software", "data", "platform", "IT"]
 
-  - name: "Meta"
+  - name: "Vercel"
+    ats: greenhouse
+    slug: "vercel"
+    keywords: ["engineer", "developer", "software", "backend", "frontend", "platform"]
+
+  - name: "PointClickCare"
     ats: lever
-    slug: "meta"
-    keywords: ["engineer", "developer", "backend", "Devops"]
+    slug: "pointclickcare"
+    keywords: ["engineer", "developer", "software", "platform", "IT", "cloud"]
 
-  - name: "Google"
+  - name: "FreedomPay"
+    ats: lever
+    slug: "freedompay"
+    keywords: ["engineer", "developer", "software", "backend", "DevOps", "IT"]
+
+  - name: "Ashby"
     ats: ashby
-    slug: "google"
-    keywords: ["engineer", "developer", "backend", "Devops"]
+    slug: "ashby"
+    keywords: ["engineer", "developer", "software", "platform", "IT", "systems"]
+
+  - name: "Beacon Software"
+    ats: ashby
+    slug: "beaconsoftware"
+    keywords: ["engineer", "developer", "software", "platform", "IT", "systems"]
