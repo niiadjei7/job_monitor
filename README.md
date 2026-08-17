@@ -1,70 +1,199 @@
 # Job Monitor
 
-Watches Greenhouse / Lever / Ashby job boards for companies you list, and
-pings a Discord channel when a new matching posting appears. Runs for free
-on a schedule via GitHub Actions — no server required.
+Job Monitor checks company career systems and approved job-search feeds, remembers
+the postings it has already seen, and sends new title matches to Discord. It runs
+on a GitHub Actions schedule, so no server is required.
 
-## What it does NOT do (by design)
+## Supported platforms
 
-- **No Indeed scraping.** Indeed's ToS prohibits scraping and actively
-  blocks bots. This tool only hits Greenhouse/Lever/Ashby's public,
-  unauthenticated JSON APIs — the same data their own career pages load
-  in the browser, just fetched directly.
-- **No GitHub repo job-posting search yet.** That's a reasonable v2
-  addition (searching repo READMEs/issues for "we're hiring") but wasn't
-  included here to keep v1 simple and reliable. Ask if you want it added.
+| Platform | Access method | Extra setup |
+| --- | --- | --- |
+| Greenhouse | Public job-board API | Company slug |
+| Lever | Public postings API | Company slug |
+| Ashby | Public job-board API | Company slug |
+| SmartRecruiters | Public Posting API | Company slug |
+| Workable | Public careers endpoint | Account slug |
+| Recruitee | Public Careers Site API | Careers subdomain |
+| Workday | External career-site endpoint | Host, tenant, and site |
+| Jobvite | Customer XML/JSON feed | Feed URL supplied by Jobvite |
+| ZipRecruiter | Official job-search MCP endpoint | Search query; no secret |
+| LinkedIn | Approved RSS/Atom/XML/JSON feed only | Approved feed URL |
+| Indeed | Approved RSS/Atom/XML/JSON feed only | Approved feed URL |
+
+LinkedIn and Indeed do not offer an open job-seeker search API. Job Monitor does
+not scrape their pages; their adapters activate only when you have an authorized
+feed or API export. This avoids account blocks, unstable HTML parsers, and terms
+violations. ZipRecruiter's official search currently returns only a small result
+page per request, so use focused queries.
 
 ## One-time setup
 
-### 1. Create a Discord webhook
-In your Discord server: **Server Settings → Integrations → Webhooks →
-New Webhook**. Pick the channel you want pings in, copy the Webhook URL.
+1. Create a Discord webhook under **Server Settings → Integrations → Webhooks**.
+2. Push this folder to a private or public GitHub repository.
+3. Add a repository Actions secret named `DISCORD_WEBHOOK_URL` containing the
+   webhook URL.
+4. Edit `companies.yaml`, add the companies/searches you want, and change their
+   `enabled` value to `true`.
+5. Run **Actions → Job Monitor → Run workflow** once to verify the setup.
 
-### 2. Create a GitHub repo
-Push this folder to a new **private** GitHub repo (private is fine —
-GitHub Actions works the same either way, and you don't need this public).
+The first run treats every matching current posting as new. To establish a quiet
+baseline, temporarily point the Discord secret at a test channel or let the first
+run finish before relying on notifications.
 
-```bash
-cd job-monitor
-git init
-git add .
-git commit -m "Initial job monitor setup"
-git branch -M main
-git remote add origin https://github.com/<you>/job-monitor.git
-git push -u origin main
+## Company source configuration
+
+Every company entry uses `ats`, `slug` or the provider-specific identifiers, and
+an optional `keywords` list. An empty list matches every title.
+
+```yaml
+companies:
+  - name: "Example on SmartRecruiters"
+    ats: smartrecruiters
+    slug: "example-company"
+    keywords: ["engineer", "developer"]
+
+  - name: "Example on Workable"
+    ats: workable
+    slug: "example-company"
+    keywords: []
+
+  - name: "Example on Recruitee"
+    ats: recruitee
+    slug: "example-company"
+    keywords: ["software"]
 ```
 
-### 3. Add the Discord webhook as a repo secret
-In the GitHub repo: **Settings → Secrets and variables → Actions →
-New repository secret**.
-- Name: `DISCORD_WEBHOOK_URL`
-- Value: the webhook URL from step 1
+### Workday
 
-### 4. Edit `companies.yaml`
-Replace the example entries with real companies. For each one you need:
-- Which ATS they use (Greenhouse / Lever / Ashby) — check their careers
-  page URL, it usually gives it away (see comments in the file).
-- Their `slug` on that platform.
-- Optional `keywords` to filter titles (leave `[]` to get every posting).
+For a URL such as:
 
-Commit and push the change.
+```text
+https://acme.wd5.myworkdayjobs.com/External_Careers
+```
 
-### 5. Test it manually
-In the repo: **Actions tab → Job Monitor → Run workflow**. This triggers
-it immediately instead of waiting for the schedule, so you can confirm
-the Discord ping works before trusting the cron schedule.
+open the career site in a browser and look for a request shaped like
+`/wday/cxs/<tenant>/<site>/jobs`. Configure those values:
 
-## Adjusting the schedule
+```yaml
+  - name: "Acme"
+    ats: workday
+    host: "acme.wd5.myworkdayjobs.com"
+    tenant: "acme"
+    site: "External_Careers"
+    keywords: ["engineer", "developer"]
+```
 
-Edit the `cron:` line in `.github/workflows/job-monitor.yml`. It's
-standard 5-field cron syntax, in UTC. Examples:
-- `"0 */3 * * *"` — every 3 hours (default)
-- `"0 8,20 * * *"` — twice a day, 8am and 8pm UTC
-- `"0 9 * * 1-5"` — once a day, weekdays only, 9am UTC
+Some employers disable third-party indexing. A disabled or private Workday site
+cannot be monitored with this adapter.
 
-## How "new" is determined
+### Jobvite
 
-The first run will see every current posting as "new" (since `state.json`
-starts empty) and will likely fire a large batch of Discord messages.
-That's expected — after that first run, only genuinely new postings will
-trigger a ping.
+Jobvite provides each customer a job-feed URL. If the URL contains a key, store
+the entire URL in the GitHub Actions secret `JOBVITE_FEED_URL`:
+
+```yaml
+  - name: "Acme on Jobvite"
+    ats: jobvite
+    feed_url_env: "JOBVITE_FEED_URL"
+    keywords: ["engineer"]
+```
+
+The feed parser accepts RSS, Atom, common XML job feeds, and common JSON job-feed
+shapes.
+
+## Job-search configuration
+
+Search entries live under the top-level `searches` key. Every search needs a
+stable, unique `id`; changing it creates a new seen-job history.
+
+### ZipRecruiter
+
+```yaml
+searches:
+  - id: "zip-backend-philadelphia"
+    name: "ZipRecruiter — backend near Philadelphia"
+    platform: ziprecruiter
+    query: "backend engineer"
+    location: "Philadelphia, PA"
+    radius: 25
+    keywords: ["backend", "platform", "software"]
+```
+
+The adapter reads ZipRecruiter's advertised input schema at runtime. For filters
+not represented by the simple fields above, place exact schema keys under
+`arguments`:
+
+```yaml
+    arguments:
+      employment_type: "full_time"
+```
+
+If the service changes a key, the run reports the unsupported argument rather
+than silently ignoring it.
+
+### LinkedIn and Indeed approved feeds
+
+Add approved feed URLs as repository secrets named `LINKEDIN_FEED_URL` and
+`INDEED_FEED_URL`, then enable the templates in `companies.yaml`.
+
+```yaml
+searches:
+  - id: "linkedin-backend"
+    name: "LinkedIn approved backend feed"
+    platform: linkedin
+    feed_url_env: "LINKEDIN_FEED_URL"
+    keywords: ["backend", "platform"]
+```
+
+You can use `feed_url` instead of `feed_url_env` for a public URL that contains no
+credentials. Do not commit signed URLs, tokens, or API keys.
+
+## GitHub Actions secrets
+
+The workflow maps these optional repository secrets into the process:
+
+- `DISCORD_WEBHOOK_URL` — required.
+- `JOBVITE_FEED_URL` — required only for an enabled Jobvite feed using the
+  supplied template.
+- `LINKEDIN_FEED_URL` — required only for an enabled LinkedIn feed.
+- `INDEED_FEED_URL` — required only for an enabled Indeed feed.
+
+If you choose a different `feed_url_env` name, also add that environment mapping
+to `.github/workflows/job-monitor.yml`.
+
+## Schedule and state
+
+The default cron expression is `0 */3 * * *`, which runs every three hours in
+UTC. Edit `.github/workflows/job-monitor.yml` to change it.
+
+`state.json` stores every currently visible job ID for each source, including
+titles that did not match your filters. The workflow commits this file after each
+run, preventing an old posting from becoming "new" merely because you changed a
+keyword.
+
+Failed sources leave their previous state untouched. The process exits with code
+2 after checking the remaining sources, making partial failures visible in the
+Actions UI without losing successful results.
+
+## Local verification
+
+Install dependencies and run the fixture-based tests:
+
+```bash
+python -m pip install -r requirements.txt
+python -m unittest discover -s tests -v
+```
+
+To execute a live run locally:
+
+```bash
+export DISCORD_WEBHOOK_URL="https://discord.com/api/webhooks/..."
+python job_monitor.py
+```
+
+In PowerShell, set the variable with:
+
+```powershell
+$env:DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/..."
+python job_monitor.py
+```

@@ -1,24 +1,14 @@
-# Companies to monitor for new job postings.
+# Job sources to monitor. Existing sources are enabled; templates for the new
+# platforms are disabled until you replace their example identifiers.
 #
-# ats: one of "greenhouse", "lever", "ashby"
-# slug: the company's identifier on that ATS platform. How to find it:
-#
-#   Greenhouse: career page URL is usually job-boards.greenhouse.io/<slug>
-#               or boards.greenhouse.io/<slug>
-#   Lever:      career page URL is usually jobs.lever.co/<slug>
-#   Ashby:      career page URL is usually jobs.ashby.hq.com/<slug>
-#               (sometimes a custom domain — check page source for
-#               "ashbyhq.com/api/... /<slug>" if unsure)
-#
-# keywords: optional. If set, a posting only triggers a Discord ping when
-#           its title contains at least one of these (case-insensitive).
-#           Leave empty ([]) to get pinged on every new posting.
+# keywords are case-insensitive title filters. Use [] to notify for every job.
 
 companies:
   - name: "Greenhouse"
     ats: greenhouse
     slug: "greenhouse"
-    keywords: ["engineer", "developer", "software", "data", "platform", "IT"]
+    keywords: &engineering_keywords
+      ["engineer", "developer", "software", "data", "platform", "IT"]
 
   - name: "Vercel"
     ats: greenhouse
@@ -44,3 +34,71 @@ companies:
     ats: ashby
     slug: "beaconsoftware"
     keywords: ["engineer", "developer", "software", "platform", "IT", "systems"]
+
+  # SmartRecruiters: careers.smartrecruiters.com/<slug>
+  - name: "SmartRecruiters example"
+    enabled: true
+    ats: smartrecruiters
+    slug: "smartrecruiters"
+    keywords: *engineering_keywords
+
+  # Workable: apply.workable.com/<slug>
+  - name: "Workable example"
+    enabled: true
+    ats: workable
+    slug: "seeq"
+    keywords: *engineering_keywords
+
+  # Recruitee: <slug>.recruitee.com
+  - name: "Recruitee example"
+    enabled: true
+    ats: recruitee
+    slug: "faktionbv1"
+    keywords: *engineering_keywords
+
+  # Workday URL shape:
+  # https://<host>/<site>/... and /wday/cxs/<tenant>/<site>/jobs
+  - name: "Workday example"
+    enabled: true
+    ats: workday
+    host: "workday.wd5.myworkdayjobs.com"
+    tenant: "workday"
+    site: "Workday"
+    keywords: *engineering_keywords
+
+  # Jobvite supplies each customer with an XML/JSON job-feed URL. Store that
+  # URL as a GitHub Actions secret rather than committing it when it has a key.
+  - name: "Jobvite example"
+    enabled: true
+    ats: jobvite
+    feed_url_env: "JOBVITE_FEED_URL"
+    keywords: *engineering_keywords
+
+searches:
+  # ZipRecruiter's official MCP search endpoint does not require a secret.
+  # Give every search a unique id so its seen-job state remains independent.
+  - id: "ziprecruiter-software-philadelphia"
+    name: "ZipRecruiter — software engineering near Philadelphia"
+    enabled: true
+    platform: ziprecruiter
+    query: "software engineer"
+    location: "Philadelphia, PA"
+    radius: 25
+    keywords: *engineering_keywords
+
+  # LinkedIn and Indeed do not provide open job-seeker search APIs. These
+  # adapters intentionally accept only an approved RSS/Atom/XML/JSON feed.
+  # Add the URLs as repository secrets and enable the entries after approval.
+  - id: "linkedin-approved-feed"
+    name: "LinkedIn approved feed"
+    enabled: true
+    platform: linkedin
+    feed_url_env: "LINKEDIN_FEED_URL"
+    keywords: *engineering_keywords
+
+  - id: "indeed-approved-feed"
+    name: "Indeed approved feed"
+    enabled: true
+    platform: indeed
+    feed_url_env: "INDEED_FEED_URL"
+    keywords: *engineering_keywords
