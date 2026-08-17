@@ -28,32 +28,32 @@ companies:
   - name: "Ashby"
     ats: ashby
     slug: "ashby"
-    keywords: ["junior", "fullstack", "devops", "software", "web", "entry". "newgrad"]
+    keywords: ["junior", "fullstack", "devops", "software", "web", "entry", "new grad"]
 
   - name: "Beacon Software"
     ats: ashby
     slug: "beaconsoftware"
-    keywords: ["junior", "fullstack", "devops", "software", "web", "entry". "new grad"]
+    keywords: ["junior", "fullstack", "devops", "software", "web", "entry", "new grad"]
   # SmartRecruiters: careers.smartrecruiters.com/<slug>
   - name: "SmartRecruiters example"
     enabled: true
     ats: smartrecruiters
     slug: "smartrecruiters"
-    keywords: ["junior", "fullstack", "devops", "software", "web", "entry". "new grad"]
+    keywords: ["junior", "fullstack", "devops", "software", "web", "entry", "new grad"]
 
   # Workable: apply.workable.com/<slug>
   - name: "Workable example"
     enabled: true
     ats: workable
     slug: "seeq"
-    keywords:  ["junior", "fullstack", "devops", "software", "web", "entry". "new grad"]
+    keywords:  ["junior", "fullstack", "devops", "software", "web", "entry", "new grad"]
     
   # Recruitee: <slug>.recruitee.com
   - name: "Recruitee example"
     enabled: true
     ats: recruitee
     slug: "faktionbv1"
-    keywords: ["junior", "fullstack", "devops", "software", "web", "entry". "new grad"]
+    keywords: ["junior", "fullstack", "devops", "software", "web", "entry", "new grad"]
 
   # Workday URL shape:
   # https://<host>/<site>/... and /wday/cxs/<tenant>/<site>/jobs
@@ -63,7 +63,7 @@ companies:
     host: "workday.wd5.myworkdayjobs.com"
     tenant: "workday"
     site: "Workday"
-    keywords:  ["junior", "fullstack", "devops", "software", "web", "entry". "new grad"]
+    keywords:  ["junior", "fullstack", "devops", "software", "web", "entry", "new grad"]
 
   # Jobvite supplies each customer with an XML/JSON job-feed URL. Store that
   # URL as a GitHub Actions secret rather than committing it when it has a key.
@@ -71,7 +71,7 @@ companies:
     enabled: true
     ats: jobvite
     feed_url_env: "JOBVITE_FEED_URL"
-    keywords:  ["junior", "fullstack", "devops", "software", "web", "entry". "new grad"]
+    keywords:  ["junior", "fullstack", "devops", "software", "web", "entry", "new grad"]
 
 searches:
   # ZipRecruiter's official MCP search endpoint does not require a secret.
@@ -83,7 +83,7 @@ searches:
     query: "software engineer"
     location: "Philadelphia, PA"
     radius: 25
-    keywords:  ["junior", "fullstack", "devops", "software", "web", "entry". "new grad"]
+    keywords:  ["junior", "fullstack", "devops", "software", "web", "entry", "new grad"]
 
   # LinkedIn and Indeed do not provide open job-seeker search APIs. These
   # adapters intentionally accept only an approved RSS/Atom/XML/JSON feed.
@@ -93,11 +93,11 @@ searches:
     enabled: true
     platform: linkedin
     feed_url_env: "LINKEDIN_FEED_URL"
-    keywords:  ["junior", "fullstack", "devops", "software", "web", "entry". "new grad"]
+    keywords:  ["junior", "fullstack", "devops", "software", "web", "entry", "new grad"]
 
   - id: "indeed-approved-feed"
     name: "Indeed approved feed"
     enabled: true
     platform: indeed
     feed_url_env: "INDEED_FEED_URL"
-    keywords:  ["junior", "fullstack", "devops", "software", "web", "entry". "new grad"]
+    keywords:  ["junior", "fullstack", "devops", "software", "web", "entry", "new grad"]
