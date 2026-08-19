@@ -48,6 +48,7 @@
     "be52a88a-02c5-445f-a7c6-60c96b80f19c",
     "bf3a9621-0ff5-4f6a-a90d-081562d4dad2",
     "c3c7125d-7883-4dff-a2bf-f5a55de4a364",
+    "c62ec47a-8de9-4781-b1f7-563a229c4e90",
     "cb45928e-c7c7-4163-84d0-a962755a3593",
     "cc846e56-27dd-41b5-bf5b-64d5eeb5ff1a",
     "ce9f0432-7abf-4911-b644-69d0fb08d67f",
@@ -128,7 +129,8 @@
     "8109679",
     "8114997",
     "8115010",
-    "8125900"
+    "8125900",
+    "8126408"
   ],
   "greenhouse:vercel": [
     "5039945004",
@@ -374,7 +376,6 @@
     "744000143115219"
   ],
   "workable:seeq": [
-    "00D9E1616A",
     "1378093793",
     "232B1DD404",
     "2BB881CA50",
@@ -428,7 +429,6 @@
     "/job/Denmark-Copenhagen/Senior-Project-Manager_JR-0109133",
     "/job/France-Paris/Account-Executive-Customer-Base-Large-Enterprise_JR-0107739",
     "/job/France-Paris/Account-Executive-Large-Enterprise---Services---Tech---Mdia_JR-0104040",
-    "/job/France-Paris/Field-Strategy---Operations-Director--EMEA_JR-0109253",
     "/job/France-Paris/Senior-Regional-Sales-Director---Services---Telco---Mdia_JR-0108286",
     "/job/France-Paris/Solution-Consultant-HCM_JR-0108989",
     "/job/France-Paris/Sr-Functional-Consultant_JR-0103301",
@@ -502,7 +502,6 @@
     "/job/Japan-Tokyo/Principal-Managing-Partner_JR-0106255",
     "/job/Japan-Tokyo/Senior-Field-Marketing-Manager_JR-0108883-1",
     "/job/Japan-Tokyo/Senior-Manager--Solution-Consulting_JR-0108747",
-    "/job/Japan-Tokyo/Senior-Manager--Talent-Acquisition_JR-0109329-1",
     "/job/Japan-Tokyo/Senior-Technical-Account-Manager_JR-0107219",
     "/job/Japan-Tokyo/Sr-Success-Plan-Engagement-Manager_JR-0108860",
     "/job/KSARiyadh/Sr-HCM-Solution-Consultant_JR-0106115",
@@ -528,6 +527,7 @@
     "/job/Poland-Warsaw/Sr-Record-to-Report-Consultant---Workday-Success-Plans_JR-0109341",
     "/job/Poland-Warsaw/Sr-Technical-Account-Manager_JR-0104224",
     "/job/Poland-Warsaw/Time---Absence-Applications-Support-Analyst_JR-0108279",
+    "/job/Principal-Product-Advisor--Revenue-Management_JR-0107141-1",
     "/job/Singapore/Adaptive-Planning-Sales-Specialist---Singapore-NN---CB_JR-0105619",
     "/job/Singapore/Business-Development-Representative---Thailand_JR-0108040",
     "/job/Singapore/Expression-of-Interest--Business-Development-Representative--Supporting-Hong-Kong-_JR-0101859",
@@ -606,8 +606,6 @@
     "/job/USA-GA-Atlanta/Data-Scientist---AI-Platform_JR-0107067",
     "/job/USA-GA-Atlanta/Infrastructure---Digital-Employee-Experience--Principal-Program-Manager_JR-0108718-1",
     "/job/USA-GA-Atlanta/Principal--Product-Owner--Business-Performance_JR-0108062",
-    "/job/USA-GA-Atlanta/Principal-Product-Advisor--Financials_JR-0107139-1",
-    "/job/USA-GA-Atlanta/Principal-Product-Advisor--Revenue-Management_JR-0107141-1",
     "/job/USA-GA-Atlanta/Principal-Product-Advisor--Spend-Management_JR-0107142-1",
     "/job/USA-GA-Atlanta/Product-Manager--Agent-Platform_JR-0107282",
     "/job/USA-GA-Atlanta/Senior-Financial-Consultant---Workday-Success-Plans---Spend-Management_JR-0108067",
