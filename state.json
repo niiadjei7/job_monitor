@@ -235,7 +235,6 @@
     "5b36b713-333a-4516-9664-92f882984e05",
     "640f44ef-6a03-4cf7-981d-407d4ea0ecab",
     "788e02cf-574e-4369-a254-b1ada1535fa1",
-    "799b39b2-2e24-479a-b6ed-5826377f8b35",
     "82feed6c-2dd8-41f7-9927-fd4bd2fe7d41",
     "99189d49-fc49-42b1-92ea-119558af5b29",
     "9a213e62-b826-46ee-8565-cc55073a58da",
@@ -395,8 +394,7 @@
     "C2318392FE",
     "CDBF1AE73C",
     "F44188E4B2",
-    "F8EB56730A",
-    "FD4C7FD4F3"
+    "F8EB56730A"
   ],
   "workday:workday": [
     "/job/Australia-NSW-North-Sydney/Functional-Consultant---Paradox_JR-0106984-1",
@@ -617,6 +615,7 @@
     "/job/USA-GA-Atlanta/Account-Executive---Customer-Base-LE_JR-0107540",
     "/job/USA-GA-Atlanta/Data-Scientist---AI-Platform_JR-0107067",
     "/job/USA-GA-Atlanta/Infrastructure---Digital-Employee-Experience--Principal-Program-Manager_JR-0108718-1",
+    "/job/USA-GA-Atlanta/Manager--Sales-Development_JR-0108419",
     "/job/USA-GA-Atlanta/Principal--Product-Owner--Business-Performance_JR-0108062",
     "/job/USA-GA-Atlanta/Product-Manager--Agent-Platform_JR-0107282",
     "/job/USA-GA-Atlanta/Senior-Financial-Consultant---Workday-Success-Plans---Spend-Management_JR-0108067",
@@ -651,7 +650,6 @@
     "/job/USA-NY-New-York-City/Account-Executive---New-York_JR-0104569",
     "/job/USA-NY-New-York-City/Engagement-Manager_JR-0106791",
     "/job/USA-NY-New-York-City/Engagement-Manager_JR-0106917",
-    "/job/USA-NY-New-York-City/Go-To-Market--GTM--Associate_JR-0109458-1",
     "/job/USA-NY-New-York-City/Principal-Managing-Partner---Healthcare_JR-0107491",
     "/job/USA-NY-New-York-City/Regional-Sales-Director_JR-0108242",
     "/job/USA-NY-New-York-City/Sana-Learn-Customer-Success-Manager_JR-0108353",
@@ -719,6 +717,7 @@
     "/job/USAVAReston/Software-Development-Engineer---US-Federal_JR-0109287",
     "/job/USAVAReston/Software-Development-Engineer---US-Federal_JR-0109352",
     "/job/USAVAReston/Software-Development-Engineer--DevOps--US-Federal-_JR-0095837",
+    "/job/USAVAReston/Software-Development-Engineer--DevOps--US-Federal-_JR-0097414",
     "/job/USAVAReston/Software-Development-Engineer--SRE---US-Federal-_JR-0105392",
     "/job/USAVAReston/Software-Development-Engineer--SRE--US-Federal-_JR-0108467",
     "/job/USAVAReston/Software-Development-Engineer--US-Federal-_JR-0105089",
