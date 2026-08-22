@@ -1,103 +1,202 @@
-# Job sources to monitor. Existing sources are enabled; templates for the new
-# platforms are disabled until you replace their example identifiers.
+# Active job sources. Every source below uses a public endpoint and is enabled.
 #
-# keywords are case-insensitive title filters. Use [] to notify for every job.
+# Keywords are case-insensitive whole words or phrases. Generic terms such as
+# "IT" and "data" are intentionally omitted because they include many
+# unrelated roles.
 
 companies:
   - name: "Greenhouse"
+    enabled: true
     ats: greenhouse
     slug: "greenhouse"
-    keywords: &engineering_keywords
-      ["engineer", "developer", "software", "data", "platform", "IT"]
+    keywords: &resume_keywords
+      - "engineer"
+      - "engineering"
+      - "developer"
+      - "software"
+      - "junior"
+      - "new grad"
+      - "entry level"
+      - "entry-level"
+      - "web"
+      - "full stack"
+      - "full-stack"
+      - "fullstack"
+      - "backend"
+      - "back end"
+      - "back-end"
+      - "frontend"
+      - "front end"
+      - "front-end"
+      - "devops"
+      - "cloud"
+      - "platform"
+      - "site reliability"
+      - "infrastructure"
+      - "systems"
+      - "python"
+      - "django"
+      - "fastapi"
+      - "react"
+      - "node.js"
+      - "aws"
+      - "automation"
+      - "security engineer"
+      - "security analyst"
+      - "application security"
+      - "cybersecurity"
 
   - name: "Vercel"
+    enabled: true
     ats: greenhouse
     slug: "vercel"
-    keywords: ["engineer", "developer", "software", "backend", "frontend", "platform"]
+    keywords: *resume_keywords
 
   - name: "PointClickCare"
+    enabled: true
     ats: lever
     slug: "pointclickcare"
-    keywords: ["engineer", "developer", "software", "platform", "IT", "cloud"]
+    keywords: *resume_keywords
 
   - name: "FreedomPay"
+    enabled: true
     ats: lever
     slug: "freedompay"
-    keywords: ["engineer", "developer", "software", "backend", "DevOps", "IT"]
+    keywords: *resume_keywords
 
   - name: "Ashby"
+    enabled: true
     ats: ashby
     slug: "ashby"
-    keywords: ["junior", "fullstack", "devops", "software", "web", "entry", "new grad"]
+    keywords: *resume_keywords
 
   - name: "Beacon Software"
+    enabled: true
     ats: ashby
     slug: "beaconsoftware"
-    keywords: ["junior", "fullstack", "devops", "software", "web", "entry", "new grad"]
+    keywords: *resume_keywords
+
   # SmartRecruiters: careers.smartrecruiters.com/<slug>
-  - name: "SmartRecruiters example"
+  - name: "SmartRecruiters"
     enabled: true
     ats: smartrecruiters
     slug: "smartrecruiters"
-    keywords: ["junior", "fullstack", "devops", "software", "web", "entry", "new grad"]
+    keywords: *resume_keywords
 
   # Workable: apply.workable.com/<slug>
-  - name: "Workable example"
+  - name: "Seeq"
     enabled: true
     ats: workable
     slug: "seeq"
-    keywords:  ["junior", "fullstack", "devops", "software", "web", "entry", "new grad"]
-    
+    keywords: *resume_keywords
+
   # Recruitee: <slug>.recruitee.com
-  - name: "Recruitee example"
+  - name: "Faktion"
     enabled: true
     ats: recruitee
     slug: "faktionbv1"
-    keywords: ["junior", "fullstack", "devops", "software", "web", "entry", "new grad"]
+    keywords: *resume_keywords
 
-  # Workday URL shape:
-  # https://<host>/<site>/... and /wday/cxs/<tenant>/<site>/jobs
-  - name: "Workday example"
+  # Workday external careers site.
+  - name: "Workday"
     enabled: true
     ats: workday
     host: "workday.wd5.myworkdayjobs.com"
     tenant: "workday"
     site: "Workday"
-    keywords:  ["junior", "fullstack", "devops", "software", "web", "entry", "new grad"]
+    keywords: *resume_keywords
 
-  # Jobvite supplies each customer with an XML/JSON job-feed URL. Store that
-  # URL as a GitHub Actions secret rather than committing it when it has a key.
-  - name: "Jobvite example"
+  # Large boards with current junior/new-grad openings use a tighter filter so
+  # senior roles do not crowd the Discord notification limit.
+  - name: "Palantir"
     enabled: true
-    ats: jobvite
-    feed_url_env: "JOBVITE_FEED_URL"
-    keywords:  ["junior", "fullstack", "devops", "software", "web", "entry", "new grad"]
+    ats: lever
+    slug: "palantir"
+    keywords: &early_career_keywords
+      - "new grad"
+      - "new graduate"
+      - "early career"
+      - "entry level"
+      - "entry-level"
+      - "junior"
+      - "associate software"
+      - "associate developer"
+      - "associate devops"
+      - "associate cloud"
+      - "associate infrastructure"
+      - "software engineer i"
+      - "developer i"
+      - "devops engineer i"
+      - "cloud engineer i"
+      - "platform engineer i"
+      - "infrastructure engineer i"
+      - "backend engineer i"
+      - "frontend engineer i"
 
-searches:
-  # ZipRecruiter's official MCP search endpoint does not require a secret.
-  # Give every search a unique id so its seen-job state remains independent.
-  - id: "ziprecruiter-software-philadelphia"
-    name: "ZipRecruiter — software engineering near Philadelphia"
+  - name: "Confido"
     enabled: true
-    platform: ziprecruiter
-    query: "software engineer"
-    location: "Philadelphia, PA"
-    radius: 25
-    keywords:  ["junior", "fullstack", "devops", "software", "web", "entry", "new grad"]
+    ats: ashby
+    slug: "confido"
+    keywords: *early_career_keywords
 
-  # LinkedIn and Indeed do not provide open job-seeker search APIs. These
-  # adapters intentionally accept only an approved RSS/Atom/XML/JSON feed.
-  # Add the URLs as repository secrets and enable the entries after approval.
-  - id: "linkedin-approved-feed"
-    name: "LinkedIn approved feed"
+  - name: "Giga"
     enabled: true
-    platform: linkedin
-    feed_url_env: "LINKEDIN_FEED_URL"
-    keywords:  ["junior", "fullstack", "devops", "software", "web", "entry", "new grad"]
+    ats: ashby
+    slug: "gigaml"
+    keywords: *early_career_keywords
 
-  - id: "indeed-approved-feed"
-    name: "Indeed approved feed"
+  - name: "Handshake"
     enabled: true
-    platform: indeed
-    feed_url_env: "INDEED_FEED_URL"
-    keywords:  ["junior", "fullstack", "devops", "software", "web", "entry", "new grad"]
+    ats: ashby
+    slug: "handshake"
+    keywords: *early_career_keywords
+
+  - name: "WHOOP"
+    enabled: true
+    ats: ashby
+    slug: "whoop"
+    keywords: *early_career_keywords
+
+  - name: "Lightfield"
+    enabled: true
+    ats: ashby
+    slug: "lightfield"
+    keywords: *early_career_keywords
+
+  - name: "Traba"
+    enabled: true
+    ats: ashby
+    slug: "traba"
+    keywords: *early_career_keywords
+
+  - name: "Leidos"
+    enabled: true
+    ats: workday
+    host: "leidos.wd5.myworkdayjobs.com"
+    tenant: "leidos"
+    site: "external"
+    search_text: "Junior"
+    keywords: *early_career_keywords
+
+  - name: "Globus Medical"
+    enabled: true
+    ats: workday
+    host: "globusmedical.wd5.myworkdayjobs.com"
+    tenant: "globusmedical"
+    site: "gmed_careers"
+    search_text: "Software"
+    keywords: *early_career_keywords
+
+  - name: "Acrisure"
+    enabled: true
+    ats: workday
+    host: "acrisure.wd1.myworkdayjobs.com"
+    tenant: "acrisure"
+    site: "acrisure"
+    search_text: "Software"
+    keywords: *early_career_keywords
+
+# Jobvite, LinkedIn, and Indeed are not active because they require approved
+# private feed URLs. ZipRecruiter is not active because its public MCP endpoint
+# is currently rate-limiting these scheduled requests.
+searches: []

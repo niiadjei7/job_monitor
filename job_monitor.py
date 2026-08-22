@@ -4,6 +4,7 @@
 import hashlib
 import json
 import os
+import re
 import sys
 import time
 from pathlib import Path
@@ -174,6 +175,7 @@ def fetch_workday(source):
     api_url = f"{origin}/wday/cxs/{tenant}/{site}/jobs"
     career_url = _source_value(source, "career_url", f"{origin}/{site}").rstrip("/")
     page_size = int(_source_value(source, "page_size", 20))
+    search_text = str(_source_value(source, "search_text", ""))
     offset = 0
     total = None
     jobs = []
@@ -190,7 +192,7 @@ def fetch_workday(source):
                 "appliedFacets": {},
                 "limit": page_size,
                 "offset": offset,
-                "searchText": "",
+                "searchText": search_text,
             },
             timeout=REQUEST_TIMEOUT,
         )
@@ -497,8 +499,11 @@ FETCHERS = {
 def matches_keywords(title, keywords):
     if not keywords:
         return True
-    title_lower = title.lower()
-    return any(keyword.lower() in title_lower for keyword in keywords)
+    return any(
+        re.search(rf"(?<!\w){re.escape(str(keyword).strip())}(?!\w)", title, re.IGNORECASE)
+        for keyword in keywords
+        if str(keyword).strip()
+    )
 
 
 def send_discord_notification(webhook_url, source_name, new_jobs):

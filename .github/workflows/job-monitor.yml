@@ -31,9 +31,6 @@ jobs:
       - name: Run job monitor
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          JOBVITE_FEED_URL: ${{ secrets.JOBVITE_FEED_URL }}
-          LINKEDIN_FEED_URL: ${{ secrets.LINKEDIN_FEED_URL }}
-          INDEED_FEED_URL: ${{ secrets.INDEED_FEED_URL }}
         run: python job_monitor.py
 
       - name: Commit updated state

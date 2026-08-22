@@ -26,6 +26,11 @@ feed or API export. This avoids account blocks, unstable HTML parsers, and terms
 violations. ZipRecruiter's official search currently returns only a small result
 page per request, so use focused queries.
 
+The checked-in `companies.yaml` currently activates only sources that can run
+through public company-career endpoints. Jobvite, LinkedIn, and Indeed are not
+active because no approved feed URLs are configured. ZipRecruiter is not active
+because its public MCP endpoint rate-limits the scheduled requests.
+
 ## One-time setup
 
 1. Create a Discord webhook under **Server Settings → Integrations → Webhooks**.
@@ -43,7 +48,9 @@ run finish before relying on notifications.
 ## Company source configuration
 
 Every company entry uses `ats`, `slug` or the provider-specific identifiers, and
-an optional `keywords` list. An empty list matches every title.
+an optional `keywords` list. Keywords match case-insensitive whole words or
+phrases; an empty list matches every title. Broad career boards can use a tighter
+early-career list so senior openings do not crowd the notification limit.
 
 ```yaml
 companies:
@@ -80,11 +87,14 @@ open the career site in a browser and look for a request shaped like
     host: "acme.wd5.myworkdayjobs.com"
     tenant: "acme"
     site: "External_Careers"
+    search_text: "Software"
     keywords: ["engineer", "developer"]
 ```
 
 Some employers disable third-party indexing. A disabled or private Workday site
-cannot be monitored with this adapter.
+cannot be monitored with this adapter. `search_text` is optional; use it on very
+large boards to have Workday narrow the result set before title keywords are
+applied locally.
 
 ### Jobvite
 
@@ -150,16 +160,10 @@ credentials. Do not commit signed URLs, tokens, or API keys.
 
 ## GitHub Actions secrets
 
-The workflow maps these optional repository secrets into the process:
-
-- `DISCORD_WEBHOOK_URL` — required.
-- `JOBVITE_FEED_URL` — required only for an enabled Jobvite feed using the
-  supplied template.
-- `LINKEDIN_FEED_URL` — required only for an enabled LinkedIn feed.
-- `INDEED_FEED_URL` — required only for an enabled Indeed feed.
-
-If you choose a different `feed_url_env` name, also add that environment mapping
-to `.github/workflows/job-monitor.yml`.
+The active workflow maps only `DISCORD_WEBHOOK_URL`, which is required. If you
+later obtain an approved Jobvite, LinkedIn, or Indeed feed, add its URL as a
+repository secret and map that secret under the workflow's `Run job monitor`
+step before adding the source back to `companies.yaml`.
 
 ## Schedule and state
 

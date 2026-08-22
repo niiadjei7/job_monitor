@@ -134,6 +134,7 @@ class AdapterTests(unittest.TestCase):
             "tenant": "acme",
             "site": "Careers",
             "page_size": 1,
+            "search_text": "junior",
         }
 
         jobs = job_monitor.fetch_workday(source)
@@ -146,6 +147,7 @@ class AdapterTests(unittest.TestCase):
             ],
         )
         self.assertEqual(post.call_count, 2)
+        self.assertEqual(post.call_args_list[0].kwargs["json"]["searchText"], "junior")
 
 
 class FeedTests(unittest.TestCase):
@@ -253,6 +255,41 @@ class ZipRecruiterTests(unittest.TestCase):
 
 
 class ConfigurationTests(unittest.TestCase):
+    def test_checked_in_config_excludes_unavailable_sources(self):
+        sources = job_monitor.load_config()
+        enabled_sources = [
+            source for source in sources if source.get("enabled", True) is not False
+        ]
+        enabled_providers = {
+            source.get("ats") or source.get("platform") for source in enabled_sources
+        }
+
+        self.assertTrue(enabled_sources)
+        self.assertTrue(
+            enabled_providers.isdisjoint(
+                {"jobvite", "linkedin", "indeed", "ziprecruiter"}
+            )
+        )
+        for source in enabled_sources:
+            keywords = {keyword.lower() for keyword in source.get("keywords", [])}
+            self.assertTrue(keywords)
+
+        configured_names = {source["name"] for source in enabled_sources}
+        self.assertTrue(
+            {
+                "Palantir",
+                "Confido",
+                "Giga",
+                "Handshake",
+                "WHOOP",
+                "Lightfield",
+                "Traba",
+                "Leidos",
+                "Globus Medical",
+                "Acrisure",
+            }.issubset(configured_names)
+        )
+
     def test_load_config_combines_companies_and_searches(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             config_path = Path(temp_dir) / "companies.yaml"
@@ -276,6 +313,18 @@ class ConfigurationTests(unittest.TestCase):
 
 
 class EndToEndTests(unittest.TestCase):
+    def test_keyword_matching_uses_word_boundaries_for_job_levels(self):
+        self.assertTrue(
+            job_monitor.matches_keywords("Software Engineer I", ["software engineer i"])
+        )
+        self.assertFalse(
+            job_monitor.matches_keywords("Software Engineer II", ["software engineer i"])
+        )
+        self.assertTrue(
+            job_monitor.matches_keywords("Junior DevOps Engineer", ["junior"])
+        )
+        self.assertFalse(job_monitor.matches_keywords("Engineering Manager", ["engineer"]))
+
     def test_main_filters_notifies_and_persists_all_current_ids(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             config_path = Path(temp_dir) / "companies.yaml"
