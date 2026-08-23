@@ -44,10 +44,63 @@ class AdapterTests(unittest.TestCase):
         self.assertEqual(expected, set(job_monitor.FETCHERS))
 
     @patch("job_monitor._get_json")
+    def test_greenhouse_lever_and_ashby_retain_locations(self, get_json):
+        get_json.side_effect = [
+            {
+                "jobs": [
+                    {
+                        "id": 1,
+                        "title": "Engineer",
+                        "absolute_url": "https://greenhouse.test/1",
+                        "location": {"name": "New York, NY"},
+                    }
+                ]
+            },
+            [
+                {
+                    "id": "2",
+                    "text": "Developer",
+                    "hostedUrl": "https://lever.test/2",
+                    "categories": {"location": "Jersey City, NJ"},
+                    "workplaceType": "hybrid",
+                }
+            ],
+            {
+                "jobs": [
+                    {
+                        "id": "3",
+                        "title": "Cloud Engineer",
+                        "jobUrl": "https://ashby.test/3",
+                        "location": "Remote - US",
+                        "isRemote": True,
+                    }
+                ]
+            },
+        ]
+
+        self.assertEqual(
+            job_monitor.fetch_greenhouse({"slug": "acme"})[0][3], "New York, NY"
+        )
+        self.assertEqual(
+            job_monitor.fetch_lever({"slug": "acme"})[0][3],
+            "Jersey City, NJ, hybrid",
+        )
+        self.assertEqual(
+            job_monitor.fetch_ashby({"slug": "acme"})[0][3],
+            "Remote - US, Remote",
+        )
+
+    @patch("job_monitor._get_json")
     def test_smartrecruiters_paginates(self, get_json):
         get_json.side_effect = [
             {
-                "content": [{"id": "1", "name": "Engineer"}],
+                "content": [
+                    {
+                        "id": "1",
+                        "name": "Engineer",
+                        "location": {"city": "New York", "region": "NY"},
+                    }
+                ],
                 "totalFound": 2,
             },
             {
@@ -61,8 +114,13 @@ class AdapterTests(unittest.TestCase):
         self.assertEqual(
             jobs,
             [
-                ("1", "Engineer", "https://jobs.smartrecruiters.com/acme/1"),
-                ("2", "Developer", "https://jobs.smartrecruiters.com/acme/2"),
+                (
+                    "1",
+                    "Engineer",
+                    "https://jobs.smartrecruiters.com/acme/1",
+                    "New York, NY",
+                ),
+                ("2", "Developer", "https://jobs.smartrecruiters.com/acme/2", ""),
             ],
         )
         self.assertEqual(get_json.call_count, 2)
@@ -75,6 +133,7 @@ class AdapterTests(unittest.TestCase):
                     "shortcode": "ABC123",
                     "title": "Platform Engineer",
                     "url": "https://apply.workable.com/j/ABC123",
+                    "location": {"city": "Jersey City", "region": "NJ"},
                 }
             ]
         }
@@ -83,7 +142,14 @@ class AdapterTests(unittest.TestCase):
 
         self.assertEqual(
             jobs,
-            [("ABC123", "Platform Engineer", "https://apply.workable.com/j/ABC123")],
+            [
+                (
+                    "ABC123",
+                    "Platform Engineer",
+                    "https://apply.workable.com/j/ABC123",
+                    "Jersey City, NJ",
+                )
+            ],
         )
 
     @patch("job_monitor._get_json")
@@ -96,6 +162,7 @@ class AdapterTests(unittest.TestCase):
                     "slug": "backend-engineer",
                     "careers_url": "https://jobs.acme.test/o/backend-engineer",
                     "status": "published",
+                    "location": "Newark, NJ",
                 },
                 {"id": 11, "title": "Draft", "status": "draft"},
             ]
@@ -105,7 +172,14 @@ class AdapterTests(unittest.TestCase):
 
         self.assertEqual(
             jobs,
-            [("10", "Backend Engineer", "https://jobs.acme.test/o/backend-engineer")],
+            [
+                (
+                    "10",
+                    "Backend Engineer",
+                    "https://jobs.acme.test/o/backend-engineer",
+                    "Newark, NJ",
+                )
+            ],
         )
 
     @patch("job_monitor.requests.post")
@@ -115,7 +189,11 @@ class AdapterTests(unittest.TestCase):
                 {
                     "total": 2,
                     "jobPostings": [
-                        {"title": "Engineer", "externalPath": "/job/one"}
+                        {
+                            "title": "Engineer",
+                            "externalPath": "/job/one",
+                            "locationsText": "New York, NY",
+                        }
                     ],
                 }
             ),
@@ -142,8 +220,18 @@ class AdapterTests(unittest.TestCase):
         self.assertEqual(
             jobs,
             [
-                ("/job/one", "Engineer", "https://acme.wd5.myworkdayjobs.com/Careers/job/one"),
-                ("/job/two", "Developer", "https://acme.wd5.myworkdayjobs.com/Careers/job/two"),
+                (
+                    "/job/one",
+                    "Engineer",
+                    "https://acme.wd5.myworkdayjobs.com/Careers/job/one",
+                    "New York, NY",
+                ),
+                (
+                    "/job/two",
+                    "Developer",
+                    "https://acme.wd5.myworkdayjobs.com/Careers/job/two",
+                    "",
+                ),
             ],
         )
         self.assertEqual(post.call_count, 2)
@@ -167,15 +255,15 @@ class FeedTests(unittest.TestCase):
 
         self.assertEqual(
             job_monitor._parse_xml_jobs(rss),
-            [("rss-1", "RSS Engineer", "https://example.test/rss-1")],
+            [("rss-1", "RSS Engineer", "https://example.test/rss-1", "")],
         )
         self.assertEqual(
             job_monitor._parse_xml_jobs(atom),
-            [("atom-1", "Atom Engineer", "https://example.test/atom-1")],
+            [("atom-1", "Atom Engineer", "https://example.test/atom-1", "")],
         )
         self.assertEqual(
             job_monitor._parse_xml_jobs(jobvite),
-            [("req-1", "Jobvite Engineer", "https://example.test/req-1")],
+            [("req-1", "Jobvite Engineer", "https://example.test/req-1", "")],
         )
 
     def test_parses_common_json_feed_shapes(self):
@@ -185,12 +273,13 @@ class FeedTests(unittest.TestCase):
                     "jobId": 123,
                     "jobTitle": "Cloud Engineer",
                     "jobUrl": "https://example.test/123",
+                    "location": "Remote - US",
                 }
             ]
         }
         self.assertEqual(
             job_monitor._parse_json_jobs(data),
-            [("123", "Cloud Engineer", "https://example.test/123")],
+            [("123", "Cloud Engineer", "https://example.test/123", "Remote - US")],
         )
 
     @patch("job_monitor.requests.get")
@@ -244,13 +333,21 @@ class ZipRecruiterTests(unittest.TestCase):
                         "job_id": "zip-1",
                         "title": "Python Developer",
                         "job_url": "https://zip.test/zip-1",
+                        "location": "New York, NY",
                     }
                 ]
             }
         }
         self.assertEqual(
             job_monitor._parse_mcp_jobs(result),
-            [("zip-1", "Python Developer", "https://zip.test/zip-1")],
+            [
+                (
+                    "zip-1",
+                    "Python Developer",
+                    "https://zip.test/zip-1",
+                    "New York, NY",
+                )
+            ],
         )
 
 
@@ -273,6 +370,10 @@ class ConfigurationTests(unittest.TestCase):
         for source in enabled_sources:
             keywords = {keyword.lower() for keyword in source.get("keywords", [])}
             self.assertTrue(keywords)
+            location_filter = source.get("location_filter", {})
+            self.assertTrue(location_filter.get("include"))
+            self.assertTrue(location_filter.get("include_remote"))
+            self.assertFalse(location_filter.get("allow_unknown"))
 
         configured_names = {source["name"] for source in enabled_sources}
         self.assertTrue(
@@ -325,6 +426,35 @@ class EndToEndTests(unittest.TestCase):
         )
         self.assertFalse(job_monitor.matches_keywords("Engineering Manager", ["engineer"]))
 
+    def test_location_filter_keeps_ny_nj_and_generic_us_remote_jobs(self):
+        location_filter = {
+            "include": [
+                "New York, NY",
+                "New York City",
+                "Brooklyn",
+                "New Jersey",
+                "NJ",
+                "Newark",
+            ],
+            "include_remote": True,
+            "allow_unknown": False,
+        }
+
+        self.assertTrue(job_monitor.matches_location("New York, NY", location_filter))
+        self.assertTrue(job_monitor.matches_location("Brooklyn, New York", location_filter))
+        self.assertTrue(job_monitor.matches_location("Newark, NJ", location_filter))
+        self.assertTrue(
+            job_monitor.matches_location(
+                "New York, NY; San Francisco, CA", location_filter
+            )
+        )
+        self.assertTrue(job_monitor.matches_location("Remote - United States", location_filter))
+        self.assertFalse(job_monitor.matches_location("San Francisco, CA", location_filter))
+        self.assertFalse(job_monitor.matches_location("Newark, DE", location_filter))
+        self.assertFalse(job_monitor.matches_location("Remote - California", location_filter))
+        self.assertFalse(job_monitor.matches_location("Remote - Canada", location_filter))
+        self.assertFalse(job_monitor.matches_location("", location_filter))
+
     def test_main_filters_notifies_and_persists_all_current_ids(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             config_path = Path(temp_dir) / "companies.yaml"
@@ -334,7 +464,11 @@ class EndToEndTests(unittest.TestCase):
                 "  - name: Acme\n"
                 "    ats: greenhouse\n"
                 "    slug: acme\n"
-                "    keywords: [engineer]\n",
+                "    keywords: [engineer]\n"
+                "    location_filter:\n"
+                "      include: ['New York, NY', NJ]\n"
+                "      include_remote: true\n"
+                "      allow_unknown: false\n",
                 encoding="utf-8",
             )
             state_path.write_text(
@@ -342,9 +476,25 @@ class EndToEndTests(unittest.TestCase):
             )
             fetcher = Mock(
                 return_value=[
-                    ("old", "Sales", "https://jobs.test/old"),
-                    ("new", "Platform Engineer", "https://jobs.test/new"),
-                    ("filtered", "Account Executive", "https://jobs.test/filtered"),
+                    ("old", "Sales", "https://jobs.test/old", "New York, NY"),
+                    (
+                        "new",
+                        "Platform Engineer",
+                        "https://jobs.test/new",
+                        "New York, NY",
+                    ),
+                    (
+                        "wrong-location",
+                        "Backend Engineer",
+                        "https://jobs.test/wrong-location",
+                        "San Francisco, CA",
+                    ),
+                    (
+                        "filtered",
+                        "Account Executive",
+                        "https://jobs.test/filtered",
+                        "New York, NY",
+                    ),
                 ]
             )
 
@@ -366,7 +516,8 @@ class EndToEndTests(unittest.TestCase):
             [("Platform Engineer", "https://jobs.test/new")],
         )
         self.assertEqual(
-            saved["greenhouse:acme"], ["filtered", "new", "old"]
+            saved["greenhouse:acme"],
+            ["filtered", "new", "old", "wrong-location"],
         )
 
 

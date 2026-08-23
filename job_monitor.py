@@ -20,6 +20,121 @@ REQUEST_TIMEOUT = 20
 USER_AGENT = "job-monitor-bot/2.0 (personal use)"
 MCP_PROTOCOL_VERSION = "2025-03-26"
 
+US_STATE_ABBREVIATIONS = {
+    "AL",
+    "AK",
+    "AZ",
+    "AR",
+    "CA",
+    "CO",
+    "CT",
+    "DE",
+    "FL",
+    "GA",
+    "HI",
+    "ID",
+    "IL",
+    "IN",
+    "IA",
+    "KS",
+    "KY",
+    "LA",
+    "ME",
+    "MD",
+    "MA",
+    "MI",
+    "MN",
+    "MS",
+    "MO",
+    "MT",
+    "NE",
+    "NV",
+    "NH",
+    "NM",
+    "NC",
+    "ND",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VT",
+    "VA",
+    "WA",
+    "WV",
+    "WI",
+    "WY",
+    "DC",
+}
+OTHER_US_STATE_NAMES = {
+    "alabama",
+    "alaska",
+    "arizona",
+    "arkansas",
+    "california",
+    "colorado",
+    "connecticut",
+    "delaware",
+    "florida",
+    "georgia",
+    "hawaii",
+    "idaho",
+    "illinois",
+    "indiana",
+    "iowa",
+    "kansas",
+    "kentucky",
+    "louisiana",
+    "maine",
+    "maryland",
+    "massachusetts",
+    "michigan",
+    "minnesota",
+    "mississippi",
+    "missouri",
+    "montana",
+    "nebraska",
+    "nevada",
+    "new hampshire",
+    "new mexico",
+    "north carolina",
+    "north dakota",
+    "ohio",
+    "oklahoma",
+    "oregon",
+    "pennsylvania",
+    "rhode island",
+    "south carolina",
+    "south dakota",
+    "tennessee",
+    "texas",
+    "utah",
+    "vermont",
+    "virginia",
+    "washington",
+    "west virginia",
+    "wisconsin",
+    "wyoming",
+    "district of columbia",
+}
+FOREIGN_REMOTE_MARKERS = {
+    "apac",
+    "asia",
+    "australia",
+    "canada",
+    "emea",
+    "europe",
+    "india",
+    "latin america",
+    "mexico",
+    "united kingdom",
+}
+
 
 def load_config():
     if not CONFIG_PATH.exists():
@@ -54,6 +169,104 @@ def _source_value(source, key, default=None):
     return source.get(key, default)
 
 
+def _location_text(*values):
+    """Flatten the common ATS location shapes into a readable string."""
+    parts = []
+
+    def add(value):
+        if value is None or value is False:
+            return
+        if isinstance(value, dict):
+            if value.get("remote") is True:
+                add("Remote")
+            for key in (
+                "name",
+                "text",
+                "location",
+                "city",
+                "region",
+                "state",
+                "country",
+                "country_code",
+                "countryCode",
+            ):
+                add(value.get(key))
+            return
+        if isinstance(value, (list, tuple, set)):
+            for item in value:
+                add(item)
+            return
+        if value is True:
+            add("Remote")
+            return
+        text = str(value).strip()
+        if text and text.casefold() not in {part.casefold() for part in parts}:
+            parts.append(text)
+
+    for value in values:
+        add(value)
+    return ", ".join(parts)
+
+
+def _normalize_location(value):
+    return " ".join(re.findall(r"[a-z0-9]+", str(value).casefold()))
+
+
+def _has_location_term(location, term):
+    normalized_location = _normalize_location(location)
+    normalized_term = _normalize_location(term)
+    return bool(
+        normalized_term
+        and re.search(rf"(?<!\w){re.escape(normalized_term)}(?!\w)", normalized_location)
+    )
+
+
+def matches_location(location, location_filter):
+    """Match a normalized ATS location against a configured metro-area filter."""
+    if not location_filter:
+        return True
+    if not isinstance(location_filter, dict):
+        raise ValueError("location_filter must be a mapping")
+
+    location = str(location or "").strip()
+    if not location:
+        return bool(location_filter.get("allow_unknown", False))
+
+    state_tokens = set(re.findall(r"\b[A-Z]{2}\b", location.upper()))
+    has_local_region = bool(state_tokens & {"NY", "NJ"}) or any(
+        _has_location_term(location, term) for term in ("new york", "new jersey")
+    )
+    has_other_state = bool(state_tokens & US_STATE_ABBREVIATIONS) or any(
+        _has_location_term(location, state) for state in OTHER_US_STATE_NAMES
+    )
+    has_foreign_region = any(
+        _has_location_term(location, marker) for marker in FOREIGN_REMOTE_MARKERS
+    )
+    has_included_location = any(
+        _has_location_term(location, term)
+        for term in location_filter.get("include", [])
+    )
+    if has_included_location and (
+        has_local_region or not (has_other_state or has_foreign_region)
+    ):
+        return True
+
+    is_remote = any(
+        _has_location_term(location, term)
+        for term in ("remote", "work from home", "anywhere")
+    )
+    if not (location_filter.get("include_remote", False) and is_remote):
+        return False
+
+    if has_foreign_region:
+        return False
+
+    # A remote posting tied to a different state is not generally available in NY/NJ.
+    if has_other_state:
+        return False
+    return True
+
+
 def _get_json(url, **kwargs):
     response = requests.get(
         url,
@@ -66,11 +279,16 @@ def _get_json(url, **kwargs):
 
 
 def fetch_greenhouse(source):
-    """Return (job_id, title, URL) tuples for a Greenhouse board."""
+    """Return (job_id, title, URL, location) tuples for a Greenhouse board."""
     slug = _source_value(source, "slug")
     data = _get_json(f"https://boards-api.greenhouse.io/v1/boards/{slug}/jobs")
     return [
-        (str(job["id"]), job.get("title", "Untitled"), job.get("absolute_url", ""))
+        (
+            str(job["id"]),
+            job.get("title", "Untitled"),
+            job.get("absolute_url", ""),
+            _location_text(job.get("location")),
+        )
         for job in data.get("jobs", [])
     ]
 
@@ -80,7 +298,16 @@ def fetch_lever(source):
     slug = _source_value(source, "slug")
     jobs = _get_json(f"https://api.lever.co/v0/postings/{slug}?mode=json")
     return [
-        (str(job["id"]), job.get("text", "Untitled"), job.get("hostedUrl", ""))
+        (
+            str(job["id"]),
+            job.get("text", "Untitled"),
+            job.get("hostedUrl", ""),
+            _location_text(
+                (job.get("categories") or {}).get("location"),
+                job.get("allLocations"),
+                job.get("workplaceType"),
+            ),
+        )
         for job in jobs
     ]
 
@@ -90,7 +317,17 @@ def fetch_ashby(source):
     slug = _source_value(source, "slug")
     data = _get_json(f"https://api.ashbyhq.com/posting-api/job-board/{slug}")
     return [
-        (str(job["id"]), job.get("title", "Untitled"), job.get("jobUrl", ""))
+        (
+            str(job["id"]),
+            job.get("title", "Untitled"),
+            job.get("jobUrl", ""),
+            _location_text(
+                job.get("location"),
+                job.get("secondaryLocations"),
+                job.get("workplaceType"),
+                job.get("isRemote"),
+            ),
+        )
         for job in data.get("jobs", [])
     ]
 
@@ -113,7 +350,7 @@ def fetch_smartrecruiters(source):
             title = job.get("name", "Untitled")
             # SmartRecruiters serves an ID-only URL, so no fragile title slug is needed.
             url = f"https://jobs.smartrecruiters.com/{slug}/{job_id}"
-            jobs.append((job_id, title, url))
+            jobs.append((job_id, title, url, _location_text(job.get("location"))))
 
         offset += len(page)
         if not page or offset >= data.get("totalFound", offset):
@@ -133,6 +370,13 @@ def fetch_workable(source):
             str(job.get("shortcode") or job.get("id")),
             job.get("title", "Untitled"),
             job.get("url") or job.get("shortlink") or job.get("application_url", ""),
+            _location_text(
+                job.get("location"),
+                (job.get("department") or {}).get("location")
+                if isinstance(job.get("department"), dict)
+                else None,
+                job.get("remote"),
+            ),
         )
         for job in data.get("jobs", [])
     ]
@@ -149,7 +393,21 @@ def fetch_recruitee(source):
         job_id = str(job.get("id") or job.get("guid") or job.get("slug"))
         title = job.get("title", "Untitled")
         url = job.get("careers_url") or f"https://{slug}.recruitee.com/o/{job.get('slug', '')}"
-        jobs.append((job_id, title, url))
+        jobs.append(
+            (
+                job_id,
+                title,
+                url,
+                _location_text(
+                    job.get("location"),
+                    job.get("locations"),
+                    job.get("city"),
+                    job.get("region"),
+                    job.get("country"),
+                    job.get("remote"),
+                ),
+            )
+        )
     return jobs
 
 
@@ -205,7 +463,20 @@ def fetch_workday(source):
         for job in page:
             path = job.get("externalPath", "")
             job_id = str(job.get("jobReqId") or path or job.get("title"))
-            jobs.append((job_id, job.get("title", "Untitled"), f"{career_url}{path}"))
+            jobs.append(
+                (
+                    job_id,
+                    job.get("title", "Untitled"),
+                    f"{career_url}{path}",
+                    _location_text(
+                        job.get("locationsText"),
+                        job.get("location"),
+                        job.get("bulletFields", [None])[0]
+                        if job.get("bulletFields")
+                        else None,
+                    ),
+                )
+            )
 
         offset += len(page)
         if not page or (total is not None and offset >= total):
@@ -257,8 +528,23 @@ def _parse_xml_jobs(content):
             values,
             ("id", "guid", "requisition-id", "job-id", "jobid", "reference-number"),
         )
+        location = _location_text(
+            *(
+                values.get(name)
+                for name in (
+                    "location",
+                    "job-location",
+                    "location-name",
+                    "city",
+                    "region",
+                    "state",
+                    "country",
+                    "workplace-type",
+                )
+            )
+        )
         if title:
-            jobs.append((job_id or _stable_job_id(title, url), title, url))
+            jobs.append((job_id or _stable_job_id(title, url), title, url, location))
     return jobs
 
 
@@ -308,8 +594,31 @@ def _parse_json_jobs(data):
             ),
             "",
         )
+        location = _location_text(
+            *(
+                item.get(key)
+                for key in (
+                    "location",
+                    "locations",
+                    "job_location",
+                    "jobLocation",
+                    "location_name",
+                    "locationName",
+                    "city",
+                    "region",
+                    "state",
+                    "country",
+                    "workplace_type",
+                    "workplaceType",
+                    "remote",
+                    "isRemote",
+                )
+            )
+        )
         if title:
-            jobs.append((str(job_id or _stable_job_id(title, url)), str(title), str(url)))
+            jobs.append(
+                (str(job_id or _stable_job_id(title, url)), str(title), str(url), location)
+            )
     return jobs
 
 
@@ -559,6 +868,7 @@ def main():
         provider = _provider(source)
         name = source.get("name", source.get("slug", "unknown"))
         keywords = source.get("keywords", [])
+        location_filter = source.get("location_filter")
         fetcher = FETCHERS.get(provider)
 
         if not fetcher:
@@ -575,11 +885,13 @@ def main():
             any_errors = True
             continue
 
-        current_ids = {job_id for job_id, _, _ in jobs}
+        current_ids = {job_id for job_id, _, _, _ in jobs}
         new_jobs = [
             (title, url)
-            for job_id, title, url in jobs
-            if job_id not in seen_ids and matches_keywords(title, keywords)
+            for job_id, title, url, location in jobs
+            if job_id not in seen_ids
+            and matches_keywords(title, keywords)
+            and matches_location(location, location_filter)
         ]
 
         if new_jobs:

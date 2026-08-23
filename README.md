@@ -70,6 +70,39 @@ companies:
     keywords: ["software"]
 ```
 
+### Location filtering
+
+Company ATS feeds usually provide location text rather than coordinates. Add a
+`location_filter` to match city, state, or region phrases after jobs are fetched:
+
+```yaml
+location_filters:
+  ny_nj: &ny_nj_location
+    include_remote: true
+    allow_unknown: false
+    include:
+      - "New York, NY"
+      - "New York City"
+      - "Brooklyn"
+      - "New Jersey"
+      - "NJ"
+
+companies:
+  - name: "Example"
+    ats: greenhouse
+    slug: "example"
+    location_filter: *ny_nj_location
+    keywords: ["engineer"]
+```
+
+`include_remote` keeps generic U.S.-remote roles, but rejects remote postings
+tied to another state or country. `allow_unknown: false` rejects jobs whose feed
+does not expose a location. The checked-in configuration expands this list with
+NYC boroughs and nearby New York cities and applies it to every active source.
+Because these feeds lack coordinates, the matcher approximates the NYC metro
+area; ZipRecruiter searches use their native `location` and numeric `radius`
+fields when that source is enabled.
+
 ### Workday
 
 For a URL such as:

@@ -4,11 +4,60 @@
 # "IT" and "data" are intentionally omitted because they include many
 # unrelated roles.
 
+# Company ATS feeds do not consistently provide coordinates, so this is a
+# strict NYC-metro location matcher rather than a geocoding dependency. Generic
+# U.S.-remote roles are included; remote roles tied to another state/country are
+# excluded. ZipRecruiter uses its native numeric radius when it is enabled.
+location_filters:
+  ny_nj: &ny_nj_location
+    include_remote: true
+    allow_unknown: false
+    include:
+      - "New York, NY"
+      - "New York, New York"
+      - "New York City"
+      - "NYC"
+      - "Manhattan"
+      - "Brooklyn"
+      - "Queens"
+      - "Bronx"
+      - "Staten Island"
+      - "Long Island City"
+      - "White Plains"
+      - "Yonkers"
+      - "New Rochelle"
+      - "Tarrytown"
+      - "Rye"
+      - "Port Chester"
+      - "Purchase"
+      - "Nanuet"
+      - "Hempstead"
+      - "Garden City"
+      - "Bethpage"
+      - "Hicksville"
+      - "Melville"
+      - "New Jersey"
+      - "NJ"
+      - "Jersey City"
+      - "Newark"
+      - "Hoboken"
+      - "Secaucus"
+      - "Weehawken"
+      - "Hackensack"
+      - "Fort Lee"
+      - "Paramus"
+      - "Morristown"
+      - "Parsippany"
+      - "Edison"
+      - "New Brunswick"
+      - "Princeton"
+
 companies:
   - name: "Greenhouse"
     enabled: true
     ats: greenhouse
     slug: "greenhouse"
+    location_filter: *ny_nj_location
     keywords: &resume_keywords
       - "engineer"
       - "engineering"
@@ -50,30 +99,35 @@ companies:
     enabled: true
     ats: greenhouse
     slug: "vercel"
+    location_filter: *ny_nj_location
     keywords: *resume_keywords
 
   - name: "PointClickCare"
     enabled: true
     ats: lever
     slug: "pointclickcare"
+    location_filter: *ny_nj_location
     keywords: *resume_keywords
 
   - name: "FreedomPay"
     enabled: true
     ats: lever
     slug: "freedompay"
+    location_filter: *ny_nj_location
     keywords: *resume_keywords
 
   - name: "Ashby"
     enabled: true
     ats: ashby
     slug: "ashby"
+    location_filter: *ny_nj_location
     keywords: *resume_keywords
 
   - name: "Beacon Software"
     enabled: true
     ats: ashby
     slug: "beaconsoftware"
+    location_filter: *ny_nj_location
     keywords: *resume_keywords
 
   # SmartRecruiters: careers.smartrecruiters.com/<slug>
@@ -81,6 +135,7 @@ companies:
     enabled: true
     ats: smartrecruiters
     slug: "smartrecruiters"
+    location_filter: *ny_nj_location
     keywords: *resume_keywords
 
   # Workable: apply.workable.com/<slug>
@@ -88,6 +143,7 @@ companies:
     enabled: true
     ats: workable
     slug: "seeq"
+    location_filter: *ny_nj_location
     keywords: *resume_keywords
 
   # Recruitee: <slug>.recruitee.com
@@ -95,6 +151,7 @@ companies:
     enabled: true
     ats: recruitee
     slug: "faktionbv1"
+    location_filter: *ny_nj_location
     keywords: *resume_keywords
 
   # Workday external careers site.
@@ -104,6 +161,7 @@ companies:
     host: "workday.wd5.myworkdayjobs.com"
     tenant: "workday"
     site: "Workday"
+    location_filter: *ny_nj_location
     keywords: *resume_keywords
 
   # Large boards with current junior/new-grad openings use a tighter filter so
@@ -112,6 +170,7 @@ companies:
     enabled: true
     ats: lever
     slug: "palantir"
+    location_filter: *ny_nj_location
     keywords: &early_career_keywords
       - "new grad"
       - "new graduate"
@@ -137,36 +196,42 @@ companies:
     enabled: true
     ats: ashby
     slug: "confido"
+    location_filter: *ny_nj_location
     keywords: *early_career_keywords
 
   - name: "Giga"
     enabled: true
     ats: ashby
     slug: "gigaml"
+    location_filter: *ny_nj_location
     keywords: *early_career_keywords
 
   - name: "Handshake"
     enabled: true
     ats: ashby
     slug: "handshake"
+    location_filter: *ny_nj_location
     keywords: *early_career_keywords
 
   - name: "WHOOP"
     enabled: true
     ats: ashby
     slug: "whoop"
+    location_filter: *ny_nj_location
     keywords: *early_career_keywords
 
   - name: "Lightfield"
     enabled: true
     ats: ashby
     slug: "lightfield"
+    location_filter: *ny_nj_location
     keywords: *early_career_keywords
 
   - name: "Traba"
     enabled: true
     ats: ashby
     slug: "traba"
+    location_filter: *ny_nj_location
     keywords: *early_career_keywords
 
   - name: "Leidos"
@@ -176,6 +241,7 @@ companies:
     tenant: "leidos"
     site: "external"
     search_text: "Junior"
+    location_filter: *ny_nj_location
     keywords: *early_career_keywords
 
   - name: "Globus Medical"
@@ -185,6 +251,7 @@ companies:
     tenant: "globusmedical"
     site: "gmed_careers"
     search_text: "Software"
+    location_filter: *ny_nj_location
     keywords: *early_career_keywords
 
   - name: "Acrisure"
@@ -194,6 +261,7 @@ companies:
     tenant: "acrisure"
     site: "acrisure"
     search_text: "Software"
+    location_filter: *ny_nj_location
     keywords: *early_career_keywords
 
 # Jobvite, LinkedIn, and Indeed are not active because they require approved
