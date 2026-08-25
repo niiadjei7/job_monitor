@@ -235,7 +235,6 @@
     "ca9d673e-c783-4ea1-8f0c-c2a017764f81",
     "cd21b141-b115-433f-8dc9-c83cbbdca7b0",
     "d01f67e7-5658-4b75-a296-9765c708fbab",
-    "d15a1a1c-50ba-4f3a-801e-18277a7e6722",
     "da7bc8fc-4b7a-410a-aaa1-2faafed7c9fc",
     "dabb98c5-e646-48a6-b76b-4a8f3e17b9f8",
     "e1f105e9-f143-43d2-bb05-c0ab4edd52f7",
@@ -247,8 +246,7 @@
     "f0267113-e730-48fa-8ae4-6f2246fc1af3",
     "f2ed7bba-e887-474d-9bf2-894a47f0082f",
     "f632f0c3-0b9c-49a7-984b-de92e18e6d0b",
-    "fcd727f8-6390-4aef-9052-818ff710b013",
-    "fe319ff8-87e1-46d9-b23e-4b78cf6086f8"
+    "fcd727f8-6390-4aef-9052-818ff710b013"
   ],
   "ashby:lightfield": [
     "094fac84-e417-4fd7-b9fd-49d7efec8a2e",
@@ -1066,7 +1064,7 @@
   "workday:acrisure": [
     "/job/1-Heartland-Way---JEFFERSONVILLE-IN/Payroll-Specialist_JR114033",
     "/job/1-Liberty-Plaza---NEW-YORK-NY/Portfolio-Actuary_JR113915",
-    "/job/10-Research-Pkwy-Ste-400----WALLINGFORD-CT/Personal-Lines-High-Net-Worth-Account-Manager_JR114134",
+    "/job/10-Research-Pkwy-Ste-400----WALLINGFORD-CT/Personal-Lines-High-Net-Worth-Account-Manager_JR114147",
     "/job/100-East-Main-Street---OKLAHOMA-CITY-OK/Digital-Marketing-Operations-Specialist_JR113699",
     "/job/100-East-Main-Street---OKLAHOMA-CITY-OK/Payroll-Specialist_JR113991",
     "/job/100-Ottawa-Ave-Sw----GRAND-RAPIDS-MI/Integration-Specialist_JR114008",
@@ -1358,8 +1356,7 @@
     "/job/Warrenton-VA/Targeting-Officer---Warrenton--VA_R-00180685-1",
     "/job/Washington-DC/Mid-Level-Transport-Network-Engineer_R-00188602-1",
     "/job/Washington-DC/Senior-Transport-Network-Engineer_R-00188601-1",
-    "/job/Washington-DC/Sr-ServiceNow-Developer_R-00187267",
-    "None"
+    "/job/Washington-DC/Sr-ServiceNow-Developer_R-00187267"
   ],
   "workday:workday": [
     "/job/Australia-NSW-North-Sydney/Sr-Financials-Functional-Consultant_JR-0106361",
@@ -1387,6 +1384,7 @@
     "/job/Costa-Rica/Business-Process-Analyst_JR-0109229",
     "/job/Costa-Rica/HCM-Functional-Consultant---Workday-Success-Plans_JR-0109135-1",
     "/job/Costa-Rica/HCM-Implementation-Consultant_JR-0109497",
+    "/job/Costa-Rica/Manager-Workmate-Support_JR-0109488",
     "/job/Costa-Rica/Product-Instructor_JR-0108501",
     "/job/Costa-Rica/Senior-Delivery-Manager---HiredScore_JR-0109034-1",
     "/job/Costa-Rica/Senior-Financial-Analyst_JR-0109274",
@@ -1536,6 +1534,7 @@
     "/job/USA-CA-Pleasanton/Machine-Learning-Engineer_JR-0106147",
     "/job/USA-CA-Pleasanton/Majors-Account-Executive---Healthcare_JR-0108418-1",
     "/job/USA-CA-Pleasanton/Partner-Solution-Consultant-Advisor---oCFO_JR-0108016",
+    "/job/USA-CA-Pleasanton/Payroll-and-Time-Tracking---Enterprise-Applications-Analyst_JR-0109085-1",
     "/job/USA-CA-Pleasanton/Portfolio---Delivery-Lead--Order-to-Cash_JR-0108943-1",
     "/job/USA-CA-Pleasanton/Principal--Product-Owner--GTM_JR-0108086",
     "/job/USA-CA-Pleasanton/Principal-AI-Researcher_JR-0107313",
@@ -1587,6 +1586,8 @@
     "/job/USA-GA-Atlanta/Manager--North-America-Payroll_JR-0109371",
     "/job/USA-GA-Atlanta/Manager--Sales-Development_JR-0108419",
     "/job/USA-GA-Atlanta/Principal--Product-Owner--Business-Performance_JR-0108062",
+    "/job/USA-GA-Atlanta/Principal-AI-Engineer_JR-0108761",
+    "/job/USA-GA-Atlanta/Product-Solution-Architect---Quote-to-Cash--Salesforce-CPQ---CLM-_JR-0109155-1",
     "/job/USA-GA-Atlanta/Senior-Financial-Consultant---Workday-Success-Plans---Spend-Management_JR-0108067",
     "/job/USA-GA-Atlanta/Senior-Functional-Consultant---HCM-and-Security---Workday-Success-Plans_JR-0109582",
     "/job/USA-GA-Atlanta/Senior-Functional-Consultant-or-Functional-Consultant---Payroll---Workday-Success-Plans_JR-0108691",
@@ -1603,6 +1604,7 @@
     "/job/USA-IL-Chicago/Principal-Functional-Consultant--AI-Practice_JR-0107274",
     "/job/USA-IL-Chicago/Regional-Sales-Director--Large-Enterprise-Customer-Base_JR-0109438",
     "/job/USA-IL-Chicago/Regional-Sales-Director_JR-0109141",
+    "/job/USA-IL-Chicago/Senior-Customer-Success-Manager--Specialized-Products--AI---Emerging-_JR-0109592",
     "/job/USA-IL-Chicago/Senior-Functional-Consultant---Compensation--Advanced-Compensation--Human-Capital-Management---Workday-Success-Plans_JR-0108659",
     "/job/USA-IL-Chicago/Senior-Functional-Consultant---Record-to-Report---Workday-Success-Plans_JR-0109214-1",
     "/job/USA-IL-Chicago/Senior-Functional-Consultant---Talent-Acquisition-Recruiting---Workday-Success-Plans_JR-0108660",
