@@ -19,6 +19,7 @@ STATE_PATH = Path("state.json")
 REQUEST_TIMEOUT = 20
 USER_AGENT = "job-monitor-bot/2.0 (personal use)"
 MCP_PROTOCOL_VERSION = "2025-03-26"
+NOTIFIED_STATE_SUFFIX = "notified-v2"
 
 US_STATE_ABBREVIATIONS = {
     "AL",
@@ -144,10 +145,18 @@ def load_config():
     with open(CONFIG_PATH, encoding="utf-8") as config_file:
         data = yaml.safe_load(config_file) or {}
 
-    sources = data.get("companies", []) + data.get("searches", [])
-    if not isinstance(sources, list):
+    companies = data.get("companies", [])
+    searches = data.get("searches", [])
+    if not isinstance(companies, list) or not isinstance(searches, list):
         raise ValueError("companies and searches must both be YAML lists")
-    return sources
+    raw_sources = companies + searches
+    source_defaults = data.get("source_defaults", {}) or {}
+    if not isinstance(source_defaults, dict):
+        raise ValueError("source_defaults must be a mapping")
+    return [
+        {**source_defaults, **source} if isinstance(source, dict) else source
+        for source in raw_sources
+    ]
 
 
 def load_state():
@@ -258,13 +267,17 @@ def matches_location(location, location_filter):
     if not (location_filter.get("include_remote", False) and is_remote):
         return False
 
-    if has_foreign_region:
-        return False
+    remote_include = location_filter.get("remote_include", [])
+    if remote_include:
+        # A positive U.S. marker wins for multi-region postings such as
+        # "Remote - US, Remote - Canada" because the role is available in the U.S.
+        return any(_has_location_term(location, term) for term in remote_include)
 
-    # A remote posting tied to a different state is not generally available in NY/NJ.
-    if has_other_state:
-        return False
-    return True
+    # Unspecified remote jobs are rejected by default. A source can opt in only
+    # when its feed contract guarantees that bare "Remote" means U.S.-remote.
+    return bool(location_filter.get("allow_unspecified_remote", False)) and not (
+        has_foreign_region or has_other_state
+    )
 
 
 def _get_json(url, **kwargs):
@@ -372,10 +385,15 @@ def fetch_workable(source):
             job.get("url") or job.get("shortlink") or job.get("application_url", ""),
             _location_text(
                 job.get("location"),
+                job.get("locations"),
+                job.get("city"),
+                job.get("state"),
+                job.get("country"),
                 (job.get("department") or {}).get("location")
                 if isinstance(job.get("department"), dict)
                 else None,
                 job.get("remote"),
+                job.get("telecommuting"),
             ),
         )
         for job in data.get("jobs", [])
@@ -805,34 +823,40 @@ FETCHERS = {
 }
 
 
-def matches_keywords(title, keywords):
-    if not keywords:
-        return True
+def _matches_title_terms(title, terms):
     return any(
         re.search(rf"(?<!\w){re.escape(str(keyword).strip())}(?!\w)", title, re.IGNORECASE)
-        for keyword in keywords
+        for keyword in terms
         if str(keyword).strip()
     )
+
+
+def matches_keywords(title, keywords, exclude_keywords=None):
+    if _matches_title_terms(title, exclude_keywords or []):
+        return False
+    return not keywords or _matches_title_terms(title, keywords)
 
 
 def send_discord_notification(webhook_url, source_name, new_jobs):
     if not new_jobs:
         return
 
-    lines = [f"**{len(new_jobs)} new posting(s) from {source_name}**"]
-    for title, url in new_jobs[:10]:
-        lines.append(f"- [{title}]({url})" if url else f"- {title}")
-    if len(new_jobs) > 10:
-        lines.append(f"...and {len(new_jobs) - 10} more.")
+    total = len(new_jobs)
+    for start in range(0, total, 10):
+        chunk = new_jobs[start : start + 10]
+        end = start + len(chunk)
+        suffix = f" ({start + 1}-{end} of {total})" if total > 10 else ""
+        lines = [f"**{total} new posting(s) from {source_name}{suffix}**"]
+        for title, url in chunk:
+            lines.append(f"- [{title}]({url})" if url else f"- {title}")
 
-    response = requests.post(
-        webhook_url, json={"content": "\n".join(lines)}, timeout=REQUEST_TIMEOUT
-    )
-    if response.status_code >= 300:
-        print(
-            f"WARN: Discord webhook returned {response.status_code}: {response.text}",
-            file=sys.stderr,
+        response = requests.post(
+            webhook_url, json={"content": "\n".join(lines)}, timeout=REQUEST_TIMEOUT
         )
+        if response.status_code >= 300:
+            raise RuntimeError(f"Discord webhook returned HTTP {response.status_code}")
+        if end < total:
+            time.sleep(0.5)
 
 
 def _provider(source):
@@ -849,6 +873,10 @@ def _state_key(source, provider):
     if not identifier:
         raise ValueError(f"{provider} source requires id, slug, tenant, or name")
     return f"{provider}:{identifier}"
+
+
+def _notified_state_key(state_key):
+    return f"{state_key}:{NOTIFIED_STATE_SUFFIX}"
 
 
 def main():
@@ -868,6 +896,7 @@ def main():
         provider = _provider(source)
         name = source.get("name", source.get("slug", "unknown"))
         keywords = source.get("keywords", [])
+        exclude_keywords = source.get("exclude_keywords", [])
         location_filter = source.get("location_filter")
         fetcher = FETCHERS.get(provider)
 
@@ -878,7 +907,8 @@ def main():
 
         try:
             state_key = _state_key(source, provider)
-            seen_ids = set(state.get(state_key, []))
+            notified_state_key = _notified_state_key(state_key)
+            notified_ids = set(state.get(notified_state_key, []))
             jobs = fetcher(source)
         except Exception as exc:
             print(f"WARN: failed to fetch {name} ({provider}): {exc}", file=sys.stderr)
@@ -886,23 +916,35 @@ def main():
             continue
 
         current_ids = {job_id for job_id, _, _, _ in jobs}
+        eligible_jobs = [
+            (job_id, title, url)
+            for job_id, title, url, location in jobs
+            if matches_keywords(title, keywords, exclude_keywords)
+            and matches_location(location, location_filter)
+        ]
         new_jobs = [
             (title, url)
-            for job_id, title, url, location in jobs
-            if job_id not in seen_ids
-            and matches_keywords(title, keywords)
-            and matches_location(location, location_filter)
+            for job_id, title, url in eligible_jobs
+            if job_id not in notified_ids
         ]
 
         if new_jobs:
             print(f"{name}: {len(new_jobs)} new matching posting(s).")
-            send_discord_notification(webhook_url, name, new_jobs)
+            try:
+                send_discord_notification(webhook_url, name, new_jobs)
+            except Exception as exc:
+                print(f"WARN: failed to notify for {name}: {exc}", file=sys.stderr)
+                any_errors = True
+            else:
+                notified_ids.update(job_id for job_id, _, _ in eligible_jobs)
         else:
             print(f"{name}: no new matching postings.")
 
-        # Store every current ID, including non-matches, so changing keywords later
-        # does not re-notify for jobs that were already live.
+        # Keep a complete inventory for auditing while tracking delivered matches
+        # separately. The v2 key creates one catch-up pass for eligible jobs that
+        # the old all-jobs state marked seen before location/seniority fixes.
         state[state_key] = sorted(current_ids)
+        state[notified_state_key] = sorted(notified_ids)
         time.sleep(float(source.get("request_delay", 1)))
 
     save_state(state)

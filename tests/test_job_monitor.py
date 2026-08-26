@@ -133,7 +133,11 @@ class AdapterTests(unittest.TestCase):
                     "shortcode": "ABC123",
                     "title": "Platform Engineer",
                     "url": "https://apply.workable.com/j/ABC123",
-                    "location": {"city": "Jersey City", "region": "NJ"},
+                    "country": "United States",
+                    "locations": [
+                        {"country": "United States", "countryCode": "US"}
+                    ],
+                    "telecommuting": True,
                 }
             ]
         }
@@ -147,7 +151,7 @@ class AdapterTests(unittest.TestCase):
                     "ABC123",
                     "Platform Engineer",
                     "https://apply.workable.com/j/ABC123",
-                    "Jersey City, NJ",
+                    "United States, US, Remote",
                 )
             ],
         )
@@ -370,9 +374,17 @@ class ConfigurationTests(unittest.TestCase):
         for source in enabled_sources:
             keywords = {keyword.lower() for keyword in source.get("keywords", [])}
             self.assertTrue(keywords)
+            exclude_keywords = {
+                keyword.lower() for keyword in source.get("exclude_keywords", [])
+            }
+            self.assertTrue({"senior", "staff", "principal", "manager"}.issubset(exclude_keywords))
             location_filter = source.get("location_filter", {})
             self.assertTrue(location_filter.get("include"))
             self.assertTrue(location_filter.get("include_remote"))
+            self.assertEqual(
+                {term.lower() for term in location_filter.get("remote_include", [])},
+                {"united states", "usa", "us"},
+            )
             self.assertFalse(location_filter.get("allow_unknown"))
 
         configured_names = {source["name"] for source in enabled_sources}
@@ -395,6 +407,7 @@ class ConfigurationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             config_path = Path(temp_dir) / "companies.yaml"
             config_path.write_text(
+                "source_defaults:\n  exclude_keywords: [senior]\n"
                 "companies:\n  - {name: Acme, ats: greenhouse, slug: acme}\n"
                 "searches:\n  - {name: Search, platform: ziprecruiter, id: search}\n",
                 encoding="utf-8",
@@ -403,6 +416,8 @@ class ConfigurationTests(unittest.TestCase):
                 sources = job_monitor.load_config()
 
         self.assertEqual([source["name"] for source in sources], ["Acme", "Search"])
+        self.assertEqual(sources[0]["exclude_keywords"], ["senior"])
+        self.assertEqual(sources[1]["exclude_keywords"], ["senior"])
 
     def test_explicit_id_keeps_multiple_searches_separate(self):
         one = {"id": "backend-philly", "platform": "ziprecruiter"}
@@ -414,6 +429,27 @@ class ConfigurationTests(unittest.TestCase):
 
 
 class EndToEndTests(unittest.TestCase):
+    @patch("job_monitor.requests.post")
+    def test_discord_backfill_is_sent_in_complete_chunks(self, post):
+        post.return_value = FakeResponse(status=204)
+        jobs = [
+            (f"Engineer {index}", f"https://jobs.test/{index}")
+            for index in range(21)
+        ]
+
+        with patch("job_monitor.time.sleep") as sleep:
+            job_monitor.send_discord_notification(
+                "https://discord.test/hook", "Acme", jobs
+            )
+
+        self.assertEqual(post.call_count, 3)
+        self.assertEqual(sleep.call_count, 2)
+        delivered = "\n".join(
+            call.kwargs["json"]["content"] for call in post.call_args_list
+        )
+        self.assertIn("Engineer 0", delivered)
+        self.assertIn("Engineer 20", delivered)
+
     def test_keyword_matching_uses_word_boundaries_for_job_levels(self):
         self.assertTrue(
             job_monitor.matches_keywords("Software Engineer I", ["software engineer i"])
@@ -424,11 +460,31 @@ class EndToEndTests(unittest.TestCase):
         self.assertTrue(
             job_monitor.matches_keywords("Junior DevOps Engineer", ["junior"])
         )
-        self.assertFalse(job_monitor.matches_keywords("Engineering Manager", ["engineer"]))
+        self.assertTrue(
+            job_monitor.matches_keywords(
+                "Databricks Full Stack Developer", ["developer", "full stack"]
+            )
+        )
+        self.assertFalse(
+            job_monitor.matches_keywords(
+                "Senior Software Engineer", ["engineer"], ["senior", "staff"]
+            )
+        )
+        self.assertFalse(
+            job_monitor.matches_keywords(
+                "Staff/Lead Platform Engineer", ["engineer"], ["staff", "lead"]
+            )
+        )
+        self.assertFalse(
+            job_monitor.matches_keywords(
+                "Engineering Manager", ["engineering"], ["manager"]
+            )
+        )
 
     def test_location_filter_keeps_ny_nj_and_generic_us_remote_jobs(self):
         location_filter = {
             "include": [
+                "New York",
                 "New York, NY",
                 "New York City",
                 "Brooklyn",
@@ -437,6 +493,8 @@ class EndToEndTests(unittest.TestCase):
                 "Newark",
             ],
             "include_remote": True,
+            "remote_include": ["United States", "USA", "US"],
+            "allow_unspecified_remote": False,
             "allow_unknown": False,
         }
 
@@ -449,10 +507,20 @@ class EndToEndTests(unittest.TestCase):
             )
         )
         self.assertTrue(job_monitor.matches_location("Remote - United States", location_filter))
+        self.assertTrue(
+            job_monitor.matches_location(
+                "Remote - US, Remote - Canada", location_filter
+            )
+        )
         self.assertFalse(job_monitor.matches_location("San Francisco, CA", location_filter))
         self.assertFalse(job_monitor.matches_location("Newark, DE", location_filter))
         self.assertFalse(job_monitor.matches_location("Remote - California", location_filter))
         self.assertFalse(job_monitor.matches_location("Remote - Canada", location_filter))
+        self.assertFalse(job_monitor.matches_location("Remote, Poland, PL", location_filter))
+        self.assertFalse(
+            job_monitor.matches_location("Remote - European Union", location_filter)
+        )
+        self.assertFalse(job_monitor.matches_location("Remote", location_filter))
         self.assertFalse(job_monitor.matches_location("", location_filter))
 
     def test_main_filters_notifies_and_persists_all_current_ids(self):
@@ -465,18 +533,27 @@ class EndToEndTests(unittest.TestCase):
                 "    ats: greenhouse\n"
                 "    slug: acme\n"
                 "    keywords: [engineer]\n"
+                "    exclude_keywords: [senior]\n"
                 "    location_filter:\n"
                 "      include: ['New York, NY', NJ]\n"
                 "      include_remote: true\n"
+                "      remote_include: [United States, USA, US]\n"
                 "      allow_unknown: false\n",
                 encoding="utf-8",
             )
             state_path.write_text(
-                json.dumps({"greenhouse:acme": ["old"]}), encoding="utf-8"
+                json.dumps({"greenhouse:acme": ["old", "existing-match"]}),
+                encoding="utf-8",
             )
             fetcher = Mock(
                 return_value=[
                     ("old", "Sales", "https://jobs.test/old", "New York, NY"),
+                    (
+                        "existing-match",
+                        "Cloud Engineer",
+                        "https://jobs.test/existing-match",
+                        "New York, NY",
+                    ),
                     (
                         "new",
                         "Platform Engineer",
@@ -495,6 +572,12 @@ class EndToEndTests(unittest.TestCase):
                         "https://jobs.test/filtered",
                         "New York, NY",
                     ),
+                    (
+                        "senior",
+                        "Senior Software Engineer",
+                        "https://jobs.test/senior",
+                        "New York, NY",
+                    ),
                 ]
             )
 
@@ -508,16 +591,34 @@ class EndToEndTests(unittest.TestCase):
             ):
                 job_monitor.main()
 
+                notify.assert_called_once_with(
+                    "https://discord.test/hook",
+                    "Acme",
+                    [
+                        ("Cloud Engineer", "https://jobs.test/existing-match"),
+                        ("Platform Engineer", "https://jobs.test/new"),
+                    ],
+                )
+                notify.reset_mock()
+                job_monitor.main()
+                notify.assert_not_called()
+
             saved = json.loads(state_path.read_text(encoding="utf-8"))
 
-        notify.assert_called_once_with(
-            "https://discord.test/hook",
-            "Acme",
-            [("Platform Engineer", "https://jobs.test/new")],
-        )
         self.assertEqual(
             saved["greenhouse:acme"],
-            ["filtered", "new", "old", "wrong-location"],
+            [
+                "existing-match",
+                "filtered",
+                "new",
+                "old",
+                "senior",
+                "wrong-location",
+            ],
+        )
+        self.assertEqual(
+            saved["greenhouse:acme:notified-v2"],
+            ["existing-match", "new"],
         )
 
 

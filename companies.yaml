@@ -4,15 +4,45 @@
 # "IT" and "data" are intentionally omitted because they include many
 # unrelated roles.
 
+# Seniority is excluded independently from the positive role keywords, so a
+# title such as "Senior Software Engineer" cannot match only because it contains
+# "software" or "engineer".
+keyword_filters:
+  seniority: &senior_title_keywords
+    - "senior"
+    - "sr"
+    - "staff"
+    - "principal"
+    - "lead"
+    - "manager"
+    - "director"
+    - "head"
+    - "vice president"
+    - "vp"
+    - "architect"
+    - "engineer ii"
+    - "engineer iii"
+    - "developer ii"
+    - "developer iii"
+
+source_defaults:
+  exclude_keywords: *senior_title_keywords
+
 # Company ATS feeds do not consistently provide coordinates, so this is a
 # strict NYC-metro location matcher rather than a geocoding dependency. Generic
-# U.S.-remote roles are included; remote roles tied to another state/country are
-# excluded. ZipRecruiter uses its native numeric radius when it is enabled.
+# remote roles are accepted only when the feed explicitly identifies the U.S.
+# ZipRecruiter uses its native numeric radius when it is enabled.
 location_filters:
   ny_nj: &ny_nj_location
     include_remote: true
+    remote_include:
+      - "United States"
+      - "USA"
+      - "US"
+    allow_unspecified_remote: false
     allow_unknown: false
     include:
+      - "New York"
       - "New York, NY"
       - "New York, New York"
       - "New York City"
@@ -164,75 +194,57 @@ companies:
     location_filter: *ny_nj_location
     keywords: *resume_keywords
 
-  # Large boards with current junior/new-grad openings use a tighter filter so
-  # senior roles do not crowd the Discord notification limit.
+  # These boards previously required an explicit junior/new-grad phrase. They
+  # now use the same resume-relevant role terms as every other source while the
+  # independent seniority exclusions remove clearly experienced roles.
   - name: "Palantir"
     enabled: true
     ats: lever
     slug: "palantir"
     location_filter: *ny_nj_location
-    keywords: &early_career_keywords
-      - "new grad"
-      - "new graduate"
-      - "early career"
-      - "entry level"
-      - "entry-level"
-      - "junior"
-      - "associate software"
-      - "associate developer"
-      - "associate devops"
-      - "associate cloud"
-      - "associate infrastructure"
-      - "software engineer i"
-      - "developer i"
-      - "devops engineer i"
-      - "cloud engineer i"
-      - "platform engineer i"
-      - "infrastructure engineer i"
-      - "backend engineer i"
-      - "frontend engineer i"
+    keywords: *resume_keywords
 
   - name: "Confido"
     enabled: true
     ats: ashby
     slug: "confido"
     location_filter: *ny_nj_location
-    keywords: *early_career_keywords
+    keywords: *resume_keywords
 
   - name: "Giga"
     enabled: true
     ats: ashby
     slug: "gigaml"
     location_filter: *ny_nj_location
-    keywords: *early_career_keywords
+    keywords: *resume_keywords
 
   - name: "Handshake"
     enabled: true
     ats: ashby
     slug: "handshake"
     location_filter: *ny_nj_location
-    keywords: *early_career_keywords
+    keywords: *resume_keywords
 
   - name: "WHOOP"
     enabled: true
     ats: ashby
     slug: "whoop"
     location_filter: *ny_nj_location
-    keywords: *early_career_keywords
+    keywords: *resume_keywords
 
   - name: "Lightfield"
     enabled: true
     ats: ashby
     slug: "lightfield"
     location_filter: *ny_nj_location
-    keywords: *early_career_keywords
+    keywords: *resume_keywords
 
   - name: "Traba"
     enabled: true
     ats: ashby
     slug: "traba"
     location_filter: *ny_nj_location
-    keywords: *early_career_keywords
+    keywords: *resume_keywords
 
   - name: "Leidos"
     enabled: true
@@ -242,7 +254,7 @@ companies:
     site: "external"
     search_text: "Junior"
     location_filter: *ny_nj_location
-    keywords: *early_career_keywords
+    keywords: *resume_keywords
 
   - name: "Globus Medical"
     enabled: true
@@ -252,7 +264,7 @@ companies:
     site: "gmed_careers"
     search_text: "Software"
     location_filter: *ny_nj_location
-    keywords: *early_career_keywords
+    keywords: *resume_keywords
 
   - name: "Acrisure"
     enabled: true
@@ -262,7 +274,7 @@ companies:
     site: "acrisure"
     search_text: "Software"
     location_filter: *ny_nj_location
-    keywords: *early_career_keywords
+    keywords: *resume_keywords
 
 # Jobvite, LinkedIn, and Indeed are not active because they require approved
 # private feed URLs. ZipRecruiter is not active because its public MCP endpoint

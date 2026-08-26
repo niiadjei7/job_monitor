@@ -48,11 +48,15 @@ run finish before relying on notifications.
 ## Company source configuration
 
 Every company entry uses `ats`, `slug` or the provider-specific identifiers, and
-an optional `keywords` list. Keywords match case-insensitive whole words or
-phrases; an empty list matches every title. Broad career boards can use a tighter
-early-career list so senior openings do not crowd the notification limit.
+an optional `keywords` list. Positive and excluded keywords match
+case-insensitive whole words or phrases. A title must match a positive keyword
+and must not match any `exclude_keywords` value. Shared `source_defaults` apply
+to every company/search unless a source overrides them.
 
 ```yaml
+source_defaults:
+  exclude_keywords: ["senior", "sr", "staff", "principal", "lead", "manager"]
+
 companies:
   - name: "Example on SmartRecruiters"
     ats: smartrecruiters
@@ -79,8 +83,11 @@ Company ATS feeds usually provide location text rather than coordinates. Add a
 location_filters:
   ny_nj: &ny_nj_location
     include_remote: true
+    remote_include: ["United States", "USA", "US"]
+    allow_unspecified_remote: false
     allow_unknown: false
     include:
+      - "New York"
       - "New York, NY"
       - "New York City"
       - "Brooklyn"
@@ -95,13 +102,13 @@ companies:
     keywords: ["engineer"]
 ```
 
-`include_remote` keeps generic U.S.-remote roles, but rejects remote postings
-tied to another state or country. `allow_unknown: false` rejects jobs whose feed
-does not expose a location. The checked-in configuration expands this list with
-NYC boroughs and nearby New York cities and applies it to every active source.
-Because these feeds lack coordinates, the matcher approximates the NYC metro
-area; ZipRecruiter searches use their native `location` and numeric `radius`
-fields when that source is enabled.
+`remote_include` acts as a whitelist: a remote posting must explicitly contain a
+U.S. marker. This accepts multi-region jobs that include the U.S. while rejecting
+bare or foreign-only remote postings. `allow_unknown: false` rejects jobs whose
+feed does not expose a location. The checked-in configuration expands the local
+list with NYC boroughs and nearby New York/New Jersey cities and applies it to
+every active source. Because most feeds lack coordinates, the matcher
+approximates the area; ZipRecruiter uses its native numeric `radius` when enabled.
 
 ### Workday
 
@@ -203,10 +210,12 @@ step before adding the source back to `companies.yaml`.
 The default cron expression is `0 */3 * * *`, which runs every three hours in
 UTC. Edit `.github/workflows/job-monitor.yml` to change it.
 
-`state.json` stores every currently visible job ID for each source, including
-titles that did not match your filters. The workflow commits this file after each
-run, preventing an old posting from becoming "new" merely because you changed a
-keyword.
+`state.json` stores both the current source inventory and a separate set of job
+IDs successfully delivered to Discord. This allows newly eligible jobs to be
+reconsidered after a filter correction without resending jobs already delivered.
+The `notified-v2` state starts with one catch-up pass after this migration. Large
+catch-up sets are sent to Discord in complete chunks of ten rather than silently
+omitting jobs beyond the first message.
 
 Failed sources leave their previous state untouched. The process exits with code
 2 after checking the remaining sources, making partial failures visible in the
