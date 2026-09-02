@@ -44,7 +44,7 @@ class AdapterTests(unittest.TestCase):
         self.assertEqual(expected, set(job_monitor.FETCHERS))
 
     @patch("job_monitor._get_json")
-    def test_greenhouse_lever_and_ashby_retain_locations(self, get_json):
+    def test_greenhouse_lever_and_ashby_retain_locations_and_context(self, get_json):
         get_json.side_effect = [
             {
                 "jobs": [
@@ -53,6 +53,7 @@ class AdapterTests(unittest.TestCase):
                         "title": "Engineer",
                         "absolute_url": "https://greenhouse.test/1",
                         "location": {"name": "New York, NY"},
+                        "departments": [{"name": "Infrastructure"}],
                     }
                 ]
             },
@@ -61,7 +62,11 @@ class AdapterTests(unittest.TestCase):
                     "id": "2",
                     "text": "Developer",
                     "hostedUrl": "https://lever.test/2",
-                    "categories": {"location": "Jersey City, NJ"},
+                    "categories": {
+                        "location": "Jersey City, NJ",
+                        "team": "Platform",
+                        "department": "Engineering",
+                    },
                     "workplaceType": "hybrid",
                 }
             ],
@@ -73,21 +78,22 @@ class AdapterTests(unittest.TestCase):
                         "jobUrl": "https://ashby.test/3",
                         "location": "Remote - US",
                         "isRemote": True,
+                        "team": "Cloud Engineering",
                     }
                 ]
             },
         ]
 
+        greenhouse_job = job_monitor.fetch_greenhouse({"slug": "acme"})[0]
+        lever_job = job_monitor.fetch_lever({"slug": "acme"})[0]
+        ashby_job = job_monitor.fetch_ashby({"slug": "acme"})[0]
+
+        self.assertEqual(greenhouse_job[3:], ("New York, NY", "Infrastructure"))
         self.assertEqual(
-            job_monitor.fetch_greenhouse({"slug": "acme"})[0][3], "New York, NY"
+            lever_job[3:], ("Jersey City, NJ, hybrid", "Platform, Engineering")
         )
         self.assertEqual(
-            job_monitor.fetch_lever({"slug": "acme"})[0][3],
-            "Jersey City, NJ, hybrid",
-        )
-        self.assertEqual(
-            job_monitor.fetch_ashby({"slug": "acme"})[0][3],
-            "Remote - US, Remote",
+            ashby_job[3:], ("Remote - US, Remote", "Cloud Engineering")
         )
 
     @patch("job_monitor._get_json")
@@ -372,8 +378,8 @@ class ConfigurationTests(unittest.TestCase):
             )
         )
         for source in enabled_sources:
-            keywords = {keyword.lower() for keyword in source.get("keywords", [])}
-            self.assertTrue(keywords)
+            self.assertTrue(source.get("keyword_categories"))
+            self.assertTrue(source.get("early_career_keywords"))
             exclude_keywords = {
                 keyword.lower() for keyword in source.get("exclude_keywords", [])
             }
@@ -450,6 +456,28 @@ class EndToEndTests(unittest.TestCase):
         self.assertIn("Engineer 0", delivered)
         self.assertIn("Engineer 20", delivered)
 
+    @patch("job_monitor.requests.post")
+    def test_discord_notification_includes_category_tags(self, post):
+        post.return_value = FakeResponse(status=204)
+
+        job_monitor.send_discord_notification(
+            "https://discord.test/hook",
+            "Acme",
+            [
+                (
+                    "Software Engineer I",
+                    "https://jobs.test/one",
+                    ["DevOps", "AWS/Cloud"],
+                )
+            ],
+        )
+
+        self.assertEqual(
+            post.call_args.kwargs["json"]["content"],
+            "**1 new posting(s) from Acme**\n"
+            "- [DevOps] [AWS/Cloud] [Software Engineer I](https://jobs.test/one)",
+        )
+
     def test_keyword_matching_uses_word_boundaries_for_job_levels(self):
         self.assertTrue(
             job_monitor.matches_keywords("Software Engineer I", ["software engineer i"])
@@ -479,6 +507,45 @@ class EndToEndTests(unittest.TestCase):
             job_monitor.matches_keywords(
                 "Engineering Manager", ["engineering"], ["manager"]
             )
+        )
+
+    def test_category_match_requires_an_early_career_signal(self):
+        categories = {
+            "DevOps": {
+                "title": ["devops", "platform engineer"],
+                "context": ["platform", "infrastructure"],
+            }
+        }
+        early_career = ["junior", "associate", "engineer i"]
+        excluded = ["senior", "staff", "manager"]
+
+        self.assertEqual(
+            job_monitor.matches_keywords(
+                "Software Engineer I",
+                categories,
+                exclude_keywords=excluded,
+                context="Infrastructure",
+                early_career_keywords=early_career,
+            ),
+            ["DevOps"],
+        )
+        self.assertEqual(
+            job_monitor.matches_keywords(
+                "Senior Associate Platform Engineer",
+                categories,
+                exclude_keywords=excluded,
+                early_career_keywords=early_career,
+            ),
+            [],
+        )
+        self.assertEqual(
+            job_monitor.matches_keywords(
+                "Associate Account Executive",
+                categories,
+                exclude_keywords=excluded,
+                early_career_keywords=early_career,
+            ),
+            [],
         )
 
     def test_location_filter_keeps_ny_nj_and_generic_us_remote_jobs(self):
@@ -595,8 +662,16 @@ class EndToEndTests(unittest.TestCase):
                     "https://discord.test/hook",
                     "Acme",
                     [
-                        ("Cloud Engineer", "https://jobs.test/existing-match"),
-                        ("Platform Engineer", "https://jobs.test/new"),
+                        (
+                            "Cloud Engineer",
+                            "https://jobs.test/existing-match",
+                            ["General"],
+                        ),
+                        (
+                            "Platform Engineer",
+                            "https://jobs.test/new",
+                            ["General"],
+                        ),
                     ],
                 )
                 notify.reset_mock()

@@ -1,8 +1,9 @@
 # Job Monitor
 
 Job Monitor checks company career systems and approved job-search feeds, remembers
-the postings it has already seen, and sends new title matches to Discord. It runs
-on a GitHub Actions schedule, so no server is required.
+the postings it has already seen, and sends new early-career role matches to
+Discord. Matches are tagged by specialty. It runs on a GitHub Actions schedule,
+so no server is required.
 
 ## Supported platforms
 
@@ -47,31 +48,40 @@ run finish before relying on notifications.
 
 ## Company source configuration
 
-Every company entry uses `ats`, `slug` or the provider-specific identifiers, and
-an optional `keywords` list. Positive and excluded keywords match
-case-insensitive whole words or phrases. A title must match a positive keyword
-and must not match any `exclude_keywords` value. Shared `source_defaults` apply
-to every company/search unless a source overrides them.
+Every checked-in company entry uses `ats`, provider-specific identifiers,
+`keyword_categories`, and the shared early-career and exclusion filters. A
+posting must match at least one specialty category **and** an early-career title
+phrase, and it must not match a seniority exclusion. Terms are literal,
+case-insensitive whole words or phrases; use `sre`, not regex such as `\bsre\b`.
+
+Each category can define separate `title` and `context` phrases. Context is ATS
+team or department metadata when available. This allows `Software Engineer I`
+on an `Infrastructure` team to match without restoring generic standalone terms
+such as `software` or `engineer`. A legacy flat `keywords` list remains supported
+for custom feeds and is tagged `General`.
 
 ```yaml
 source_defaults:
-  exclude_keywords: ["senior", "sr", "staff", "principal", "lead", "manager"]
+  early_career_keywords: ["new grad", "junior", "associate", "engineer i"]
+  exclude_keywords: ["senior", "staff", "principal", "lead", "manager"]
 
 companies:
-  - name: "Example on SmartRecruiters"
-    ats: smartrecruiters
+  - name: "Example"
+    ats: greenhouse
     slug: "example-company"
-    keywords: ["engineer", "developer"]
+    keyword_categories:
+      DevOps:
+        title: ["devops", "site reliability", "sre", "platform engineer"]
+        context: ["devops", "platform", "infrastructure"]
+      Data Analytics:
+        title: ["data analyst", "business intelligence", "analytics engineer"]
+        context: ["data analytics", "business intelligence", "analytics"]
+```
 
-  - name: "Example on Workable"
-    ats: workable
-    slug: "example-company"
-    keywords: []
+Discord lines include each matching category:
 
-  - name: "Example on Recruitee"
-    ats: recruitee
-    slug: "example-company"
-    keywords: ["software"]
+```text
+- [DevOps] [Software Engineer I](https://example.test/job/1)
 ```
 
 ### Location filtering
@@ -128,7 +138,10 @@ open the career site in a browser and look for a request shaped like
     tenant: "acme"
     site: "External_Careers"
     search_text: "Software"
-    keywords: ["engineer", "developer"]
+    keyword_categories:
+      DevOps:
+        title: ["devops", "platform engineer"]
+        context: ["platform", "infrastructure"]
 ```
 
 Some employers disable third-party indexing. A disabled or private Workday site

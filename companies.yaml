@@ -1,13 +1,100 @@
 # Active job sources. Every source below uses a public endpoint and is enabled.
 #
-# Keywords are case-insensitive whole words or phrases. Generic terms such as
-# "IT" and "data" are intentionally omitted because they include many
-# unrelated roles.
+# A posting must match at least one specialty category AND an early-career title
+# signal. Terms are literal, case-insensitive whole words or phrases. Generic
+# standalone terms such as "engineer", "developer", and "software" are omitted.
 
-# Seniority is excluded independently from the positive role keywords, so a
-# title such as "Senior Software Engineer" cannot match only because it contains
-# "software" or "engineer".
-keyword_filters:
+keyword_sets:
+  devops: &devops_keywords
+    title:
+      - "devops"
+      - "site reliability"
+      - "sre"
+      - "platform engineer"
+      - "cloud engineer"
+      - "infrastructure engineer"
+      - "systems engineer"
+      - "release engineer"
+      - "build engineer"
+      - "cloud operations"
+      - "automation engineer"
+      - "ci/cd"
+      - "kubernetes"
+      - "terraform"
+    context:
+      - "devops"
+      - "site reliability"
+      - "platform"
+      - "infrastructure"
+      - "cloud operations"
+      - "cloud engineering"
+
+  aws_cloud: &aws_keywords
+    title:
+      - "aws"
+      - "amazon web services"
+      - "aws cloud"
+    context:
+      - "aws"
+      - "amazon web services"
+      - "aws cloud"
+
+  data_analytics: &data_analytics_keywords
+    title:
+      - "data analyst"
+      - "business intelligence"
+      - "bi analyst"
+      - "reporting analyst"
+      - "analytics engineer"
+    context:
+      - "data analytics"
+      - "business intelligence"
+      - "analytics"
+
+  data_science: &data_science_keywords
+    title:
+      - "data scientist"
+      - "machine learning"
+      - "ml engineer"
+      - "applied scientist"
+    context:
+      - "data science"
+      - "machine learning"
+      - "applied science"
+
+  architecture: &architecture_keywords
+    title:
+      - "solutions architect"
+      - "solution architect"
+      - "cloud architect"
+      - "systems architect"
+      - "technical architect"
+    context:
+      - "solutions architecture"
+      - "cloud architecture"
+      - "technical architecture"
+
+  early_career: &early_career_keywords
+    - "new grad"
+    - "new graduate"
+    - "early career"
+    - "early careers"
+    - "entry level"
+    - "entry-level"
+    - "junior"
+    - "associate"
+    - "software engineer i"
+    - "developer i"
+    - "devops engineer i"
+    - "cloud engineer i"
+    - "platform engineer i"
+    - "infrastructure engineer i"
+    - "systems engineer i"
+    - "data analyst i"
+    - "data scientist i"
+    - "analytics engineer i"
+    - "solutions architect i"
+
   seniority: &senior_title_keywords
     - "senior"
     - "sr"
@@ -19,19 +106,24 @@ keyword_filters:
     - "head"
     - "vice president"
     - "vp"
-    - "architect"
     - "engineer ii"
     - "engineer iii"
     - "developer ii"
     - "developer iii"
+    - "analyst ii"
+    - "analyst iii"
+    - "scientist ii"
+    - "scientist iii"
+    - "architect ii"
+    - "architect iii"
 
 source_defaults:
+  early_career_keywords: *early_career_keywords
   exclude_keywords: *senior_title_keywords
 
 # Company ATS feeds do not consistently provide coordinates, so this is a
 # strict NYC-metro location matcher rather than a geocoding dependency. Generic
 # remote roles are accepted only when the feed explicitly identifies the U.S.
-# ZipRecruiter uses its native numeric radius when it is enabled.
 location_filters:
   ny_nj: &ny_nj_location
     include_remote: true
@@ -88,103 +180,109 @@ companies:
     ats: greenhouse
     slug: "greenhouse"
     location_filter: *ny_nj_location
-    keywords: &resume_keywords
-      - "engineer"
-      - "engineering"
-      - "developer"
-      - "software"
-      - "junior"
-      - "new grad"
-      - "entry level"
-      - "entry-level"
-      - "web"
-      - "full stack"
-      - "full-stack"
-      - "fullstack"
-      - "backend"
-      - "back end"
-      - "back-end"
-      - "frontend"
-      - "front end"
-      - "front-end"
-      - "devops"
-      - "cloud"
-      - "platform"
-      - "site reliability"
-      - "infrastructure"
-      - "systems"
-      - "python"
-      - "django"
-      - "fastapi"
-      - "react"
-      - "node.js"
-      - "aws"
-      - "automation"
-      - "security engineer"
-      - "security analyst"
-      - "application security"
-      - "cybersecurity"
+    keyword_categories:
+      DevOps: *devops_keywords
+      AWS/Cloud: *aws_keywords
+      Data Analytics: *data_analytics_keywords
+      Data Science: *data_science_keywords
+      Architecture: *architecture_keywords
 
   - name: "Vercel"
     enabled: true
     ats: greenhouse
     slug: "vercel"
     location_filter: *ny_nj_location
-    keywords: *resume_keywords
+    keyword_categories:
+      DevOps: *devops_keywords
+      AWS/Cloud: *aws_keywords
+      Data Analytics: *data_analytics_keywords
+      Data Science: *data_science_keywords
+      Architecture: *architecture_keywords
 
   - name: "PointClickCare"
     enabled: true
     ats: lever
     slug: "pointclickcare"
     location_filter: *ny_nj_location
-    keywords: *resume_keywords
+    keyword_categories:
+      DevOps: *devops_keywords
+      AWS/Cloud: *aws_keywords
+      Data Analytics: *data_analytics_keywords
+      Data Science: *data_science_keywords
+      Architecture: *architecture_keywords
 
   - name: "FreedomPay"
     enabled: true
     ats: lever
     slug: "freedompay"
     location_filter: *ny_nj_location
-    keywords: *resume_keywords
+    keyword_categories:
+      DevOps: *devops_keywords
+      AWS/Cloud: *aws_keywords
+      Data Analytics: *data_analytics_keywords
+      Data Science: *data_science_keywords
+      Architecture: *architecture_keywords
 
   - name: "Ashby"
     enabled: true
     ats: ashby
     slug: "ashby"
     location_filter: *ny_nj_location
-    keywords: *resume_keywords
+    keyword_categories:
+      DevOps: *devops_keywords
+      AWS/Cloud: *aws_keywords
+      Data Analytics: *data_analytics_keywords
+      Data Science: *data_science_keywords
+      Architecture: *architecture_keywords
 
   - name: "Beacon Software"
     enabled: true
     ats: ashby
     slug: "beaconsoftware"
     location_filter: *ny_nj_location
-    keywords: *resume_keywords
+    keyword_categories:
+      DevOps: *devops_keywords
+      AWS/Cloud: *aws_keywords
+      Data Analytics: *data_analytics_keywords
+      Data Science: *data_science_keywords
+      Architecture: *architecture_keywords
 
-  # SmartRecruiters: careers.smartrecruiters.com/<slug>
   - name: "SmartRecruiters"
     enabled: true
     ats: smartrecruiters
     slug: "smartrecruiters"
     location_filter: *ny_nj_location
-    keywords: *resume_keywords
+    keyword_categories:
+      DevOps: *devops_keywords
+      AWS/Cloud: *aws_keywords
+      Data Analytics: *data_analytics_keywords
+      Data Science: *data_science_keywords
+      Architecture: *architecture_keywords
 
-  # Workable: apply.workable.com/<slug>
   - name: "Seeq"
     enabled: true
     ats: workable
     slug: "seeq"
     location_filter: *ny_nj_location
-    keywords: *resume_keywords
+    keyword_categories:
+      DevOps: *devops_keywords
+      AWS/Cloud: *aws_keywords
+      Data Analytics: *data_analytics_keywords
+      Data Science: *data_science_keywords
+      Architecture: *architecture_keywords
 
-  # Recruitee: <slug>.recruitee.com
   - name: "Faktion"
     enabled: true
     ats: recruitee
     slug: "faktionbv1"
     location_filter: *ny_nj_location
-    keywords: *resume_keywords
+    keyword_categories:
+      DevOps: *devops_keywords
+      AWS/Cloud: *aws_keywords
+      Data Analytics: *data_analytics_keywords
+      Data Science: *data_science_keywords
+      Architecture: *architecture_keywords
 
-  # Workday external careers site.
   - name: "Workday"
     enabled: true
     ats: workday
@@ -192,59 +290,96 @@ companies:
     tenant: "workday"
     site: "Workday"
     location_filter: *ny_nj_location
-    keywords: *resume_keywords
+    keyword_categories:
+      DevOps: *devops_keywords
+      AWS/Cloud: *aws_keywords
+      Data Analytics: *data_analytics_keywords
+      Data Science: *data_science_keywords
+      Architecture: *architecture_keywords
 
-  # These boards previously required an explicit junior/new-grad phrase. They
-  # now use the same resume-relevant role terms as every other source while the
-  # independent seniority exclusions remove clearly experienced roles.
   - name: "Palantir"
     enabled: true
     ats: lever
     slug: "palantir"
     location_filter: *ny_nj_location
-    keywords: *resume_keywords
+    keyword_categories:
+      DevOps: *devops_keywords
+      AWS/Cloud: *aws_keywords
+      Data Analytics: *data_analytics_keywords
+      Data Science: *data_science_keywords
+      Architecture: *architecture_keywords
 
   - name: "Confido"
     enabled: true
     ats: ashby
     slug: "confido"
     location_filter: *ny_nj_location
-    keywords: *resume_keywords
+    keyword_categories:
+      DevOps: *devops_keywords
+      AWS/Cloud: *aws_keywords
+      Data Analytics: *data_analytics_keywords
+      Data Science: *data_science_keywords
+      Architecture: *architecture_keywords
 
   - name: "Giga"
     enabled: true
     ats: ashby
     slug: "gigaml"
     location_filter: *ny_nj_location
-    keywords: *resume_keywords
+    keyword_categories:
+      DevOps: *devops_keywords
+      AWS/Cloud: *aws_keywords
+      Data Analytics: *data_analytics_keywords
+      Data Science: *data_science_keywords
+      Architecture: *architecture_keywords
 
   - name: "Handshake"
     enabled: true
     ats: ashby
     slug: "handshake"
     location_filter: *ny_nj_location
-    keywords: *resume_keywords
+    keyword_categories:
+      DevOps: *devops_keywords
+      AWS/Cloud: *aws_keywords
+      Data Analytics: *data_analytics_keywords
+      Data Science: *data_science_keywords
+      Architecture: *architecture_keywords
 
   - name: "WHOOP"
     enabled: true
     ats: ashby
     slug: "whoop"
     location_filter: *ny_nj_location
-    keywords: *resume_keywords
+    keyword_categories:
+      DevOps: *devops_keywords
+      AWS/Cloud: *aws_keywords
+      Data Analytics: *data_analytics_keywords
+      Data Science: *data_science_keywords
+      Architecture: *architecture_keywords
 
   - name: "Lightfield"
     enabled: true
     ats: ashby
     slug: "lightfield"
     location_filter: *ny_nj_location
-    keywords: *resume_keywords
+    keyword_categories:
+      DevOps: *devops_keywords
+      AWS/Cloud: *aws_keywords
+      Data Analytics: *data_analytics_keywords
+      Data Science: *data_science_keywords
+      Architecture: *architecture_keywords
 
   - name: "Traba"
     enabled: true
     ats: ashby
     slug: "traba"
     location_filter: *ny_nj_location
-    keywords: *resume_keywords
+    keyword_categories:
+      DevOps: *devops_keywords
+      AWS/Cloud: *aws_keywords
+      Data Analytics: *data_analytics_keywords
+      Data Science: *data_science_keywords
+      Architecture: *architecture_keywords
 
   - name: "Leidos"
     enabled: true
@@ -254,7 +389,12 @@ companies:
     site: "external"
     search_text: "Junior"
     location_filter: *ny_nj_location
-    keywords: *resume_keywords
+    keyword_categories:
+      DevOps: *devops_keywords
+      AWS/Cloud: *aws_keywords
+      Data Analytics: *data_analytics_keywords
+      Data Science: *data_science_keywords
+      Architecture: *architecture_keywords
 
   - name: "Globus Medical"
     enabled: true
@@ -262,9 +402,13 @@ companies:
     host: "globusmedical.wd5.myworkdayjobs.com"
     tenant: "globusmedical"
     site: "gmed_careers"
-    search_text: "Software"
     location_filter: *ny_nj_location
-    keywords: *resume_keywords
+    keyword_categories:
+      DevOps: *devops_keywords
+      AWS/Cloud: *aws_keywords
+      Data Analytics: *data_analytics_keywords
+      Data Science: *data_science_keywords
+      Architecture: *architecture_keywords
 
   - name: "Acrisure"
     enabled: true
@@ -272,9 +416,13 @@ companies:
     host: "acrisure.wd1.myworkdayjobs.com"
     tenant: "acrisure"
     site: "acrisure"
-    search_text: "Software"
     location_filter: *ny_nj_location
-    keywords: *resume_keywords
+    keyword_categories:
+      DevOps: *devops_keywords
+      AWS/Cloud: *aws_keywords
+      Data Analytics: *data_analytics_keywords
+      Data Science: *data_science_keywords
+      Architecture: *architecture_keywords
 
 # Jobvite, LinkedIn, and Indeed are not active because they require approved
 # private feed URLs. ZipRecruiter is not active because its public MCP endpoint

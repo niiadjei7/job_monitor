@@ -292,7 +292,7 @@ def _get_json(url, **kwargs):
 
 
 def fetch_greenhouse(source):
-    """Return (job_id, title, URL, location) tuples for a Greenhouse board."""
+    """Return jobs with location and department metadata."""
     slug = _source_value(source, "slug")
     data = _get_json(f"https://boards-api.greenhouse.io/v1/boards/{slug}/jobs")
     return [
@@ -301,13 +301,14 @@ def fetch_greenhouse(source):
             job.get("title", "Untitled"),
             job.get("absolute_url", ""),
             _location_text(job.get("location")),
+            _location_text(job.get("departments")),
         )
         for job in data.get("jobs", [])
     ]
 
 
 def fetch_lever(source):
-    """Return jobs for a Lever board."""
+    """Return jobs with location and team/department metadata."""
     slug = _source_value(source, "slug")
     jobs = _get_json(f"https://api.lever.co/v0/postings/{slug}?mode=json")
     return [
@@ -320,13 +321,17 @@ def fetch_lever(source):
                 job.get("allLocations"),
                 job.get("workplaceType"),
             ),
+            _location_text(
+                (job.get("categories") or {}).get("team"),
+                (job.get("categories") or {}).get("department"),
+            ),
         )
         for job in jobs
     ]
 
 
 def fetch_ashby(source):
-    """Return jobs for an Ashby board."""
+    """Return jobs with location and team/department metadata."""
     slug = _source_value(source, "slug")
     data = _get_json(f"https://api.ashbyhq.com/posting-api/job-board/{slug}")
     return [
@@ -340,6 +345,7 @@ def fetch_ashby(source):
                 job.get("workplaceType"),
                 job.get("isRemote"),
             ),
+            _location_text(job.get("team"), job.get("department")),
         )
         for job in data.get("jobs", [])
     ]
@@ -823,18 +829,82 @@ FETCHERS = {
 }
 
 
-def _matches_title_terms(title, terms):
-    return any(
-        re.search(rf"(?<!\w){re.escape(str(keyword).strip())}(?!\w)", title, re.IGNORECASE)
-        for keyword in terms
-        if str(keyword).strip()
+def _contains_keyword(text, keyword):
+    keyword = str(keyword).strip()
+    if not keyword:
+        return False
+    return bool(
+        re.search(rf"(?<!\w){re.escape(keyword)}(?!\w)", text, re.IGNORECASE)
     )
 
 
-def matches_keywords(title, keywords, exclude_keywords=None):
-    if _matches_title_terms(title, exclude_keywords or []):
-        return False
-    return not keywords or _matches_title_terms(title, keywords)
+def _matches_title_terms(title, terms):
+    return any(_contains_keyword(title, keyword) for keyword in terms or [])
+
+
+def matches_keywords(
+    title,
+    keyword_categories,
+    exclude_keywords=None,
+    context="",
+    early_career_keywords=None,
+):
+    """Return matching category labels after applying seniority gates.
+
+    Category values can be flat phrase lists or mappings with separate ``title``
+    and ``context`` phrase lists. A legacy flat keyword list remains supported
+    and is labeled ``General``. Keywords are literal phrases, so use ``sre``
+    instead of regex syntax such as ``\\bsre\\b``.
+    """
+    title_text = str(title)
+    context_text = str(context)
+    if _matches_title_terms(title_text, exclude_keywords):
+        return []
+
+    match_all_categories = not keyword_categories
+    if isinstance(keyword_categories, dict):
+        categories = keyword_categories
+    else:
+        categories = {"General": keyword_categories or []}
+
+    combined_text = " | ".join(
+        value.strip() for value in (title_text, context_text) if value.strip()
+    )
+    matched_categories = []
+    for label, terms in categories.items():
+        if isinstance(terms, dict):
+            title_match = _matches_title_terms(title_text, terms.get("title", []))
+            context_match = _matches_title_terms(
+                context_text, terms.get("context", [])
+            )
+            if title_match or context_match:
+                matched_categories.append(label)
+        elif _matches_title_terms(combined_text, terms):
+            matched_categories.append(label)
+
+    if match_all_categories:
+        matched_categories.append("General")
+    if not matched_categories:
+        return []
+    if early_career_keywords and not _matches_title_terms(
+        title_text, early_career_keywords
+    ):
+        return []
+    return matched_categories
+
+
+def _normalize_job(job):
+    if len(job) < 4:
+        raise ValueError("job records must include job_id, title, URL, and location")
+    job_id, title, url, location = job[:4]
+    context = job[4] if len(job) > 4 else ""
+    return (
+        str(job_id),
+        str(title),
+        str(url),
+        str(location or ""),
+        str(context or ""),
+    )
 
 
 def send_discord_notification(webhook_url, source_name, new_jobs):
@@ -847,8 +917,12 @@ def send_discord_notification(webhook_url, source_name, new_jobs):
         end = start + len(chunk)
         suffix = f" ({start + 1}-{end} of {total})" if total > 10 else ""
         lines = [f"**{total} new posting(s) from {source_name}{suffix}**"]
-        for title, url in chunk:
-            lines.append(f"- [{title}]({url})" if url else f"- {title}")
+        for job in chunk:
+            title, url = job[:2]
+            categories = job[2] if len(job) > 2 else []
+            tags = " ".join(f"[{category}]" for category in categories)
+            posting = f"[{title}]({url})" if url else title
+            lines.append(f"- {tags} {posting}" if tags else f"- {posting}")
 
         response = requests.post(
             webhook_url, json={"content": "\n".join(lines)}, timeout=REQUEST_TIMEOUT
@@ -895,8 +969,11 @@ def main():
 
         provider = _provider(source)
         name = source.get("name", source.get("slug", "unknown"))
-        keywords = source.get("keywords", [])
+        keyword_categories = source.get(
+            "keyword_categories", source.get("keywords", [])
+        )
         exclude_keywords = source.get("exclude_keywords", [])
+        early_career_keywords = source.get("early_career_keywords", [])
         location_filter = source.get("location_filter")
         fetcher = FETCHERS.get(provider)
 
@@ -915,16 +992,22 @@ def main():
             any_errors = True
             continue
 
-        current_ids = {job_id for job_id, _, _, _ in jobs}
-        eligible_jobs = [
-            (job_id, title, url)
-            for job_id, title, url, location in jobs
-            if matches_keywords(title, keywords, exclude_keywords)
-            and matches_location(location, location_filter)
-        ]
+        normalized_jobs = [_normalize_job(job) for job in jobs]
+        current_ids = {job_id for job_id, _, _, _, _ in normalized_jobs}
+        eligible_jobs = []
+        for job_id, title, url, location, context in normalized_jobs:
+            categories = matches_keywords(
+                title,
+                keyword_categories,
+                exclude_keywords=exclude_keywords,
+                context=context,
+                early_career_keywords=early_career_keywords,
+            )
+            if categories and matches_location(location, location_filter):
+                eligible_jobs.append((job_id, title, url, categories))
         new_jobs = [
-            (title, url)
-            for job_id, title, url in eligible_jobs
+            (title, url, categories)
+            for job_id, title, url, categories in eligible_jobs
             if job_id not in notified_ids
         ]
 
@@ -936,7 +1019,7 @@ def main():
                 print(f"WARN: failed to notify for {name}: {exc}", file=sys.stderr)
                 any_errors = True
             else:
-                notified_ids.update(job_id for job_id, _, _ in eligible_jobs)
+                notified_ids.update(job_id for job_id, _, _, _ in eligible_jobs)
         else:
             print(f"{name}: no new matching postings.")
 
