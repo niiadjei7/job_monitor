@@ -1814,11 +1814,10 @@
     "/job/California-MD/Cyber-Infrastructure-Support_R-00190026",
     "/job/Camp-Springs-MD/Multiskilled-Facilities-Maintenance-Technician_R-00184713",
     "/job/Camp-Springs-MD/Multiskilled-Facilities-Maintenance-Technician_R-00184716",
+    "/job/Canberra-Australian-Capital-Territory-Australia/GIS-Production-Engineer_R-00181012",
     "/job/Canberra-Australian-Capital-Territory-Australia/Help-Desk-Engineer_R-00175646",
     "/job/Canberra-Australian-Capital-Territory-Australia/Senior-Security-Engineer_R-00183997",
     "/job/Canberra-Australian-Capital-Territory-Australia/Senior-Software-Engineer---9-months_R-00187653",
-    "/job/Canberra-Australian-Capital-Territory-Australia/Senior-Software-Engineer_R-00175650",
-    "/job/Canberra-Australian-Capital-Territory-Australia/Senior-V-V-Engineer_R-00175296",
     "/job/Chantilly-VA/Imagery-Analyst_R-00185489",
     "/job/Chantilly-VA/Jr-Operations-Technicial_R-00185107",
     "/job/Chantilly-VA/Junior-DevOps-Engineer_R-00183797-1",
@@ -2073,7 +2072,6 @@
     "/job/Italy-Milan/Sr-Services-Executive_JR-0109047",
     "/job/JPNOsaka/Senior-Solution-Consultant--_JR-0108608",
     "/job/Japan-Tokyo/Account-Executive_JR-0103573-1",
-    "/job/Japan-Tokyo/Principal-Managing-Partner_JR-0106255",
     "/job/Japan-Tokyo/Senior-Account-Executive_JR-0109320",
     "/job/Japan-Tokyo/Senior-Service-Executive_JR-0107923",
     "/job/Japan-Tokyo/Senior-Strategic-Program---Activation-Manager---JAPAN_JR-0109741",
@@ -2194,7 +2192,6 @@
     "/job/USA-GA-Atlanta/Principal--Product-Owner--Business-Performance_JR-0108062",
     "/job/USA-GA-Atlanta/Principal-AI-Engineer_JR-0108761",
     "/job/USA-GA-Atlanta/Product-Solution-Architect---Quote-to-Cash--Salesforce-CPQ---CLM-_JR-0109155-1",
-    "/job/USA-GA-Atlanta/Senior-Consultant--WSP-Support-Model---Governance-Delivery_JR-0109419-1",
     "/job/USA-GA-Atlanta/Senior-Financial-Consultant---Workday-Success-Plans---Spend-Management_JR-0108067",
     "/job/USA-GA-Atlanta/Senior-Functional-Consultant---HCM-and-Security---Workday-Success-Plans_JR-0109582",
     "/job/USA-GA-Atlanta/Senior-Functional-Consultant-or-Functional-Consultant---Payroll---Workday-Success-Plans_JR-0108691",
@@ -2264,7 +2261,6 @@
     "/job/USAVAReston/Principal-Program-Manager---US-Federal_JR-0107167",
     "/job/USAVAReston/Principal-Program-Manager_JR-0108632",
     "/job/USAVAReston/Principal-Software-Development-Engineer---US-Federal_JR-0108302",
-    "/job/USAVAReston/Senior-Cybersecurity-Data-Engineer---AI-ML-SME_JR-0107814",
     "/job/USAVAReston/Senior-Cybersecurity-Engineer---Network-Security--US-Federal-_JR-0107993",
     "/job/USAVAReston/Senior-Cybersecurity-Engineer---US-Federal_JR-0109166",
     "/job/USAVAReston/Senior-Cybersecurity-Engineer--US-Federal-_JR-0105513",
@@ -2328,8 +2324,7 @@
     "/job/United-Kingdom-London/Sr-Reporting---Analytics-Consultant--FIN----Workday-Success-Plans_JR-0109449",
     "/job/VNMDa-Nang/Senior-AI-Engineer---Da-Nang--Paradox-_JR-0108727",
     "/job/VNMDa-Nang/Senior-Software-Development-Engineer--Back-end----Paradox---Da-Nang_JR-0107621",
-    "/job/VNMDa-Nang/Sr-Software-Development-Engineer---Da-Nang--Paradox-_JR-0108605",
-    "/job/VNMHo-Chi-Minh/Software-Development-Engineer---Front-end---HCMC_JR-0108968"
+    "/job/VNMDa-Nang/Sr-Software-Development-Engineer---Da-Nang--Paradox-_JR-0108605"
   ],
   "workday:workday:notified-v2": []
 }
