@@ -2,7 +2,6 @@
   "ashby:ashby": [
     "0020099f-9bb3-4da9-9808-4556564f5301",
     "033ce772-ed08-4a59-bb52-4ff0eaac9bcd",
-    "07201b7e-a581-46a6-bbd3-432824bd761f",
     "08b6342c-d5c0-4864-a4db-28027d241cbe",
     "0f5dbf59-687b-4d88-88a7-73ee0a66b48d",
     "1290fe74-72f6-4544-ad7d-562f89ecd780",
@@ -74,6 +73,12 @@
     "fe44e5a8-1b61-4330-a02d-7f7b66f5ade2"
   ],
   "ashby:ashby:notified-v2": [
+    "36df1986-8af2-4cc4-a96a-4f307d493ac0",
+    "6f9d632f-5d3b-4c5e-8893-6e4a1cb2778f",
+    "7ecdcb8e-d1d7-4734-9c7e-3da6dffacb0c",
+    "9fba6b38-f324-49b1-ae3d-40894ad12bb1",
+    "b64e1498-04ae-4747-8930-a42d4ce6c047",
+    "b888946c-e888-4f00-82c1-f49ce51da069",
     "fd86edd7-3af0-4977-a61a-215212c296fa"
   ],
   "ashby:beaconsoftware": [
@@ -166,11 +171,17 @@
     "ebf76cfc-141a-4883-bbcd-cbc0631071b6"
   ],
   "ashby:confido:notified-v2": [
+    "16eaecf4-f4e1-4f7e-a12f-745f89e0a99b",
+    "1ab17543-29df-4d5a-a933-d443d659eafa",
     "3155bda4-fdb2-487f-a0ec-719cd876a726",
     "3a95d866-2e8f-432a-927d-8679386cefe2",
+    "40763649-8409-4179-b1b3-16ac76a97e38",
     "69c0e572-b2f4-442f-beb8-1240155c629e",
     "9f30149a-cd50-48cc-bbc4-c313b17e20d4",
+    "a0508501-1db6-4497-b4e4-6aeb69976403",
+    "b92ca21b-c771-44d0-991b-e3dae7654dab",
     "d5520ce5-bc5f-4947-8912-292615b0c5ac",
+    "db86da61-f0c7-43ee-8388-a92898948fa8",
     "e3d42ff2-4ab4-4469-9091-d249b2c7519d"
   ],
   "ashby:gigaml": [
@@ -279,7 +290,10 @@
     "fcd727f8-6390-4aef-9052-818ff710b013"
   ],
   "ashby:handshake:notified-v2": [
+    "2f7c5ec1-4f2f-4a5c-935f-eb00aff59487",
     "32f0d53c-5808-4b12-84ac-60e2bb9dd7ae",
+    "7f607c0b-291d-4c17-9897-6d8c5d35eb00",
+    "87c44874-6f3d-4814-8721-f214ea5eceed",
     "b777e140-6ccd-44e6-9709-5a43c4b1ca7a",
     "bd860a01-b630-4530-9e65-6d762e47e818"
   ],
@@ -339,6 +353,7 @@
   ],
   "ashby:traba:notified-v2": [
     "8b22934b-70c0-4450-8834-94b623ec0d3c",
+    "c101c491-5732-4ea7-b3c3-94047089285c",
     "e1761ab2-21f1-46d6-8c69-9b4a73d9430f"
   ],
   "ashby:whoop": [
@@ -614,6 +629,8 @@
     "6163585004"
   ],
   "greenhouse:vercel:notified-v2": [
+    "5039945004",
+    "5042166004",
     "5179639004",
     "5428982004",
     "5430088004",
@@ -625,16 +642,21 @@
     "5752684004",
     "5798406004",
     "5798416004",
+    "5806749004",
     "6020852004",
     "6093255004",
     "6098390004",
     "6102335004",
     "6102343004",
+    "6102654004",
     "6111332004",
     "6115991004",
     "6117204004",
     "6122437004",
+    "6123443004",
+    "6128387004",
     "6137983004",
+    "6142097004",
     "6161129004"
   ],
   "lever:freedompay": [
@@ -668,8 +690,16 @@
     "fb7c6171-ca39-4518-b6d4-3e6a6866ee7f"
   ],
   "lever:freedompay:notified-v2": [
+    "05e2c810-bd5f-4049-8f69-c00985c9ba7f",
+    "10b5cac6-6af8-463d-a047-6b3a75549422",
     "306f4d8d-adf0-401c-bd73-8b9a63bbd15a",
-    "9c37c52b-d55d-4261-9766-8edaaf8e04ac"
+    "788e02cf-574e-4369-a254-b1ada1535fa1",
+    "82feed6c-2dd8-41f7-9927-fd4bd2fe7d41",
+    "99189d49-fc49-42b1-92ea-119558af5b29",
+    "9c37c52b-d55d-4261-9766-8edaaf8e04ac",
+    "a436c448-23eb-496c-be34-5bcd18203e78",
+    "f74433e4-a753-42a0-8bcb-e0418a379052",
+    "fb7c6171-ca39-4518-b6d4-3e6a6866ee7f"
   ],
   "lever:palantir": [
     "00c2c97b-8514-4617-9883-e53e486b6dcd",
@@ -995,6 +1025,7 @@
     "37964982-9b4c-471e-a1d8-fb8f45d7f116",
     "3b4ae28e-c4f2-4654-83b4-64366bfe72fa",
     "3c84af24-b7aa-483e-b2c3-e1d83494fe15",
+    "45241c61-11af-45b5-86a0-a5302c028d6d",
     "471ccceb-3614-4c28-a1af-b1235c081173",
     "4abf26b4-795c-420a-bf22-1ab98db268b4",
     "4c0fb3a1-8256-4d14-9a27-23727235752e",
@@ -1019,6 +1050,7 @@
     "8f308f3e-43d2-49c9-accd-cc7af0f1565c",
     "91117724-9389-48dc-912f-98e48d4d45d8",
     "94984771-0704-446c-88c6-91ce748f6d92",
+    "95a76f41-97a4-4696-ade3-9c5a47a569c7",
     "95e0d2b0-437a-4096-a5c6-0f247f426c90",
     "a3eaa0ef-3378-495f-8308-edbd9a93d26c",
     "a753a9e7-a361-426b-9c25-3cf2488c1730",
@@ -1126,9 +1158,13 @@
     "feebc000-f8e8-472e-a615-78fcce072e1d"
   ],
   "lever:pointclickcare:notified-v2": [
+    "1f69f498-aa0f-4b15-9153-e2b4be802228",
+    "2123a700-c912-42d6-85ff-ec7e264c2a77",
+    "a88bdd3a-c09b-4984-a877-319326d0ef5f",
     "ba17f721-5bf9-431b-afb5-f72ded897e51",
     "bb844dc3-ea25-454d-8df4-7c607963a566",
-    "e6fd28a0-e062-499d-8004-ea3280e62f4e"
+    "e6fd28a0-e062-499d-8004-ea3280e62f4e",
+    "f4a9317a-bf92-4f74-b85e-b8a01b8b0aa1"
   ],
   "recruitee:faktionbv1": [
     "1580445",
@@ -1421,7 +1457,13 @@
     "/job/Walnut-Creek-CA/Associate-Account-Manager_JR114027"
   ],
   "workday:acrisure:notified-v2": [
-    "/job/333-Earle-Ovington-Blvd---Uniondale-NY/Software-Engineer-I_JR113871"
+    "/job/1-Liberty-Plaza---NEW-YORK-NY/Portfolio-Actuary_JR113915",
+    "/job/1-Liberty-Plz-165-Broadway-19th-Fl---NEW-YORK-NY/Technical-Account-Manager_JR113431",
+    "/job/1200-Macarthur-Blvd--Suite-105----MAHWAH-NJ/Client-Advisor--Commercial-Lines_JR113883",
+    "/job/1200-Macarthur-Blvd--Suite-105----MAHWAH-NJ/Construction-Client-Advisor_JR112701",
+    "/job/3155-Olsen-Dr-Ste-400---SAN-JOSE-CA/National-Leader--High-Net-Worth-Personal-Lines_JR113956",
+    "/job/333-Earle-Ovington-Blvd---Uniondale-NY/Software-Engineer-I_JR113871",
+    "/job/90-S-Ridge-St----RYE-BROOK-NY/Real-Estate-Client-Advisor_JR112702"
   ],
   "workday:globusmedical": [
     "/job/Arkansas/Associate-Spine-Specialist--Little-Rock--AR-_JR107436",
@@ -1747,7 +1789,11 @@
     "/job/Wisconsin/Trauma-Specialist--Milwaukee--WI-_JR106137",
     "/job/Wyoming/Entry-Level-Associate-Neurophysiologist--Casper-Laramie--WY-_JR107212"
   ],
-  "workday:globusmedical:notified-v2": [],
+  "workday:globusmedical:notified-v2": [
+    "/job/New-York/Associate-Spine-Specialist--Greater-Albany--NY-_JR106394",
+    "/job/New-York/Neurophysiologist--Elmira--NY-_JR104822-1",
+    "/job/New-York/Neurophysiologist--New-York--NY-_JR104453-1"
+  ],
   "workday:leidos": [
     "/job/2019-DISA-HQ-Fort-George-G-Meade-MD/Senior-ICAM-Federation-and-App-Integration-Engineer_R-00183979",
     "/job/2019-DISA-HQ-Fort-George-G-Meade-MD/XMLNAME--Senior-ICAM-Identity-Governance-and-Provisioning-Engineer_R-00183972",
@@ -1944,6 +1990,8 @@
     "/job/6314-RemoteTeleworker-US/Databricks-Full-stack-Developer_R-00190623",
     "/job/6314-RemoteTeleworker-US/EPC-Transmission-Line-Project-Engineer_R-00187471",
     "/job/6314-RemoteTeleworker-US/Junior-Test-Automation-Engineer_R-00190889-1",
+    "/job/6314-RemoteTeleworker-US/Substation-Constructability-Consulting-Employee_R-00191275",
+    "/job/6314-RemoteTeleworker-US/Substation-Structural-Designer_R-00188954",
     "/job/6314-RemoteTeleworker-US/Test-Automation-Engineer_R-00190900",
     "/job/Egg-Harbor-Township-NJ/System-Integration-Engineer_R-00190793"
   ],
@@ -1986,7 +2034,6 @@
     "/job/Costa-Rica/HCM-Functional-Consultant---Workday-Success-Plans_JR-0109135-1",
     "/job/Costa-Rica/Product-Instructor_JR-0108501",
     "/job/Costa-Rica/Sr-Associate-Sourcing-Manager_JR-0109695",
-    "/job/Costa-Rica/Sr-Engagement-Manager-OR-Engagement-Manager--Workday-Success-Plans-Subscription-Services_JR-0107811",
     "/job/Czech-Republic-Prague/Principal-AI-Engineer_JR-0108372",
     "/job/Denmark-Copenhagen/Senior-Project-Manager_JR-0109133",
     "/job/France-Paris/Account-Executive-Customer-Base-Large-Enterprise_JR-0107739",
