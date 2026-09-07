@@ -2,11 +2,14 @@
 """Monitor public company job boards and approved job-search feeds."""
 
 import hashlib
+import csv
+import html
 import json
 import os
 import re
 import sys
 import time
+from datetime import date, timedelta
 from pathlib import Path
 from urllib.parse import urlparse
 from xml.etree import ElementTree
@@ -14,12 +17,27 @@ from xml.etree import ElementTree
 import requests
 import yaml
 
+from score import score_job, score_threshold
+
 CONFIG_PATH = Path("companies.yaml")
+PROFILE_PATH = Path("profile.yaml")
 STATE_PATH = Path("state.json")
+TRACKER_PATH = Path("job_search_tracker.csv")
 REQUEST_TIMEOUT = 20
 USER_AGENT = "job-monitor-bot/2.0 (personal use)"
 MCP_PROTOCOL_VERSION = "2025-03-26"
 NOTIFIED_STATE_SUFFIX = "notified-v2"
+TRACKER_FIELDS = [
+    "date_scraped",
+    "source",
+    "job_id",
+    "title",
+    "url",
+    "score",
+    "status",
+    "date_applied",
+    "follow_up_due",
+]
 
 US_STATE_ABBREVIATIONS = {
     "AL",
@@ -159,6 +177,16 @@ def load_config():
     ]
 
 
+def load_profile():
+    if not PROFILE_PATH.exists():
+        return {}
+    with open(PROFILE_PATH, encoding="utf-8") as profile_file:
+        profile = yaml.safe_load(profile_file) or {}
+    if not isinstance(profile, dict):
+        raise ValueError("profile.yaml must be a mapping")
+    return profile
+
+
 def load_state():
     if not STATE_PATH.exists():
         return {}
@@ -215,6 +243,27 @@ def _location_text(*values):
     for value in values:
         add(value)
     return ", ".join(parts)
+
+
+def _strip_html(value):
+    text = re.sub(r"<[^>]+>", " ", str(value or ""))
+    return html.unescape(re.sub(r"\s+", " ", text)).strip()
+
+
+def _description_text(*values):
+    for value in values:
+        if value:
+            return _strip_html(value)
+    return ""
+
+
+def _nested_get(data, path, default=""):
+    value = data
+    for key in path:
+        if not isinstance(value, dict):
+            return default
+        value = value.get(key)
+    return value if value is not None else default
 
 
 def _normalize_location(value):
@@ -294,7 +343,10 @@ def _get_json(url, **kwargs):
 def fetch_greenhouse(source):
     """Return jobs with location and department metadata."""
     slug = _source_value(source, "slug")
-    data = _get_json(f"https://boards-api.greenhouse.io/v1/boards/{slug}/jobs")
+    data = _get_json(
+        f"https://boards-api.greenhouse.io/v1/boards/{slug}/jobs",
+        params={"content": "true"},
+    )
     return [
         (
             str(job["id"]),
@@ -302,6 +354,7 @@ def fetch_greenhouse(source):
             job.get("absolute_url", ""),
             _location_text(job.get("location")),
             _location_text(job.get("departments")),
+            _description_text(job.get("content")),
         )
         for job in data.get("jobs", [])
     ]
@@ -325,6 +378,7 @@ def fetch_lever(source):
                 (job.get("categories") or {}).get("team"),
                 (job.get("categories") or {}).get("department"),
             ),
+            _description_text(job.get("descriptionPlain"), job.get("description")),
         )
         for job in jobs
     ]
@@ -346,6 +400,7 @@ def fetch_ashby(source):
                 job.get("isRemote"),
             ),
             _location_text(job.get("team"), job.get("department")),
+            _description_text(job.get("descriptionPlain"), job.get("description")),
         )
         for job in data.get("jobs", [])
     ]
@@ -369,7 +424,18 @@ def fetch_smartrecruiters(source):
             title = job.get("name", "Untitled")
             # SmartRecruiters serves an ID-only URL, so no fragile title slug is needed.
             url = f"https://jobs.smartrecruiters.com/{slug}/{job_id}"
-            jobs.append((job_id, title, url, _location_text(job.get("location"))))
+            try:
+                detail = _get_json(
+                    f"https://api.smartrecruiters.com/v1/companies/{slug}/postings/{job_id}"
+                )
+            except Exception:
+                detail = {}
+            description = _description_text(
+                _nested_get(detail, ("jobAd", "sections", "jobDescription", "text")),
+                detail.get("description"),
+            )
+            jobs.append((job_id, title, url, _location_text(job.get("location")), "", description))
+            time.sleep(float(_source_value(source, "request_delay", 0.25)))
 
         offset += len(page)
         if not page or offset >= data.get("totalFound", offset):
@@ -382,7 +448,7 @@ def fetch_workable(source):
     """Return published jobs from Workable's documented public endpoint."""
     slug = _source_value(source, "slug")
     data = _get_json(
-        f"https://www.workable.com/api/accounts/{slug}", params={"details": "false"}
+        f"https://www.workable.com/api/accounts/{slug}", params={"details": "true"}
     )
     return [
         (
@@ -400,6 +466,12 @@ def fetch_workable(source):
                 else None,
                 job.get("remote"),
                 job.get("telecommuting"),
+            ),
+            "",
+            _description_text(
+                job.get("description"),
+                job.get("descriptionPlain"),
+                job.get("job_description"),
             ),
         )
         for job in data.get("jobs", [])
@@ -429,6 +501,12 @@ def fetch_recruitee(source):
                     job.get("region"),
                     job.get("country"),
                     job.get("remote"),
+                ),
+                "",
+                _description_text(
+                    job.get("description"),
+                    job.get("descriptionPlain"),
+                    job.get("description_html"),
                 ),
             )
         )
@@ -487,6 +565,23 @@ def fetch_workday(source):
         for job in page:
             path = job.get("externalPath", "")
             job_id = str(job.get("jobReqId") or path or job.get("title"))
+            detail_path = path if str(path).startswith("/job/") else f"/job/{path}"
+            description = ""
+            if path:
+                try:
+                    detail_response = requests.get(
+                        f"{origin}/wday/cxs/{tenant}/{site}{detail_path}",
+                        headers={"Accept": "application/json", "User-Agent": USER_AGENT},
+                        timeout=REQUEST_TIMEOUT,
+                    )
+                    if detail_response.status_code < 400:
+                        detail = detail_response.json()
+                        description = _description_text(
+                            _nested_get(detail, ("jobPostingInfo", "jobDescription")),
+                            detail.get("jobDescription"),
+                        )
+                except requests.RequestException:
+                    description = ""
             jobs.append(
                 (
                     job_id,
@@ -499,6 +594,8 @@ def fetch_workday(source):
                         if job.get("bulletFields")
                         else None,
                     ),
+                    "",
+                    description,
                 )
             )
 
@@ -567,8 +664,20 @@ def _parse_xml_jobs(content):
                 )
             )
         )
+        description = _description_text(
+            _first_text(
+                values,
+                (
+                    "description",
+                    "job-description",
+                    "description-plain",
+                    "summary",
+                    "content",
+                ),
+            )
+        )
         if title:
-            jobs.append((job_id or _stable_job_id(title, url), title, url, location))
+            jobs.append((job_id or _stable_job_id(title, url), title, url, location, "", description))
     return jobs
 
 
@@ -639,9 +748,33 @@ def _parse_json_jobs(data):
                 )
             )
         )
+        description = _description_text(
+            next(
+                (
+                    item.get(key)
+                    for key in (
+                        "description",
+                        "descriptionPlain",
+                        "job_description",
+                        "jobDescription",
+                        "content",
+                        "summary",
+                    )
+                    if item.get(key)
+                ),
+                "",
+            )
+        )
         if title:
             jobs.append(
-                (str(job_id or _stable_job_id(title, url)), str(title), str(url), location)
+                (
+                    str(job_id or _stable_job_id(title, url)),
+                    str(title),
+                    str(url),
+                    location,
+                    "",
+                    description,
+                )
             )
     return jobs
 
@@ -898,12 +1031,14 @@ def _normalize_job(job):
         raise ValueError("job records must include job_id, title, URL, and location")
     job_id, title, url, location = job[:4]
     context = job[4] if len(job) > 4 else ""
+    description = job[5] if len(job) > 5 else ""
     return (
         str(job_id),
         str(title),
         str(url),
         str(location or ""),
         str(context or ""),
+        str(description or ""),
     )
 
 
@@ -920,9 +1055,14 @@ def send_discord_notification(webhook_url, source_name, new_jobs):
         for job in chunk:
             title, url = job[:2]
             categories = job[2] if len(job) > 2 else []
+            score = job[3] if len(job) > 3 else None
+            summary = job[4] if len(job) > 4 else ""
             tags = " ".join(f"[{category}]" for category in categories)
+            score_tag = f"[{score}/100]" if score is not None else ""
+            prefix = " ".join(part for part in (score_tag, tags) if part)
             posting = f"[{title}]({url})" if url else title
-            lines.append(f"- {tags} {posting}" if tags else f"- {posting}")
+            suffix_text = f" - {summary}" if summary else ""
+            lines.append(f"- {prefix} {posting}{suffix_text}" if prefix else f"- {posting}{suffix_text}")
 
         response = requests.post(
             webhook_url, json={"content": "\n".join(lines)}, timeout=REQUEST_TIMEOUT
@@ -953,6 +1093,38 @@ def _notified_state_key(state_key):
     return f"{state_key}:{NOTIFIED_STATE_SUFFIX}"
 
 
+def update_tracker(source_name, scored_jobs):
+    existing = {}
+    if TRACKER_PATH.exists():
+        with open(TRACKER_PATH, newline="", encoding="utf-8") as tracker_file:
+            for row in csv.DictReader(tracker_file):
+                existing[(row.get("source"), row.get("job_id"))] = row
+
+    today = date.today().isoformat()
+    follow_up_due = (date.today() + timedelta(days=7)).isoformat()
+    for job in scored_jobs:
+        job_id, title, url, result = job
+        key = (source_name, job_id)
+        row = existing.get(key, {})
+        existing[key] = {
+            "date_scraped": row.get("date_scraped") or today,
+            "source": source_name,
+            "job_id": job_id,
+            "title": title,
+            "url": url,
+            "score": str(result["score"]),
+            "status": row.get("status", ""),
+            "date_applied": row.get("date_applied", ""),
+            "follow_up_due": row.get("follow_up_due") or follow_up_due,
+        }
+
+    with open(TRACKER_PATH, "w", newline="", encoding="utf-8") as tracker_file:
+        writer = csv.DictWriter(tracker_file, fieldnames=TRACKER_FIELDS)
+        writer.writeheader()
+        for row in sorted(existing.values(), key=lambda item: (item["source"], item["job_id"])):
+            writer.writerow(row)
+
+
 def main():
     webhook_url = os.environ.get("DISCORD_WEBHOOK_URL")
     if not webhook_url:
@@ -960,6 +1132,8 @@ def main():
         sys.exit(1)
 
     sources = load_config()
+    profile = load_profile()
+    threshold = score_threshold(profile)
     state = load_state()
     any_errors = False
 
@@ -993,21 +1167,27 @@ def main():
             continue
 
         normalized_jobs = [_normalize_job(job) for job in jobs]
-        current_ids = {job_id for job_id, _, _, _, _ in normalized_jobs}
+        current_ids = {job_id for job_id, _, _, _, _, _ in normalized_jobs}
         eligible_jobs = []
-        for job_id, title, url, location, context in normalized_jobs:
-            categories = matches_keywords(
+        scored_jobs = []
+        for job_id, title, url, location, context, description in normalized_jobs:
+            location_matches_source = matches_location(location, location_filter)
+            result = score_job(
                 title,
-                keyword_categories,
-                exclude_keywords=exclude_keywords,
-                context=context,
-                early_career_keywords=early_career_keywords,
+                location,
+                context,
+                description,
+                source,
+                profile,
+                location_matches_source,
             )
-            if categories and matches_location(location, location_filter):
-                eligible_jobs.append((job_id, title, url, categories))
+            scored_jobs.append((job_id, title, url, result))
+            if not result["veto"] and location_matches_source and result["score"] >= threshold:
+                eligible_jobs.append((job_id, title, url, result))
+        update_tracker(name, scored_jobs)
         new_jobs = [
-            (title, url, categories)
-            for job_id, title, url, categories in eligible_jobs
+            (title, url, result["categories"], result["score"], result["summary"])
+            for job_id, title, url, result in eligible_jobs
             if job_id not in notified_ids
         ]
 

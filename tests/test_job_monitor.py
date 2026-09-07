@@ -88,12 +88,12 @@ class AdapterTests(unittest.TestCase):
         lever_job = job_monitor.fetch_lever({"slug": "acme"})[0]
         ashby_job = job_monitor.fetch_ashby({"slug": "acme"})[0]
 
-        self.assertEqual(greenhouse_job[3:], ("New York, NY", "Infrastructure"))
+        self.assertEqual(greenhouse_job[3:], ("New York, NY", "Infrastructure", ""))
         self.assertEqual(
-            lever_job[3:], ("Jersey City, NJ, hybrid", "Platform, Engineering")
+            lever_job[3:], ("Jersey City, NJ, hybrid", "Platform, Engineering", "")
         )
         self.assertEqual(
-            ashby_job[3:], ("Remote - US, Remote", "Cloud Engineering")
+            ashby_job[3:], ("Remote - US, Remote", "Cloud Engineering", "")
         )
 
     @patch("job_monitor._get_json")
@@ -110,9 +110,17 @@ class AdapterTests(unittest.TestCase):
                 "totalFound": 2,
             },
             {
+                "jobAd": {
+                    "sections": {
+                        "jobDescription": {"text": "<p>Build reliable systems.</p>"}
+                    }
+                }
+            },
+            {
                 "content": [{"id": "2", "name": "Developer"}],
                 "totalFound": 2,
             },
+            {"jobAd": {"sections": {"jobDescription": {"text": "Ship software."}}}},
         ]
 
         jobs = job_monitor.fetch_smartrecruiters({"slug": "acme"})
@@ -125,11 +133,20 @@ class AdapterTests(unittest.TestCase):
                     "Engineer",
                     "https://jobs.smartrecruiters.com/acme/1",
                     "New York, NY",
+                    "",
+                    "Build reliable systems.",
                 ),
-                ("2", "Developer", "https://jobs.smartrecruiters.com/acme/2", ""),
+                (
+                    "2",
+                    "Developer",
+                    "https://jobs.smartrecruiters.com/acme/2",
+                    "",
+                    "",
+                    "Ship software.",
+                ),
             ],
         )
-        self.assertEqual(get_json.call_count, 2)
+        self.assertEqual(get_json.call_count, 4)
 
     @patch("job_monitor._get_json")
     def test_workable_uses_shortcode_and_public_url(self, get_json):
@@ -158,6 +175,8 @@ class AdapterTests(unittest.TestCase):
                     "Platform Engineer",
                     "https://apply.workable.com/j/ABC123",
                     "United States, US, Remote",
+                    "",
+                    "",
                 )
             ],
         )
@@ -188,6 +207,8 @@ class AdapterTests(unittest.TestCase):
                     "Backend Engineer",
                     "https://jobs.acme.test/o/backend-engineer",
                     "Newark, NJ",
+                    "",
+                    "",
                 )
             ],
         )
@@ -235,11 +256,15 @@ class AdapterTests(unittest.TestCase):
                     "Engineer",
                     "https://acme.wd5.myworkdayjobs.com/Careers/job/one",
                     "New York, NY",
+                    "",
+                    "",
                 ),
                 (
                     "/job/two",
                     "Developer",
                     "https://acme.wd5.myworkdayjobs.com/Careers/job/two",
+                    "",
+                    "",
                     "",
                 ),
             ],
@@ -265,15 +290,15 @@ class FeedTests(unittest.TestCase):
 
         self.assertEqual(
             job_monitor._parse_xml_jobs(rss),
-            [("rss-1", "RSS Engineer", "https://example.test/rss-1", "")],
+            [("rss-1", "RSS Engineer", "https://example.test/rss-1", "", "", "")],
         )
         self.assertEqual(
             job_monitor._parse_xml_jobs(atom),
-            [("atom-1", "Atom Engineer", "https://example.test/atom-1", "")],
+            [("atom-1", "Atom Engineer", "https://example.test/atom-1", "", "", "")],
         )
         self.assertEqual(
             job_monitor._parse_xml_jobs(jobvite),
-            [("req-1", "Jobvite Engineer", "https://example.test/req-1", "")],
+            [("req-1", "Jobvite Engineer", "https://example.test/req-1", "", "", "")],
         )
 
     def test_parses_common_json_feed_shapes(self):
@@ -289,7 +314,7 @@ class FeedTests(unittest.TestCase):
         }
         self.assertEqual(
             job_monitor._parse_json_jobs(data),
-            [("123", "Cloud Engineer", "https://example.test/123", "Remote - US")],
+            [("123", "Cloud Engineer", "https://example.test/123", "Remote - US", "", "")],
         )
 
     @patch("job_monitor.requests.get")
@@ -356,6 +381,8 @@ class ZipRecruiterTests(unittest.TestCase):
                     "Python Developer",
                     "https://zip.test/zip-1",
                     "New York, NY",
+                    "",
+                    "",
                 )
             ],
         )
@@ -594,6 +621,8 @@ class EndToEndTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             config_path = Path(temp_dir) / "companies.yaml"
             state_path = Path(temp_dir) / "state.json"
+            profile_path = Path(temp_dir) / "profile.yaml"
+            tracker_path = Path(temp_dir) / "job_search_tracker.csv"
             config_path.write_text(
                 "companies:\n"
                 "  - name: Acme\n"
@@ -651,6 +680,8 @@ class EndToEndTests(unittest.TestCase):
             with (
                 patch.object(job_monitor, "CONFIG_PATH", config_path),
                 patch.object(job_monitor, "STATE_PATH", state_path),
+                patch.object(job_monitor, "PROFILE_PATH", profile_path),
+                patch.object(job_monitor, "TRACKER_PATH", tracker_path),
                 patch.dict(job_monitor.FETCHERS, {"greenhouse": fetcher}),
                 patch.dict(os.environ, {"DISCORD_WEBHOOK_URL": "https://discord.test/hook"}),
                 patch("job_monitor.send_discord_notification") as notify,
@@ -666,11 +697,15 @@ class EndToEndTests(unittest.TestCase):
                             "Cloud Engineer",
                             "https://jobs.test/existing-match",
                             ["General"],
+                            90,
+                            "General, location",
                         ),
                         (
                             "Platform Engineer",
                             "https://jobs.test/new",
                             ["General"],
+                            90,
+                            "General, location",
                         ),
                     ],
                 )

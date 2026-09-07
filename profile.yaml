@@ -1,0 +1,39 @@
+contact:
+  name: ""
+  email: ""
+  phone: ""
+  location: ""
+  links:
+    linkedin: ""
+    github: ""
+    portfolio: ""
+
+education:
+  - school: ""
+    degree: ""
+    graduation: ""
+
+experience:
+  - company: ""
+    title: ""
+    start: ""
+    end: ""
+    bullets:
+      - text: ""
+        tags: ["devops", "aws_cloud"]
+        strength: 3
+
+skills:
+  devops: ["kubernetes", "terraform", "ci/cd", "devops", "site reliability", "sre"]
+  aws_cloud: ["aws", "amazon web services", "cloudformation", "cloud"]
+  data_analytics: ["sql", "tableau", "power bi", "analytics", "business intelligence"]
+  data_science: ["python", "machine learning", "statistics", "data science"]
+  architecture: ["solutions architect", "cloud architect", "systems architect"]
+
+preferences:
+  locations: ["New York, NY", "Remote - US"]
+  min_salary: 70000
+  deal_breaker_phrases: ["unpaid", "commission only", "security clearance required"]
+
+search:
+  early_career: true
