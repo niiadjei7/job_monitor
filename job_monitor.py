@@ -1058,7 +1058,7 @@ def send_discord_notification(webhook_url, source_name, new_jobs):
             score = job[3] if len(job) > 3 else None
             summary = job[4] if len(job) > 4 else ""
             tags = " ".join(f"[{category}]" for category in categories)
-            score_tag = f"[{score}/100]" if score is not None else ""
+            score_tag = f"**{score}/100**" if score is not None else ""
             prefix = " ".join(part for part in (score_tag, tags) if part)
             posting = f"[{title}]({url})" if url else title
             suffix_text = f" - {summary}" if summary else ""
@@ -1182,7 +1182,15 @@ def main():
                 location_matches_source,
             )
             scored_jobs.append((job_id, title, url, result))
-            if not result["veto"] and location_matches_source and result["score"] >= threshold:
+            has_eligibility_signal = result.get("strong_category_match") or (
+                "early-career" in result.get("matched", [])
+            )
+            if (
+                not result["veto"]
+                and location_matches_source
+                and result["score"] >= threshold
+                and has_eligibility_signal
+            ):
                 eligible_jobs.append((job_id, title, url, result))
         update_tracker(name, scored_jobs)
         new_jobs = [

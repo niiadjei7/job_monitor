@@ -38,9 +38,11 @@ because its public MCP endpoint rate-limits the scheduled requests.
 2. Push this folder to a private or public GitHub repository.
 3. Add a repository Actions secret named `DISCORD_WEBHOOK_URL` containing the
    webhook URL.
-4. Edit `companies.yaml`, add the companies/searches you want, and change their
+4. Copy `profile.example.yaml` to `profile.yaml` and fill in your local profile.
+   `profile.yaml` is ignored so contact information is not published.
+5. Edit `companies.yaml`, add the companies/searches you want, and change their
    `enabled` value to `true`.
-5. Run **Actions → Job Monitor → Run workflow** once to verify the setup.
+6. Run **Actions → Job Monitor → Run workflow** once to verify the setup.
 
 The first run treats every matching current posting as new. To establish a quiet
 baseline, temporarily point the Discord secret at a test channel or let the first

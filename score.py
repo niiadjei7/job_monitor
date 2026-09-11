@@ -24,6 +24,15 @@ SENIOR_PATTERNS = [
     r"\bextensive experience\b",
 ]
 
+SALARY_CONTEXT_PATTERN = re.compile(
+    r"\b(salary|compensation|pay|base pay|base salary|annually|annualized|per year)\b|/year|/yr",
+    re.I,
+)
+SALARY_NUMBER_PATTERN = re.compile(
+    r"(?P<dollar>\$)?\s*(?P<amount>[0-9]{2,3}(?:,[0-9]{3})?|[0-9]{2,3})\s*(?P<suffix>k)?",
+    re.I,
+)
+
 
 def normalize_category(value):
     return re.sub(r"[^a-z0-9]+", "_", str(value).casefold()).strip("_")
@@ -83,10 +92,47 @@ def skill_match_score(text, keyword_categories, profile):
     return score, matched, failed
 
 
+def has_title_or_context_category_match(title, context, keyword_categories):
+    if not keyword_categories:
+        return True
+
+    title_text = str(title or "")
+    context_text = str(context or "")
+    combined_text = " | ".join(
+        value.strip() for value in (title_text, context_text) if value.strip()
+    )
+    if isinstance(keyword_categories, dict):
+        for terms in keyword_categories.values():
+            if isinstance(terms, dict):
+                title_terms = terms.get("title", [])
+                context_terms = terms.get("context", [])
+                if any(contains_phrase(title_text, term) for term in title_terms):
+                    return True
+                if any(contains_phrase(context_text, term) for term in context_terms):
+                    return True
+            elif any(contains_phrase(combined_text, term) for term in terms or []):
+                return True
+        return False
+
+    return any(contains_phrase(combined_text, term) for term in keyword_categories or [])
+
+
 def parse_salary_low(text):
-    matches = re.findall(r"\$?\s*([0-9]{2,3}(?:,[0-9]{3})?|[0-9]{2,3})\s*(k)?", text, re.I)
+    text = str(text or "")
     values = []
-    for raw, suffix in matches:
+    for match in SALARY_NUMBER_PATTERN.finditer(text):
+        raw = match.group("amount")
+        suffix = match.group("suffix")
+        has_dollar = bool(match.group("dollar"))
+        context_start = max(0, match.start() - 50)
+        context_end = min(len(text), match.end() + 50)
+        context = text[context_start:context_end]
+        if not has_dollar and not SALARY_CONTEXT_PATTERN.search(context):
+            continue
+        if match.start() > 0 and text[match.start() - 1].isdigit():
+            continue
+        if match.end() < len(text) and text[match.end() : match.end() + 1].isalpha():
+            continue
         value = int(raw.replace(",", ""))
         if suffix or value < 1000:
             value *= 1000
@@ -135,6 +181,9 @@ def score_job(
     skill_score, categories, missing_categories = skill_match_score(
         text, source.get("keyword_categories", source.get("keywords", [])), profile
     )
+    strong_category_match = has_title_or_context_category_match(
+        title, context, source.get("keyword_categories", source.get("keywords", []))
+    )
     if categories:
         matched.extend([f"skills: {category}" for category in categories])
     else:
@@ -173,6 +222,7 @@ def score_job(
         "failed": failed + [f"missing {category}" for category in missing_categories if not categories],
         "veto": False,
         "categories": categories,
+        "strong_category_match": strong_category_match,
         "summary": ", ".join(summary_bits) or "no strong match",
     }
 

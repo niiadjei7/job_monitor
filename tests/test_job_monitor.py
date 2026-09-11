@@ -8,6 +8,7 @@ from unittest.mock import Mock, patch
 import requests
 
 import job_monitor
+import score
 
 
 class FakeResponse:
@@ -505,6 +506,30 @@ class EndToEndTests(unittest.TestCase):
             "- [DevOps] [AWS/Cloud] [Software Engineer I](https://jobs.test/one)",
         )
 
+    @patch("job_monitor.requests.post")
+    def test_discord_notification_formats_scores_cleanly(self, post):
+        post.return_value = FakeResponse(status=204)
+
+        job_monitor.send_discord_notification(
+            "https://discord.test/hook",
+            "Acme",
+            [
+                (
+                    "Platform Engineer",
+                    "https://jobs.test/one",
+                    ["DevOps"],
+                    72,
+                    "DevOps, location",
+                )
+            ],
+        )
+
+        self.assertEqual(
+            post.call_args.kwargs["json"]["content"],
+            "**1 new posting(s) from Acme**\n"
+            "- **72/100** [DevOps] [Platform Engineer](https://jobs.test/one) - DevOps, location",
+        )
+
     def test_keyword_matching_uses_word_boundaries_for_job_levels(self):
         self.assertTrue(
             job_monitor.matches_keywords("Software Engineer I", ["software engineer i"])
@@ -616,6 +641,23 @@ class EndToEndTests(unittest.TestCase):
         )
         self.assertFalse(job_monitor.matches_location("Remote", location_filter))
         self.assertFalse(job_monitor.matches_location("", location_filter))
+
+    def test_salary_parser_requires_money_context(self):
+        self.assertIsNone(score.parse_salary_low("This role offers a 401k retirement match."))
+        self.assertIsNone(
+            score.parse_salary_low("Minimum of 20 years combined industry experience.")
+        )
+        self.assertIsNone(
+            score.parse_salary_low("Team of 12 engineers across 24/7 on-call rotations.")
+        )
+        self.assertEqual(
+            score.parse_salary_low("The salary range for this role is $95,000-$120,000."),
+            95000,
+        )
+        self.assertEqual(
+            score.parse_salary_low("Compensation: 95k to 120k annually."),
+            95000,
+        )
 
     def test_main_filters_notifies_and_persists_all_current_ids(self):
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -730,6 +772,33 @@ class EndToEndTests(unittest.TestCase):
             saved["greenhouse:acme:notified-v2"],
             ["existing-match", "new"],
         )
+
+    def test_profile_only_description_match_is_not_enough_to_notify(self):
+        source = {
+            "keyword_categories": {
+                "AWS/Cloud": {
+                    "title": ["aws", "cloud engineer"],
+                    "context": ["aws", "cloud engineering"],
+                }
+            },
+            "early_career_keywords": ["junior", "entry level"],
+            "exclude_keywords": ["senior"],
+        }
+        profile = {"skills": {"aws_cloud": ["cloud"]}}
+
+        result = score.score_job(
+            "Customer Success Specialist",
+            "New York, NY",
+            "",
+            "You will help customers adopt our cloud platform.",
+            source,
+            profile,
+            location_matches=True,
+        )
+
+        self.assertEqual(result["categories"], ["AWS/Cloud"])
+        self.assertFalse(result["strong_category_match"])
+        self.assertNotIn("early-career", result["matched"])
 
 
 if __name__ == "__main__":
