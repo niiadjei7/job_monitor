@@ -1527,6 +1527,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Seeq,3A53339B45,Salesforce & GTM Applications Technical Lead,https://apply.workable.com/j/3A53339B45,0,,,2026-09-18
 2026-09-11,Seeq,41E65B3CDE,Customer Support Operations Intelligence Engineer,https://apply.workable.com/j/41E65B3CDE,31,,,2026-09-18
 2026-09-15,Seeq,519AE21AD3,"Director, Product Marketing & Program Management",https://apply.workable.com/j/519AE21AD3,0,,,2026-09-22
+2026-09-16,Seeq,5897B0A025,Partner Marketing Specialist - (Contractor),https://apply.workable.com/j/5897B0A025,57,,,2026-09-23
 2026-09-11,Seeq,610FB07CEB,Full Stack Software Engineer - Staff or Principal,https://apply.workable.com/j/610FB07CEB,0,,,2026-09-18
 2026-09-11,Seeq,6F40FF632B,AI Customer Insights Engineer,https://apply.workable.com/j/6F40FF632B,31,,,2026-09-18
 2026-09-11,Seeq,752EBCAC0C,Enterprise Account Executive,https://apply.workable.com/j/752EBCAC0C,11,,,2026-09-18
@@ -1535,6 +1536,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Seeq,94CB19B50D,"Director of Customer Success, APAC - Industrial",https://apply.workable.com/j/94CB19B50D,0,,,2026-09-18
 2026-09-11,Seeq,951F8F7708,Business Development Representative - Americas,https://apply.workable.com/j/951F8F7708,20,,,2026-09-18
 2026-09-11,Seeq,95AFFF0CEF,VP of Engineering - Applications,https://apply.workable.com/j/95AFFF0CEF,0,,,2026-09-18
+2026-09-16,Seeq,9D9A9F5C5B,Industry Events Manager,https://apply.workable.com/j/9D9A9F5C5B,0,,,2026-09-23
 2026-09-11,Seeq,A966C8897D,Staff Software Engineer - Developer Experience,https://apply.workable.com/j/A966C8897D,0,,,2026-09-18
 2026-09-11,Seeq,B3E0E9645D,Frontend Design Systems Engineer,https://apply.workable.com/j/B3E0E9645D,31,,,2026-09-18
 2026-09-11,Seeq,C2318392FE,Senior Full Stack Software Engineer,https://apply.workable.com/j/C2318392FE,0,,,2026-09-18
@@ -2161,7 +2163,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Workday,/job/USA-UT-Salt-Lake-City/Technical-Account-Manager--Salt-Lake-City-UT---Oregon-Remote--_JR-0109357,"Technical Account Manager (Salt Lake City,UT)",https://workday.wd5.myworkdayjobs.com/Workday/job/USA-UT-Salt-Lake-City/Technical-Account-Manager--Salt-Lake-City-UT---Oregon-Remote--_JR-0109357,0,,,2026-09-18
 2026-09-11,Workday,/job/USA-VA-McLean/Sr-Software-Engineer--US-Federal-_JR-0097206,Sr Cloud Engineer (US Federal),https://workday.wd5.myworkdayjobs.com/Workday/job/USA-VA-McLean/Sr-Software-Engineer--US-Federal-_JR-0097206,0,,,2026-09-18
 2026-09-11,Workday,/job/USANYHome-Office-NY-Metro-Tri-State/Presales---Enterprise-Architect_JR-0109846,Presales-  Enterprise Architect,https://workday.wd5.myworkdayjobs.com/Workday/job/USANYHome-Office-NY-Metro-Tri-State/Presales---Enterprise-Architect_JR-0109846,22,,,2026-09-18
-2026-09-11,Workday,/job/USAVAReston/Account-Executive---US-Federal_JR-0109940,Account Executive - US Federal,https://workday.wd5.myworkdayjobs.com/Workday/job/USAVAReston/Account-Executive---US-Federal_JR-0109940,22,,,2026-09-18
+2026-09-11,Workday,/job/USAVAReston/Account-Executive---US-Federal_JR-0109940,"Account Executive, US Federal - Dept of War",https://workday.wd5.myworkdayjobs.com/Workday/job/USAVAReston/Account-Executive---US-Federal_JR-0109940,22,,,2026-09-18
 2026-09-11,Workday,/job/USAVAReston/Analytics-Sr-Software-Engineer--US-Federal-_JR-0105484,Sr. Site Reliability Engineer (US Federal),https://workday.wd5.myworkdayjobs.com/Workday/job/USAVAReston/Analytics-Sr-Software-Engineer--US-Federal-_JR-0105484,0,,,2026-09-18
 2026-09-11,Workday,/job/USAVAReston/Analytics-Sr-Software-Engineer--US-Federal-_JR-0105489-1,Sr Site Reliability Engineer (US Federal),https://workday.wd5.myworkdayjobs.com/Workday/job/USAVAReston/Analytics-Sr-Software-Engineer--US-Federal-_JR-0105489-1,0,,,2026-09-18
 2026-09-11,Workday,/job/USAVAReston/Analytics-Sr-Software-Engineer--US-Federal-_JR-0105496,Software Development  Engineer (US Federal),https://workday.wd5.myworkdayjobs.com/Workday/job/USAVAReston/Analytics-Sr-Software-Engineer--US-Federal-_JR-0105496,48,,,2026-09-18
@@ -2181,6 +2183,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Workday,/job/USAVAReston/Principal-Cybersecurity-Engineer_JR-0106961,Principal Cybersecurity Engineer,https://workday.wd5.myworkdayjobs.com/Workday/job/USAVAReston/Principal-Cybersecurity-Engineer_JR-0106961,0,,,2026-09-18
 2026-09-11,Workday,/job/USAVAReston/Principal-Cybersecurity-Engineer_JR-0108926,Principal Cybersecurity Engineer,https://workday.wd5.myworkdayjobs.com/Workday/job/USAVAReston/Principal-Cybersecurity-Engineer_JR-0108926,0,,,2026-09-18
 2026-09-11,Workday,/job/USAVAReston/Principal-Program-Manager---US-Federal_JR-0107167,Senior Project Manager - US Federal,https://workday.wd5.myworkdayjobs.com/Workday/job/USAVAReston/Principal-Program-Manager---US-Federal_JR-0107167,0,,,2026-09-18
+2026-09-16,Workday,/job/USAVAReston/Regional-Sales-Director---Federal-Systems-Integrators--DOD-and-IC_JR-0105160,"Regional Sales Director - Federal Systems Integrators, DOD and IC",https://workday.wd5.myworkdayjobs.com/Workday/job/USAVAReston/Regional-Sales-Director---Federal-Systems-Integrators--DOD-and-IC_JR-0105160,0,,,2026-09-23
 2026-09-11,Workday,/job/USAVAReston/Senior-Cybersecurity-Data-Engineer---Data-Platform---Lakehouse-SME_JR-0107830,Senior Cybersecurity Data Engineer - Data Platform & Lakehouse SME,https://workday.wd5.myworkdayjobs.com/Workday/job/USAVAReston/Senior-Cybersecurity-Data-Engineer---Data-Platform---Lakehouse-SME_JR-0107830,0,,,2026-09-18
 2026-09-11,Workday,/job/USAVAReston/Senior-Cybersecurity-Engineer---Network-Security--US-Federal-_JR-0107993,Senior Cybersecurity Engineer - Network Security (US Federal),https://workday.wd5.myworkdayjobs.com/Workday/job/USAVAReston/Senior-Cybersecurity-Engineer---Network-Security--US-Federal-_JR-0107993,0,,,2026-09-18
 2026-09-11,Workday,/job/USAVAReston/Senior-Cybersecurity-Engineer---US-Federal_JR-0109166,Senior Cybersecurity Engineer - US Federal,https://workday.wd5.myworkdayjobs.com/Workday/job/USAVAReston/Senior-Cybersecurity-Engineer---US-Federal_JR-0109166,0,,,2026-09-18
