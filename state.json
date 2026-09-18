@@ -379,7 +379,6 @@
     "0fc0cccb-e5fb-4c7d-9a4a-692bc89ffff7",
     "158d4db6-35fd-4c34-8f4a-81042b933bbb",
     "18e5c1fa-6362-42ac-b4d3-d418727ff4ab",
-    "1d91eddc-80e1-45c9-9dc7-f2c5638e6645",
     "1e2efa4f-65cd-4ff4-a2ed-ff390c9fc14a",
     "1f132c91-c960-4d5d-9c9a-fc6d85fe0ed2",
     "1f206734-8f96-4622-840a-5e81c8bce266",
@@ -622,7 +621,8 @@
     "6188894004",
     "6188898004",
     "6195280004",
-    "6199608004"
+    "6199608004",
+    "6200325004"
   ],
   "greenhouse:vercel:notified-v2": [
     "5039945004",
@@ -1808,6 +1808,7 @@
     "/job/2019-DISA-HQ-Fort-George-G-Meade-MD/XMLNAME--Senior-ICAM-Identity-Governance-and-Provisioning-Engineer_R-00183977-1",
     "/job/3325-Fort-George-G-Meade-MD/Junior-Software-Engineer--SWE-2-_R-00185405",
     "/job/3325-Fort-George-G-Meade-MD/Software-Engineer--SWE-2-_R-00178020",
+    "/job/6314-RemoteTeleworker-US/Angular-Developer_R-00192485",
     "/job/6314-RemoteTeleworker-US/EPC-Transmission-Line-Project-Engineer_R-00187471",
     "/job/6314-RemoteTeleworker-US/Exercise-Planner_R-00191450-1",
     "/job/6314-RemoteTeleworker-US/Lead--Subcontracts-Management_R-00192046",
@@ -1888,7 +1889,6 @@
     "/job/Eagan-MN/Software-Developer_R-00190563",
     "/job/Egg-Harbor-Township-NJ/System-Integration-Engineer_R-00190793",
     "/job/Falls-Church-VA/Junior-Media-Relations---Public-Affairs_R-00190872",
-    "/job/Farnborough-Hampshire-UK/Technical-Lead_R-00192148",
     "/job/Fort-Belvoir-VA/Hybrid-Multi-Cloud-Engineer-SME_R-00188318",
     "/job/Fort-Meade-MD/Junior-Cyber-Analyst_R-00183704",
     "/job/Framingham-MA/Substation-Senior-Civil-Structural-Engineer_R-00184977",
@@ -1950,7 +1950,6 @@
     "/job/Odenton-MD/Cyberspace-Operations-Planner--Junior_R-00184942",
     "/job/Odenton-MD/Cyberspace-Operations-Planner--Junior_R-00187786",
     "/job/Odenton-MD/Cyberspace-Operations-Planner--Junior_R-00187869",
-    "/job/Odenton-MD/Cyberspace-Operations-Planner--Junior_R-00190177",
     "/job/Odenton-MD/Lead-Cyber-Security-Trainer_R-00191840",
     "/job/Odenton-MD/Senior-Network-Engineer_R-00185019",
     "/job/Odenton-MD/ServiceNow-Systems-Integration_R-00189389-1",
@@ -1989,6 +1988,7 @@
     "/job/Washington-DC/Test-Engineer_R-00192383"
   ],
   "workday:leidos:notified-v2": [
+    "/job/6314-RemoteTeleworker-US/Angular-Developer_R-00192485",
     "/job/6314-RemoteTeleworker-US/Databricks-Full-stack-Developer_R-00190623",
     "/job/6314-RemoteTeleworker-US/EPC-Transmission-Line-Project-Engineer_R-00187471",
     "/job/6314-RemoteTeleworker-US/Exercise-Planner_R-00191450-1",
@@ -2078,7 +2078,6 @@
     "/job/INDPune/Sr-Sales-Analytics-and-Commission-Analyst_JR-0108725",
     "/job/INDPune/Support-Engineer--AI-ML---Platform-Operations-_JR-0110061",
     "/job/INDPune/Workday-Consultant---Absence---Time-Tracking---Workday-Advisory-services---Pune---Multiple-roles_JR-0108617-1",
-    "/job/IRLDublinDockline/Sr-Partner-Solution-Architect_JR-0109361",
     "/job/IRLDublinDockline/Sr-Prism-Analytics-Consultant---Workday-Success-Plans_JR-0109347",
     "/job/India-Mumbai/Enterprise-Account-Executive---Large-Enterprise_JR-0106386",
     "/job/India-Mumbai/Principal-Partner-Sales-Executive_JR-0109617",
@@ -2163,7 +2162,6 @@
     "/job/Singapore/Sr-Financials-Functional-Consultant_JR-0108676",
     "/job/Spain-Madrid/Sr-Functional-Consultant---Workday-Success-Plans-Adaptive-Planning_JR-0109334-1",
     "/job/Spain-Madrid/Sr-Reporting---Analytics-Consultant--FIN----Workday-Success-Plans_JR-0108913",
-    "/job/Sweden-Stockholm/Fullstack-Product-Engineer_JR-0108374",
     "/job/Sweden-Stockholm/Go-To-Market--GTM--Sana----For-Stockholm-_JR-0110185",
     "/job/Sweden-Stockholm/Marketing-Manager_JR-0108682",
     "/job/Sweden-Stockholm/Senior-AI-Engineer---Sana_JR-0107620",
@@ -2219,6 +2217,7 @@
     "/job/USA-CA-Pleasanton/Software-Development-Engineer---Document-Intelligence_JR-0107516",
     "/job/USA-CA-Pleasanton/Software-Development-Engineer---Workday-Everywhere_JR-0108945",
     "/job/USA-CA-Pleasanton/Software-Development-Engineer-Distributed-Systems-_JR-0109641",
+    "/job/USA-CA-Pleasanton/Software-Development-Engineer_JR-0109889",
     "/job/USA-CA-Pleasanton/Software-Engineer---Context-and-Semantics--AI-_JR-0110210",
     "/job/USA-CA-Pleasanton/Sr---Principal-Product-Manager---AI-Agent-Products_JR-0107436",
     "/job/USA-CA-Pleasanton/Sr-Functional--Analyst---Workday-Finance_JR-0108768-1",
