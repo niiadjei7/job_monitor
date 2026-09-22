@@ -420,6 +420,7 @@ class ConfigurationTests(unittest.TestCase):
                 {"united states", "usa", "us"},
             )
             self.assertFalse(location_filter.get("allow_unknown"))
+            self.assertTrue(location_filter.get("allow_unspecified_remote"))
 
         configured_names = {source["name"] for source in enabled_sources}
         self.assertTrue(
@@ -613,7 +614,7 @@ class EndToEndTests(unittest.TestCase):
             ],
             "include_remote": True,
             "remote_include": ["United States", "USA", "US"],
-            "allow_unspecified_remote": False,
+            "allow_unspecified_remote": True,
             "allow_unknown": False,
         }
 
@@ -639,7 +640,7 @@ class EndToEndTests(unittest.TestCase):
         self.assertFalse(
             job_monitor.matches_location("Remote - European Union", location_filter)
         )
-        self.assertFalse(job_monitor.matches_location("Remote", location_filter))
+        self.assertTrue(job_monitor.matches_location("Remote", location_filter))
         self.assertFalse(job_monitor.matches_location("", location_filter))
 
     def test_salary_parser_requires_money_context(self):
@@ -657,6 +658,27 @@ class EndToEndTests(unittest.TestCase):
         self.assertEqual(
             score.parse_salary_low("Compensation: 95k to 120k annually."),
             95000,
+        )
+
+    def test_rejection_reasons_include_scoring_and_eligibility_gates(self):
+        reasons = job_monitor._rejection_reasons(
+            {
+                "score": 35,
+                "failed": ["skills", "location"],
+                "veto": False,
+            },
+            threshold=45,
+            has_eligibility_signal=False,
+        )
+
+        self.assertEqual(
+            reasons,
+            [
+                "skills",
+                "location",
+                "score below threshold: 35 < 45",
+                "no strong title/context category or early-career signal",
+            ],
         )
 
     def test_main_filters_notifies_and_persists_all_current_ids(self):
@@ -772,6 +794,72 @@ class EndToEndTests(unittest.TestCase):
             saved["greenhouse:acme:notified-v2"],
             ["existing-match", "new"],
         )
+
+    def test_debug_mode_logs_each_rejection_and_source_summary(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            config_path = Path(temp_dir) / "companies.yaml"
+            state_path = Path(temp_dir) / "state.json"
+            profile_path = Path(temp_dir) / "profile.yaml"
+            tracker_path = Path(temp_dir) / "job_search_tracker.csv"
+            config_path.write_text(
+                "companies:\n"
+                "  - name: Acme\n"
+                "    ats: greenhouse\n"
+                "    slug: acme\n"
+                "    keywords: [engineer]\n",
+                encoding="utf-8",
+            )
+            state_path.write_text("{}", encoding="utf-8")
+            fetcher = Mock(
+                return_value=[
+                    (
+                        "rejected",
+                        "Account Executive",
+                        "https://jobs.test/rejected",
+                        "Remote",
+                    )
+                ]
+            )
+
+            with (
+                patch.object(job_monitor, "CONFIG_PATH", config_path),
+                patch.object(job_monitor, "STATE_PATH", state_path),
+                patch.object(job_monitor, "PROFILE_PATH", profile_path),
+                patch.object(job_monitor, "TRACKER_PATH", tracker_path),
+                patch.dict(job_monitor.FETCHERS, {"greenhouse": fetcher}),
+                patch.dict(
+                    os.environ,
+                    {
+                        "DISCORD_WEBHOOK_URL": "https://discord.test/hook",
+                        "DEBUG_REJECTIONS": "true",
+                    },
+                    clear=True,
+                ),
+                patch("job_monitor.send_discord_notification") as notify,
+                patch("job_monitor.time.sleep"),
+                patch("builtins.print") as output,
+            ):
+                job_monitor.main()
+
+        rendered = [
+            " ".join(str(value) for value in call.args)
+            for call in output.call_args_list
+        ]
+        self.assertTrue(
+            any(
+                "DEBUG REJECT [Acme]" in line
+                and '"skills"' in line
+                and '"score below threshold: 35 < 45"' in line
+                for line in rendered
+            )
+        )
+        self.assertTrue(
+            any(
+                "DEBUG SUMMARY [Acme] fetched=1 eligible=0 rejected=1" in line
+                for line in rendered
+            )
+        )
+        notify.assert_not_called()
 
     def test_profile_only_description_match_is_not_enough_to_notify(self):
         source = {

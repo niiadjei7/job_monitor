@@ -4,7 +4,13 @@ on:
   schedule:
     # Runs every 3 hours. Adjust as you like — cron is in UTC.
     - cron: "0 */3 * * *"
-  workflow_dispatch: {}   # lets you trigger it manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      debug_rejections:
+        description: "Log every rejected posting and its failed scoring gates"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write   # needed so the workflow can commit state.json back
@@ -28,9 +34,20 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Materialize private scoring profile
+        env:
+          PROFILE_YAML: ${{ secrets.PROFILE_YAML }}
+        run: |
+          if [ -z "$PROFILE_YAML" ]; then
+            echo "::error::Repository secret PROFILE_YAML is not configured"
+            exit 1
+          fi
+          printf '%s\n' "$PROFILE_YAML" > profile.yaml
+
       - name: Run job monitor
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DEBUG_REJECTIONS: ${{ inputs.debug_rejections || vars.DEBUG_REJECTIONS || 'false' }}
         run: python job_monitor.py
 
       - name: Commit updated state

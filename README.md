@@ -38,8 +38,10 @@ because its public MCP endpoint rate-limits the scheduled requests.
 2. Push this folder to a private or public GitHub repository.
 3. Add a repository Actions secret named `DISCORD_WEBHOOK_URL` containing the
    webhook URL.
-4. Copy `profile.example.yaml` to `profile.yaml` and fill in your local profile.
-   `profile.yaml` is ignored so contact information is not published.
+4. Copy `profile.example.yaml` to `profile.yaml` and fill in your profile.
+   `profile.yaml` is ignored so contact information is not published. Save the
+   complete YAML document as a repository Actions secret named `PROFILE_YAML`
+   so scheduled runs use the same scoring profile.
 5. Edit `companies.yaml`, add the companies/searches you want, and change their
    `enabled` value to `true`.
 6. Run **Actions → Job Monitor → Run workflow** once to verify the setup.
@@ -96,7 +98,7 @@ location_filters:
   ny_nj: &ny_nj_location
     include_remote: true
     remote_include: ["United States", "USA", "US"]
-    allow_unspecified_remote: false
+    allow_unspecified_remote: true
     allow_unknown: false
     include:
       - "New York"
@@ -114,13 +116,24 @@ companies:
     keywords: ["engineer"]
 ```
 
-`remote_include` acts as a whitelist: a remote posting must explicitly contain a
-U.S. marker. This accepts multi-region jobs that include the U.S. while rejecting
-bare or foreign-only remote postings. `allow_unknown: false` rejects jobs whose
-feed does not expose a location. The checked-in configuration expands the local
-list with NYC boroughs and nearby New York/New Jersey cities and applies it to
-every active source. Because most feeds lack coordinates, the matcher
-approximates the area; ZipRecruiter uses its native numeric `radius` when enabled.
+`remote_include` accepts remote postings that explicitly include a U.S. marker.
+With `allow_unspecified_remote: true`, a bare `Remote` posting also passes unless
+it names another state or foreign region. Explicitly located on-site or hybrid
+roles must still match the NYC/NJ list. `allow_unknown: false` continues to
+reject jobs whose feed exposes neither a location nor a remote signal. Because
+most feeds lack coordinates, the matcher approximates the area; ZipRecruiter
+uses its native numeric `radius` when enabled.
+
+### Rejection diagnostics
+
+Set `DEBUG_REJECTIONS=true` to print every ineligible posting with its score,
+threshold, location, and all failed scoring gates. Each source also prints an
+aggregate reason summary and separates previously notified matches from newly
+eligible jobs. Debug mode does not change notification or state behavior.
+
+For a manual Actions run, enable the `debug_rejections` input. To debug scheduled
+runs, create a repository Actions variable named `DEBUG_REJECTIONS` with value
+`true`, then disable it after collecting enough logs.
 
 ### Workday
 
@@ -215,10 +228,12 @@ credentials. Do not commit signed URLs, tokens, or API keys.
 
 ## GitHub Actions secrets
 
-The active workflow maps only `DISCORD_WEBHOOK_URL`, which is required. If you
-later obtain an approved Jobvite, LinkedIn, or Indeed feed, add its URL as a
-repository secret and map that secret under the workflow's `Run job monitor`
-step before adding the source back to `companies.yaml`.
+The active workflow requires both `DISCORD_WEBHOOK_URL` and `PROFILE_YAML`. It
+materializes the profile only inside the temporary Actions runner, and fails
+clearly when the profile secret is absent. If you later obtain an approved
+Jobvite, LinkedIn, or Indeed feed, add its URL as a repository secret and map
+that secret under the workflow's `Run job monitor` step before adding the source
+back to `companies.yaml`.
 
 ## Schedule and state
 

@@ -9,6 +9,7 @@ import os
 import re
 import sys
 import time
+from collections import Counter
 from datetime import date, timedelta
 from pathlib import Path
 from urllib.parse import urlparse
@@ -38,6 +39,14 @@ TRACKER_FIELDS = [
     "date_applied",
     "follow_up_due",
 ]
+
+
+def _env_flag(name, default=False):
+    value = os.environ.get(name)
+    if value is None:
+        return default
+    return value.strip().casefold() in {"1", "true", "yes", "on"}
+
 
 US_STATE_ABBREVIATIONS = {
     "AL",
@@ -148,6 +157,7 @@ FOREIGN_REMOTE_MARKERS = {
     "canada",
     "emea",
     "europe",
+    "european union",
     "india",
     "latin america",
     "mexico",
@@ -297,7 +307,10 @@ def matches_location(location, location_filter):
     has_other_state = bool(state_tokens & US_STATE_ABBREVIATIONS) or any(
         _has_location_term(location, state) for state in OTHER_US_STATE_NAMES
     )
-    has_foreign_region = any(
+    has_foreign_country_code = bool(
+        state_tokens - US_STATE_ABBREVIATIONS - {"US", "NY", "NJ"}
+    )
+    has_foreign_region = has_foreign_country_code or any(
         _has_location_term(location, marker) for marker in FOREIGN_REMOTE_MARKERS
     )
     has_included_location = any(
@@ -317,13 +330,15 @@ def matches_location(location, location_filter):
         return False
 
     remote_include = location_filter.get("remote_include", [])
-    if remote_include:
+    if remote_include and any(
+        _has_location_term(location, term) for term in remote_include
+    ):
         # A positive U.S. marker wins for multi-region postings such as
         # "Remote - US, Remote - Canada" because the role is available in the U.S.
-        return any(_has_location_term(location, term) for term in remote_include)
+        return True
 
-    # Unspecified remote jobs are rejected by default. A source can opt in only
-    # when its feed contract guarantees that bare "Remote" means U.S.-remote.
+    # A source can opt into bare/unspecified remote postings while still
+    # rejecting roles that name another state or foreign region.
     return bool(location_filter.get("allow_unspecified_remote", False)) and not (
         has_foreign_region or has_other_state
     )
@@ -1093,6 +1108,18 @@ def _notified_state_key(state_key):
     return f"{state_key}:{NOTIFIED_STATE_SUFFIX}"
 
 
+def _rejection_reasons(result, threshold, has_eligibility_signal):
+    reasons = [str(reason) for reason in result.get("failed", []) if reason]
+    score = int(result.get("score", 0))
+    if result.get("veto") and not reasons:
+        reasons.append("vetoed")
+    if score < threshold:
+        reasons.append(f"score below threshold: {score} < {threshold}")
+    if not has_eligibility_signal:
+        reasons.append("no strong title/context category or early-career signal")
+    return list(dict.fromkeys(reasons))
+
+
 def update_tracker(source_name, scored_jobs):
     existing = {}
     if TRACKER_PATH.exists():
@@ -1134,6 +1161,7 @@ def main():
     sources = load_config()
     profile = load_profile()
     threshold = score_threshold(profile)
+    debug_rejections = _env_flag("DEBUG_REJECTIONS")
     state = load_state()
     any_errors = False
 
@@ -1170,6 +1198,7 @@ def main():
         current_ids = {job_id for job_id, _, _, _, _, _ in normalized_jobs}
         eligible_jobs = []
         scored_jobs = []
+        rejection_counts = Counter()
         for job_id, title, url, location, context, description in normalized_jobs:
             location_matches_source = matches_location(location, location_filter)
             result = score_job(
@@ -1185,19 +1214,46 @@ def main():
             has_eligibility_signal = result.get("strong_category_match") or (
                 "early-career" in result.get("matched", [])
             )
-            if (
+            is_eligible = (
                 not result["veto"]
                 and location_matches_source
                 and result["score"] >= threshold
                 and has_eligibility_signal
-            ):
+            )
+            if is_eligible:
                 eligible_jobs.append((job_id, title, url, result))
+            elif debug_rejections:
+                reasons = _rejection_reasons(
+                    result, threshold, has_eligibility_signal
+                )
+                rejection_counts.update(reasons)
+                print(
+                    f"DEBUG REJECT [{name}] id={job_id!r} title={title!r} "
+                    f"location={(location or '<unknown>')!r} "
+                    f"score={result['score']}/{threshold} "
+                    f"failed={json.dumps(reasons, ensure_ascii=False)}"
+                )
         update_tracker(name, scored_jobs)
         new_jobs = [
             (title, url, result["categories"], result["score"], result["summary"])
             for job_id, title, url, result in eligible_jobs
             if job_id not in notified_ids
         ]
+
+        if debug_rejections:
+            already_notified = sum(
+                job_id in notified_ids for job_id, _, _, _ in eligible_jobs
+            )
+            reason_summary = ", ".join(
+                f"{reason}={count}"
+                for reason, count in rejection_counts.most_common()
+            ) or "none"
+            print(
+                f"DEBUG SUMMARY [{name}] fetched={len(normalized_jobs)} "
+                f"eligible={len(eligible_jobs)} rejected={len(normalized_jobs) - len(eligible_jobs)} "
+                f"already_notified={already_notified} new_eligible={len(new_jobs)} "
+                f"reasons: {reason_summary}"
+            )
 
         if new_jobs:
             print(f"{name}: {len(new_jobs)} new matching posting(s).")

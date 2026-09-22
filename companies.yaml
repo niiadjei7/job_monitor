@@ -122,8 +122,8 @@ source_defaults:
   exclude_keywords: *senior_title_keywords
 
 # Company ATS feeds do not consistently provide coordinates, so this is a
-# strict NYC-metro location matcher rather than a geocoding dependency. Generic
-# remote roles are accepted only when the feed explicitly identifies the U.S.
+# NYC-metro location matcher rather than a geocoding dependency. Explicitly
+# located roles stay local, while bare remote roles are allowed through.
 location_filters:
   ny_nj: &ny_nj_location
     include_remote: true
@@ -131,7 +131,7 @@ location_filters:
       - "United States"
       - "USA"
       - "US"
-    allow_unspecified_remote: false
+    allow_unspecified_remote: true
     allow_unknown: false
     include:
       - "New York"
