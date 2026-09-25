@@ -924,6 +924,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-18,Greenhouse,8204473,Senior Software Engineer ,https://job-boards.greenhouse.io/greenhouse/jobs/8204473?gh_jid=8204473,0,,,2026-09-25
 2026-09-18,Greenhouse,8204474,Senior Software Engineer ,https://job-boards.greenhouse.io/greenhouse/jobs/8204474?gh_jid=8204474,0,,,2026-09-25
 2026-09-22,Greenhouse,8208105,"Manager, Corporate IT",https://job-boards.greenhouse.io/greenhouse/jobs/8208105?gh_jid=8208105,0,,,2026-09-29
+2026-09-25,Greenhouse,8211770,"Senior Program Manager, GTM & Field Enablement",https://job-boards.greenhouse.io/greenhouse/jobs/8211770?gh_jid=8211770,0,,,2026-10-02
 2026-09-18,Greenhouse,8211828,Senior Software Engineer,https://job-boards.greenhouse.io/greenhouse/jobs/8211828?gh_jid=8211828,0,,,2026-09-25
 2026-09-18,Greenhouse,8214721,Software Engineer,https://job-boards.greenhouse.io/greenhouse/jobs/8214721?gh_jid=8214721,37,,,2026-09-25
 2026-09-24,Greenhouse,8222047,Strategic Consultant ,https://job-boards.greenhouse.io/greenhouse/jobs/8222047?gh_jid=8222047,15,,,2026-10-01
@@ -982,6 +983,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-15,Handshake,b6589d22-4b21-4b63-bfa6-db9c112c908a,"VP of Product, Handshake AI",https://jobs.ashbyhq.com/handshake/b6589d22-4b21-4b63-bfa6-db9c112c908a,0,,,2026-09-22
 2026-09-11,Handshake,b777e140-6ccd-44e6-9709-5a43c4b1ca7a,"Senior Applied AI Engineer, Enterprise AI",https://jobs.ashbyhq.com/handshake/b777e140-6ccd-44e6-9709-5a43c4b1ca7a,0,,,2026-09-18
 2026-09-11,Handshake,b80bc193-ed11-468c-be6c-485cacd2b33c,"Staff Product Designer, Student Experience",https://jobs.ashbyhq.com/handshake/b80bc193-ed11-468c-be6c-485cacd2b33c,0,,,2026-09-18
+2026-09-25,Handshake,b884c592-8834-4776-a0cd-6718da9b54cc,Mid-Market Customer Success Manager,https://jobs.ashbyhq.com/handshake/b884c592-8834-4776-a0cd-6718da9b54cc,0,,,2026-10-02
 2026-09-11,Handshake,ba86755b-c182-41a5-91de-497988a395b3,Growth Operations Lead (India),https://jobs.ashbyhq.com/handshake/ba86755b-c182-41a5-91de-497988a395b3,0,,,2026-09-18
 2026-09-11,Handshake,bb7eeb0b-5114-496f-925e-a790b162c3e4,GTM Engineer,https://jobs.ashbyhq.com/handshake/bb7eeb0b-5114-496f-925e-a790b162c3e4,33,,,2026-09-18
 2026-09-24,Handshake,bd6c7320-2bfc-4015-8ee1-5b0997b6a9d1,"Member of Technical Staff, Post-Training",https://jobs.ashbyhq.com/handshake/bd6c7320-2bfc-4015-8ee1-5b0997b6a9d1,0,,,2026-10-01
@@ -1113,6 +1115,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Leidos,/job/Fort-Belvoir-VA/Hybrid-Multi-Cloud-Engineer-SME_R-00188318,Hybrid Multi-Cloud Engineer SME,https://leidos.wd5.myworkdayjobs.com/external/job/Fort-Belvoir-VA/Hybrid-Multi-Cloud-Engineer-SME_R-00188318,69,,,2026-09-18
 2026-09-24,Leidos,/job/Fort-Belvoir-VA/Senior-Storage-Engineer_R-00193031,Senior Storage Engineer,https://leidos.wd5.myworkdayjobs.com/external/job/Fort-Belvoir-VA/Senior-Storage-Engineer_R-00193031,0,,,2026-10-01
 2026-09-22,Leidos,/job/Fort-Meade-MD/Cyberspace-Operations-Planner--Junior_R-00192806,"Cyberspace Operations Planner, Junior",https://leidos.wd5.myworkdayjobs.com/external/job/Fort-Meade-MD/Cyberspace-Operations-Planner--Junior_R-00192806,58,,,2026-09-29
+2026-09-25,Leidos,/job/Fort-Meade-MD/Cyberspace-Operations-Planner--Junior_R-00193122,"Cyberspace Operations Planner, Junior",https://leidos.wd5.myworkdayjobs.com/external/job/Fort-Meade-MD/Cyberspace-Operations-Planner--Junior_R-00193122,58,,,2026-10-02
 2026-09-11,Leidos,/job/Fort-Meade-MD/Junior-Cyber-Analyst_R-00183704,Junior Cyber Analyst,https://leidos.wd5.myworkdayjobs.com/external/job/Fort-Meade-MD/Junior-Cyber-Analyst_R-00183704,36,,,2026-09-18
 2026-09-11,Leidos,/job/Framingham-MA/Substation-Senior-Civil-Structural-Engineer_R-00184977,Substation Senior Civil/Structural Engineer,https://leidos.wd5.myworkdayjobs.com/external/job/Framingham-MA/Substation-Senior-Civil-Structural-Engineer_R-00184977,0,,,2026-09-18
 2026-09-16,Leidos,/job/Gaithersburg-MD/Data-Scientist-SME_R-00192425-1,Data Scientist SME,https://leidos.wd5.myworkdayjobs.com/external/job/Gaithersburg-MD/Data-Scientist-SME_R-00192425-1,58,,,2026-09-23
@@ -1357,6 +1360,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Palantir,3e53ec44-d8f3-4b0b-b77f-c481e9cd06fd,USG Administrative Business Partner,https://jobs.lever.co/palantir/3e53ec44-d8f3-4b0b-b77f-c481e9cd06fd,35,,,2026-09-18
 2026-09-11,Palantir,3f662628-2877-42fb-8866-a2b709de17ca,"Deployment Strategist, Build to Apply - US Government",https://jobs.lever.co/palantir/3f662628-2877-42fb-8866-a2b709de17ca,15,,,2026-09-18
 2026-09-11,Palantir,403e8826-3421-43db-ac48-4ddac10cc78d,Deal Operations Administrator,https://jobs.lever.co/palantir/403e8826-3421-43db-ac48-4ddac10cc78d,15,,,2026-09-18
+2026-09-25,Palantir,4056c8f6-0e6a-43f7-b387-4a97bd3dbb19,Software Engineer – Query Engines,https://jobs.lever.co/palantir/4056c8f6-0e6a-43f7-b387-4a97bd3dbb19,15,,,2026-10-02
 2026-09-11,Palantir,40d0499b-e2ec-42cc-8a19-c454ed510195,Support Engineer,https://jobs.lever.co/palantir/40d0499b-e2ec-42cc-8a19-c454ed510195,15,,,2026-09-18
 2026-09-11,Palantir,4186c7e2-1fc4-4049-81fb-fa98efb9d1de,Talent Coordinator,https://jobs.lever.co/palantir/4186c7e2-1fc4-4049-81fb-fa98efb9d1de,35,,,2026-09-18
 2026-09-11,Palantir,4255e21c-d0f2-4f57-b5db-1f65830d6425,Web Application Developer - Defense,https://jobs.lever.co/palantir/4255e21c-d0f2-4f57-b5db-1f65830d6425,15,,,2026-09-18
@@ -1479,6 +1483,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Palantir,a3eaa0ef-3378-495f-8308-edbd9a93d26c,Web Design Engineer,https://jobs.lever.co/palantir/a3eaa0ef-3378-495f-8308-edbd9a93d26c,35,,,2026-09-18
 2026-09-11,Palantir,a483f41b-0da9-42ea-8ed6-cbf6eb93cc6d,"Software Engineer, Internship - Defense Tech",https://jobs.lever.co/palantir/a483f41b-0da9-42ea-8ed6-cbf6eb93cc6d,26,,,2026-09-18
 2026-09-11,Palantir,a49d4181-a289-435a-b581-7f5af0497c8e,"Deployment Strategist, Internship - US Government",https://jobs.lever.co/palantir/a49d4181-a289-435a-b581-7f5af0497c8e,26,,,2026-09-18
+2026-09-25,Palantir,a576c5ef-2a51-4522-9c98-bca5ac2abbb3,Software Engineer – Query Engines,https://jobs.lever.co/palantir/a576c5ef-2a51-4522-9c98-bca5ac2abbb3,35,,,2026-10-02
 2026-09-15,Palantir,a5f93bb6-4f13-4451-80a4-f63090830269,Administrative Business Partner - ShipOS,https://jobs.lever.co/palantir/a5f93bb6-4f13-4451-80a4-f63090830269,35,,,2026-09-22
 2026-09-11,Palantir,a753a9e7-a361-426b-9c25-3cf2488c1730,Platform Intelligence Engineer,https://jobs.lever.co/palantir/a753a9e7-a361-426b-9c25-3cf2488c1730,57,,,2026-09-18
 2026-09-11,Palantir,a7a77fc5-9f68-4ded-aad7-4814d96cb316,Deal Team - Business Affairs,https://jobs.lever.co/palantir/a7a77fc5-9f68-4ded-aad7-4814d96cb316,15,,,2026-09-18
@@ -2197,6 +2202,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Workday,/job/Ireland-Dublin/Frontend-Engineer_JR-0109916-1,Frontend Engineer,https://workday.wd5.myworkdayjobs.com/Workday/job/Ireland-Dublin/Frontend-Engineer_JR-0109916-1,33,,,2026-09-18
 2026-09-11,Workday,/job/Ireland-Dublin/Identity---Access-Management--IAM--Engineer_JR-0108256-1,Identity & Access Management (IAM) Engineer,https://workday.wd5.myworkdayjobs.com/Workday/job/Ireland-Dublin/Identity---Access-Management--IAM--Engineer_JR-0108256-1,44,,,2026-09-18
 2026-09-11,Workday,/job/Ireland-Dublin/Machine-Learning-Engineer_JR-0109754,Machine Learning Engineer,https://workday.wd5.myworkdayjobs.com/Workday/job/Ireland-Dublin/Machine-Learning-Engineer_JR-0109754,33,,,2026-09-18
+2026-09-25,Workday,/job/Ireland-Dublin/Principal-API-Architect--Product-Engineering---Agent-Ready-APIs_JR-0110454,"Principal API Architect, Product Engineering – Agent‑Ready APIs",https://workday.wd5.myworkdayjobs.com/Workday/job/Ireland-Dublin/Principal-API-Architect--Product-Engineering---Agent-Ready-APIs_JR-0110454,0,,,2026-10-02
 2026-09-11,Workday,/job/Ireland-Dublin/Principal-Machine-Learning-Engineer_JR-0109752,Principal Machine Learning Engineer,https://workday.wd5.myworkdayjobs.com/Workday/job/Ireland-Dublin/Principal-Machine-Learning-Engineer_JR-0109752,0,,,2026-09-18
 2026-09-11,Workday,/job/Ireland-Dublin/Senior-AI-Engineer_JR-0108715,Senior AI Engineer,https://workday.wd5.myworkdayjobs.com/Workday/job/Ireland-Dublin/Senior-AI-Engineer_JR-0108715,0,,,2026-09-18
 2026-09-24,Workday,/job/Ireland-Dublin/Senior-AI-Software-Engineer---Deployment-Technology_JR-0110422,Senior AI Software Engineer – Deployment Technology,https://workday.wd5.myworkdayjobs.com/Workday/job/Ireland-Dublin/Senior-AI-Software-Engineer---Deployment-Technology_JR-0110422,0,,,2026-10-01
@@ -2261,6 +2267,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Workday,/job/Netherlands-Amsterdam/Sr-Solution-Consultant---HCM_JR-0109899-1,Sr Solution Consultant - HCM,https://workday.wd5.myworkdayjobs.com/Workday/job/Netherlands-Amsterdam/Sr-Solution-Consultant---HCM_JR-0109899-1,0,,,2026-09-18
 2026-09-15,Workday,/job/New-Zealand-Auckland/Principal-Managing-Partner_JR-0109893,Principal Managing Partner,https://workday.wd5.myworkdayjobs.com/Workday/job/New-Zealand-Auckland/Principal-Managing-Partner_JR-0109893,0,,,2026-09-22
 2026-09-15,Workday,/job/New-Zealand-Auckland/Senior-Product-Manager_JR-0109901,Senior Product Manager,https://workday.wd5.myworkdayjobs.com/Workday/job/New-Zealand-Auckland/Senior-Product-Manager_JR-0109901,0,,,2026-09-22
+2026-09-25,Workday,/job/New-Zealand-Auckland/Senior-Site-Reliability-Engineer_JR-0109951-1,Senior Site Reliability Engineer,https://workday.wd5.myworkdayjobs.com/Workday/job/New-Zealand-Auckland/Senior-Site-Reliability-Engineer_JR-0109951-1,0,,,2026-10-02
 2026-09-11,Workday,/job/New-Zealand-Auckland/Senior-Solution-Consultant---HCM_JR-0109772,Senior Solution Consultant - HCM,https://workday.wd5.myworkdayjobs.com/Workday/job/New-Zealand-Auckland/Senior-Solution-Consultant---HCM_JR-0109772,0,,,2026-09-18
 2026-09-11,Workday,/job/POL-Remote/Data-Management-Engineer_JR-0108489-1,Data Management Engineer,https://workday.wd5.myworkdayjobs.com/Workday/job/POL-Remote/Data-Management-Engineer_JR-0108489-1,48,,,2026-09-18
 2026-09-11,Workday,/job/Poland-Warsaw/Customer-Success-Manager_JR-0108223,Customer Success Manager,https://workday.wd5.myworkdayjobs.com/Workday/job/Poland-Warsaw/Customer-Success-Manager_JR-0108223,0,,,2026-09-18
@@ -2289,6 +2296,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Workday,/job/Singapore/Sr-Consultant---Workday-Success-Plans--Core-HCM---PATT-_JR-0109323,Sr Consultant - Workday Success Plans (Core HCM / PATT),https://workday.wd5.myworkdayjobs.com/Workday/job/Singapore/Sr-Consultant---Workday-Success-Plans--Core-HCM---PATT-_JR-0109323,0,,,2026-09-18
 2026-09-11,Workday,/job/Singapore/Sr-Financials-Functional-Consultant_JR-0108676,Sr Financials Functional Consultant,https://workday.wd5.myworkdayjobs.com/Workday/job/Singapore/Sr-Financials-Functional-Consultant_JR-0108676,0,,,2026-09-18
 2026-09-11,Workday,/job/Spain-Madrid/Sr-Functional-Consultant---Workday-Success-Plans-Adaptive-Planning_JR-0109334-1,Sr Functional Consultant - Workday Success Plans Adaptive Planning,https://workday.wd5.myworkdayjobs.com/Workday/job/Spain-Madrid/Sr-Functional-Consultant---Workday-Success-Plans-Adaptive-Planning_JR-0109334-1,0,,,2026-09-18
+2026-09-25,Workday,/job/Spain-Madrid/Sr-Functional-Consultant_JR-0109897,Sr Functional Consultant,https://workday.wd5.myworkdayjobs.com/Workday/job/Spain-Madrid/Sr-Functional-Consultant_JR-0109897,0,,,2026-10-02
 2026-09-11,Workday,/job/Spain-Madrid/Sr-Reporting---Analytics-Consultant--FIN----Workday-Success-Plans_JR-0108913,Sr. Reporting & Analytics Consultant (FIN) - Workday Success Plans,https://workday.wd5.myworkdayjobs.com/Workday/job/Spain-Madrid/Sr-Reporting---Analytics-Consultant--FIN----Workday-Success-Plans_JR-0108913,0,,,2026-09-18
 2026-09-16,Workday,/job/Sr-Cybersecurity-Engineer_JR-0108559,Untitled,https://workday.wd5.myworkdayjobs.com/Workday/job/Sr-Cybersecurity-Engineer_JR-0108559,15,,,2026-09-23
 2026-09-11,Workday,/job/Sweden-Stockholm/Fullstack-Product-Engineer_JR-0108374,Fullstack Product Engineer,https://workday.wd5.myworkdayjobs.com/Workday/job/Sweden-Stockholm/Fullstack-Product-Engineer_JR-0108374,11,,,2026-09-18
@@ -2583,7 +2591,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Workday,/job/United-Kingdom-London/GTM-Associate-Manager---Dutch-speaking_JR-0108674,"Go to Market (GTM) Associate, Dutch Speaking - Sana",https://workday.wd5.myworkdayjobs.com/Workday/job/United-Kingdom-London/GTM-Associate-Manager---Dutch-speaking_JR-0108674,36,,,2026-09-18
 2026-09-11,Workday,/job/United-Kingdom-London/GTM-Associate-Manager_JR-0109656-1,Go to Market (GTM) Associate - Sana,https://workday.wd5.myworkdayjobs.com/Workday/job/United-Kingdom-London/GTM-Associate-Manager_JR-0109656-1,36,,,2026-09-18
 2026-09-11,Workday,/job/United-Kingdom-London/GTM-Manager---French_JR-0108670,"Go To Market (GTM) Manager, French Speaking  - Sana",https://workday.wd5.myworkdayjobs.com/Workday/job/United-Kingdom-London/GTM-Manager---French_JR-0108670,0,,,2026-09-18
-2026-09-11,Workday,/job/United-Kingdom-London/GTM-Manager---German-speaking_JR-0108672,GTM Manager - German speaking,https://workday.wd5.myworkdayjobs.com/Workday/job/United-Kingdom-London/GTM-Manager---German-speaking_JR-0108672,0,,,2026-09-18
+2026-09-11,Workday,/job/United-Kingdom-London/GTM-Manager---German-speaking_JR-0108672,"Go to Market (GTM) Manager, German Speaking - Sana",https://workday.wd5.myworkdayjobs.com/Workday/job/United-Kingdom-London/GTM-Manager---German-speaking_JR-0108672,0,,,2026-09-18
 2026-09-11,Workday,/job/United-Kingdom-London/GTM-Manager_JR-0109654,Go To Market (GTM) Manager - Sana  [for UK],https://workday.wd5.myworkdayjobs.com/Workday/job/United-Kingdom-London/GTM-Manager_JR-0109654,0,,,2026-09-18
 2026-09-11,Workday,/job/United-Kingdom-London/Pipeline-Orchestration-Manager_JR-0109600,Pipeline Orchestration Manager,https://workday.wd5.myworkdayjobs.com/Workday/job/United-Kingdom-London/Pipeline-Orchestration-Manager_JR-0109600,0,,,2026-09-18
 2026-09-11,Workday,/job/United-Kingdom-London/Principal-Engagement-Manager_JR-0109726,Principal Engagement Manager - Talent / Recruiting Systems,https://workday.wd5.myworkdayjobs.com/Workday/job/United-Kingdom-London/Principal-Engagement-Manager_JR-0109726,0,,,2026-09-18
