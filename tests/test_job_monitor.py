@@ -887,6 +887,38 @@ class EndToEndTests(unittest.TestCase):
         self.assertEqual(result["categories"], ["AWS/Cloud"])
         self.assertFalse(result["strong_category_match"])
         self.assertNotIn("early-career", result["matched"])
+        self.assertFalse(job_monitor._has_eligibility_signal(result))
+
+    def test_two_body_only_category_matches_are_an_eligibility_signal(self):
+        source = {
+            "keyword_categories": {
+                "DevOps": {
+                    "title": ["kubernetes"],
+                    "context": ["devops"],
+                },
+                "AWS/Cloud": {
+                    "title": ["aws"],
+                    "context": ["cloud engineering"],
+                },
+            },
+            "early_career_keywords": ["junior", "entry level"],
+            "exclude_keywords": ["senior"],
+        }
+
+        result = score.score_job(
+            "Software Engineer",
+            "Remote",
+            "Engineering",
+            "Build services on AWS and Kubernetes with CI/CD automation.",
+            source,
+            {},
+            location_matches=True,
+        )
+
+        self.assertEqual(result["categories"], ["DevOps", "AWS/Cloud"])
+        self.assertFalse(result["strong_category_match"])
+        self.assertNotIn("early-career", result["matched"])
+        self.assertTrue(job_monitor._has_eligibility_signal(result))
 
 
 if __name__ == "__main__":

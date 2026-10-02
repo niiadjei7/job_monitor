@@ -1108,6 +1108,17 @@ def _notified_state_key(state_key):
     return f"{state_key}:{NOTIFIED_STATE_SUFFIX}"
 
 
+def _has_eligibility_signal(result):
+    """Require a strong match or corroborating body-only category matches."""
+    # One incidental category match from description text is not enough, but
+    # two or more categories provide corroboration for otherwise generic titles.
+    return bool(
+        result.get("strong_category_match")
+        or "early-career" in result.get("matched", [])
+        or len(result.get("categories", [])) >= 2
+    )
+
+
 def _rejection_reasons(result, threshold, has_eligibility_signal):
     reasons = [str(reason) for reason in result.get("failed", []) if reason]
     score = int(result.get("score", 0))
@@ -1211,9 +1222,7 @@ def main():
                 location_matches_source,
             )
             scored_jobs.append((job_id, title, url, result))
-            has_eligibility_signal = result.get("strong_category_match") or (
-                "early-career" in result.get("matched", [])
-            )
+            has_eligibility_signal = _has_eligibility_signal(result)
             is_eligible = (
                 not result["veto"]
                 and location_matches_source
