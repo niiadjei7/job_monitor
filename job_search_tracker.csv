@@ -531,7 +531,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Confido,c77fe2ec-51d1-47ea-b616-b4e477a13696,Senior ML Ops Engineer,https://jobs.ashbyhq.com/confido/c77fe2ec-51d1-47ea-b616-b4e477a13696,0,,,2026-09-18
 2026-09-11,Confido,c7ee40c1-ac61-4329-9b7b-b5b7945cddc0,Senior Product Manager,https://jobs.ashbyhq.com/confido/c7ee40c1-ac61-4329-9b7b-b5b7945cddc0,0,,,2026-09-18
 2026-10-01,Confido,cc98b080-9956-410a-876a-9cd4c528b51a,"Implementation Manager, Demand & Supply Planning",https://jobs.ashbyhq.com/confido/cc98b080-9956-410a-876a-9cd4c528b51a,0,,,2026-10-08
-2026-09-19,Confido,d4ed8df6-ba2f-44a0-97f9-945d54d678c2,Office Manager ,https://jobs.ashbyhq.com/confido/d4ed8df6-ba2f-44a0-97f9-945d54d678c2,0,,,2026-09-26
+2026-09-19,Confido,d4ed8df6-ba2f-44a0-97f9-945d54d678c2,Office Manager (Morning or Evening) ,https://jobs.ashbyhq.com/confido/d4ed8df6-ba2f-44a0-97f9-945d54d678c2,0,,,2026-09-26
 2026-09-11,Confido,d5520ce5-bc5f-4947-8912-292615b0c5ac,Software Engineer,https://jobs.ashbyhq.com/confido/d5520ce5-bc5f-4947-8912-292615b0c5ac,57,,,2026-09-18
 2026-09-11,Confido,db86da61-f0c7-43ee-8388-a92898948fa8,Founding Growth,https://jobs.ashbyhq.com/confido/db86da61-f0c7-43ee-8388-a92898948fa8,46,,,2026-09-18
 2026-09-11,Confido,e3d42ff2-4ab4-4469-9091-d249b2c7519d,Forward Deployed Engineer,https://jobs.ashbyhq.com/confido/e3d42ff2-4ab4-4469-9091-d249b2c7519d,79,,,2026-09-18
@@ -1830,14 +1830,14 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-22,PointClickCare,4ea12354-5f5a-48f4-86a8-1d66fbe84b22,Legal Counsel,https://jobs.lever.co/pointclickcare/4ea12354-5f5a-48f4-86a8-1d66fbe84b22,26,,,2026-09-29
 2026-09-11,PointClickCare,4ef6a183-4c22-4103-9278-26b07185bc8e,Accounts Receivable Specialist (6 month contract),https://jobs.lever.co/pointclickcare/4ef6a183-4c22-4103-9278-26b07185bc8e,26,,,2026-09-18
 2026-09-11,PointClickCare,5143e4c8-5d52-4707-8eb6-5f13d81898ce,"Sr. Provider Customer Success Manager - Payer, Provider & Convener",https://jobs.lever.co/pointclickcare/5143e4c8-5d52-4707-8eb6-5f13d81898ce,0,,,2026-09-18
-2026-09-25,PointClickCare,541ba304-4706-48c6-a513-089d42d6217f,Canada - Sr. Solutions Analyst (Clinical),https://jobs.lever.co/pointclickcare/541ba304-4706-48c6-a513-089d42d6217f,0,,,2026-10-02
+2026-09-25,PointClickCare,541ba304-4706-48c6-a513-089d42d6217f,Canada - Sr. Solutions Analyst (TAM-Clinical),https://jobs.lever.co/pointclickcare/541ba304-4706-48c6-a513-089d42d6217f,0,,,2026-10-02
 2026-09-11,PointClickCare,560fc3cf-e98e-44aa-b9b8-3ac3f3513b68,"Senior Software Engineer, Platform Engineering",https://jobs.lever.co/pointclickcare/560fc3cf-e98e-44aa-b9b8-3ac3f3513b68,0,,,2026-09-18
 2026-09-11,PointClickCare,56e13d29-7f5e-4c80-b9cf-8f12a17db1a0,Ai Solution Engineer - (Technology Support),https://jobs.lever.co/pointclickcare/56e13d29-7f5e-4c80-b9cf-8f12a17db1a0,42,,,2026-09-18
 2026-09-11,PointClickCare,5a56d81f-6c94-4d67-a6ba-0779ce31ff93,Market Insights Manager (CA),https://jobs.lever.co/pointclickcare/5a56d81f-6c94-4d67-a6ba-0779ce31ff93,0,,,2026-09-18
 2026-09-14,PointClickCare,5b2d6e7b-a499-4cde-811b-59f6049095b7,Marketing Automation Architect (US),https://jobs.lever.co/pointclickcare/5b2d6e7b-a499-4cde-811b-59f6049095b7,57,,,2026-09-21
 2026-09-14,PointClickCare,62becb3e-0e26-413b-9919-3a49c4ab06d4,"VP, Product Operations",https://jobs.lever.co/pointclickcare/62becb3e-0e26-413b-9919-3a49c4ab06d4,0,,,2026-09-21
 2026-09-29,PointClickCare,648fcd6f-b34d-4b61-8286-f3131dd6647c,Sr. Customer Experience Manager (CA),https://jobs.lever.co/pointclickcare/648fcd6f-b34d-4b61-8286-f3131dd6647c,0,,,2026-10-06
-2026-09-25,PointClickCare,65fbb0d8-5536-420e-b52f-fe34f94fe1f6,US- Sr. Solutions Analyst (Clinical),https://jobs.lever.co/pointclickcare/65fbb0d8-5536-420e-b52f-fe34f94fe1f6,0,,,2026-10-02
+2026-09-25,PointClickCare,65fbb0d8-5536-420e-b52f-fe34f94fe1f6,US- Sr. Solutions Analyst (TAM- Clinical),https://jobs.lever.co/pointclickcare/65fbb0d8-5536-420e-b52f-fe34f94fe1f6,0,,,2026-10-02
 2026-09-11,PointClickCare,69271749-0d70-4a86-a432-6008399b4646,"Senior Site Reliability Engineer, AI Infrastructure",https://jobs.lever.co/pointclickcare/69271749-0d70-4a86-a432-6008399b4646,0,,,2026-09-18
 2026-09-11,PointClickCare,6af2e4b7-8f81-4f0b-9842-e76b58f23f15,Senior Infrastructure SRE,https://jobs.lever.co/pointclickcare/6af2e4b7-8f81-4f0b-9842-e76b58f23f15,0,,,2026-09-18
 2026-09-11,PointClickCare,6b7f5c7a-372b-4a4a-8187-b2c347157e14,(Canada) Software Implementation Consultant - Clinical,https://jobs.lever.co/pointclickcare/6b7f5c7a-372b-4a4a-8187-b2c347157e14,46,,,2026-09-18
