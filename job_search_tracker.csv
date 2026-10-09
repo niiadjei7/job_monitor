@@ -1491,6 +1491,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Leidos,/job/San-Antonio-TX/Infrastructure-Manager_R-00190712,Infrastructure Manager,https://leidos.wd5.myworkdayjobs.com/external/job/San-Antonio-TX/Infrastructure-Manager_R-00190712,0,,,2026-09-18
 2026-09-11,Leidos,/job/San-Antonio-TX/Research-Scientist-I_R-00191115,Research Scientist I,https://leidos.wd5.myworkdayjobs.com/external/job/San-Antonio-TX/Research-Scientist-I_R-00191115,25,,,2026-09-18
 2026-09-11,Leidos,/job/San-Antonio-TX/XMLNAME---IDCS-Chief-Engineer-_R-00191675,​​IDCS Chief Engineer​,https://leidos.wd5.myworkdayjobs.com/external/job/San-Antonio-TX/XMLNAME---IDCS-Chief-Engineer-_R-00191675,47,,,2026-09-18
+2026-10-09,Leidos,/job/San-Diego-CA/Information-System-Security-Engineer_R-00194260,Information System Security Engineer,https://leidos.wd5.myworkdayjobs.com/external/job/San-Diego-CA/Information-System-Security-Engineer_R-00194260,36,,,2026-10-16
 2026-09-11,Leidos,/job/San-Diego-CA/Senior-Director--Space-Payloads-Program-Manager_R-00189613-1,"Senior Director, Space Payloads Program Manager",https://leidos.wd5.myworkdayjobs.com/external/job/San-Diego-CA/Senior-Director--Space-Payloads-Program-Manager_R-00189613-1,0,,,2026-09-18
 2026-09-11,Leidos,/job/San-Diego-CA/Software-Engineer_R-00186119,Software Engineer,https://leidos.wd5.myworkdayjobs.com/external/job/San-Diego-CA/Software-Engineer_R-00186119,47,,,2026-09-18
 2026-09-11,Leidos,/job/Shiloh-IL/AISR-NOC-Technician-III_R-00189470,AISR NOC Technician III,https://leidos.wd5.myworkdayjobs.com/external/job/Shiloh-IL/AISR-NOC-Technician-III_R-00189470,36,,,2026-09-18
@@ -1535,7 +1536,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Lightfield,4386721e-6c4b-44fd-9a0f-9ba3311cf3d0,"Software Engineer, Full Stack (Staff)",https://jobs.ashbyhq.com/lightfield/4386721e-6c4b-44fd-9a0f-9ba3311cf3d0,0,,,2026-09-18
 2026-09-11,Lightfield,46e9843d-3b60-4f54-b4f8-ae8784559383,"Software Engineer, Backend (Staff)",https://jobs.ashbyhq.com/lightfield/46e9843d-3b60-4f54-b4f8-ae8784559383,0,,,2026-09-18
 2026-09-11,Lightfield,53136a59-0336-47b7-ac8e-1e08bcb0ba6d,Head of Product Marketing,https://jobs.ashbyhq.com/lightfield/53136a59-0336-47b7-ac8e-1e08bcb0ba6d,0,,,2026-09-18
-2026-09-11,Lightfield,57d8b0bf-946d-4bed-8135-931d10429c6e,Founding Growth & Delivery Lead,https://jobs.ashbyhq.com/lightfield/57d8b0bf-946d-4bed-8135-931d10429c6e,0,,,2026-09-18
+2026-09-11,Lightfield,57d8b0bf-946d-4bed-8135-931d10429c6e,Growth & Delivery Lead,https://jobs.ashbyhq.com/lightfield/57d8b0bf-946d-4bed-8135-931d10429c6e,0,,,2026-09-18
 2026-09-11,Lightfield,81aa566c-356e-4938-a6f6-4e94eb5b6a42,Founding Customer Success Manager,https://jobs.ashbyhq.com/lightfield/81aa566c-356e-4938-a6f6-4e94eb5b6a42,0,,,2026-09-18
 2026-10-08,Lightfield,8d1b5c6a-178f-481f-b443-215379b34d88,"Software Engineer, Full Stack (Staff)",https://jobs.ashbyhq.com/lightfield/8d1b5c6a-178f-481f-b443-215379b34d88,0,,,2026-10-15
 2026-09-11,Lightfield,8e577037-3ff8-41f7-b2fe-e3a815c4ae43,Growth Operations Lead,https://jobs.ashbyhq.com/lightfield/8e577037-3ff8-41f7-b2fe-e3a815c4ae43,0,,,2026-09-18
@@ -2154,11 +2155,11 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Vercel,6098390004,"Software Engineer, eve",https://job-boards.greenhouse.io/vercel/jobs/6098390004,42,,,2026-09-18
 2026-09-11,Vercel,6100103004,"Account Executive, Majors- Install Base (APAC)",https://job-boards.greenhouse.io/vercel/jobs/6100103004,22,,,2026-09-18
 2026-09-11,Vercel,6102335004,"Security Engineer, Cloud",https://job-boards.greenhouse.io/vercel/jobs/6102335004,57,,,2026-09-18
-2026-09-11,Vercel,6102343004,Product Security Engineer,https://job-boards.greenhouse.io/vercel/jobs/6102343004,46,,,2026-09-18
+2026-09-11,Vercel,6102343004,Product Security Engineer,https://job-boards.greenhouse.io/vercel/jobs/6102343004,31,,,2026-09-18
 2026-09-11,Vercel,6102654004,GRC Analyst,https://job-boards.greenhouse.io/vercel/jobs/6102654004,46,,,2026-09-18
 2026-09-11,Vercel,6105394004,"Software Engineer, CDN Content",https://job-boards.greenhouse.io/vercel/jobs/6105394004,48,,,2026-09-18
 2026-09-15,Vercel,6111005004,"Head of Solutions Architecture, EMEA",https://job-boards.greenhouse.io/vercel/jobs/6111005004,0,,,2026-09-22
-2026-09-11,Vercel,6111332004,"Security Engineer, Detection Response",https://job-boards.greenhouse.io/vercel/jobs/6111332004,64,,,2026-09-18
+2026-09-11,Vercel,6111332004,"Security Software Engineer, Detection & Response",https://job-boards.greenhouse.io/vercel/jobs/6111332004,64,,,2026-09-18
 2026-09-11,Vercel,6112143004,"Enterprise Account Executive, Retail",https://job-boards.greenhouse.io/vercel/jobs/6112143004,31,,,2026-09-18
 2026-09-11,Vercel,6112845004,Senior Technical Account Manager,https://job-boards.greenhouse.io/vercel/jobs/6112845004,0,,,2026-09-18
 2026-09-11,Vercel,6113157004,"Software Engineer, Compute",https://job-boards.greenhouse.io/vercel/jobs/6113157004,11,,,2026-09-18
@@ -2209,10 +2210,11 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-22,Vercel,6201403004,Senior Recruiter,https://job-boards.greenhouse.io/vercel/jobs/6201403004,0,,,2026-09-29
 2026-09-25,Vercel,6205772004,"Product Manager, Dashboard",https://job-boards.greenhouse.io/vercel/jobs/6205772004,0,,,2026-10-02
 2026-09-24,Vercel,6207796004,"Software Engineer, Scheduled Tasks",https://job-boards.greenhouse.io/vercel/jobs/6207796004,11,,,2026-10-01
+2026-10-09,Vercel,6208037004,"Machine Learning Engineer, Trust & Safety",https://job-boards.greenhouse.io/vercel/jobs/6208037004,42,,,2026-10-16
 2026-09-29,Vercel,6209001004,"Product Manager, Compute",https://job-boards.greenhouse.io/vercel/jobs/6209001004,0,,,2026-10-06
 2026-09-29,Vercel,6209044004,"Product Manager, Networking + CDN",https://job-boards.greenhouse.io/vercel/jobs/6209044004,0,,,2026-10-06
 2026-09-29,Vercel,6210353004,"Product Manager, Software Factory",https://job-boards.greenhouse.io/vercel/jobs/6210353004,0,,,2026-10-06
-2026-10-08,Vercel,6218743004,IT Systems Engineer,https://job-boards.greenhouse.io/vercel/jobs/6218743004,68,,,2026-10-15
+2026-10-08,Vercel,6218743004,IT Systems Engineer,https://job-boards.greenhouse.io/vercel/jobs/6218743004,53,,,2026-10-15
 2026-09-11,WHOOP,00aad80c-4670-4e0b-86bc-ec9595603fd8,"Senior Software Engineer, Data Platform",https://jobs.ashbyhq.com/whoop/00aad80c-4670-4e0b-86bc-ec9595603fd8,0,,,2026-09-18
 2026-09-11,WHOOP,00dd5761-0d8f-4ad1-9dcd-15919648bf06,Senior Materials Program Manager,https://jobs.ashbyhq.com/whoop/00dd5761-0d8f-4ad1-9dcd-15919648bf06,0,,,2026-09-18
 2026-09-11,WHOOP,02584ffc-aac0-4c83-8c31-3f5f60ebe01d,"Senior Industrial Design, Lead",https://jobs.ashbyhq.com/whoop/02584ffc-aac0-4c83-8c31-3f5f60ebe01d,0,,,2026-09-18
@@ -3108,6 +3110,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Workday,/job/United-Kingdom-London/Sr-Prism-Analytics-Consultant---Workday-Success-Plans_JR-0109345,Sr. Prism Analytics Consultant - Workday Success Plans,https://workday.wd5.myworkdayjobs.com/Workday/job/United-Kingdom-London/Sr-Prism-Analytics-Consultant---Workday-Success-Plans_JR-0109345,0,,,2026-09-18
 2026-09-11,Workday,/job/United-Kingdom-London/Sr-Reporting---Analytics-Consultant--FIN----Workday-Success-Plans_JR-0109449,Sr. Reporting & Analytics Consultant (FIN) - Workday Success Plans,https://workday.wd5.myworkdayjobs.com/Workday/job/United-Kingdom-London/Sr-Reporting---Analytics-Consultant--FIN----Workday-Success-Plans_JR-0109449,0,,,2026-09-18
 2026-09-15,Workday,/job/United-Kingdom-London/Sr-Technical-Consultant---Paradox_JR-0109594-1,Sr Technical Consultant - Paradox,https://workday.wd5.myworkdayjobs.com/Workday/job/United-Kingdom-London/Sr-Technical-Consultant---Paradox_JR-0109594-1,0,,,2026-09-22
+2026-10-09,Workday,/job/United-Kingdom-London/Sr-Technical-Consultant_JR-0110681,Sr Technical Consultant,https://workday.wd5.myworkdayjobs.com/Workday/job/United-Kingdom-London/Sr-Technical-Consultant_JR-0110681,0,,,2026-10-16
 2026-09-11,Workday,/job/VNMDa-Nang/Senior-AI-Engineer---Da-Nang--Paradox-_JR-0108727,Senior AI Engineer - Da Nang (Paradox),https://workday.wd5.myworkdayjobs.com/Workday/job/VNMDa-Nang/Senior-AI-Engineer---Da-Nang--Paradox-_JR-0108727,0,,,2026-09-18
 2026-09-16,Workday,/job/VNMDa-Nang/Senior-DevOps-Engineer---Da-Nang_JR-0109934,Senior DevOps Engineer - Da Nang,https://workday.wd5.myworkdayjobs.com/Workday/job/VNMDa-Nang/Senior-DevOps-Engineer---Da-Nang_JR-0109934,0,,,2026-09-23
 2026-09-11,Workday,/job/VNMDa-Nang/Senior-Software-Development-Engineer--Back-end----Paradox---Da-Nang_JR-0107621,Senior Software Development Engineer (Back-end) - Paradox - Da Nang,https://workday.wd5.myworkdayjobs.com/Workday/job/VNMDa-Nang/Senior-Software-Development-Engineer--Back-end----Paradox---Da-Nang_JR-0107621,0,,,2026-09-18
