@@ -1952,7 +1952,6 @@
     "/job/Columbus-OH/Senior-Project-Manager_R-00194332",
     "/job/Concord-MA/Cyber-Infrastructure-Support-Lead_R-00188232",
     "/job/Detroit-MI/Energy-Advisor_R-00193900",
-    "/job/Eagan-MN/Principal-AI-Software-Developer_R-00194219",
     "/job/Eagan-MN/Software-Developer_R-00190563",
     "/job/Falls-Church-VA/Junior-Media-Relations---Public-Affairs_R-00190872",
     "/job/Fort-Belvoir-VA/Senior-Storage-Engineer_R-00193031",
@@ -2120,9 +2119,7 @@
     "/job/Costa-Rica/Product-Instructor_JR-0108501",
     "/job/Costa-Rica/Renewal-Manager--Adaptive-Planning_JR-0110609",
     "/job/Costa-Rica/Senior-Delivery-Manager---HiredScore_JR-0109034-1",
-    "/job/Costa-Rica/Software-Sourcing-Manager_JR-0110381",
     "/job/Costa-Rica/Sourcing-Manager_JR-0110380",
-    "/job/Costa-Rica/Sr-Associate-Sourcing-Manager_JR-0109695",
     "/job/Costa-Rica/Sr-Engagement-Manager-OR-Engagement-Manager--Workday-Success-Plans-Subscription-Services_JR-0107811",
     "/job/Costa-Rica/Technical-Support-Delivery-Intern_JR-0110629-1",
     "/job/FRA-Remote/Account-Executive-Medium-Enterprise---Lyon_JR-0110680-1",
@@ -2267,7 +2264,6 @@
     "/job/USA-CA-Pleasanton/Director--Strategy-and-Operations---Data-Cloud_JR-0108771-1",
     "/job/USA-CA-Pleasanton/Director-of-Program-Management--M-A---Growth_JR-0109770",
     "/job/USA-CA-Pleasanton/Enterprise-Applications-Analyst--Talent-and-Learning_JR-0109611-1",
-    "/job/USA-CA-Pleasanton/Finance-Manager_JR-0110330",
     "/job/USA-CA-Pleasanton/IT-Risk-Manager--BT-Risk-Management_JR-0110077-1",
     "/job/USA-CA-Pleasanton/IT-Risk-Principal--BT-Risk-Management_JR-0109929-1",
     "/job/USA-CA-Pleasanton/Machine-Learning-Engineer---Payroll_JR-0108977",
@@ -2353,7 +2349,6 @@
     "/job/USA-IL-Remote/Senior-Technical-Advisory-Consultant----Extend---Workday-Success-Plans_JR-0109443",
     "/job/USA-MA-Boston/Medium-Enterprise-Account-Executive--Customer-Base---Nonprofit_JR-0110543",
     "/job/USA-MA-Boston/Sales-Development-Representative_JR-0110773",
-    "/job/USA-MA-Boston/Sr-Customer-Success-Manager_JR-0109833",
     "/job/USA-MN-Minneapolis/HCM-and-Compensation-Consultant--Healthcare_JR-0110328",
     "/job/USA-MN-Minneapolis/Large-Enterprise-Customer-Base-Account-Executive_JR-0110341",
     "/job/USA-MN-Minneapolis/Principal---Senior-Payroll-Consultant--Healthcare_JR-0109529",
@@ -2361,7 +2356,6 @@
     "/job/USA-NY-New-York-City/Senior-Engagement-Manager---Sana-Learn_JR-0109829",
     "/job/USA-NY-New-York-City/Specialized-Account-Executive---CLM---Document-AI_JR-0109922",
     "/job/USA-OH-Mason/Sr-Software-Development-Engineer-VNDLY_JR-0110317",
-    "/job/USA-PA-Home-Office/Sr-Customer-Success-Manager_JR-0109839",
     "/job/USA-Remote/Principal-Managing-Partner---Education---Government_JR-0108986-1",
     "/job/USA-Remote/Principal-Reporting---Prism-Consultant--State---Local-Government_JR-0110566",
     "/job/USA-Remote/Senior-Financials-Solutions-Consultant---Professional-Services_JR-0109875",
@@ -2449,8 +2443,7 @@
     "/job/United-Kingdom-London/Sr-Reporting---Analytics-Consultant--FIN----Workday-Success-Plans_JR-0109449",
     "/job/VNMDa-Nang/Senior-AI-Engineer---Da-Nang--Paradox-_JR-0108727",
     "/job/VNMDa-Nang/Senior-DevOps-Engineer---Da-Nang_JR-0109934",
-    "/job/VNMDa-Nang/Senior-Software-Development-Engineer--Back-end----Paradox---Da-Nang_JR-0107621",
-    "/job/VNMDa-Nang/Sr-Software-Development-Engineer---Da-Nang--Paradox-_JR-0108605"
+    "/job/VNMDa-Nang/Senior-Software-Development-Engineer--Back-end----Paradox---Da-Nang_JR-0107621"
   ],
   "workday:workday:notified-v2": []
 }
