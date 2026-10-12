@@ -60,7 +60,6 @@
     "cc846e56-27dd-41b5-bf5b-64d5eeb5ff1a",
     "cf34cf62-5348-4bd5-bd8c-22a77467162d",
     "d573471b-2005-482c-9fbf-d1df9550cb57",
-    "db46ff5d-e469-4bba-b8af-c55ac04f311f",
     "dfc35159-ffe5-4d42-bea3-552b5dc17628",
     "e9c15f38-766f-4b2f-9370-1a9652e6b381",
     "f2ba7c39-e5cb-47aa-8b80-74c0426725b7",
@@ -585,7 +584,6 @@
     "8222047",
     "8227655",
     "8233584",
-    "8233862",
     "8234044",
     "8245894"
   ],
@@ -879,6 +877,7 @@
     "5d8286d6-992a-404b-94af-99c173d40299",
     "5eed9e3f-28b6-407f-b0be-ed26bc349895",
     "5f39f83b-ef08-4ee8-afda-a2c77440598f",
+    "5f3f9547-2aea-4ac2-995d-e8fa53b16e39",
     "5f7a90e7-f927-47bf-90ed-52d17c58ae02",
     "61eaa54c-e1b7-4064-afad-f7df3d48d652",
     "636fc05c-d348-4a06-be51-597cb9e07488",
@@ -2067,7 +2066,6 @@
     "/job/Remote-US/Scrum-Master_R-00193535"
   ],
   "workday:workday": [
-    "/job/Australia-NSW-North-Sydney/Public-Cloud-GTM-APJ--Director_JR-0110042",
     "/job/Australia-NSW-North-Sydney/Specialised-Account-Executive--Workday-Talent-Suite_JR-0109906",
     "/job/Australia-NSW-North-Sydney/Sr-Financials-Functional-Consultant_JR-0106361",
     "/job/Australia-NSW-North-Sydney/Sr-Technical-Consultant---Paradox_JR-0109595",
@@ -2440,7 +2438,8 @@
     "/job/United-Kingdom-London/Sr-Reporting---Analytics-Consultant--FIN----Workday-Success-Plans_JR-0109449",
     "/job/VNMDa-Nang/Senior-AI-Engineer---Da-Nang--Paradox-_JR-0108727",
     "/job/VNMDa-Nang/Senior-DevOps-Engineer---Da-Nang_JR-0109934",
-    "/job/VNMDa-Nang/Senior-Software-Development-Engineer--Back-end----Paradox---Da-Nang_JR-0107621"
+    "/job/VNMDa-Nang/Senior-Software-Development-Engineer--Back-end----Paradox---Da-Nang_JR-0107621",
+    "/job/VNMDa-Nang/Sr-Software-Development-Engineer---Da-Nang--Paradox-_JR-0108605"
   ],
   "workday:workday:notified-v2": []
 }
