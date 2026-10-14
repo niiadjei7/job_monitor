@@ -376,6 +376,7 @@
     "cfea93ed-b723-4379-a66c-1d262e42128c",
     "d295f7f8-af3d-4a9b-8d06-aa7158df8aa4",
     "d47c7498-90f0-4ae4-8210-6d35bad2c96c",
+    "e2004b50-04f0-4933-a170-5e8fe5bb8f8c",
     "e3072495-36b7-4c05-be25-a98a3bde447f",
     "e42bd2df-972f-420d-b726-0d1d25fc4c27"
   ],
@@ -667,7 +668,8 @@
     "6209044004",
     "6210353004",
     "6218743004",
-    "6221327004"
+    "6221327004",
+    "6222271004"
   ],
   "greenhouse:vercel:notified-v2": [
     "5039945004",
@@ -2069,7 +2071,6 @@
     "/job/Canada-BC-Vancouver/Machine-Learning-Engineer_JR-0109545-1",
     "/job/Canada-BC-Vancouver/Manager--Machine-Learning-Engineering---Agent-Factory_JR-0110692",
     "/job/Canada-BC-Vancouver/Principal--Software-Development-Engineer_JR-0108059",
-    "/job/Canada-BC-Vancouver/Principal-Machine-Learning-Engineer_JR-0107128",
     "/job/Canada-BC-Vancouver/Principal-Product-Manager---Workday-AI_JR-0102286",
     "/job/Canada-BC-Vancouver/Principal-Software-Development-Engineer---AI-Platform_JR-0110056",
     "/job/Canada-BC-Vancouver/Principal-Software-Development-Engineer---Senior-Software-Development-Engineer---Full-Stack_JR-0106537",
@@ -2124,6 +2125,7 @@
     "/job/Germany-Munich/Sr-Functional-Consultant_JR-0109487",
     "/job/Germany-Munich/Sr-Principal-Functional-Consultant--oCHRO-Achitect---German-Speaker_JR-0107925",
     "/job/Hong-Kong/Account-Executive---Customer-Base_JR-0109279",
+    "/job/Hong-Kong/Principal-Financials-Functional-Consultant_JR-0110869",
     "/job/INDChennai/Software-Development-Engineer_JR-0110318",
     "/job/INDPune/Adaptive-Planning-Consultant---Workday-Success-Plans_JR-0109485",
     "/job/INDPune/Associate-Consultant--Workday-Data-Conversion_JR-0109421-1",
@@ -2196,6 +2198,7 @@
     "/job/Japan-Tokyo/Account-Executive_JR-0103573-1",
     "/job/Japan-Tokyo/Business-Development-Representative_JR-0110622",
     "/job/Japan-Tokyo/Financials-Strategist_JR-0110564",
+    "/job/Japan-Tokyo/Global-Account-Manager_JR-0110620",
     "/job/Japan-Tokyo/Principal-Service-Executive_JR-0109905-1",
     "/job/Japan-Tokyo/Senior-Account-Executive_JR-0109320",
     "/job/Japan-Tokyo/Senior-Service-Executive_JR-0107923",
