@@ -1172,7 +1172,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-10-01,Handshake,0d46db60-b8ff-4735-8b64-1454034072e3,Senior Partner Insights Manager - EDU,https://jobs.ashbyhq.com/handshake/0d46db60-b8ff-4735-8b64-1454034072e3,0,,,2026-10-08
 2026-09-11,Handshake,0fd4b779-02ca-437c-8005-35a74da08080,"Director Engineering, RLE",https://jobs.ashbyhq.com/handshake/0fd4b779-02ca-437c-8005-35a74da08080,0,,,2026-09-18
 2026-09-11,Handshake,11193c7b-e34d-4a29-a14a-f1d4be438cf8,Strategic Projects Lead,https://jobs.ashbyhq.com/handshake/11193c7b-e34d-4a29-a14a-f1d4be438cf8,0,,,2026-09-18
-2026-09-11,Handshake,11625d7a-36cc-48b9-808a-ae020c0bf535,"Data Analyst, Finance and Payments",https://jobs.ashbyhq.com/handshake/11625d7a-36cc-48b9-808a-ae020c0bf535,48,,,2026-09-18
+2026-09-11,Handshake,11625d7a-36cc-48b9-808a-ae020c0bf535,"Senior Data Analyst, Finance and Payments",https://jobs.ashbyhq.com/handshake/11625d7a-36cc-48b9-808a-ae020c0bf535,0,,,2026-09-18
 2026-10-14,Handshake,12b3e6db-c0b8-4466-a580-7f5c7eef9bb5,Senior Recruiter,https://jobs.ashbyhq.com/handshake/12b3e6db-c0b8-4466-a580-7f5c7eef9bb5,0,,,2026-10-21
 2026-10-14,Handshake,185fca2b-8022-4ff9-8c21-f14ceeb5b494,"Staff Product Designer (Visual Design & Systems), Autonomous Recruiting",https://jobs.ashbyhq.com/handshake/185fca2b-8022-4ff9-8c21-f14ceeb5b494,0,,,2026-10-21
 2026-09-18,Handshake,1aa9394e-0080-42b2-8402-f2f5fe7fa15b,"Senior Software Engineer, Backend Platform",https://jobs.ashbyhq.com/handshake/1aa9394e-0080-42b2-8402-f2f5fe7fa15b,0,,,2026-09-25
@@ -1213,6 +1213,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Handshake,7df8dd36-1a9f-4234-b656-10c7640471e0,Senior Recruiter,https://jobs.ashbyhq.com/handshake/7df8dd36-1a9f-4234-b656-10c7640471e0,0,,,2026-09-18
 2026-09-11,Handshake,7e9ed099-34c4-4461-9858-23add238f5a2,"Account Executive, Data Partnerships",https://jobs.ashbyhq.com/handshake/7e9ed099-34c4-4461-9858-23add238f5a2,26,,,2026-09-18
 2026-09-11,Handshake,7f607c0b-291d-4c17-9897-6d8c5d35eb00,"AI Red Teamer, Cybersecurity (Remote)",https://jobs.ashbyhq.com/handshake/7f607c0b-291d-4c17-9897-6d8c5d35eb00,57,,,2026-09-18
+2026-10-15,Handshake,82e17f6f-a13c-41c4-89ce-73b802908f0f,"Director, Product Marketing",https://jobs.ashbyhq.com/handshake/82e17f6f-a13c-41c4-89ce-73b802908f0f,0,,,2026-10-22
 2026-09-25,Handshake,83a7dcd6-5f78-47a1-8640-01f5f6cab8b3,Director of Internal Communications,https://jobs.ashbyhq.com/handshake/83a7dcd6-5f78-47a1-8640-01f5f6cab8b3,0,,,2026-10-02
 2026-09-29,Handshake,8596f81e-d6a6-4217-a829-cb067d8e59ef,"Senior Data Scientist, Product Analytics",https://jobs.ashbyhq.com/handshake/8596f81e-d6a6-4217-a829-cb067d8e59ef,0,,,2026-10-06
 2026-09-11,Handshake,85f8d830-ee05-4981-af23-e84a3025a946,"Senior Software Engineer, LLM Platform",https://jobs.ashbyhq.com/handshake/85f8d830-ee05-4981-af23-e84a3025a946,0,,,2026-09-18
@@ -1425,6 +1426,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Leidos,/job/Fort-Meade-MD/Junior-Cyber-Analyst_R-00183704,Junior Cyber Analyst,https://leidos.wd5.myworkdayjobs.com/external/job/Fort-Meade-MD/Junior-Cyber-Analyst_R-00183704,36,,,2026-09-18
 2026-09-11,Leidos,/job/Framingham-MA/Substation-Senior-Civil-Structural-Engineer_R-00184977,Substation Senior Civil/Structural Engineer,https://leidos.wd5.myworkdayjobs.com/external/job/Framingham-MA/Substation-Senior-Civil-Structural-Engineer_R-00184977,0,,,2026-09-18
 2026-10-01,Leidos,/job/Gaithersburg-MD/AI-Software-Developer---All-Levels-Remote_R-00193677,AI Software Developer - All Levels Remote,https://leidos.wd5.myworkdayjobs.com/external/job/Gaithersburg-MD/AI-Software-Developer---All-Levels-Remote_R-00193677,58,,,2026-10-08
+2026-10-15,Leidos,/job/Gaithersburg-MD/AI-Software-Developer_R-00194722,AI Software Developer,https://leidos.wd5.myworkdayjobs.com/external/job/Gaithersburg-MD/AI-Software-Developer_R-00194722,58,,,2026-10-22
 2026-09-16,Leidos,/job/Gaithersburg-MD/Data-Scientist-SME_R-00192425-1,Data Scientist SME,https://leidos.wd5.myworkdayjobs.com/external/job/Gaithersburg-MD/Data-Scientist-SME_R-00192425-1,58,,,2026-09-23
 2026-09-11,Leidos,/job/Gaithersburg-MD/Java-Software-Engineer---Scrum-Master_R-00187967,Java Software Engineer - Scrum Master,https://leidos.wd5.myworkdayjobs.com/external/job/Gaithersburg-MD/Java-Software-Engineer---Scrum-Master_R-00187967,47,,,2026-09-18
 2026-09-14,Leidos,/job/Gaithersburg-MD/Junior-Software-Engineer_R-00191835-1,Junior Software Engineer,https://leidos.wd5.myworkdayjobs.com/external/job/Gaithersburg-MD/Junior-Software-Engineer_R-00191835-1,47,,,2026-09-21
@@ -2061,7 +2063,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,PointClickCare,8ac21a82-5846-4188-846f-42ab6c51e7d7,"Senior Vice President & General Manager, Acute & Payer",https://jobs.lever.co/pointclickcare/8ac21a82-5846-4188-846f-42ab6c51e7d7,0,,,2026-09-18
 2026-09-11,PointClickCare,8d48d253-0fa0-4dbd-b4c7-f8fc88a5dcb1,Sr. Accounts Receivable Specialist (1 year contract),https://jobs.lever.co/pointclickcare/8d48d253-0fa0-4dbd-b4c7-f8fc88a5dcb1,0,,,2026-09-18
 2026-09-11,PointClickCare,90a809fa-bb85-40fe-b813-376016ddd15d,Accounts Receivable Specialist (1 year contract),https://jobs.lever.co/pointclickcare/90a809fa-bb85-40fe-b813-376016ddd15d,26,,,2026-09-18
-2026-10-14,PointClickCare,94b85a28-9893-48c5-a2bb-a50175887ef1,Intermediate AI-Enabled DevOps Engineer,https://jobs.lever.co/pointclickcare/94b85a28-9893-48c5-a2bb-a50175887ef1,26,,,2026-10-21
+2026-10-14,PointClickCare,94b85a28-9893-48c5-a2bb-a50175887ef1,Intermediate AI-Enabled DevOps Engineer,https://jobs.lever.co/pointclickcare/94b85a28-9893-48c5-a2bb-a50175887ef1,33,,,2026-10-21
 2026-09-11,PointClickCare,94d86453-a672-4aee-b99a-735de7a1c2a1,Principal AI Engineer,https://jobs.lever.co/pointclickcare/94d86453-a672-4aee-b99a-735de7a1c2a1,0,,,2026-09-18
 2026-10-09,PointClickCare,96d77b19-2396-4f9e-9513-59471b3e28ed,Marketing Data Analytics Engineer (US),https://jobs.lever.co/pointclickcare/96d77b19-2396-4f9e-9513-59471b3e28ed,57,,,2026-10-16
 2026-09-14,PointClickCare,972c9931-ca55-4263-bc0d-75afc697e3b9,"SVP, Product Management – Data Products & Strategy",https://jobs.lever.co/pointclickcare/972c9931-ca55-4263-bc0d-75afc697e3b9,46,,,2026-09-21
@@ -2145,6 +2147,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Seeq,CDBF1AE73C,Backend Software Engineer (Staff/Principal),https://apply.workable.com/j/CDBF1AE73C,0,,,2026-09-18
 2026-09-11,Seeq,DCD4811413,Enterprise Account Executive - APAC,https://apply.workable.com/j/DCD4811413,11,,,2026-09-18
 2026-09-11,Seeq,DF9FFD300C,Technical Account Manager,https://apply.workable.com/j/DF9FFD300C,0,,,2026-09-18
+2026-10-15,Seeq,E679001F3A,"Director, Technical Enablement",https://apply.workable.com/j/E679001F3A,0,,,2026-10-22
 2026-10-05,Seeq,F385B9932A,"IT and Enterprise GTM Strategy, Director",https://apply.workable.com/j/F385B9932A,0,,,2026-10-12
 2026-09-11,Seeq,F44188E4B2,Senior Solutions Consultant - Oil & Gas,https://apply.workable.com/j/F44188E4B2,0,,,2026-09-18
 2026-09-11,SmartRecruiters,744000148454651,Data Operations Consultant ,https://jobs.smartrecruiters.com/smartrecruiters/744000148454651,26,,,2026-09-18
@@ -2183,6 +2186,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-10-12,Traba,70e96a4e-8fa3-4708-a981-ed5a070eb6ff,Product Manager (Marketplace),https://jobs.ashbyhq.com/traba/70e96a4e-8fa3-4708-a981-ed5a070eb6ff,0,,,2026-10-19
 2026-09-28,Traba,71765bdf-c32e-4bd3-8b3e-dbba98e617a9,Product Manager (Marketplace),https://jobs.ashbyhq.com/traba/71765bdf-c32e-4bd3-8b3e-dbba98e617a9,0,,,2026-10-05
 2026-10-06,Traba,7265ea98-7059-4349-8ad8-6a3509b9b0ea,"Field Operator - Pedricktown, NJ",https://jobs.ashbyhq.com/traba/7265ea98-7059-4349-8ad8-6a3509b9b0ea,35,,,2026-10-13
+2026-10-15,Traba,73c51733-a7b4-4f60-aae3-a65fe126336e,"Customer On-Site Manager - Milpitas, CA",https://jobs.ashbyhq.com/traba/73c51733-a7b4-4f60-aae3-a65fe126336e,0,,,2026-10-22
 2026-10-09,Traba,74487ea3-8cd7-4811-9c74-1072974f5277,Business Operations Specialist (Live Operations - Philippines),https://jobs.ashbyhq.com/traba/74487ea3-8cd7-4811-9c74-1072974f5277,56,,,2026-10-16
 2026-10-05,Traba,7481c271-3725-4bce-8d3d-2fdad41e176e,Senior Product Manager (AI Agents),https://jobs.ashbyhq.com/traba/7481c271-3725-4bce-8d3d-2fdad41e176e,0,,,2026-10-12
 2026-09-11,Traba,78581041-2c2a-40d9-bf4d-45342ed4041d,Strategic Finance Lead,https://jobs.ashbyhq.com/traba/78581041-2c2a-40d9-bf4d-45342ed4041d,0,,,2026-09-18
@@ -2354,6 +2358,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-10-08,Vercel,6218743004,IT Systems Engineer,https://job-boards.greenhouse.io/vercel/jobs/6218743004,53,,,2026-10-15
 2026-10-09,Vercel,6221327004,"People Systems Manager, Workday",https://job-boards.greenhouse.io/vercel/jobs/6221327004,0,,,2026-10-16
 2026-10-14,Vercel,6222271004,"Senior Deal Desk Analyst, EMEA",https://job-boards.greenhouse.io/vercel/jobs/6222271004,0,,,2026-10-21
+2026-10-15,Vercel,6225825004,GTM Engineer,https://job-boards.greenhouse.io/vercel/jobs/6225825004,46,,,2026-10-22
 2026-09-11,WHOOP,00aad80c-4670-4e0b-86bc-ec9595603fd8,"Senior Software Engineer, Data Platform",https://jobs.ashbyhq.com/whoop/00aad80c-4670-4e0b-86bc-ec9595603fd8,0,,,2026-09-18
 2026-09-11,WHOOP,00dd5761-0d8f-4ad1-9dcd-15919648bf06,Senior Materials Program Manager,https://jobs.ashbyhq.com/whoop/00dd5761-0d8f-4ad1-9dcd-15919648bf06,0,,,2026-09-18
 2026-09-11,WHOOP,02584ffc-aac0-4c83-8c31-3f5f60ebe01d,"Senior Industrial Design, Lead",https://jobs.ashbyhq.com/whoop/02584ffc-aac0-4c83-8c31-3f5f60ebe01d,0,,,2026-09-18
@@ -2558,7 +2563,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-10-09,WHOOP,d691a4e7-8e41-40da-8f7c-316805ae5947,Business Operations Program Manager,https://jobs.ashbyhq.com/whoop/d691a4e7-8e41-40da-8f7c-316805ae5947,0,,,2026-10-16
 2026-09-11,WHOOP,d74b7719-b05f-4c76-9042-7079a837d794,"NPI Hardware Quality Engineer, Accessories",https://jobs.ashbyhq.com/whoop/d74b7719-b05f-4c76-9042-7079a837d794,0,,,2026-09-18
 2026-09-11,WHOOP,d7986c1c-75bb-486f-a829-12d4f8c2f139,Director of Hardware Product Compliance,https://jobs.ashbyhq.com/whoop/d7986c1c-75bb-486f-a829-12d4f8c2f139,0,,,2026-09-18
-2026-09-11,WHOOP,d7ea90fb-e9f3-4540-ae27-e5df37a65677,"Senior Lead, Advanced Design (Accessories & Apparel)",https://jobs.ashbyhq.com/whoop/d7ea90fb-e9f3-4540-ae27-e5df37a65677,0,,,2026-09-18
+2026-09-11,WHOOP,d7ea90fb-e9f3-4540-ae27-e5df37a65677,"Senior Lead, Women's Apparel Innovation & Design",https://jobs.ashbyhq.com/whoop/d7ea90fb-e9f3-4540-ae27-e5df37a65677,0,,,2026-09-18
 2026-09-11,WHOOP,db7c00a1-d705-4519-ac2f-5ddd0043b4fb,Senior Business Operations Manager,https://jobs.ashbyhq.com/whoop/db7c00a1-d705-4519-ac2f-5ddd0043b4fb,0,,,2026-09-18
 2026-09-11,WHOOP,dc4606a5-b412-4943-acdb-7333b05c8ffe,"Systems Engineer, Endpoint",https://jobs.ashbyhq.com/whoop/dc4606a5-b412-4943-acdb-7333b05c8ffe,26,,,2026-09-18
 2026-09-11,WHOOP,dd741034-2228-47fe-877f-b03542b3a537,"Software Engineer II (Fullstack, Health)",https://jobs.ashbyhq.com/whoop/dd741034-2228-47fe-877f-b03542b3a537,0,,,2026-09-18
@@ -3036,6 +3041,8 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-16,Workday,/job/USA-CA-Pleasanton/Software-Engineer---Context-and-Semantics--AI-_JR-0110210,Software Engineer - Context and Semantics (AI),https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Software-Engineer---Context-and-Semantics--AI-_JR-0110210,70,,,2026-09-23
 2026-09-17,Workday,/job/USA-CA-Pleasanton/Sr---Principal-Product-Manager---AI-Agent-Products_JR-0107436,Sr / Principal Product Manager - AI Agent Products,https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Sr---Principal-Product-Manager---AI-Agent-Products_JR-0107436,0,,,2026-09-24
 2026-10-15,Workday,/job/USA-CA-Pleasanton/Sr-Business-Systems-Analyst--Collaboration-Engineering-_JR-0110205-1,Sr Business Systems Analyst (Collaboration Engineering),https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Sr-Business-Systems-Analyst--Collaboration-Engineering-_JR-0110205-1,0,,,2026-10-22
+2026-10-15,Workday,/job/USA-CA-Pleasanton/Sr-Collaboration-Engineer_JR-0110663-1,Sr. Collaboration Engineer,https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Sr-Collaboration-Engineer_JR-0110663-1,0,,,2026-10-22
+2026-10-15,Workday,/job/USA-CA-Pleasanton/Sr-Director--Software-Development-Engineering_JR-0109490,"Sr Director, Software Development Engineering",https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Sr-Director--Software-Development-Engineering_JR-0109490,0,,,2026-10-22
 2026-09-11,Workday,/job/USA-CA-Pleasanton/Sr-Functional--Analyst---Workday-Finance_JR-0108768-1,Sr Functional  Analyst - Workday Finance,https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Sr-Functional--Analyst---Workday-Finance_JR-0108768-1,0,,,2026-09-18
 2026-10-14,Workday,/job/USA-CA-Pleasanton/Sr-Manager--AI-Engineering_JR-0110688,"Sr Manager, AI Engineering",https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Sr-Manager--AI-Engineering_JR-0110688,0,,,2026-10-21
 2026-09-11,Workday,/job/USA-CA-Pleasanton/Sr-Manager--Cybersecurity_JR-0109737,"Sr Manager, Cybersecurity",https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Sr-Manager--Cybersecurity_JR-0109737,0,,,2026-09-18
