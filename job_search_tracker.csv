@@ -1454,6 +1454,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-24,Leidos,/job/Fort-Belvoir-VA/Senior-Storage-Engineer_R-00193031,Senior Storage Engineer,https://leidos.wd5.myworkdayjobs.com/external/job/Fort-Belvoir-VA/Senior-Storage-Engineer_R-00193031,0,,,2026-10-01
 2026-10-02,Leidos,/job/Fort-Detrick-MD/Junior-System-Administrator_R-00193757,Junior System Administrator,https://leidos.wd5.myworkdayjobs.com/external/job/Fort-Detrick-MD/Junior-System-Administrator_R-00193757,36,,,2026-10-09
 2026-10-19,Leidos,/job/Fort-Meade-MD/Administrative-Specialist_R-00184245,Administrative Specialist,https://leidos.wd5.myworkdayjobs.com/external/job/Fort-Meade-MD/Administrative-Specialist_R-00184245,25,,,2026-10-26
+2026-10-20,Leidos,/job/Fort-Meade-MD/Administrative-Specialist_R-00194918,Administrative Specialist,https://leidos.wd5.myworkdayjobs.com/external/job/Fort-Meade-MD/Administrative-Specialist_R-00194918,25,,,2026-10-27
 2026-09-22,Leidos,/job/Fort-Meade-MD/Cyberspace-Operations-Planner--Junior_R-00192806,"Cyberspace Operations Planner, Junior",https://leidos.wd5.myworkdayjobs.com/external/job/Fort-Meade-MD/Cyberspace-Operations-Planner--Junior_R-00192806,58,,,2026-09-29
 2026-09-25,Leidos,/job/Fort-Meade-MD/Cyberspace-Operations-Planner--Junior_R-00193122,"Cyberspace Operations Planner, Junior",https://leidos.wd5.myworkdayjobs.com/external/job/Fort-Meade-MD/Cyberspace-Operations-Planner--Junior_R-00193122,58,,,2026-10-02
 2026-09-29,Leidos,/job/Fort-Meade-MD/Cyberspace-Operations-Planner--Junior_R-00193359,"Cyberspace Operations Planner, Junior",https://leidos.wd5.myworkdayjobs.com/external/job/Fort-Meade-MD/Cyberspace-Operations-Planner--Junior_R-00193359,58,,,2026-10-06
@@ -1617,6 +1618,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Leidos,/job/Rockville-MD/Lead-Identity-and-Access-Management--ICAM--Engineer_R-00188825,Lead Identity and Access Management (ICAM) Engineer,https://leidos.wd5.myworkdayjobs.com/external/job/Rockville-MD/Lead-Identity-and-Access-Management--ICAM--Engineer_R-00188825,0,,,2026-09-18
 2026-09-11,Leidos,/job/San-Antonio-TX/Infrastructure-Manager_R-00190712,Infrastructure Manager,https://leidos.wd5.myworkdayjobs.com/external/job/San-Antonio-TX/Infrastructure-Manager_R-00190712,0,,,2026-09-18
 2026-09-11,Leidos,/job/San-Antonio-TX/Research-Scientist-I_R-00191115,Research Scientist I,https://leidos.wd5.myworkdayjobs.com/external/job/San-Antonio-TX/Research-Scientist-I_R-00191115,25,,,2026-09-18
+2026-10-20,Leidos,/job/San-Antonio-TX/System-Integration-Lab-Manager_R-00194791,System Integration Lab Manager,https://leidos.wd5.myworkdayjobs.com/external/job/San-Antonio-TX/System-Integration-Lab-Manager_R-00194791,0,,,2026-10-27
 2026-09-11,Leidos,/job/San-Antonio-TX/XMLNAME---IDCS-Chief-Engineer-_R-00191675,​​IDCS Chief Engineer​,https://leidos.wd5.myworkdayjobs.com/external/job/San-Antonio-TX/XMLNAME---IDCS-Chief-Engineer-_R-00191675,47,,,2026-09-18
 2026-10-09,Leidos,/job/San-Diego-CA/Information-System-Security-Engineer_R-00194260,Information System Security Engineer,https://leidos.wd5.myworkdayjobs.com/external/job/San-Diego-CA/Information-System-Security-Engineer_R-00194260,36,,,2026-10-16
 2026-09-11,Leidos,/job/San-Diego-CA/Senior-Director--Space-Payloads-Program-Manager_R-00189613-1,"Senior Director, Space Payloads Program Manager",https://leidos.wd5.myworkdayjobs.com/external/job/San-Diego-CA/Senior-Director--Space-Payloads-Program-Manager_R-00189613-1,0,,,2026-09-18
@@ -1689,10 +1691,12 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-10-13,Lightfield,f9597b40-e659-43d2-b4c5-da1b11d0f9fd,"Staff Software Engineer, Product",https://jobs.ashbyhq.com/lightfield/f9597b40-e659-43d2-b4c5-da1b11d0f9fd,0,,,2026-10-20
 2026-09-11,Lightfield,fc93a467-773d-4805-b342-bf470950732d,Software Engineer (Early Career),https://jobs.ashbyhq.com/lightfield/fc93a467-773d-4805-b342-bf470950732d,25,,,2026-09-18
 2026-09-11,Palantir,00c2c97b-8514-4617-9883-e53e486b6dcd,Forward Deployed Enablement Engineer - Customer Success,https://jobs.lever.co/palantir/00c2c97b-8514-4617-9883-e53e486b6dcd,26,,,2026-09-18
+2026-10-20,Palantir,0492e9c4-9ba9-4da0-896f-75be5151bae9,Physical Security Manager,https://jobs.lever.co/palantir/0492e9c4-9ba9-4da0-896f-75be5151bae9,0,,,2026-10-27
 2026-09-11,Palantir,09846827-b931-4a9f-bd64-c3bb8860187b,"Privacy and Civil Liberties Software Engineer, Internship",https://jobs.lever.co/palantir/09846827-b931-4a9f-bd64-c3bb8860187b,46,,,2026-09-18
 2026-09-11,Palantir,0a0d2db2-75a5-48e4-b0a0-81baa6588e36,Forward Deployed Software Engineer - Norwegian Government,https://jobs.lever.co/palantir/0a0d2db2-75a5-48e4-b0a0-81baa6588e36,15,,,2026-09-18
 2026-09-11,Palantir,0a838e66-1ab0-4fc4-b4d3-4671c0352278,"Software Engineer, New Grad - Defense",https://jobs.lever.co/palantir/0a838e66-1ab0-4fc4-b4d3-4671c0352278,56,,,2026-09-18
 2026-09-11,Palantir,0edf7365-49f0-4263-818a-19409ec4f430,Forward Deployed Software Engineer - Autonomous Systems C2,https://jobs.lever.co/palantir/0edf7365-49f0-4263-818a-19409ec4f430,15,,,2026-09-18
+2026-10-20,Palantir,0f7d1e01-1f74-4786-944d-910208d390fa,"Software Engineer, New Grad - Query Engines",https://jobs.lever.co/palantir/0f7d1e01-1f74-4786-944d-910208d390fa,36,,,2026-10-27
 2026-09-11,Palantir,0fccbe95-2520-4df3-8600-7897656c06a2,Forward Deployed Infrastructure Engineer - US Government,https://jobs.lever.co/palantir/0fccbe95-2520-4df3-8600-7897656c06a2,26,,,2026-09-18
 2026-09-11,Palantir,10dfc8bc-99ad-4ca2-ab76-853cb90a92c2,Backend Software Engineer - Application Development,https://jobs.lever.co/palantir/10dfc8bc-99ad-4ca2-ab76-853cb90a92c2,15,,,2026-09-18
 2026-09-11,Palantir,1124402c-2088-40c6-b6aa-b9ef7777519b,Information Security Engineer,https://jobs.lever.co/palantir/1124402c-2088-40c6-b6aa-b9ef7777519b,26,,,2026-09-18
@@ -1776,6 +1780,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Palantir,3d0d9d92-0321-4459-a17d-fa1a76636a43,Forward Deployed Software Engineer - Tactical Edge,https://jobs.lever.co/palantir/3d0d9d92-0321-4459-a17d-fa1a76636a43,26,,,2026-09-18
 2026-09-25,Palantir,3db7e40a-28e0-4ad1-96c5-93de5bc96aa9,"Forward Deployed Infrastructure Engineer, Internship - US Government",https://jobs.lever.co/palantir/3db7e40a-28e0-4ad1-96c5-93de5bc96aa9,26,,,2026-10-02
 2026-09-11,Palantir,3e53ec44-d8f3-4b0b-b77f-c481e9cd06fd,USG Administrative Business Partner,https://jobs.lever.co/palantir/3e53ec44-d8f3-4b0b-b77f-c481e9cd06fd,35,,,2026-09-18
+2026-10-20,Palantir,3e59369e-1392-42f2-8d03-86648e87e963,"Software Engineer, Internship - Query Engines",https://jobs.lever.co/palantir/3e59369e-1392-42f2-8d03-86648e87e963,26,,,2026-10-27
 2026-09-11,Palantir,3f662628-2877-42fb-8866-a2b709de17ca,"Deployment Strategist, Build to Apply - US Government",https://jobs.lever.co/palantir/3f662628-2877-42fb-8866-a2b709de17ca,15,,,2026-09-18
 2026-09-11,Palantir,403e8826-3421-43db-ac48-4ddac10cc78d,Deal Operations Administrator,https://jobs.lever.co/palantir/403e8826-3421-43db-ac48-4ddac10cc78d,15,,,2026-09-18
 2026-09-25,Palantir,4056c8f6-0e6a-43f7-b387-4a97bd3dbb19,Software Engineer – Query Engines,https://jobs.lever.co/palantir/4056c8f6-0e6a-43f7-b387-4a97bd3dbb19,15,,,2026-10-02
@@ -1883,6 +1888,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Palantir,8f308f3e-43d2-49c9-accd-cc7af0f1565c,Software Engineer - Apollo Platform,https://jobs.lever.co/palantir/8f308f3e-43d2-49c9-accd-cc7af0f1565c,46,,,2026-09-18
 2026-09-25,Palantir,8f362a1f-1eff-4327-94c1-ff46e2101c69,"Forward Deployed Infrastructure Engineer, Internship - US Government",https://jobs.lever.co/palantir/8f362a1f-1eff-4327-94c1-ff46e2101c69,26,,,2026-10-02
 2026-09-11,Palantir,8f7bbffa-92aa-4d25-9586-943b3322a27d,"Product Designer, Internship - US Government",https://jobs.lever.co/palantir/8f7bbffa-92aa-4d25-9586-943b3322a27d,35,,,2026-09-18
+2026-10-20,Palantir,90329118-d9b7-4b96-acdf-13377e3196ac,"Software Engineer, New Grad - Query Engines",https://jobs.lever.co/palantir/90329118-d9b7-4b96-acdf-13377e3196ac,56,,,2026-10-27
 2026-09-11,Palantir,909875b4-1940-41bd-b08d-a269c7235100,Forward Deployed Software Engineer - AUS Government,https://jobs.lever.co/palantir/909875b4-1940-41bd-b08d-a269c7235100,15,,,2026-09-18
 2026-09-11,Palantir,90aa8748-3fef-4e2b-9ea9-c4dc5f37f0d2,Forward Deployed Software Engineer,https://jobs.lever.co/palantir/90aa8748-3fef-4e2b-9ea9-c4dc5f37f0d2,15,,,2026-09-18
 2026-09-11,Palantir,91117724-9389-48dc-912f-98e48d4d45d8,"Forward Deployed Infrastructure Engineer, New Grad - US Government",https://jobs.lever.co/palantir/91117724-9389-48dc-912f-98e48d4d45d8,56,,,2026-09-18
@@ -1988,6 +1994,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Palantir,d770616f-1422-4420-972c-f95c31ca58e7,Revenue Accounting Manager,https://jobs.lever.co/palantir/d770616f-1422-4420-972c-f95c31ca58e7,0,,,2026-09-18
 2026-09-11,Palantir,d83fac1c-353e-4b77-a586-3276b1090b6e,Forward Deployed Software Engineer - US Government,https://jobs.lever.co/palantir/d83fac1c-353e-4b77-a586-3276b1090b6e,15,,,2026-09-18
 2026-09-11,Palantir,d879b190-b6a1-41e1-9eca-bf94d36037e1,Mobility Tax Analyst,https://jobs.lever.co/palantir/d879b190-b6a1-41e1-9eca-bf94d36037e1,15,,,2026-09-18
+2026-10-20,Palantir,da774f81-c98c-4dcf-9b9c-949fd7d90a13,"Software Engineer, Internship - Query Engines",https://jobs.lever.co/palantir/da774f81-c98c-4dcf-9b9c-949fd7d90a13,46,,,2026-10-27
 2026-09-11,Palantir,dab396d4-2f14-4796-aac0-0d82883dccf0,Forward Deployed Software Engineer,https://jobs.lever.co/palantir/dab396d4-2f14-4796-aac0-0d82883dccf0,35,,,2026-09-18
 2026-09-11,Palantir,dc02f308-bbcc-4163-b4fb-3f68efb2ce24,Product Designer - US Government,https://jobs.lever.co/palantir/dc02f308-bbcc-4163-b4fb-3f68efb2ce24,15,,,2026-09-18
 2026-09-11,Palantir,def1573d-c2b6-42a7-963b-e13c3587b5e9,GRC Program Manager,https://jobs.lever.co/palantir/def1573d-c2b6-42a7-963b-e13c3587b5e9,0,,,2026-09-18
@@ -2340,7 +2347,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Vercel,5973206004,"Staff Applied Scientist, Financial Forecasting",https://job-boards.greenhouse.io/vercel/jobs/5973206004,0,,,2026-09-18
 2026-09-11,Vercel,5974107004,"Director, Commercial Sales, EMEA",https://job-boards.greenhouse.io/vercel/jobs/5974107004,0,,,2026-09-18
 2026-09-11,Vercel,5979111004,Head of Field Engineering Operations,https://job-boards.greenhouse.io/vercel/jobs/5979111004,0,,,2026-09-18
-2026-09-11,Vercel,5995789004,"Senior Manager, Solutions Architect",https://job-boards.greenhouse.io/vercel/jobs/5995789004,0,,,2026-09-18
+2026-09-11,Vercel,5995789004,"Senior Manager, Solutions Architecture",https://job-boards.greenhouse.io/vercel/jobs/5995789004,0,,,2026-09-18
 2026-09-11,Vercel,5999792004,"Account Executive, Majors",https://job-boards.greenhouse.io/vercel/jobs/5999792004,22,,,2026-09-18
 2026-09-11,Vercel,6006148004,Senior Payroll Analyst,https://job-boards.greenhouse.io/vercel/jobs/6006148004,0,,,2026-09-18
 2026-09-11,Vercel,6006500004,Sr. Commercial Counsel,https://job-boards.greenhouse.io/vercel/jobs/6006500004,0,,,2026-09-18
@@ -3063,6 +3070,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-10-13,Workday,/job/USA-CA-Pleasanton/Principal-Business-Analyst--Source-to-Pay_JR-0109544,"Principal Business Analyst, Source to Pay",https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Principal-Business-Analyst--Source-to-Pay_JR-0109544,0,,,2026-10-20
 2026-09-11,Workday,/job/USA-CA-Pleasanton/Principal-Distributed-Systems-Engineer---Observability_JR-0109636,Principal Distributed Systems Engineer - Observability,https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Principal-Distributed-Systems-Engineer---Observability_JR-0109636,0,,,2026-09-18
 2026-10-09,Workday,/job/USA-CA-Pleasanton/Principal-Network-Architect_JR-0110633,Principal Network Architect,https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Principal-Network-Architect_JR-0110633,0,,,2026-10-16
+2026-10-20,Workday,/job/USA-CA-Pleasanton/Principal-Outbound-Product-Manager---Data-Cloud_JR-0110775,Principal Outbound Product Manager – Data Cloud,https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Principal-Outbound-Product-Manager---Data-Cloud_JR-0110775,0,,,2026-10-27
 2026-09-11,Workday,/job/USA-CA-Pleasanton/Principal-Partner-Enterprise-Architect_JR-0108006,Principal Partner AI Architect,https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Principal-Partner-Enterprise-Architect_JR-0108006,0,,,2026-09-18
 2026-09-11,Workday,/job/USA-CA-Pleasanton/Principal-Partner-Solution-Consultant--oCHRO_JR-0108018,Partner AI Solution Consultant Advisor - oCHRO,https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Principal-Partner-Solution-Consultant--oCHRO_JR-0108018,11,,,2026-09-18
 2026-09-11,Workday,/job/USA-CA-Pleasanton/Principal-Product-Manager---Evisort-AI_JR-0108875,Principal Product Manager - Evisort AI,https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Principal-Product-Manager---Evisort-AI_JR-0108875,0,,,2026-09-18
