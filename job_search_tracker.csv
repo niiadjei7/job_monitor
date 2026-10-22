@@ -276,6 +276,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-16,Acrisure,/job/800-Oak-Ridge-Tpke-Ste-A1000----OAK-RIDGE-TN/Premium-Auditor_JR114354,Premium Auditor,https://acrisure.wd1.myworkdayjobs.com/acrisure/job/800-Oak-Ridge-Tpke-Ste-A1000----OAK-RIDGE-TN/Premium-Auditor_JR114354,15,,,2026-09-23
 2026-09-28,Acrisure,/job/800-Oak-Ridge-Tpke-Ste-A1000----OAK-RIDGE-TN/Senior-Program-Underwriter_JR114434,Senior Program Underwriter,https://acrisure.wd1.myworkdayjobs.com/acrisure/job/800-Oak-Ridge-Tpke-Ste-A1000----OAK-RIDGE-TN/Senior-Program-Underwriter_JR114434,0,,,2026-10-05
 2026-09-15,Acrisure,/job/800-Oak-Ridge-Tpke-Ste-A1000----OAK-RIDGE-TN/Transportation-Supervisor---Property-Damage_JR114343,Transportation Supervisor - Property Damage,https://acrisure.wd1.myworkdayjobs.com/acrisure/job/800-Oak-Ridge-Tpke-Ste-A1000----OAK-RIDGE-TN/Transportation-Supervisor---Property-Damage_JR114343,0,,,2026-09-22
+2026-10-22,Acrisure,/job/816-Congress-Ave-Ste-1800----AUSTIN-TX/Director--Growth-Analytics_JR114638,"Director, Growth Analytics",https://acrisure.wd1.myworkdayjobs.com/acrisure/job/816-Congress-Ave-Ste-1800----AUSTIN-TX/Director--Growth-Analytics_JR114638,0,,,2026-10-29
 2026-10-01,Acrisure,/job/816-Congress-Ave-Ste-1800----AUSTIN-TX/Senior-Software-Engineer--Data--L3-_JR114480,"Senior Software Engineer, Data (L3)",https://acrisure.wd1.myworkdayjobs.com/acrisure/job/816-Congress-Ave-Ste-1800----AUSTIN-TX/Senior-Software-Engineer--Data--L3-_JR114480,0,,,2026-10-08
 2026-09-11,Acrisure,/job/816-Congress-Ave-Ste-1800----AUSTIN-TX/Senior-Software-Engineer_JR114253,Senior Software Engineer,https://acrisure.wd1.myworkdayjobs.com/acrisure/job/816-Congress-Ave-Ste-1800----AUSTIN-TX/Senior-Software-Engineer_JR114253,0,,,2026-09-18
 2026-09-24,Acrisure,/job/816-Congress-Ave-Ste-1800----AUSTIN-TX/Senior-Strategic-Data-Analyst--Growth---Placement-_JR114408,"Senior Strategic Data Analyst, Growth & Placement ",https://acrisure.wd1.myworkdayjobs.com/acrisure/job/816-Congress-Ave-Ste-1800----AUSTIN-TX/Senior-Strategic-Data-Analyst--Growth---Placement-_JR114408,0,,,2026-10-01
@@ -1078,7 +1079,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-28,Globus Medical,/job/Pennsylvania---Limerick/Assembler--1st-Shift_JR107928-1,"Assembler, 1st Shift",https://globusmedical.wd5.myworkdayjobs.com/gmed_careers/job/Pennsylvania---Limerick/Assembler--1st-Shift_JR107928-1,25,,,2026-10-05
 2026-09-11,Globus Medical,/job/Pennsylvania---Limerick/Assembler--2nd-Shift_JR107683-1,"Assembler, 2nd Shift",https://globusmedical.wd5.myworkdayjobs.com/gmed_careers/job/Pennsylvania---Limerick/Assembler--2nd-Shift_JR107683-1,25,,,2026-09-18
 2026-09-11,Globus Medical,/job/Pennsylvania---Limerick/Assembler--2nd-Shift_JR107684-1,"Assembler, 2nd Shift",https://globusmedical.wd5.myworkdayjobs.com/gmed_careers/job/Pennsylvania---Limerick/Assembler--2nd-Shift_JR107684-1,25,,,2026-09-18
-2026-09-11,Globus Medical,/job/Pennsylvania---Limerick/Assembler--2nd-Shift_JR107686-1,"Assembler, 2nd Shift",https://globusmedical.wd5.myworkdayjobs.com/gmed_careers/job/Pennsylvania---Limerick/Assembler--2nd-Shift_JR107686-1,25,,,2026-09-18
+2026-09-11,Globus Medical,/job/Pennsylvania---Limerick/Assembler--2nd-Shift_JR107686-1,"Assembler, 1st Shift",https://globusmedical.wd5.myworkdayjobs.com/gmed_careers/job/Pennsylvania---Limerick/Assembler--2nd-Shift_JR107686-1,25,,,2026-09-18
 2026-10-20,Globus Medical,/job/Pennsylvania---Limerick/Assembler--2nd-Shift_JR108174-1,"Assembler, 2nd Shift",https://globusmedical.wd5.myworkdayjobs.com/gmed_careers/job/Pennsylvania---Limerick/Assembler--2nd-Shift_JR108174-1,25,,,2026-10-27
 2026-09-11,Globus Medical,/job/Pennsylvania---Limerick/Brake-Press-Operator--Graphic-Cases--2nd-Shift_JR106639-2,Brake Press Operator (2:45PM -11:15PM),https://globusmedical.wd5.myworkdayjobs.com/gmed_careers/job/Pennsylvania---Limerick/Brake-Press-Operator--Graphic-Cases--2nd-Shift_JR106639-2,15,,,2026-09-18
 2026-09-11,Globus Medical,/job/Pennsylvania---Limerick/CNC-Mill-Unit-Supervisor--3rd-Shift_JR106405-1,"CNC Mill Unit Supervisor, 3rd Shift",https://globusmedical.wd5.myworkdayjobs.com/gmed_careers/job/Pennsylvania---Limerick/CNC-Mill-Unit-Supervisor--3rd-Shift_JR106405-1,0,,,2026-09-18
@@ -1251,7 +1252,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Handshake,23c2f266-cce4-44f0-ad2f-9a62cc9801d3,"Manager, Strategic Projects",https://jobs.ashbyhq.com/handshake/23c2f266-cce4-44f0-ad2f-9a62cc9801d3,0,,,2026-09-18
 2026-10-06,Handshake,24b8fa12-7c5d-44f8-98f9-8b85d0585f28,"Manager, GTM Systems",https://jobs.ashbyhq.com/handshake/24b8fa12-7c5d-44f8-98f9-8b85d0585f28,0,,,2026-10-13
 2026-10-08,Handshake,282552fd-bc8e-44cb-b37c-33fe898fb5e4,"Manager, Data Partnerships",https://jobs.ashbyhq.com/handshake/282552fd-bc8e-44cb-b37c-33fe898fb5e4,0,,,2026-10-15
-2026-09-24,Handshake,2b768024-51a1-4014-8980-603f61ce3709,"Senior Product Marketing Manager, Handshake AI",https://jobs.ashbyhq.com/handshake/2b768024-51a1-4014-8980-603f61ce3709,0,,,2026-10-01
+2026-09-24,Handshake,2b768024-51a1-4014-8980-603f61ce3709,"Senior Product Marketing Manager, Enterprise AI",https://jobs.ashbyhq.com/handshake/2b768024-51a1-4014-8980-603f61ce3709,0,,,2026-10-01
 2026-10-09,Handshake,2b95294a-2c55-4216-96df-2db25f2b939d,"HR, Manager - India",https://jobs.ashbyhq.com/handshake/2b95294a-2c55-4216-96df-2db25f2b939d,0,,,2026-10-16
 2026-09-11,Handshake,2d25a9c3-0482-430e-8be1-3fbb19e8bf43,"Senior Software Engineer, Frontend Platform",https://jobs.ashbyhq.com/handshake/2d25a9c3-0482-430e-8be1-3fbb19e8bf43,0,,,2026-09-18
 2026-09-11,Handshake,2dd606c0-976f-4f22-b258-102a5ad3da4c,Senior Product Designer II,https://jobs.ashbyhq.com/handshake/2dd606c0-976f-4f22-b258-102a5ad3da4c,0,,,2026-09-18
@@ -1374,6 +1375,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-10-08,Leidos,/job/6314-RemoteTeleworker-US/Lead--Subcontracts-Management_R-00194213-1,"Lead, Subcontracts Management",https://leidos.wd5.myworkdayjobs.com/external/job/6314-RemoteTeleworker-US/Lead--Subcontracts-Management_R-00194213-1,0,,,2026-10-15
 2026-09-11,Leidos,/job/6314-RemoteTeleworker-US/Lead-Substation-Engineer---Technical-Project-Lead_R-00189794,Lead Substation Engineer - Technical Project Lead,https://leidos.wd5.myworkdayjobs.com/external/job/6314-RemoteTeleworker-US/Lead-Substation-Engineer---Technical-Project-Lead_R-00189794,0,,,2026-09-18
 2026-09-16,Leidos,/job/6314-RemoteTeleworker-US/Lead-Substation-Structural-Engineer_R-00192442,Lead Substation Structural Engineer,https://leidos.wd5.myworkdayjobs.com/external/job/6314-RemoteTeleworker-US/Lead-Substation-Structural-Engineer_R-00192442,0,,,2026-09-23
+2026-10-22,Leidos,/job/6314-RemoteTeleworker-US/Mobile-Device-Management--MDM--Engineer_R-00195186,Mobile Device Management (MDM) Engineer,https://leidos.wd5.myworkdayjobs.com/external/job/6314-RemoteTeleworker-US/Mobile-Device-Management--MDM--Engineer_R-00195186,45,,,2026-10-29
 2026-09-11,Leidos,/job/6314-RemoteTeleworker-US/Principal-Substation-Engineer_R-00189186,Principal Substation Engineer,https://leidos.wd5.myworkdayjobs.com/external/job/6314-RemoteTeleworker-US/Principal-Substation-Engineer_R-00189186,0,,,2026-09-18
 2026-09-11,Leidos,/job/6314-RemoteTeleworker-US/Principal-Transmission-Line-Engineer--Part-time-_R-00190211,Principal Transmission Line Engineer (Part-time),https://leidos.wd5.myworkdayjobs.com/external/job/6314-RemoteTeleworker-US/Principal-Transmission-Line-Engineer--Part-time-_R-00190211,0,,,2026-09-18
 2026-09-11,Leidos,/job/6314-RemoteTeleworker-US/Senior---Lead-Transmission-Line-Engineers_R-00182156,Senior & Lead Transmission Line Engineers,https://leidos.wd5.myworkdayjobs.com/external/job/6314-RemoteTeleworker-US/Senior---Lead-Transmission-Line-Engineers_R-00182156,0,,,2026-09-18
@@ -1612,6 +1614,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Leidos,/job/Laurel-MD/Senior-Network-Engineer_R-00189768,Senior Network Engineer,https://leidos.wd5.myworkdayjobs.com/external/job/Laurel-MD/Senior-Network-Engineer_R-00189768,0,,,2026-09-18
 2026-09-25,Leidos,/job/Laurel-MD/Senior-Network-Engineer_R-00193192,Senior Network Engineer,https://leidos.wd5.myworkdayjobs.com/external/job/Laurel-MD/Senior-Network-Engineer_R-00193192,0,,,2026-10-02
 2026-10-02,Leidos,/job/Lawton-OK/Junior-CEMA-Software-Engineer_R-00193576,Junior CEMA Software Engineer,https://leidos.wd5.myworkdayjobs.com/external/job/Lawton-OK/Junior-CEMA-Software-Engineer_R-00193576,47,,,2026-10-09
+2026-10-22,Leidos,/job/Lawton-OK/Sr-Electronic-Warfare--SME-_R-00195268,Sr. Electronic Warfare (SME),https://leidos.wd5.myworkdayjobs.com/external/job/Lawton-OK/Sr-Electronic-Warfare--SME-_R-00195268,0,,,2026-10-29
 2026-09-11,Leidos,/job/Lorton-VA/Network-Engineer_R-00189137-1,Network Engineer,https://leidos.wd5.myworkdayjobs.com/external/job/Lorton-VA/Network-Engineer_R-00189137-1,36,,,2026-09-18
 2026-09-11,Leidos,/job/Lorton-VA/Senior-Network-Engineer_R-00189962-1,Senior Network Engineer,https://leidos.wd5.myworkdayjobs.com/external/job/Lorton-VA/Senior-Network-Engineer_R-00189962-1,0,,,2026-09-18
 2026-10-20,Leidos,/job/Lorton-VA/Senior-Network-Engineer_R-00194938,Senior Network Engineer,https://leidos.wd5.myworkdayjobs.com/external/job/Lorton-VA/Senior-Network-Engineer_R-00194938,0,,,2026-10-27
@@ -1767,6 +1770,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Palantir,09846827-b931-4a9f-bd64-c3bb8860187b,"Privacy and Civil Liberties Software Engineer, Internship",https://jobs.lever.co/palantir/09846827-b931-4a9f-bd64-c3bb8860187b,46,,,2026-09-18
 2026-09-11,Palantir,0a0d2db2-75a5-48e4-b0a0-81baa6588e36,Forward Deployed Software Engineer - Norwegian Government,https://jobs.lever.co/palantir/0a0d2db2-75a5-48e4-b0a0-81baa6588e36,15,,,2026-09-18
 2026-09-11,Palantir,0a838e66-1ab0-4fc4-b4d3-4671c0352278,"Software Engineer, New Grad - Defense",https://jobs.lever.co/palantir/0a838e66-1ab0-4fc4-b4d3-4671c0352278,56,,,2026-09-18
+2026-10-22,Palantir,0ccbe620-a3ef-41d1-a5c4-68e56b3c91d0,American Tech Fellowship,https://jobs.lever.co/palantir/0ccbe620-a3ef-41d1-a5c4-68e56b3c91d0,46,,,2026-10-29
 2026-09-11,Palantir,0edf7365-49f0-4263-818a-19409ec4f430,Forward Deployed Software Engineer - Autonomous Systems C2,https://jobs.lever.co/palantir/0edf7365-49f0-4263-818a-19409ec4f430,15,,,2026-09-18
 2026-10-20,Palantir,0f7d1e01-1f74-4786-944d-910208d390fa,"Software Engineer, New Grad - Query Engines",https://jobs.lever.co/palantir/0f7d1e01-1f74-4786-944d-910208d390fa,36,,,2026-10-27
 2026-09-11,Palantir,0fccbe95-2520-4df3-8600-7897656c06a2,Forward Deployed Infrastructure Engineer - US Government,https://jobs.lever.co/palantir/0fccbe95-2520-4df3-8600-7897656c06a2,26,,,2026-09-18
@@ -1839,6 +1843,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Palantir,36703f67-6fae-445c-9277-f946121faaa0,Information Security Engineer,https://jobs.lever.co/palantir/36703f67-6fae-445c-9277-f946121faaa0,26,,,2026-09-18
 2026-09-11,Palantir,373367a9-3160-49d8-b7af-2efec062fad1,"Software Engineer, Internship - Production Infrastructure",https://jobs.lever.co/palantir/373367a9-3160-49d8-b7af-2efec062fad1,26,,,2026-09-18
 2026-09-11,Palantir,373eb939-6f57-4836-8479-be79a5e07249,"Software Engineer, Internship",https://jobs.lever.co/palantir/373eb939-6f57-4836-8479-be79a5e07249,26,,,2026-09-18
+2026-10-22,Palantir,37780e70-c7af-45e1-9be7-071df201c387,"Deployment Strategist, New Grad - Warp Speed",https://jobs.lever.co/palantir/37780e70-c7af-45e1-9be7-071df201c387,45,,,2026-10-29
 2026-09-11,Palantir,37964982-9b4c-471e-a1d8-fb8f45d7f116,"Software Engineer, Internship - Production Infrastructure",https://jobs.lever.co/palantir/37964982-9b4c-471e-a1d8-fb8f45d7f116,46,,,2026-09-18
 2026-09-11,Palantir,38758e88-5884-4a11-98ac-d23cab51bc7a,Site Reliability Operations Analyst - US Government,https://jobs.lever.co/palantir/38758e88-5884-4a11-98ac-d23cab51bc7a,26,,,2026-09-18
 2026-09-11,Palantir,395a4483-fc3d-4b77-a500-501923fd0976,"Forward Deployed Software Engineer, Internship - AUS Government",https://jobs.lever.co/palantir/395a4483-fc3d-4b77-a500-501923fd0976,15,,,2026-09-18
@@ -1870,6 +1875,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Palantir,492a16bb-6b9f-457e-82c3-294e1a2c565d,Forward Deployed Software Engineer,https://jobs.lever.co/palantir/492a16bb-6b9f-457e-82c3-294e1a2c565d,15,,,2026-09-18
 2026-09-11,Palantir,4a245bf7-0467-4436-ac22-7bad194c1a12,People Relations Specialist,https://jobs.lever.co/palantir/4a245bf7-0467-4436-ac22-7bad194c1a12,35,,,2026-09-18
 2026-09-11,Palantir,4abf26b4-795c-420a-bf22-1ab98db268b4,"Software Engineer, New Grad - Infrastructure",https://jobs.lever.co/palantir/4abf26b4-795c-420a-bf22-1ab98db268b4,56,,,2026-09-18
+2026-10-22,Palantir,4bf39879-251f-43bd-be2a-c33a2663622d,Talent Program Manager,https://jobs.lever.co/palantir/4bf39879-251f-43bd-be2a-c33a2663622d,0,,,2026-10-29
 2026-09-11,Palantir,4bfef5e0-6689-4db8-9ffe-ab6df6836845,Information Security Engineer - Infrastructure Security,https://jobs.lever.co/palantir/4bfef5e0-6689-4db8-9ffe-ab6df6836845,26,,,2026-09-18
 2026-09-11,Palantir,4c0fb3a1-8256-4d14-9a27-23727235752e,"Product Designer, New Grad",https://jobs.lever.co/palantir/4c0fb3a1-8256-4d14-9a27-23727235752e,45,,,2026-09-18
 2026-10-05,Palantir,4c956604-f861-4140-a7d2-3e39fc834c1c,"Senior Manager, Corporate Accounting",https://jobs.lever.co/palantir/4c956604-f861-4140-a7d2-3e39fc834c1c,0,,,2026-10-12
@@ -1908,10 +1914,12 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Palantir,636fc05c-d348-4a06-be51-597cb9e07488,Forward Deployed AI Engineer,https://jobs.lever.co/palantir/636fc05c-d348-4a06-be51-597cb9e07488,35,,,2026-09-18
 2026-09-11,Palantir,655f9937-a4ce-4e7d-80e2-a6659af07329,"Year at Palantir - Software Engineer, Internship",https://jobs.lever.co/palantir/655f9937-a4ce-4e7d-80e2-a6659af07329,35,,,2026-09-18
 2026-10-01,Palantir,66955c3b-c530-4c4a-9d48-63b4aad61b9c,Procurement Operations Analyst,https://jobs.lever.co/palantir/66955c3b-c530-4c4a-9d48-63b4aad61b9c,15,,,2026-10-08
+2026-10-22,Palantir,66b495eb-aaf9-4bf9-a759-41854534add7,"Forward Deployed Software Engineer, New Grad - Warp Speed",https://jobs.lever.co/palantir/66b495eb-aaf9-4bf9-a759-41854534add7,45,,,2026-10-29
 2026-09-11,Palantir,67110929-adea-41c3-851a-8882e222d9e4,Software Engineer - Edge AI Systems,https://jobs.lever.co/palantir/67110929-adea-41c3-851a-8882e222d9e4,15,,,2026-09-18
 2026-09-11,Palantir,678d05bc-ea79-45ad-bdce-7a06a7cd9a54,Revenue Accounting Manager,https://jobs.lever.co/palantir/678d05bc-ea79-45ad-bdce-7a06a7cd9a54,0,,,2026-09-18
 2026-09-11,Palantir,689e6869-01bc-40f1-b580-adb33a020065,Forward Deployed Reliability Engineer,https://jobs.lever.co/palantir/689e6869-01bc-40f1-b580-adb33a020065,35,,,2026-09-18
 2026-09-11,Palantir,68d690cf-fc8a-4755-9b69-abe13f93d262,"Senior Software Engineer, Substrate",https://jobs.lever.co/palantir/68d690cf-fc8a-4755-9b69-abe13f93d262,0,,,2026-09-18
+2026-10-22,Palantir,69ab7e24-8f5d-426e-84f7-6d3b2d4a7efd,"Deployment Strategist, Internship - Warp Speed",https://jobs.lever.co/palantir/69ab7e24-8f5d-426e-84f7-6d3b2d4a7efd,35,,,2026-10-29
 2026-09-11,Palantir,6a104c4e-35d4-4a1f-98ef-bec00ae4b458,"Deployment Strategist, Build to Apply - US Government",https://jobs.lever.co/palantir/6a104c4e-35d4-4a1f-98ef-bec00ae4b458,15,,,2026-09-18
 2026-09-11,Palantir,6a82fd06-5754-46c2-8214-9ca4cd89fb9d,Web Application Developer - Defense,https://jobs.lever.co/palantir/6a82fd06-5754-46c2-8214-9ca4cd89fb9d,35,,,2026-09-18
 2026-09-11,Palantir,6bddf672-5920-46f3-8127-2a15a377cb99,Information Security Engineer - Insider Risk,https://jobs.lever.co/palantir/6bddf672-5920-46f3-8127-2a15a377cb99,15,,,2026-09-18
@@ -2010,6 +2018,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Palantir,b0e1823a-fbe7-4c9d-a4d3-a1e738db2589,Information Security Engineer - Insider Risk,https://jobs.lever.co/palantir/b0e1823a-fbe7-4c9d-a4d3-a1e738db2589,15,,,2026-09-18
 2026-09-11,Palantir,b11a97bd-ac86-4cf8-a008-ffe1772a190a,Technical Writer,https://jobs.lever.co/palantir/b11a97bd-ac86-4cf8-a008-ffe1772a190a,26,,,2026-09-18
 2026-09-11,Palantir,b229baac-494b-4a0d-9a13-2e38806e06f3,"Software Engineer, Internship - Infrastructure",https://jobs.lever.co/palantir/b229baac-494b-4a0d-9a13-2e38806e06f3,46,,,2026-09-18
+2026-10-22,Palantir,b3d81928-6c26-432f-8a0a-36602c2eefcb,"Forward Deployed Software Engineer, Internship - Warp Speed",https://jobs.lever.co/palantir/b3d81928-6c26-432f-8a0a-36602c2eefcb,35,,,2026-10-29
 2026-09-11,Palantir,b4aa51a2-bc43-4d67-bf55-12db7feefb3a,"Forward Deployed Software Engineer, New Grad - UK Government",https://jobs.lever.co/palantir/b4aa51a2-bc43-4d67-bf55-12db7feefb3a,25,,,2026-09-18
 2026-09-11,Palantir,b5362bc1-8a07-44e2-9ddc-cb4236aa0f20,Technical Program Manager - Security,https://jobs.lever.co/palantir/b5362bc1-8a07-44e2-9ddc-cb4236aa0f20,0,,,2026-09-18
 2026-09-11,Palantir,b57f08e9-546c-4b9b-8d21-db0ebbc11363,Forward Deployed Infrastructure Engineer - US Government,https://jobs.lever.co/palantir/b57f08e9-546c-4b9b-8d21-db0ebbc11363,46,,,2026-09-18
@@ -2242,6 +2251,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,PointClickCare,faff149d-3b2a-43e7-bcab-ee4a2f67dda0,Principal Software Engineer - Big Data & Java,https://jobs.lever.co/pointclickcare/faff149d-3b2a-43e7-bcab-ee4a2f67dda0,0,,,2026-09-18
 2026-09-11,PointClickCare,fc5d90c8-8623-4ab7-a98f-5f76e8f90d06,"Canada -Manager, Customer Support (Senior Care)",https://jobs.lever.co/pointclickcare/fc5d90c8-8623-4ab7-a98f-5f76e8f90d06,0,,,2026-09-18
 2026-10-21,Seeq,009669C054,Recruiting Coordinator - 6-month Contract,https://apply.workable.com/j/009669C054,20,,,2026-10-28
+2026-10-22,Seeq,057E2012B1,Senior Frontend Infrastructure Engineer,https://apply.workable.com/j/057E2012B1,0,,,2026-10-29
 2026-09-16,Seeq,0BEAE8BEA3,Analytics Engineer,https://apply.workable.com/j/0BEAE8BEA3,44,,,2026-09-23
 2026-09-22,Seeq,0C3EC72FFD,Senior Analytics Engineer,https://apply.workable.com/j/0C3EC72FFD,0,,,2026-09-29
 2026-09-11,Seeq,1378093793,Staff Full Stack Software Engineer,https://apply.workable.com/j/1378093793,0,,,2026-09-18
@@ -2255,6 +2265,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Seeq,3A53339B45,Salesforce & GTM Applications Technical Lead,https://apply.workable.com/j/3A53339B45,0,,,2026-09-18
 2026-10-06,Seeq,407E6AC987,Staff Accountant (Six-Month Contract),https://apply.workable.com/j/407E6AC987,0,,,2026-10-13
 2026-09-11,Seeq,41E65B3CDE,Customer Support Operations Intelligence Engineer,https://apply.workable.com/j/41E65B3CDE,42,,,2026-09-18
+2026-10-22,Seeq,4AB32531D8,Senior Frontend Infrastructure Engineer,https://apply.workable.com/j/4AB32531D8,0,,,2026-10-29
 2026-09-15,Seeq,519AE21AD3,"Director, Product Marketing & Program Management",https://apply.workable.com/j/519AE21AD3,0,,,2026-09-22
 2026-09-16,Seeq,5897B0A025,Partner Marketing Specialist - (Contractor),https://apply.workable.com/j/5897B0A025,57,,,2026-09-23
 2026-10-02,Seeq,58C33A8899,Senior Solutions Consultant - APAC,https://apply.workable.com/j/58C33A8899,0,,,2026-10-09
@@ -2262,7 +2273,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Seeq,610FB07CEB,Full Stack Software Engineer - Staff or Principal,https://apply.workable.com/j/610FB07CEB,0,,,2026-09-18
 2026-09-11,Seeq,6F40FF632B,AI Customer Insights Engineer,https://apply.workable.com/j/6F40FF632B,42,,,2026-09-18
 2026-09-11,Seeq,752EBCAC0C,Enterprise Account Executive,https://apply.workable.com/j/752EBCAC0C,11,,,2026-09-18
-2026-09-11,Seeq,763AE68666,Senior Full Stack Software Engineer,https://apply.workable.com/j/763AE68666,0,,,2026-09-18
+2026-09-11,Seeq,763AE68666,Senior/Staff Full Stack Software Engineer,https://apply.workable.com/j/763AE68666,0,,,2026-09-18
 2026-09-11,Seeq,802346B20E,Full Stack Software Engineer - Staff or Principal,https://apply.workable.com/j/802346B20E,0,,,2026-09-18
 2026-09-11,Seeq,94CB19B50D,"Director of Customer Success, APAC - Industrial",https://apply.workable.com/j/94CB19B50D,0,,,2026-09-18
 2026-09-11,Seeq,951F8F7708,Business Development Representative - Americas,https://apply.workable.com/j/951F8F7708,20,,,2026-09-18
@@ -2272,7 +2283,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Seeq,A966C8897D,Staff Software Engineer - Developer Experience,https://apply.workable.com/j/A966C8897D,0,,,2026-09-18
 2026-09-17,Seeq,B25D5469EC,Senior Customer Success Manager,https://apply.workable.com/j/B25D5469EC,0,,,2026-09-24
 2026-09-11,Seeq,B3E0E9645D,Frontend Design Systems Engineer,https://apply.workable.com/j/B3E0E9645D,31,,,2026-09-18
-2026-09-11,Seeq,C2318392FE,Senior Full Stack Software Engineer,https://apply.workable.com/j/C2318392FE,0,,,2026-09-18
+2026-09-11,Seeq,C2318392FE,Senior/Staff Full Stack Software Engineer,https://apply.workable.com/j/C2318392FE,0,,,2026-09-18
 2026-09-11,Seeq,CA86062D7B,Technical Account Manager,https://apply.workable.com/j/CA86062D7B,0,,,2026-09-18
 2026-09-17,Seeq,CD7BA6EE7B,Backend Software Engineer - Staff/Principal,https://apply.workable.com/j/CD7BA6EE7B,0,,,2026-09-24
 2026-09-11,Seeq,CDBF1AE73C,Backend Software Engineer (Staff/Principal),https://apply.workable.com/j/CDBF1AE73C,0,,,2026-09-18
@@ -2506,6 +2517,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-10-21,Vercel,6231045004,"Engineering Director, Vercel for Platforms",https://job-boards.greenhouse.io/vercel/jobs/6231045004,0,,,2026-10-28
 2026-10-21,Vercel,6231047004,Internal Communications Manager ,https://job-boards.greenhouse.io/vercel/jobs/6231047004,0,,,2026-10-28
 2026-10-22,Vercel,6231535004,"Member of Technical Staff, Finance Data",https://job-boards.greenhouse.io/vercel/jobs/6231535004,0,,,2026-10-29
+2026-10-22,Vercel,6231540004,"Community Manager, Experiential Marketing",https://job-boards.greenhouse.io/vercel/jobs/6231540004,0,,,2026-10-29
 2026-10-22,Vercel,6231864004,"Account Executive, Commercial",https://job-boards.greenhouse.io/vercel/jobs/6231864004,46,,,2026-10-29
 2026-09-11,WHOOP,00aad80c-4670-4e0b-86bc-ec9595603fd8,"Senior Software Engineer, Data Platform",https://jobs.ashbyhq.com/whoop/00aad80c-4670-4e0b-86bc-ec9595603fd8,0,,,2026-09-18
 2026-09-11,WHOOP,00dd5761-0d8f-4ad1-9dcd-15919648bf06,Senior Materials Program Manager,https://jobs.ashbyhq.com/whoop/00dd5761-0d8f-4ad1-9dcd-15919648bf06,0,,,2026-09-18
@@ -2666,7 +2678,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,WHOOP,9f32d3da-7887-4598-b26e-62acdd87993e,Temporary Clinical Research Associate,https://jobs.ashbyhq.com/whoop/9f32d3da-7887-4598-b26e-62acdd87993e,25,,,2026-09-18
 2026-10-09,WHOOP,a0509b1d-d5bf-4e44-920d-0ccdef9ff1c8,Sensor Intelligence Engineer II (Optical Signal Processing),https://jobs.ashbyhq.com/whoop/a0509b1d-d5bf-4e44-920d-0ccdef9ff1c8,0,,,2026-10-16
 2026-09-22,WHOOP,a092a56e-2c1a-4ed2-84ef-55a56402f0f5,People Systems Analyst,https://jobs.ashbyhq.com/whoop/a092a56e-2c1a-4ed2-84ef-55a56402f0f5,0,,,2026-09-29
-2026-10-22,WHOOP,a26aaee4-c19f-4027-8d5f-78820a444151,"Account Manager, AUS/NZ",https://jobs.ashbyhq.com/whoop/a26aaee4-c19f-4027-8d5f-78820a444151,0,,,2026-10-29
+2026-10-22,WHOOP,a26aaee4-c19f-4027-8d5f-78820a444151,"Retail Account Manager, AUS/NZ",https://jobs.ashbyhq.com/whoop/a26aaee4-c19f-4027-8d5f-78820a444151,0,,,2026-10-29
 2026-09-11,WHOOP,a3053677-87a4-4f1b-acda-5856684a1fe6,"Director, Member Enablement - Membership Services",https://jobs.ashbyhq.com/whoop/a3053677-87a4-4f1b-acda-5856684a1fe6,0,,,2026-09-18
 2026-09-11,WHOOP,a4b13049-4c09-43bc-b907-87f326c4de32,"Business Analytics Senior Manager (Product, Core)",https://jobs.ashbyhq.com/whoop/a4b13049-4c09-43bc-b907-87f326c4de32,0,,,2026-09-18
 2026-09-11,WHOOP,a4bb6ad7-ea0c-4a2e-8f68-83c3510c9a8b,Temporary Clinical Research Coordinator,https://jobs.ashbyhq.com/whoop/a4bb6ad7-ea0c-4a2e-8f68-83c3510c9a8b,15,,,2026-09-18
@@ -3191,6 +3203,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-10-21,Workday,/job/USA-CA-Pleasanton/Regional-Sales-Director--Platform---Higher-Ed--SLED--NFP_JR-0111009,"Regional Sales Director, Platform - Higher Ed/ SLED/ NFP",https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Regional-Sales-Director--Platform---Higher-Ed--SLED--NFP_JR-0111009,0,,,2026-10-28
 2026-10-21,Workday,/job/USA-CA-Pleasanton/Regional-Sales-Director--Platform---Medium-Enterprise-Diversified-Industries_JR-0111012,"Regional Sales Director, Platform - Medium Enterprise Diversified Industries",https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Regional-Sales-Director--Platform---Medium-Enterprise-Diversified-Industries_JR-0111012,0,,,2026-10-28
 2026-10-21,Workday,/job/USA-CA-Pleasanton/Senior-AI-Engineer---Agent-Factory_JR-0110544,Principal/Senior AI Engineer - Agent Factory,https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Senior-AI-Engineer---Agent-Factory_JR-0110544,0,,,2026-10-28
+2026-10-22,Workday,/job/USA-CA-Pleasanton/Senior-BSA-Client-Platforms_JR-0110607-1,Senior BSA Client Platforms,https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Senior-BSA-Client-Platforms_JR-0110607-1,0,,,2026-10-29
 2026-09-11,Workday,/job/USA-CA-Pleasanton/Senior-Compensation-Business-Partner--Sales_JR-0108857,"Compensation Business Partner, GTM/Customer Experience",https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Senior-Compensation-Business-Partner--Sales_JR-0108857,22,,,2026-09-18
 2026-09-11,Workday,/job/USA-CA-Pleasanton/Senior-Developer-Relations-Engineer_JR-0107991,Senior Product Advisor - Developer Platform,https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Senior-Developer-Relations-Engineer_JR-0107991,0,,,2026-09-18
 2026-09-11,Workday,/job/USA-CA-Pleasanton/Senior-Director--AI-and-Data-Product-Management---Data-Cloud_JR-0109107,"Senior Director, AI and Data Product Management – Data Cloud",https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Senior-Director--AI-and-Data-Product-Management---Data-Cloud_JR-0109107,0,,,2026-09-18
