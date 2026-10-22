@@ -1256,6 +1256,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-16,Handshake,3fd38766-ddc7-4de8-b800-d72dec77a684,"Strategic Projects Lead, Safety",https://jobs.ashbyhq.com/handshake/3fd38766-ddc7-4de8-b800-d72dec77a684,0,,,2026-09-23
 2026-10-09,Handshake,42aca7f5-2f58-40ef-a6ce-19027d32a12f,Machine Learning Engineer ,https://jobs.ashbyhq.com/handshake/42aca7f5-2f58-40ef-a6ce-19027d32a12f,59,,,2026-10-16
 2026-09-11,Handshake,45b712a7-9b9b-4c4d-bc63-99cfb12d65ba,"Strategic Customer Success Manager, Federal",https://jobs.ashbyhq.com/handshake/45b712a7-9b9b-4c4d-bc63-99cfb12d65ba,0,,,2026-09-18
+2026-10-22,Handshake,472c5e06-3fb6-4d71-b346-19a284ad67d0,Strategic Account Executive,https://jobs.ashbyhq.com/handshake/472c5e06-3fb6-4d71-b346-19a284ad67d0,20,,,2026-10-29
 2026-10-09,Handshake,4870c024-f6b8-4c2d-a5cb-e94f6c8f94a9,"Member of Technical Staff, AI Engineering (India)",https://jobs.ashbyhq.com/handshake/4870c024-f6b8-4c2d-a5cb-e94f6c8f94a9,0,,,2026-10-16
 2026-09-11,Handshake,4dcdfc01-076f-43f3-9bed-1acafd2c1cfa,"AI Model Policy Trainer, Image Evaluation - Seattle Onsite",https://jobs.ashbyhq.com/handshake/4dcdfc01-076f-43f3-9bed-1acafd2c1cfa,37,,,2026-09-18
 2026-09-11,Handshake,58b7da0f-101d-419a-b1d3-f57716c5bec6,"AI Safety Policy Evaluator, Violence & Threats | Seattle Onsite",https://jobs.ashbyhq.com/handshake/58b7da0f-101d-419a-b1d3-f57716c5bec6,26,,,2026-09-18
@@ -1430,8 +1431,9 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Leidos,/job/Ashburn-VA/PostGres-SQL-Database-Developer_R-00191058,PostGres/SQL Database Developer,https://leidos.wd5.myworkdayjobs.com/external/job/Ashburn-VA/PostGres-SQL-Database-Developer_R-00191058,47,,,2026-09-18
 2026-09-11,Leidos,/job/Beavercreek-OH/IMS-Scheduler_R-00183484,IMS Scheduler,https://leidos.wd5.myworkdayjobs.com/external/job/Beavercreek-OH/IMS-Scheduler_R-00183484,25,,,2026-09-18
 2026-09-11,Leidos,/job/Bedford-MA/Acquisition-Program-Support-Specialist_R-00183485,Acquisition Program Support Specialist,https://leidos.wd5.myworkdayjobs.com/external/job/Bedford-MA/Acquisition-Program-Support-Specialist_R-00183485,25,,,2026-09-18
-2026-09-11,Leidos,/job/Bedford-MA/Avionics-Engineering-Support_R-00183334-1,Avionics Engineering Support,https://leidos.wd5.myworkdayjobs.com/external/job/Bedford-MA/Avionics-Engineering-Support_R-00183334-1,15,,,2026-09-18
+2026-09-11,Leidos,/job/Bedford-MA/Avionics-Engineering-Support_R-00183334-1,Avionics Engineering Support,https://leidos.wd5.myworkdayjobs.com/external/job/Bedford-MA/Avionics-Engineering-Support_R-00183334-1,25,,,2026-09-18
 2026-09-11,Leidos,/job/Bedford-MA/Configuration-Management-Support-Specialist_R-00183483-1,Configuration Management Support Specialist,https://leidos.wd5.myworkdayjobs.com/external/job/Bedford-MA/Configuration-Management-Support-Specialist_R-00183483-1,36,,,2026-09-18
+2026-10-22,Leidos,/job/Bedford-MA/Scrum-Master_R-00195154,Scrum Master,https://leidos.wd5.myworkdayjobs.com/external/job/Bedford-MA/Scrum-Master_R-00195154,36,,,2026-10-29
 2026-10-06,Leidos,/job/Bedford-MA/Senior-AWS-Cyber-Engineer_R-00193908,Senior AWS Cyber Engineer,https://leidos.wd5.myworkdayjobs.com/external/job/Bedford-MA/Senior-AWS-Cyber-Engineer_R-00193908,0,,,2026-10-13
 2026-10-05,Leidos,/job/Bedford-MA/Senior-Azuer-Cyber-Engineer_R-00193904,Senior Azuer Cyber Engineer,https://leidos.wd5.myworkdayjobs.com/external/job/Bedford-MA/Senior-Azuer-Cyber-Engineer_R-00193904,0,,,2026-10-12
 2026-09-11,Leidos,/job/Bethesda-MD/Cyber-Security-Engineer-Technical-lead_R-00179079,Cyber Security Engineer—Technical Lead,https://leidos.wd5.myworkdayjobs.com/external/job/Bethesda-MD/Cyber-Security-Engineer-Technical-lead_R-00179079,0,,,2026-09-18
@@ -2538,6 +2540,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,WHOOP,2f0f7250-a2ca-4062-b8e5-57f3e3b8e955,"Senior Machine Learning Engineer, AI Platform",https://jobs.ashbyhq.com/whoop/2f0f7250-a2ca-4062-b8e5-57f3e3b8e955,0,,,2026-09-18
 2026-09-11,WHOOP,3019d597-d17d-4024-9b16-2018e08fd584,"Senior Manager, Analytics Engineering",https://jobs.ashbyhq.com/whoop/3019d597-d17d-4024-9b16-2018e08fd584,0,,,2026-09-18
 2026-09-18,WHOOP,30b82c7d-8eb4-488d-9b7c-3a3a0dbb029a,Android Engineer II (AI Momentum),https://jobs.ashbyhq.com/whoop/30b82c7d-8eb4-488d-9b7c-3a3a0dbb029a,0,,,2026-09-25
+2026-10-22,WHOOP,3363c311-cf72-4986-9c7f-11913e693b47,Security Detection Engineer,https://jobs.ashbyhq.com/whoop/3363c311-cf72-4986-9c7f-11913e693b47,48,,,2026-10-29
 2026-09-29,WHOOP,337e3ff6-83b3-44d3-94e8-d067a119e4ce,Staff Hardware Test Engineer (Manufacturing),https://jobs.ashbyhq.com/whoop/337e3ff6-83b3-44d3-94e8-d067a119e4ce,0,,,2026-10-06
 2026-10-14,WHOOP,33c0f3c9-0e30-44d8-91a5-f995401a323e, Senior Mechanical Engineer (Manufacturing Test),https://jobs.ashbyhq.com/whoop/33c0f3c9-0e30-44d8-91a5-f995401a323e,0,,,2026-10-21
 2026-10-09,WHOOP,33f5c8e5-6bfa-4ca0-9b36-f9c0d47b8e5f,"Software Engineering Manager, Device Experience",https://jobs.ashbyhq.com/whoop/33f5c8e5-6bfa-4ca0-9b36-f9c0d47b8e5f,0,,,2026-10-16
@@ -3000,6 +3003,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-10-20,Workday,/job/Japan-Tokyo/Principal-Senior-Service-Executive_JR-0110961,Principal/Senior Service Executive,https://workday.wd5.myworkdayjobs.com/Workday/job/Japan-Tokyo/Principal-Senior-Service-Executive_JR-0110961,0,,,2026-10-27
 2026-09-17,Workday,/job/Japan-Tokyo/Principal-Service-Executive_JR-0109905-1,Principal Service Executive,https://workday.wd5.myworkdayjobs.com/Workday/job/Japan-Tokyo/Principal-Service-Executive_JR-0109905-1,0,,,2026-09-24
 2026-09-11,Workday,/job/Japan-Tokyo/Senior-Account-Executive_JR-0109320,Senior Account Executive,https://workday.wd5.myworkdayjobs.com/Workday/job/Japan-Tokyo/Senior-Account-Executive_JR-0109320,0,,,2026-09-18
+2026-10-22,Workday,/job/Japan-Tokyo/Senior-Manager--Sales-Development_JR-0110675,"Senior Manager, Sales Development",https://workday.wd5.myworkdayjobs.com/Workday/job/Japan-Tokyo/Senior-Manager--Sales-Development_JR-0110675,0,,,2026-10-29
 2026-10-15,Workday,/job/Japan-Tokyo/Senior-Manager--Sales-Development_JR-0110891,"Senior Manager, Sales Development",https://workday.wd5.myworkdayjobs.com/Workday/job/Japan-Tokyo/Senior-Manager--Sales-Development_JR-0110891,0,,,2026-10-22
 2026-09-11,Workday,/job/Japan-Tokyo/Senior-Service-Executive_JR-0107923,Senior Service Executive,https://workday.wd5.myworkdayjobs.com/Workday/job/Japan-Tokyo/Senior-Service-Executive_JR-0107923,0,,,2026-09-18
 2026-09-11,Workday,/job/Japan-Tokyo/Senior-Strategic-Program---Activation-Manager---JAPAN_JR-0109741,Senior/Principal Strategic Program & Activation Manager - JAPAN,https://workday.wd5.myworkdayjobs.com/Workday/job/Japan-Tokyo/Senior-Strategic-Program---Activation-Manager---JAPAN_JR-0109741,0,,,2026-09-18
