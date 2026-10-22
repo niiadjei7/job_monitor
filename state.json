@@ -9,6 +9,7 @@
     "188cc71b-a625-4022-94dc-7c43fa1a8b06",
     "19c11d7d-ec39-4c24-8bf3-866508171b81",
     "1cf7c730-caba-4fc3-8b98-52a0735ef14b",
+    "1d7ac90f-ce1c-41ed-9c5b-b0dc8e561a39",
     "1e6bf4c7-6452-418b-9277-a28eb8a6f218",
     "206c6a86-74e3-4fcf-9175-fdfe07858676",
     "2373fcd5-144b-4d66-a98b-dd0efb4eb9d1",
@@ -72,6 +73,7 @@
   ],
   "ashby:ashby:notified-v2": [
     "188cc71b-a625-4022-94dc-7c43fa1a8b06",
+    "1d7ac90f-ce1c-41ed-9c5b-b0dc8e561a39",
     "1e6bf4c7-6452-418b-9277-a28eb8a6f218",
     "36df1986-8af2-4cc4-a96a-4f307d493ac0",
     "6f9d632f-5d3b-4c5e-8893-6e4a1cb2778f",
@@ -1379,6 +1381,7 @@
     "/job/3-Sylvan-Way---PARSIPPANY-NJ/Senior-Employee-Benefits-Account-Manager_JR114295",
     "/job/300-Northern-Blvd-Ste-200---GREAT-NECK-NY/Accounting-Manager_JR114592",
     "/job/300-South-Bradfordton-Road---SPRINGFIELD-IL/Claims-Assistant-II_JR114472",
+    "/job/3110-East-Guasti-Road-Suite-500----ONTARIO-CA/Surety-Account-Manager_JR114629",
     "/job/3155-Olsen-Dr-Ste-400---SAN-JOSE-CA/Account-Manager_JR114600",
     "/job/3155-Olsen-Dr-Ste-400---SAN-JOSE-CA/National-Leader--High-Net-Worth-Personal-Lines_JR113956",
     "/job/3155-Olsen-Dr-Ste-400---SAN-JOSE-CA/Sr-Account-Manager_JR113890",
@@ -1878,7 +1881,6 @@
     "/job/6314-RemoteTeleworker-US/Principal-Transmission-Line-Engineer--Part-time-_R-00190211",
     "/job/6314-RemoteTeleworker-US/Senior---Lead-Transmission-Line-Engineers_R-00182156",
     "/job/6314-RemoteTeleworker-US/Senior-Civil-Structural-Engineer_R-00184339",
-    "/job/6314-RemoteTeleworker-US/Senior-Network-Engineer_R-00194687",
     "/job/6314-RemoteTeleworker-US/Senior-Remediation-Engineer_R-00193201",
     "/job/6314-RemoteTeleworker-US/Senior-Systems-Engineer--Antarctic-Support-Contract-_R-00194717",
     "/job/6314-RemoteTeleworker-US/Senior-Windows-Server-Engineer_R-00194842",
@@ -2080,7 +2082,6 @@
     "/job/Remote-US/Scrum-Master_R-00193535"
   ],
   "workday:workday": [
-    "/job/Australia-NSW-North-Sydney/Customer-Success-Manager--Paradox_JR-0110720",
     "/job/Australia-NSW-North-Sydney/Specialised-Account-Executive--Workday-Talent-Suite_JR-0109906",
     "/job/Australia-NSW-North-Sydney/Sr-Financials-Functional-Consultant_JR-0106361",
     "/job/Australia-NSW-North-Sydney/Sr-Solution-Consultant_JR-0110890",
@@ -2277,7 +2278,6 @@
     "/job/USA-CA-Pleasanton/Director--Change-Enablement---UX--Business-Technology-_JR-0110340",
     "/job/USA-CA-Pleasanton/Director--Client-Platform-Engineering_JR-IC-000077",
     "/job/USA-CA-Pleasanton/Director--Enterprise-Applications_JR-0109389",
-    "/job/USA-CA-Pleasanton/Director--Strategy-and-Operations---Data-Cloud_JR-0108771-1",
     "/job/USA-CA-Pleasanton/Director-of-Program-Management--M-A---Growth_JR-0109770",
     "/job/USA-CA-Pleasanton/Enterprise-Applications-Analyst--Talent-and-Learning_JR-0109611-1",
     "/job/USA-CA-Pleasanton/IT-Risk-Manager--BT-Risk-Management_JR-0110077-1",
