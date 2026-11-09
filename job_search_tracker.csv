@@ -725,7 +725,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Confido,b4fa4a5f-30c1-42ef-961a-fd0e3b7cdbc8,Product Marketer,https://jobs.ashbyhq.com/confido/b4fa4a5f-30c1-42ef-961a-fd0e3b7cdbc8,31,,,2026-09-18
 2026-09-11,Confido,b92ca21b-c771-44d0-991b-e3dae7654dab,Applied AI Data Analyst,https://jobs.ashbyhq.com/confido/b92ca21b-c771-44d0-991b-e3dae7654dab,79,,,2026-09-18
 2026-09-11,Confido,ba89efef-fbef-4297-9dfb-956de57d4867,People Operations Manager,https://jobs.ashbyhq.com/confido/ba89efef-fbef-4297-9dfb-956de57d4867,0,,,2026-09-18
-2026-09-11,Confido,c61f8645-a090-44ec-ba0e-661f10c66033,Director of Revenue Growth Management,https://jobs.ashbyhq.com/confido/c61f8645-a090-44ec-ba0e-661f10c66033,0,,,2026-09-18
+2026-09-11,Confido,c61f8645-a090-44ec-ba0e-661f10c66033,Head of Revenue Growth Management,https://jobs.ashbyhq.com/confido/c61f8645-a090-44ec-ba0e-661f10c66033,0,,,2026-09-18
 2026-09-11,Confido,c6a2eb44-6f4f-4e71-9e4c-b4bd33fbe691,Senior Data Scientist,https://jobs.ashbyhq.com/confido/c6a2eb44-6f4f-4e71-9e4c-b4bd33fbe691,0,,,2026-09-18
 2026-09-11,Confido,c77fe2ec-51d1-47ea-b616-b4e477a13696,Senior ML Ops Engineer,https://jobs.ashbyhq.com/confido/c77fe2ec-51d1-47ea-b616-b4e477a13696,0,,,2026-09-18
 2026-09-11,Confido,c7ee40c1-ac61-4329-9b7b-b5b7945cddc0,Product Manager,https://jobs.ashbyhq.com/confido/c7ee40c1-ac61-4329-9b7b-b5b7945cddc0,0,,,2026-09-18
@@ -1304,7 +1304,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Globus Medical,/job/Texas/Associate-Spine-Specialist--Longview--TX-_JR107545,"Associate Spine Specialist (Longview, TX)",https://globusmedical.wd5.myworkdayjobs.com/gmed_careers/job/Texas/Associate-Spine-Specialist--Longview--TX-_JR107545,25,,,2026-09-18
 2026-09-11,Globus Medical,/job/Texas/District-Sales-Manager--Houston--TX-_JR106531,"District Sales Manager (Houston, TX)",https://globusmedical.wd5.myworkdayjobs.com/gmed_careers/job/Texas/District-Sales-Manager--Houston--TX-_JR106531,0,,,2026-09-18
 2026-10-06,Globus Medical,/job/Texas/Fast-Track-Associate-Trauma-Specialist--Dallas--TX-_JR108032-1,"Fast Track Associate Trauma Specialist (Dallas, TX)",https://globusmedical.wd5.myworkdayjobs.com/gmed_careers/job/Texas/Fast-Track-Associate-Trauma-Specialist--Dallas--TX-_JR108032-1,25,,,2026-10-13
-2026-09-28,Globus Medical,/job/Texas/Neurophysiologist--Austin--TX-_JR107830-1,"Neurophysiologist (Austin, TX)",https://globusmedical.wd5.myworkdayjobs.com/gmed_careers/job/Texas/Neurophysiologist--Austin--TX-_JR107830-1,25,,,2026-10-05
+2026-09-28,Globus Medical,/job/Texas/Neurophysiologist--Austin--TX-_JR107830-1,"Neurophysiologist (Austin, TX) | Sign-On Bonus for CNIM!",https://globusmedical.wd5.myworkdayjobs.com/gmed_careers/job/Texas/Neurophysiologist--Austin--TX-_JR107830-1,15,,,2026-10-05
 2026-09-11,Globus Medical,/job/United-Kingdom---Elstree/Account-Manager_JR102121-1,Account Manager,https://globusmedical.wd5.myworkdayjobs.com/gmed_careers/job/United-Kingdom---Elstree/Account-Manager_JR102121-1,0,,,2026-09-18
 2026-09-11,Globus Medical,/job/United-Kingdom/Clinical-Specialist---Midlands_JR107073-1,Clinical Specialist - Midlands,https://globusmedical.wd5.myworkdayjobs.com/gmed_careers/job/United-Kingdom/Clinical-Specialist---Midlands_JR107073-1,15,,,2026-09-18
 2026-09-11,Globus Medical,/job/United-Kingdom/Clinical-Specialist---Midlands_JR107514,Clinical Specialist - Midlands,https://globusmedical.wd5.myworkdayjobs.com/gmed_careers/job/United-Kingdom/Clinical-Specialist---Midlands_JR107514,15,,,2026-09-18
@@ -2606,6 +2606,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-10-26,Traba,19a0670e-0897-4e9b-bef6-16f4dc2f25e2,Business Operations Specialist (Live Operations - Colombia),https://jobs.ashbyhq.com/traba/19a0670e-0897-4e9b-bef6-16f4dc2f25e2,56,,,2026-11-02
 2026-09-17,Traba,1b41198d-75df-44cc-b0ef-2acc0560526d,Enterprise Growth Operations,https://jobs.ashbyhq.com/traba/1b41198d-75df-44cc-b0ef-2acc0560526d,56,,,2026-09-24
 2026-10-26,Traba,240e463b-e221-4bee-a4a3-aa3aa49e40ba,Senior Product Manager (Marketplace),https://jobs.ashbyhq.com/traba/240e463b-e221-4bee-a4a3-aa3aa49e40ba,0,,,2026-11-02
+2026-11-09,Traba,248d3d06-a55d-4c2d-8bf7-f1c5c7f8e0c1,Senior Software Engineer (AI Agents),https://jobs.ashbyhq.com/traba/248d3d06-a55d-4c2d-8bf7-f1c5c7f8e0c1,0,,,2026-11-16
 2026-09-28,Traba,24edb88f-5ac9-45da-a67e-ad526f262345,Senior Product Manager (Marketplace),https://jobs.ashbyhq.com/traba/24edb88f-5ac9-45da-a67e-ad526f262345,0,,,2026-10-05
 2026-11-02,Traba,28dba0ef-222c-4c87-911f-68ea40cd8781,Senior Software Engineer (Applied AI),https://jobs.ashbyhq.com/traba/28dba0ef-222c-4c87-911f-68ea40cd8781,0,,,2026-11-09
 2026-10-12,Traba,2ac33a94-cfdd-4b4a-80de-0b1f1d76016a,Customer Success Specialist - Philippines,https://jobs.ashbyhq.com/traba/2ac33a94-cfdd-4b4a-80de-0b1f1d76016a,56,,,2026-10-19
@@ -2616,6 +2617,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-25,Traba,3571c886-629c-41d7-a43a-d734f7d96dff,"Field Operator - Reno, NV",https://jobs.ashbyhq.com/traba/3571c886-629c-41d7-a43a-d734f7d96dff,15,,,2026-10-02
 2026-09-11,Traba,3586723b-cedb-446e-803d-cad429c94c50,"Customer On-Site - Louisville, KY",https://jobs.ashbyhq.com/traba/3586723b-cedb-446e-803d-cad429c94c50,15,,,2026-09-18
 2026-11-06,Traba,374f18a8-6daf-439a-a28a-d4a09da730cd,Strategy & Operations Analyst - Summer 2027 Graduates,https://jobs.ashbyhq.com/traba/374f18a8-6daf-439a-a28a-d4a09da730cd,56,,,2026-11-13
+2026-11-09,Traba,37b7bdb8-a8c3-4b5e-b2b1-44f454e41914,Sales Development Representative - Summer 2027 Graduates ,https://jobs.ashbyhq.com/traba/37b7bdb8-a8c3-4b5e-b2b1-44f454e41914,56,,,2026-11-16
 2026-10-26,Traba,3c9633fe-d447-419c-9ddc-a29b3af92fa3,Billing Operations Specialist (Philippines),https://jobs.ashbyhq.com/traba/3c9633fe-d447-419c-9ddc-a29b3af92fa3,45,,,2026-11-02
 2026-11-03,Traba,3fa4f992-9100-4179-891c-1c09df43e88b,Strategic Finance Lead,https://jobs.ashbyhq.com/traba/3fa4f992-9100-4179-891c-1c09df43e88b,0,,,2026-11-10
 2026-10-19,Traba,429714cd-d903-4795-bb8f-5531bcbaf19f,Staff Product Manager (AI Agents),https://jobs.ashbyhq.com/traba/429714cd-d903-4795-bb8f-5531bcbaf19f,0,,,2026-10-26
@@ -2658,6 +2660,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-15,Traba,7ff89793-a58c-4d65-b13a-dae6984eb5aa,"Field Operator - Kansas City, MO",https://jobs.ashbyhq.com/traba/7ff89793-a58c-4d65-b13a-dae6984eb5aa,15,,,2026-09-22
 2026-09-21,Traba,80035223-18d9-4d54-8e1c-4f1687bd6a6b,Senior Product Manager (Marketplace),https://jobs.ashbyhq.com/traba/80035223-18d9-4d54-8e1c-4f1687bd6a6b,0,,,2026-09-28
 2026-10-26,Traba,8249ad53-e620-4027-b2bf-b9f03b5f304e,"ZZ Test - Field Operator - Mechanicsburg, PA",https://jobs.ashbyhq.com/traba/8249ad53-e620-4027-b2bf-b9f03b5f304e,15,,,2026-11-02
+2026-11-09,Traba,87a768b1-1ac4-4eef-b9d9-8059d49a2b60,Staff Software Engineer (AI Agents),https://jobs.ashbyhq.com/traba/87a768b1-1ac4-4eef-b9d9-8059d49a2b60,0,,,2026-11-16
 2026-10-19,Traba,87b80c7c-fb17-4cfd-98cb-571f280b4692,Product Manager (Marketplace),https://jobs.ashbyhq.com/traba/87b80c7c-fb17-4cfd-98cb-571f280b4692,0,,,2026-10-26
 2026-10-26,Traba,8d41b68e-1984-4d32-9932-67ee8027ee03,Staff Software Engineer (Applied AI),https://jobs.ashbyhq.com/traba/8d41b68e-1984-4d32-9932-67ee8027ee03,0,,,2026-11-02
 2026-10-26,Traba,8d7bba81-a715-4f31-b774-ed72deee6759,Staff Product Manager (Marketplace),https://jobs.ashbyhq.com/traba/8d7bba81-a715-4f31-b774-ed72deee6759,0,,,2026-11-02
@@ -2672,6 +2675,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-10-12,Traba,9e395e2f-50d7-4557-bb25-2f4fb0a2a929,"Field Operator - Aurora, IL",https://jobs.ashbyhq.com/traba/9e395e2f-50d7-4557-bb25-2f4fb0a2a929,15,,,2026-10-19
 2026-09-11,Traba,a0364f1d-32f6-4035-ab3a-fc9e124911ee,Head of Operations,https://jobs.ashbyhq.com/traba/a0364f1d-32f6-4035-ab3a-fc9e124911ee,0,,,2026-09-18
 2026-10-05,Traba,a12bc707-ee26-4f39-be0e-70e5fcf39cb8,Staff Product Manager (AI Agents),https://jobs.ashbyhq.com/traba/a12bc707-ee26-4f39-be0e-70e5fcf39cb8,0,,,2026-10-12
+2026-11-09,Traba,a399d0af-4f76-4c5f-abc1-e8d04e063bbf,Senior Software Engineer (Applied AI),https://jobs.ashbyhq.com/traba/a399d0af-4f76-4c5f-abc1-e8d04e063bbf,0,,,2026-11-16
 2026-09-25,Traba,a399db36-6b7c-4466-8498-6947bb34d123,"Customer On-Site - Reading, PA",https://jobs.ashbyhq.com/traba/a399db36-6b7c-4466-8498-6947bb34d123,15,,,2026-10-02
 2026-09-11,Traba,a3ec70b5-1b23-4fc2-af70-ac05b623915f,Staff Product Manager (Marketplace),https://jobs.ashbyhq.com/traba/a3ec70b5-1b23-4fc2-af70-ac05b623915f,0,,,2026-09-18
 2026-09-25,Traba,a45a9288-35e0-49c2-aee6-0915e52b9578,"Field Operator - Austin, TX",https://jobs.ashbyhq.com/traba/a45a9288-35e0-49c2-aee6-0915e52b9578,15,,,2026-10-02
@@ -2690,6 +2694,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Traba,b9a447f5-292f-493a-b05d-56829e2f2e0b,"Field Operator - Joliet, IL",https://jobs.ashbyhq.com/traba/b9a447f5-292f-493a-b05d-56829e2f2e0b,15,,,2026-09-18
 2026-09-11,Traba,babb3325-d3fa-4768-9543-d0add19a823a,"Field Operator - Cincinnati, OH",https://jobs.ashbyhq.com/traba/babb3325-d3fa-4768-9543-d0add19a823a,15,,,2026-09-18
 2026-09-11,Traba,c101c491-5732-4ea7-b3c3-94047089285c,General Application,https://jobs.ashbyhq.com/traba/c101c491-5732-4ea7-b3c3-94047089285c,45,,,2026-09-18
+2026-11-09,Traba,c53209da-2da7-4dae-9a31-9c55cca144eb,Strategic Finance Lead,https://jobs.ashbyhq.com/traba/c53209da-2da7-4dae-9a31-9c55cca144eb,0,,,2026-11-16
 2026-10-03,Traba,c728bfa0-7dc6-4217-984f-a2316ff07c03,"On-site Shift Manager - Harrisburg, PA",https://jobs.ashbyhq.com/traba/c728bfa0-7dc6-4217-984f-a2316ff07c03,0,,,2026-10-10
 2026-09-14,Traba,c7c603d8-3029-4660-9a18-2e8a37b8ff3c,Product Manager (Marketplace),https://jobs.ashbyhq.com/traba/c7c603d8-3029-4660-9a18-2e8a37b8ff3c,0,,,2026-09-21
 2026-09-11,Traba,c8a894e7-8e24-4dc6-afc4-6e5b541420ce,"Field Operator - Maple Grove, MN",https://jobs.ashbyhq.com/traba/c8a894e7-8e24-4dc6-afc4-6e5b541420ce,15,,,2026-09-18
@@ -2720,6 +2725,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Traba,f0aa1278-f467-465c-9a06-72532b570dff,Staff Software Engineer (Applied AI),https://jobs.ashbyhq.com/traba/f0aa1278-f467-465c-9a06-72532b570dff,0,,,2026-09-18
 2026-09-28,Traba,f1695443-73b7-43b9-9087-6f9c2a4c86da,"Customer On-Site - Harrisburg, PA",https://jobs.ashbyhq.com/traba/f1695443-73b7-43b9-9087-6f9c2a4c86da,15,,,2026-10-05
 2026-10-09,Traba,f1c86a7c-0dae-447b-ac23-69fbaa553159,Business Operations Specialist (Live Operations - Mexico),https://jobs.ashbyhq.com/traba/f1c86a7c-0dae-447b-ac23-69fbaa553159,36,,,2026-10-16
+2026-11-09,Traba,f83a0738-02ac-48fb-af8e-2c939dd11ba0,Staff Software Engineer (Applied AI),https://jobs.ashbyhq.com/traba/f83a0738-02ac-48fb-af8e-2c939dd11ba0,0,,,2026-11-16
 2026-09-14,Traba,fa871ae4-3144-425a-9701-c45585e73cb0,Senior Product Manager (AI Agents),https://jobs.ashbyhq.com/traba/fa871ae4-3144-425a-9701-c45585e73cb0,0,,,2026-09-21
 2026-10-27,Traba,fbb3a334-4dc5-4c7b-a4d4-696786b505c5,"Customer On-Site - Wilmington, DE",https://jobs.ashbyhq.com/traba/fbb3a334-4dc5-4c7b-a4d4-696786b505c5,15,,,2026-11-03
 2026-10-26,Traba,fef374bb-f197-4312-afd1-a9b1a86a7096,Billing Operations Specialist (Colombia),https://jobs.ashbyhq.com/traba/fef374bb-f197-4312-afd1-a9b1a86a7096,45,,,2026-11-02
@@ -3184,6 +3190,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-10-19,Workday,/job/Canada-ON-Toronto/Enterprise-DataOps---Governance-Platform-Product-Owner_JR-0110858-1,Enterprise DataOps & Governance Platform Product Owner,https://workday.wd5.myworkdayjobs.com/Workday/job/Canada-ON-Toronto/Enterprise-DataOps---Governance-Platform-Product-Owner_JR-0110858-1,22,,,2026-10-26
 2026-09-11,Workday,/job/Canada-ON-Toronto/Principal-DataOps-Engineer--DevOps-for-Data-_JR-0109924,Principal DataOps Engineer (DevOps for Data),https://workday.wd5.myworkdayjobs.com/Workday/job/Canada-ON-Toronto/Principal-DataOps-Engineer--DevOps-for-Data-_JR-0109924,0,,,2026-09-18
 2026-09-11,Workday,/job/Canada-ON-Toronto/Principal-Engineer--AI-Production-Readiness_JR-0109418-1,"Principal Engineer, AI Production Readiness",https://workday.wd5.myworkdayjobs.com/Workday/job/Canada-ON-Toronto/Principal-Engineer--AI-Production-Readiness_JR-0109418-1,0,,,2026-09-18
+2026-11-09,Workday,/job/Canada-ON-Toronto/Principal-Managing-Partner_JR-0111117,Principal Managing Partner,https://workday.wd5.myworkdayjobs.com/Workday/job/Canada-ON-Toronto/Principal-Managing-Partner_JR-0111117,0,,,2026-11-16
 2026-10-30,Workday,/job/Canada-ON-Toronto/Regional-Sales-Director---Identity---Canada_JR-0111273,Regional Sales Director - Identity - Canada,https://workday.wd5.myworkdayjobs.com/Workday/job/Canada-ON-Toronto/Regional-Sales-Director---Identity---Canada_JR-0111273,0,,,2026-11-06
 2026-09-11,Workday,/job/Canada-ON-Toronto/Sr-Director--AI-Strategy-and-Product-Management_JR-0109095,"Sr. Director, AI Strategy and Product Management",https://workday.wd5.myworkdayjobs.com/Workday/job/Canada-ON-Toronto/Sr-Director--AI-Strategy-and-Product-Management_JR-0109095,0,,,2026-09-18
 2026-09-24,Workday,/job/Canada-ON-Toronto/Sr-Engagement-Manager_JR-0109406,Sr Engagement Manager,https://workday.wd5.myworkdayjobs.com/Workday/job/Canada-ON-Toronto/Sr-Engagement-Manager_JR-0109406,0,,,2026-10-01
