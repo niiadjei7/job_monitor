@@ -540,7 +540,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-10-06,Ashby,1e6bf4c7-6452-418b-9277-a28eb8a6f218,Implementation Consultant - Americas,https://jobs.ashbyhq.com/ashby/1e6bf4c7-6452-418b-9277-a28eb8a6f218,57,,,2026-10-13
 2026-10-28,Ashby,1f2542f3-4cb1-417a-8661-d0a52515d34c,Senior Paid Marketing Manager,https://jobs.ashbyhq.com/Ashby/1f2542f3-4cb1-417a-8661-d0a52515d34c,0,,,2026-11-04
 2026-09-18,Ashby,20155359-0ef1-4d45-9b64-acc9a54f1ceb,People Operations Coordinator,https://jobs.ashbyhq.com/ashby/20155359-0ef1-4d45-9b64-acc9a54f1ceb,35,,,2026-09-25
-2026-09-11,Ashby,206c6a86-74e3-4fcf-9175-fdfe07858676,"Manager of Renewals, SMB",https://jobs.ashbyhq.com/ashby/206c6a86-74e3-4fcf-9175-fdfe07858676,0,,,2026-09-18
+2026-09-11,Ashby,206c6a86-74e3-4fcf-9175-fdfe07858676,"Manager of Renewals, SMB",https://jobs.ashbyhq.com/Ashby/206c6a86-74e3-4fcf-9175-fdfe07858676,0,,,2026-09-18
 2026-09-11,Ashby,2107ff75-aa4e-4097-aef6-a76c04df3103,Marketing Strategy & Planning Manager,https://jobs.ashbyhq.com/ashby/2107ff75-aa4e-4097-aef6-a76c04df3103,0,,,2026-09-18
 2026-09-11,Ashby,2373fcd5-144b-4d66-a98b-dd0efb4eb9d1,Staff Product Designer,https://jobs.ashbyhq.com/Ashby/2373fcd5-144b-4d66-a98b-dd0efb4eb9d1,0,,,2026-09-18
 2026-09-11,Ashby,272bc3f4-5af6-4c14-b797-a424b62d306c,Senior Product Engineer - Canada,https://jobs.ashbyhq.com/Ashby/272bc3f4-5af6-4c14-b797-a424b62d306c,0,,,2026-09-18
@@ -1701,6 +1701,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-11-04,Leidos,/job/Canberra-Australian-Capital-Territory-Australia/Senior-Cyber-Security-GRC-Consultant_R-00196189,Senior Cyber Security GRC Consultant,https://leidos.wd5.myworkdayjobs.com/external/job/Canberra-Australian-Capital-Territory-Australia/Senior-Cyber-Security-GRC-Consultant_R-00196189,0,,,2026-11-11
 2026-11-09,Leidos,/job/Canberra-Australian-Capital-Territory-Australia/Senior-DevOps-Engineer---TSPV_R-00196183-4,Senior DevOps Engineer - TSPV,https://leidos.wd5.myworkdayjobs.com/external/job/Canberra-Australian-Capital-Territory-Australia/Senior-DevOps-Engineer---TSPV_R-00196183-4,0,,,2026-11-16
 2026-09-11,Leidos,/job/Canberra-Australian-Capital-Territory-Australia/Senior-Security-Engineer_R-00183997,Senior Security Engineer,https://leidos.wd5.myworkdayjobs.com/external/job/Canberra-Australian-Capital-Territory-Australia/Senior-Security-Engineer_R-00183997,0,,,2026-09-18
+2026-11-11,Leidos,/job/Canberra-Australian-Capital-Territory-Australia/Senior-Security-Engineer_R-00196741,Senior Security Engineer,https://leidos.wd5.myworkdayjobs.com/external/job/Canberra-Australian-Capital-Territory-Australia/Senior-Security-Engineer_R-00196741,0,,,2026-11-18
 2026-09-11,Leidos,/job/Canberra-Australian-Capital-Territory-Australia/Senior-Software-Engineer---9-months_R-00187653,Senior Software Engineer - 9 months,https://leidos.wd5.myworkdayjobs.com/external/job/Canberra-Australian-Capital-Territory-Australia/Senior-Software-Engineer---9-months_R-00187653,0,,,2026-09-18
 2026-09-17,Leidos,/job/Canberra-Australian-Capital-Territory-Australia/Senior-Software-Engineer_R-00175650,Senior Software Engineer,https://leidos.wd5.myworkdayjobs.com/external/job/Canberra-Australian-Capital-Territory-Australia/Senior-Software-Engineer_R-00175650,0,,,2026-09-24
 2026-09-11,Leidos,/job/Chantilly-VA/Imagery-Analyst_R-00185489,Imagery Analyst,https://leidos.wd5.myworkdayjobs.com/external/job/Chantilly-VA/Imagery-Analyst_R-00185489,25,,,2026-09-18
@@ -1952,6 +1953,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Leidos,/job/Reston-VA/Senior-Data-Scientist_R-00190268,Senior Data Scientist,https://leidos.wd5.myworkdayjobs.com/external/job/Reston-VA/Senior-Data-Scientist_R-00190268,0,,,2026-09-18
 2026-09-11,Leidos,/job/Reston-VA/Senior-Data-Scientist_R-00190269,Senior Data Scientist,https://leidos.wd5.myworkdayjobs.com/external/job/Reston-VA/Senior-Data-Scientist_R-00190269,0,,,2026-09-18
 2026-09-11,Leidos,/job/Reston-VA/Software-Developer---Multiple-Levels---TS-SCI-Poly-Required_R-00182411,Software Developer - Multiple Levels - TS/SCI Poly Required,https://leidos.wd5.myworkdayjobs.com/external/job/Reston-VA/Software-Developer---Multiple-Levels---TS-SCI-Poly-Required_R-00182411,69,,,2026-09-18
+2026-11-11,Leidos,/job/Reston-VA/Software-Engineer--AI--Autonomy-and-Platform-Development_R-00196732,"Software Engineer- AI, Autonomy and Platform Development",https://leidos.wd5.myworkdayjobs.com/external/job/Reston-VA/Software-Engineer--AI--Autonomy-and-Platform-Development_R-00196732,58,,,2026-11-18
 2026-09-21,Leidos,/job/Ridgecrest-CA/Desktop-Support-Technician_R-00192574,Desktop Support Technician,https://leidos.wd5.myworkdayjobs.com/external/job/Ridgecrest-CA/Desktop-Support-Technician_R-00192574,25,,,2026-09-28
 2026-09-30,Leidos,/job/Rockville-MD/Business-Analyst-Lead_R-00190513-1,Business Analyst Lead,https://leidos.wd5.myworkdayjobs.com/external/job/Rockville-MD/Business-Analyst-Lead_R-00190513-1,0,,,2026-10-07
 2026-09-11,Leidos,/job/Rockville-MD/Lead-Identity-and-Access-Management--ICAM--Engineer_R-00188825,Lead Identity and Access Management (ICAM) Engineer,https://leidos.wd5.myworkdayjobs.com/external/job/Rockville-MD/Lead-Identity-and-Access-Management--ICAM--Engineer_R-00188825,0,,,2026-09-18
@@ -2026,6 +2028,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Lightfield,416929e0-a2ff-43ca-b787-cdfbe8f3d72f,VP of Sales,https://jobs.ashbyhq.com/lightfield/416929e0-a2ff-43ca-b787-cdfbe8f3d72f,0,,,2026-09-18
 2026-09-11,Lightfield,4386721e-6c4b-44fd-9a0f-9ba3311cf3d0,"Software Engineer, Full Stack (Staff)",https://jobs.ashbyhq.com/lightfield/4386721e-6c4b-44fd-9a0f-9ba3311cf3d0,0,,,2026-09-18
 2026-09-11,Lightfield,46e9843d-3b60-4f54-b4f8-ae8784559383,"Software Engineer, Backend (Staff+)",https://jobs.ashbyhq.com/Lightfield/46e9843d-3b60-4f54-b4f8-ae8784559383,0,,,2026-09-18
+2026-11-11,Lightfield,49122ae5-60de-4015-ad02-96eec9d4337a,Head of Revenue Operations,https://jobs.ashbyhq.com/Lightfield/49122ae5-60de-4015-ad02-96eec9d4337a,0,,,2026-11-18
 2026-10-21,Lightfield,4b300dfd-b185-46a6-9056-13ae1a71dc75,Research Scientist (Staff+),https://jobs.ashbyhq.com/Lightfield/4b300dfd-b185-46a6-9056-13ae1a71dc75,0,,,2026-10-28
 2026-09-11,Lightfield,53136a59-0336-47b7-ac8e-1e08bcb0ba6d,Head of Product Marketing,https://jobs.ashbyhq.com/lightfield/53136a59-0336-47b7-ac8e-1e08bcb0ba6d,0,,,2026-09-18
 2026-09-11,Lightfield,57d8b0bf-946d-4bed-8135-931d10429c6e,Growth & Delivery Lead,https://jobs.ashbyhq.com/lightfield/57d8b0bf-946d-4bed-8135-931d10429c6e,0,,,2026-09-18
@@ -2582,20 +2585,25 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-10-22,Seeq,057E2012B1,Senior Frontend Infrastructure Engineer,https://apply.workable.com/j/057E2012B1,0,,,2026-10-29
 2026-09-16,Seeq,0BEAE8BEA3,Analytics Engineer,https://apply.workable.com/j/0BEAE8BEA3,44,,,2026-09-23
 2026-09-22,Seeq,0C3EC72FFD,Senior Analytics Engineer,https://apply.workable.com/j/0C3EC72FFD,0,,,2026-09-29
+2026-11-11,Seeq,1079A9C88E,"Industry Marketing Manager, Batch Industries",https://apply.workable.com/j/1079A9C88E,0,,,2026-11-18
 2026-09-11,Seeq,1378093793,Staff Full Stack Software Engineer,https://apply.workable.com/j/1378093793,0,,,2026-09-18
 2026-09-21,Seeq,1B6E0A1710,AI Software Engineer - Staff/Principal,https://apply.workable.com/j/1B6E0A1710,0,,,2026-09-28
 2026-09-11,Seeq,232B1DD404,Marketing Operations & Analytics Manager,https://apply.workable.com/j/232B1DD404,0,,,2026-09-18
 2026-09-11,Seeq,2BB881CA50,Staff Full Stack Software Engineer,https://apply.workable.com/j/2BB881CA50,0,,,2026-09-18
 2026-10-07,Seeq,311BAB3574,Platform Software Engineer - Staff/Principal,https://apply.workable.com/j/311BAB3574,0,,,2026-10-14
+2026-11-11,Seeq,3462CB4990,Senior Campaign Manager,https://apply.workable.com/j/3462CB4990,0,,,2026-11-18
 2026-09-11,Seeq,35A75D9608,Enterprise Account Executive - APAC,https://apply.workable.com/j/35A75D9608,11,,,2026-09-18
 2026-09-15,Seeq,38946F7E9D,Industry Principal Oil & Gas,https://apply.workable.com/j/38946F7E9D,0,,,2026-09-22
 2026-09-11,Seeq,3990AA881B,Business Development Representative - EMEA,https://apply.workable.com/j/3990AA881B,0,,,2026-09-18
 2026-09-11,Seeq,3A53339B45,Salesforce & GTM Applications Technical Lead,https://apply.workable.com/j/3A53339B45,0,,,2026-09-18
+2026-11-11,Seeq,3CED77D470,Account Manager Renewals - APAC,https://apply.workable.com/j/3CED77D470,0,,,2026-11-18
 2026-10-06,Seeq,407E6AC987,Staff Accountant (Six-Month Contract),https://apply.workable.com/j/407E6AC987,0,,,2026-10-13
 2026-09-11,Seeq,41E65B3CDE,Customer Support Operations Intelligence Engineer,https://apply.workable.com/j/41E65B3CDE,42,,,2026-09-18
+2026-11-11,Seeq,42A50311BA,"AI Application Engineer, EMEA",https://apply.workable.com/j/42A50311BA,70,,,2026-11-18
 2026-10-22,Seeq,4AB32531D8,Senior Frontend Infrastructure Engineer,https://apply.workable.com/j/4AB32531D8,0,,,2026-10-29
 2026-11-10,Seeq,4B8D6249AD,Business Development Representative - Singapore,https://apply.workable.com/j/4B8D6249AD,0,,,2026-11-17
 2026-09-15,Seeq,519AE21AD3,"Director, Product Marketing & Program Management",https://apply.workable.com/j/519AE21AD3,0,,,2026-09-22
+2026-11-11,Seeq,53DEC48BF0,Account Manager Renewals - APAC,https://apply.workable.com/j/53DEC48BF0,0,,,2026-11-18
 2026-09-16,Seeq,5897B0A025,Partner Marketing Specialist - (Contractor),https://apply.workable.com/j/5897B0A025,57,,,2026-09-23
 2026-10-02,Seeq,58C33A8899,Senior Solutions Consultant - APAC,https://apply.workable.com/j/58C33A8899,0,,,2026-10-09
 2026-09-25,Seeq,5E4EF49436,"Commercial Account Executive, New Customer Acquisition",https://apply.workable.com/j/5E4EF49436,42,,,2026-10-02
@@ -2604,6 +2612,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Seeq,752EBCAC0C,Enterprise Account Executive,https://apply.workable.com/j/752EBCAC0C,11,,,2026-09-18
 2026-09-11,Seeq,763AE68666,Senior/Staff Full Stack Software Engineer,https://apply.workable.com/j/763AE68666,0,,,2026-09-18
 2026-09-11,Seeq,802346B20E,Full Stack Software Engineer - Staff or Principal,https://apply.workable.com/j/802346B20E,0,,,2026-09-18
+2026-11-11,Seeq,895BA7259E,"Director of Professional Services, EMEA",https://apply.workable.com/j/895BA7259E,0,,,2026-11-18
 2026-09-11,Seeq,94CB19B50D,"Director of Customer Success, APAC - Industrial",https://apply.workable.com/j/94CB19B50D,0,,,2026-09-18
 2026-09-11,Seeq,951F8F7708,Business Development Representative - Americas,https://apply.workable.com/j/951F8F7708,20,,,2026-09-18
 2026-09-11,Seeq,95AFFF0CEF,VP of Engineering - Applications,https://apply.workable.com/j/95AFFF0CEF,0,,,2026-09-18
@@ -2612,6 +2621,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Seeq,A966C8897D,Staff/Principal Software Engineer - Developer Experience,https://apply.workable.com/j/A966C8897D,0,,,2026-09-18
 2026-09-17,Seeq,B25D5469EC,Senior Customer Success Manager,https://apply.workable.com/j/B25D5469EC,0,,,2026-09-24
 2026-09-11,Seeq,B3E0E9645D,Frontend Design Systems Engineer,https://apply.workable.com/j/B3E0E9645D,31,,,2026-09-18
+2026-11-11,Seeq,BB8B9721F6,"Director of Professional Services, EMEA",https://apply.workable.com/j/BB8B9721F6,0,,,2026-11-18
 2026-11-06,Seeq,BBC87DFB21,Business Development Representative - Australia,https://apply.workable.com/j/BBC87DFB21,0,,,2026-11-13
 2026-09-11,Seeq,C2318392FE,Senior/Staff Full Stack Software Engineer,https://apply.workable.com/j/C2318392FE,0,,,2026-09-18
 2026-09-11,Seeq,CA86062D7B,Technical Account Manager,https://apply.workable.com/j/CA86062D7B,0,,,2026-09-18
@@ -2788,7 +2798,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Vercel,5752956004,"Account Executive-Startups, EMEA (French or German Speaker)",https://job-boards.greenhouse.io/vercel/jobs/5752956004,26,,,2026-09-18
 2026-10-14,Vercel,5778418004,Forward-Deployed Engineer,https://job-boards.greenhouse.io/vercel/jobs/5778418004,37,,,2026-10-21
 2026-09-24,Vercel,5789770004,"Account Executive, Startups, Install Base",https://job-boards.greenhouse.io/vercel/jobs/5789770004,46,,,2026-10-01
-2026-10-16,Vercel,5796302004,Solutions Architect,https://job-boards.greenhouse.io/vercel/jobs/5796302004,59,,,2026-10-23
+2026-10-16,Vercel,5796302004,Solutions Architect,https://job-boards.greenhouse.io/vercel/jobs/5796302004,33,,,2026-10-23
 2026-09-11,Vercel,5798406004,"Software Engineer, AI Gateway",https://job-boards.greenhouse.io/vercel/jobs/5798406004,22,,,2026-09-18
 2026-09-11,Vercel,5798416004,"Software Engineer, Workflows",https://job-boards.greenhouse.io/vercel/jobs/5798416004,31,,,2026-09-18
 2026-09-11,Vercel,5806456004,"Manager, Solutions Architecture",https://job-boards.greenhouse.io/vercel/jobs/5806456004,0,,,2026-09-18
@@ -3165,6 +3175,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-10-15,Workday,/job/Australia-NSW-North-Sydney/Customer-Success-Manager--Paradox_JR-0110720,"Customer Success Manager, Paradox",https://workday.wd5.myworkdayjobs.com/Workday/job/Australia-NSW-North-Sydney/Customer-Success-Manager--Paradox_JR-0110720,0,,,2026-10-22
 2026-09-11,Workday,/job/Australia-NSW-North-Sydney/Planning-Account-Executive---Customer-Base_JR-0109445,Planning Account Executive - Customer Base,https://workday.wd5.myworkdayjobs.com/Workday/job/Australia-NSW-North-Sydney/Planning-Account-Executive---Customer-Base_JR-0109445,26,,,2026-09-18
 2026-09-17,Workday,/job/Australia-NSW-North-Sydney/Public-Cloud-GTM-APJ--Director_JR-0110042,"Public Cloud Strategy & GTM Leader, APAC",https://workday.wd5.myworkdayjobs.com/Workday/job/Australia-NSW-North-Sydney/Public-Cloud-GTM-APJ--Director_JR-0110042,26,,,2026-09-24
+2026-11-11,Workday,/job/Australia-NSW-North-Sydney/Sales-Development-Representative_JR-0111301,Sales Development Representative,https://workday.wd5.myworkdayjobs.com/Workday/job/Australia-NSW-North-Sydney/Sales-Development-Representative_JR-0111301,26,,,2026-11-18
 2026-09-11,Workday,/job/Australia-NSW-North-Sydney/Senior-Customer-Strategy---Value-Manager_JR-0109685-1,Senior Customer Strategy & Value Manager,https://workday.wd5.myworkdayjobs.com/Workday/job/Australia-NSW-North-Sydney/Senior-Customer-Strategy---Value-Manager_JR-0109685-1,0,,,2026-09-18
 2026-09-11,Workday,/job/Australia-NSW-North-Sydney/Specialised-Account-Executive--Workday-Talent-Suite_JR-0109906,Specialised Account Executive- Workday Talent Suite,https://workday.wd5.myworkdayjobs.com/Workday/job/Australia-NSW-North-Sydney/Specialised-Account-Executive--Workday-Talent-Suite_JR-0109906,11,,,2026-09-18
 2026-09-11,Workday,/job/Australia-NSW-North-Sydney/Sr-Financials-Functional-Consultant_JR-0106361,Sr Financials Functional Consultant,https://workday.wd5.myworkdayjobs.com/Workday/job/Australia-NSW-North-Sydney/Sr-Financials-Functional-Consultant_JR-0106361,0,,,2026-09-18
@@ -3472,6 +3483,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-10-13,Workday,/job/Japan-Tokyo/Business-Development-Representative_JR-0110622,Business Development Representative,https://workday.wd5.myworkdayjobs.com/Workday/job/Japan-Tokyo/Business-Development-Representative_JR-0110622,26,,,2026-10-20
 2026-10-06,Workday,/job/Japan-Tokyo/Financials-Strategist_JR-0110564,Financials Strategist,https://workday.wd5.myworkdayjobs.com/Workday/job/Japan-Tokyo/Financials-Strategist_JR-0110564,26,,,2026-10-13
 2026-10-14,Workday,/job/Japan-Tokyo/Global-Account-Manager_JR-0110620,Global Account Manager,https://workday.wd5.myworkdayjobs.com/Workday/job/Japan-Tokyo/Global-Account-Manager_JR-0110620,0,,,2026-10-21
+2026-11-11,Workday,/job/Japan-Tokyo/Principal-Consultant---HCM_JR-0110970,Principal Consultant - HCM,https://workday.wd5.myworkdayjobs.com/Workday/job/Japan-Tokyo/Principal-Consultant---HCM_JR-0110970,0,,,2026-11-18
 2026-10-20,Workday,/job/Japan-Tokyo/Principal-Senior-Service-Executive_JR-0110961,Principal/Senior Service Executive,https://workday.wd5.myworkdayjobs.com/Workday/job/Japan-Tokyo/Principal-Senior-Service-Executive_JR-0110961,0,,,2026-10-27
 2026-09-17,Workday,/job/Japan-Tokyo/Principal-Service-Executive_JR-0109905-1,Principal Service Executive,https://workday.wd5.myworkdayjobs.com/Workday/job/Japan-Tokyo/Principal-Service-Executive_JR-0109905-1,0,,,2026-09-24
 2026-09-11,Workday,/job/Japan-Tokyo/Senior-Account-Executive_JR-0109320,Senior Account Executive,https://workday.wd5.myworkdayjobs.com/Workday/job/Japan-Tokyo/Senior-Account-Executive_JR-0109320,0,,,2026-09-18
@@ -3615,7 +3627,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Workday,/job/USA-CA-Pleasanton/Director--Product-Manager--Context-Engine---Data-Cloud_JR-0109108,"Director, Product Management - Context Engine, Data Cloud",https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Director--Product-Manager--Context-Engine---Data-Cloud_JR-0109108,0,,,2026-09-18
 2026-10-02,Workday,/job/USA-CA-Pleasanton/Director--Software-Development-Engineering---PE-Platforms_JR-0109619,"Director, Software Development Engineering - PE Platforms",https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Director--Software-Development-Engineering---PE-Platforms_JR-0109619,0,,,2026-10-09
 2026-09-11,Workday,/job/USA-CA-Pleasanton/Director--Strategy-and-Operations---Data-Cloud_JR-0108771-1,"Director, Strategy and Operations - Data Cloud (Chief of Staff)",https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Director--Strategy-and-Operations---Data-Cloud_JR-0108771-1,0,,,2026-09-18
-2026-09-11,Workday,/job/USA-CA-Pleasanton/Director-of-Program-Management--M-A---Growth_JR-0109770,"Director of Program Management, M&A & Growth",https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Director-of-Program-Management--M-A---Growth_JR-0109770,0,,,2026-09-18
+2026-09-11,Workday,/job/USA-CA-Pleasanton/Director-of-Program-Management--M-A---Growth_JR-0109770,Finance M&A & Growth Director,https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Director-of-Program-Management--M-A---Growth_JR-0109770,0,,,2026-09-18
 2026-09-15,Workday,/job/USA-CA-Pleasanton/Enterprise-Applications-Analyst--Talent-and-Learning_JR-0109611-1,"Enterprise Applications Analyst, Talent and Learning",https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Enterprise-Applications-Analyst--Talent-and-Learning_JR-0109611-1,11,,,2026-09-22
 2026-11-06,Workday,/job/USA-CA-Pleasanton/Enterprise-Architect--Presales-Solution-Engineer---Identity_JR-0111473,"Enterprise Architect (Solutions Engineer), Identity",https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Enterprise-Architect--Presales-Solution-Engineer---Identity_JR-0111473,22,,,2026-11-13
 2026-09-11,Workday,/job/USA-CA-Pleasanton/Enterprise-Solutions-Architect--Engineering-Platform-Services_JR-0108034,"Enterprise Solutions Architect, Engineering Platform Services",https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-Pleasanton/Enterprise-Solutions-Architect--Engineering-Platform-Services_JR-0108034,33,,,2026-09-18
@@ -3804,6 +3816,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-29,Workday,/job/USA-CA-San-Francisco/Large-Enterprise-Customer-Base-Account-Executive_JR-0109359-1,Large Enterprise Customer Base Account Executive,https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-San-Francisco/Large-Enterprise-Customer-Base-Account-Executive_JR-0109359-1,22,,,2026-10-06
 2026-11-04,Workday,/job/USA-CA-San-Francisco/Large-Enterprise-Customer-Base-Account-Executive_JR-0111062,Large Enterprise Customer Base Account Executive,https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-San-Francisco/Large-Enterprise-Customer-Base-Account-Executive_JR-0111062,22,,,2026-11-11
 2026-11-04,Workday,/job/USA-CA-San-Francisco/Manager--Business-Development_JR-0111232,"Manager, Business Development",https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-San-Francisco/Manager--Business-Development_JR-0111232,0,,,2026-11-11
+2026-11-11,Workday,/job/USA-CA-San-Francisco/Medium-Enterprise-Account-Executive--Customer-Base_JR-0110841,"Medium Enterprise Account Executive, Customer Base",https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-San-Francisco/Medium-Enterprise-Account-Executive--Customer-Base_JR-0110841,22,,,2026-11-18
 2026-09-11,Workday,/job/USA-CA-San-Francisco/Principal--Partner-Account-Manager--Open-_JR-0108206,Sr. Partner Account Manager,https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-San-Francisco/Principal--Partner-Account-Manager--Open-_JR-0108206,0,,,2026-09-18
 2026-10-14,Workday,/job/USA-CA-San-Francisco/Principal--Product-Manager_JR-IC-000069-1,Principal Product Manager - Evisort AI,https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-San-Francisco/Principal--Product-Manager_JR-IC-000069-1,0,,,2026-10-21
 2026-09-29,Workday,/job/USA-CA-San-Francisco/Product-Manager--Integrations_JR-0108770,"Product Manager, Integrations",https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CA-San-Francisco/Product-Manager--Integrations_JR-0108770,0,,,2026-10-06
@@ -3827,7 +3840,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-10-23,Workday,/job/USA-CO-Boulder/Software-Development-Engineer---AI-Infrastructure-Development-Platform_JR-0110276,Software Development Engineer - AI Infrastructure Development Platform,https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CO-Boulder/Software-Development-Engineer---AI-Infrastructure-Development-Platform_JR-0110276,37,,,2026-10-30
 2026-09-11,Workday,/job/USA-CO-Boulder/Software-Development-Engineer---Workday-Everywhere_JR-0108946,Software Development Engineer - Workday Everywhere,https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CO-Boulder/Software-Development-Engineer---Workday-Everywhere_JR-0108946,22,,,2026-09-18
 2026-09-11,Workday,/job/USA-CO-Boulder/Software-Development-Engineer--US-Federal-_JR-0109612,Software Development Engineer (US Federal),https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CO-Boulder/Software-Development-Engineer--US-Federal-_JR-0109612,11,,,2026-09-18
-2026-09-15,Workday,/job/USA-CO-Boulder/Software-Development-Engineer_JR-0107838,Software Development Engineer - Developer Platform,https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CO-Boulder/Software-Development-Engineer_JR-0107838,37,,,2026-09-22
+2026-09-15,Workday,/job/USA-CO-Boulder/Software-Development-Engineer_JR-0107838,Software Development Engineer - Developer Platform,https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CO-Boulder/Software-Development-Engineer_JR-0107838,48,,,2026-09-22
 2026-09-17,Workday,/job/USA-CO-Boulder/Software-Engineer-Senior-Software-Engineer---AI-Platform--Agent-Runtime-_JR-0109507,Software Engineer/Senior Software Engineer - AI Platform (Agent Cell),https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CO-Boulder/Software-Engineer-Senior-Software-Engineer---AI-Platform--Agent-Runtime-_JR-0109507,0,,,2026-09-24
 2026-10-09,Workday,/job/USA-CO-Boulder/Sr-Machine-Learning-Engineer_JR-0110287,Sr. Machine Learning Engineer,https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CO-Boulder/Sr-Machine-Learning-Engineer_JR-0110287,0,,,2026-10-16
 2026-11-06,Workday,/job/USA-CO-Boulder/Sr-Product-Manager---Outbound--Travel-and-Expense-Management_JR-0111065,"Sr. Product Manager - Outbound, Travel and Expense Management",https://workday.wd5.myworkdayjobs.com/Workday/job/USA-CO-Boulder/Sr-Product-Manager---Outbound--Travel-and-Expense-Management_JR-0111065,0,,,2026-11-13
@@ -3853,6 +3866,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Workday,/job/USA-GA-Atlanta/HR-Technology-Portfolio-Manager_JR-0109634,Associate HR Technology Portfolio Manager,https://workday.wd5.myworkdayjobs.com/Workday/job/USA-GA-Atlanta/HR-Technology-Portfolio-Manager_JR-0109634,0,,,2026-09-18
 2026-09-11,Workday,/job/USA-GA-Atlanta/Manager--North-America-Payroll_JR-0109371,"Manager, North America Payroll",https://workday.wd5.myworkdayjobs.com/Workday/job/USA-GA-Atlanta/Manager--North-America-Payroll_JR-0109371,0,,,2026-09-18
 2026-09-17,Workday,/job/USA-GA-Atlanta/Manager--Sales-Development_JR-0108419,Sales Development Manager – Ascent Program,https://workday.wd5.myworkdayjobs.com/Workday/job/USA-GA-Atlanta/Manager--Sales-Development_JR-0108419,0,,,2026-09-24
+2026-11-11,Workday,/job/USA-GA-Atlanta/Medium-Enterprise-Account-Executive--Customer-Base_JR-0110842,"Medium Enterprise Account Executive, Customer Base",https://workday.wd5.myworkdayjobs.com/Workday/job/USA-GA-Atlanta/Medium-Enterprise-Account-Executive--Customer-Base_JR-0110842,22,,,2026-11-18
 2026-10-17,Workday,/job/USA-GA-Atlanta/People-Business-Partner---M-A_JR-0107852,"Integration & Transformation Lead, P&P M&A",https://workday.wd5.myworkdayjobs.com/Workday/job/USA-GA-Atlanta/People-Business-Partner---M-A_JR-0107852,0,,,2026-10-24
 2026-09-11,Workday,/job/USA-GA-Atlanta/Principal--Product-Owner--Business-Performance_JR-0108062,"Principal, Product Owner, Business Performance",https://workday.wd5.myworkdayjobs.com/Workday/job/USA-GA-Atlanta/Principal--Product-Owner--Business-Performance_JR-0108062,0,,,2026-09-18
 2026-09-11,Workday,/job/USA-GA-Atlanta/Principal-AI-Engineer_JR-0108761,Principal AI Engineer,https://workday.wd5.myworkdayjobs.com/Workday/job/USA-GA-Atlanta/Principal-AI-Engineer_JR-0108761,0,,,2026-09-18
