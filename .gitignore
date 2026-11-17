@@ -3,3 +3,6 @@ __pycache__/
 .pytest_cache/
 .venv/
 profile.yaml
+
+# Private oracle data (labels, postings from my own applications, profile)
+tests/oracle/

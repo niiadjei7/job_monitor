@@ -28,6 +28,10 @@ REQUEST_TIMEOUT = 20
 USER_AGENT = "job-monitor-bot/2.0 (personal use)"
 MCP_PROTOCOL_VERSION = "2025-03-26"
 NOTIFIED_STATE_SUFFIX = "notified-v2"
+# Cross-source record of delivered postings, keyed by company + title, so the
+# same job seen on an ATS board and on an aggregator alerts once.
+POSTING_KEYS_STATE_KEY = "notified-postings:v1"
+POSTING_KEY_TTL_DAYS = 90
 TRACKER_FIELDS = [
     "date_scraped",
     "source",
@@ -162,6 +166,37 @@ FOREIGN_REMOTE_MARKERS = {
     "latin america",
     "mexico",
     "united kingdom",
+    "ontario",
+    "toronto",
+    "mississauga",
+    "vancouver",
+    "british columbia",
+    "montreal",
+    "quebec",
+    "ireland",
+    "germany",
+    "france",
+    "spain",
+    "portugal",
+    "netherlands",
+    "poland",
+    "romania",
+    "ukraine",
+    "israel",
+    "brazil",
+    "argentina",
+    "colombia",
+    "chile",
+    "peru",
+    "costa rica",
+    "philippines",
+    "pakistan",
+    "nigeria",
+    "south africa",
+    "singapore",
+    "japan",
+    "china",
+    "vietnam",
 }
 
 
@@ -961,6 +996,62 @@ def fetch_ziprecruiter(source):
     return _parse_mcp_jobs(result)
 
 
+FREEHIRE_SEARCH_URL = "https://freehire.me/api/v1/agent/jobs/search"
+
+
+def fetch_freehire(source):
+    """Search the freehire.me public aggregator API (JSON, no key).
+
+    freehire collects postings from ~50 ATS platforms and job boards (including
+    LinkedIn listings) into one schema with full descriptions. Config keys:
+    ``queries`` (each up to 5 ``OR`` alternatives; ``title:`` limits a term to
+    the title), ``cities`` or ``countries`` (the API ORs these together, so use
+    one or the other), optional ``work_mode``, ``posted_within_days`` (default
+    2), ``page_size`` (default 100) and ``max_pages`` (default 3).
+    Returns 7-tuples whose last field is the posting's company.
+    """
+    queries = _source_value(source, "queries") or []
+    if not queries:
+        raise ValueError("freehire source requires queries")
+    page_size = int(source.get("page_size", 100))
+    max_pages = int(source.get("max_pages", 3))
+    jobs = {}
+    for query in queries:
+        for page in range(max_pages):
+            params = [
+                ("q", query),
+                ("limit", page_size),
+                ("offset", page * page_size),
+                ("posted_within_days", source.get("posted_within_days", 2)),
+                ("description_format", "text"),
+            ]
+            params += [("cities", city) for city in source.get("cities", [])]
+            params += [("countries", code) for code in source.get("countries", [])]
+            if source.get("work_mode"):
+                params.append(("work_mode", source["work_mode"]))
+            data = _get_json(FREEHIRE_SEARCH_URL, params=params)
+            if data.get("error"):
+                raise RuntimeError(f"freehire API error: {data['error']}")
+            batch = data.get("data") or []
+            for job in batch:
+                if job.get("closed_at") or not job.get("public_slug"):
+                    continue
+                jobs[job["public_slug"]] = (
+                    str(job["public_slug"]),
+                    _strip_html(job.get("title") or "Untitled"),
+                    job.get("url", ""),
+                    _location_text(job.get("location"), job.get("work_mode")),
+                    "",
+                    str(job.get("description") or ""),
+                    job.get("company") or "",
+                )
+            total = (data.get("meta") or {}).get("total", 0)
+            if len(batch) < page_size or (page + 1) * page_size >= total:
+                break
+            time.sleep(float(source.get("page_delay", 1)))
+    return list(jobs.values())
+
+
 FETCHERS = {
     "greenhouse": fetch_greenhouse,
     "lever": fetch_lever,
@@ -971,6 +1062,7 @@ FETCHERS = {
     "recruitee": fetch_recruitee,
     "jobvite": fetch_jobvite,
     "ziprecruiter": fetch_ziprecruiter,
+    "freehire": fetch_freehire,
     # These deliberately require an approved API/feed URL. Direct page scraping is not used.
     "linkedin": fetch_authorized_feed,
     "indeed": fetch_authorized_feed,
@@ -1047,6 +1139,7 @@ def _normalize_job(job):
     job_id, title, url, location = job[:4]
     context = job[4] if len(job) > 4 else ""
     description = job[5] if len(job) > 5 else ""
+    company = job[6] if len(job) > 6 else ""
     return (
         str(job_id),
         str(title),
@@ -1054,7 +1147,31 @@ def _normalize_job(job):
         str(location or ""),
         str(context or ""),
         str(description or ""),
+        str(company or ""),
     )
+
+
+COMPANY_SUFFIXES = {
+    "inc", "llc", "ltd", "limited", "corp", "corporation", "co", "plc", "gmbh",
+    "technologies", "technology", "holdings", "group",
+}
+
+
+def posting_key(company, title):
+    """Stable cross-source key: normalized company + normalized title."""
+    company_words = re.findall(r"[a-z0-9]+", str(company or "").casefold())
+    while company_words and company_words[-1] in COMPANY_SUFFIXES:
+        company_words.pop()
+    title_words = re.findall(r"[a-z0-9]+", str(title or "").casefold())
+    return f"{' '.join(company_words)}|{' '.join(title_words)}"
+
+
+def _load_posting_keys(state, today):
+    keys = state.get(POSTING_KEYS_STATE_KEY, {})
+    if not isinstance(keys, dict):
+        return {}
+    cutoff = (today - timedelta(days=POSTING_KEY_TTL_DAYS)).isoformat()
+    return {key: seen for key, seen in keys.items() if str(seen) >= cutoff}
 
 
 def send_discord_notification(webhook_url, source_name, new_jobs):
@@ -1109,14 +1226,48 @@ def _notified_state_key(state_key):
 
 
 def _has_eligibility_signal(result):
-    """Require a strong match or corroborating body-only category matches."""
-    # One incidental category match from description text is not enough, but
-    # two or more categories provide corroboration for otherwise generic titles.
-    return bool(
-        result.get("strong_category_match")
-        or "early-career" in result.get("matched", [])
-        or len(result.get("categories", [])) >= 2
+    """Require a role category in the title or team/department.
+
+    Description words alone never qualify a posting: oracle evaluation showed
+    body-only matches ("cloud", "analytics") letting sales and operations roles
+    through, and an early-career signal alone says nothing about the role.
+    """
+    return bool(result.get("strong_category_match"))
+
+
+def evaluate_job(source, profile, threshold, title, location, context="", description=""):
+    """Score one posting and decide whether it should be notified.
+
+    This is the single notification decision used by ``main()`` and by the
+    oracle evaluation, so both always measure the same rules.
+    """
+    location_matches_source = matches_location(location, source.get("location_filter"))
+    result = score_job(
+        title,
+        location,
+        context,
+        description,
+        source,
+        profile,
+        location_matches_source,
     )
+    has_eligibility_signal = _has_eligibility_signal(result)
+    is_eligible = (
+        not result["veto"]
+        and location_matches_source
+        and result["score"] >= threshold
+        and has_eligibility_signal
+    )
+    if (
+        is_eligible
+        and source.get("require_early_career")
+        and "early-career" not in result["matched"]
+    ):
+        # Broad sources (aggregators) alert only on explicit early-career
+        # postings; level-unstated roles there are too many to review.
+        is_eligible = False
+        result = {**result, "failed": result["failed"] + ["no early-career signal (required by source)"]}
+    return is_eligible, result, has_eligibility_signal
 
 
 def _rejection_reasons(result, threshold, has_eligibility_signal):
@@ -1127,7 +1278,7 @@ def _rejection_reasons(result, threshold, has_eligibility_signal):
     if score < threshold:
         reasons.append(f"score below threshold: {score} < {threshold}")
     if not has_eligibility_signal:
-        reasons.append("no strong title/context category or early-career signal")
+        reasons.append("no role category in title or team")
     return list(dict.fromkeys(reasons))
 
 
@@ -1174,6 +1325,8 @@ def main():
     threshold = score_threshold(profile)
     debug_rejections = _env_flag("DEBUG_REJECTIONS")
     state = load_state()
+    today = date.today()
+    posting_keys = _load_posting_keys(state, today)
     any_errors = False
 
     for source in sources:
@@ -1182,12 +1335,6 @@ def main():
 
         provider = _provider(source)
         name = source.get("name", source.get("slug", "unknown"))
-        keyword_categories = source.get(
-            "keyword_categories", source.get("keywords", [])
-        )
-        exclude_keywords = source.get("exclude_keywords", [])
-        early_career_keywords = source.get("early_career_keywords", [])
-        location_filter = source.get("location_filter")
         fetcher = FETCHERS.get(provider)
 
         if not fetcher:
@@ -1206,31 +1353,31 @@ def main():
             continue
 
         normalized_jobs = [_normalize_job(job) for job in jobs]
-        current_ids = {job_id for job_id, _, _, _, _, _ in normalized_jobs}
+        current_ids = {job[0] for job in normalized_jobs}
+        source_company = source.get("company") or name
+        excluded_companies = {
+            posting_key(item, "") for item in source.get("exclude_companies", [])
+        }
         eligible_jobs = []
         scored_jobs = []
         rejection_counts = Counter()
-        for job_id, title, url, location, context, description in normalized_jobs:
-            location_matches_source = matches_location(location, location_filter)
-            result = score_job(
-                title,
-                location,
-                context,
-                description,
-                source,
-                profile,
-                location_matches_source,
+        for job_id, title, url, location, context, description, company in normalized_jobs:
+            is_eligible, result, has_eligibility_signal = evaluate_job(
+                source, profile, threshold, title, location, context, description
             )
+            company = company or source_company
+            if is_eligible and posting_key(company, "") in excluded_companies:
+                is_eligible = False
+                result = {**result, "failed": result["failed"] + [f"excluded company: {company}"]}
             scored_jobs.append((job_id, title, url, result))
-            has_eligibility_signal = _has_eligibility_signal(result)
-            is_eligible = (
-                not result["veto"]
-                and location_matches_source
-                and result["score"] >= threshold
-                and has_eligibility_signal
-            )
             if is_eligible:
-                eligible_jobs.append((job_id, title, url, result))
+                if source.get("aggregator") and company:
+                    display_title = f"{title} @ {company}"
+                else:
+                    display_title = title
+                eligible_jobs.append(
+                    (job_id, display_title, url, result, posting_key(company, title))
+                )
             elif debug_rejections:
                 reasons = _rejection_reasons(
                     result, threshold, has_eligibility_signal
@@ -1243,15 +1390,27 @@ def main():
                     f"failed={json.dumps(reasons, ensure_ascii=False)}"
                 )
         update_tracker(name, scored_jobs)
-        new_jobs = [
-            (title, url, result["categories"], result["score"], result["summary"])
-            for job_id, title, url, result in eligible_jobs
-            if job_id not in notified_ids
-        ]
+        new_jobs = []
+        new_keys = []
+        duplicate_ids = set()
+        for job_id, title, url, result, key in eligible_jobs:
+            if job_id in notified_ids:
+                # Delivered on an earlier run: make sure its key is on record.
+                posting_keys.setdefault(key, today.isoformat())
+            elif key in posting_keys or key in new_keys:
+                # Same company + title already delivered by another source or
+                # earlier in this batch (e.g. one role posted in several cities).
+                duplicate_ids.add(job_id)
+            else:
+                new_jobs.append(
+                    (title, url, result["categories"], result["score"], result["summary"])
+                )
+                new_keys.append(key)
+        notified_ids.update(duplicate_ids)
 
         if debug_rejections:
             already_notified = sum(
-                job_id in notified_ids for job_id, _, _, _ in eligible_jobs
+                job[0] in notified_ids for job in eligible_jobs
             )
             reason_summary = ", ".join(
                 f"{reason}={count}"
@@ -1261,10 +1420,19 @@ def main():
                 f"DEBUG SUMMARY [{name}] fetched={len(normalized_jobs)} "
                 f"eligible={len(eligible_jobs)} rejected={len(normalized_jobs) - len(eligible_jobs)} "
                 f"already_notified={already_notified} new_eligible={len(new_jobs)} "
+                f"cross_source_duplicates={len(duplicate_ids)} "
                 f"reasons: {reason_summary}"
             )
 
-        if new_jobs:
+        first_run = notified_state_key not in state
+        if new_jobs and first_run and source.get("quiet_first_run"):
+            # A newly added broad source would otherwise flood Discord with its
+            # whole backlog. Record the backlog as seen and alert from next run.
+            print(f"{name}: first run, recorded {len(new_jobs)} existing posting(s) without alerting.")
+            notified_ids.update(job[0] for job in eligible_jobs)
+            for key in new_keys:
+                posting_keys[key] = today.isoformat()
+        elif new_jobs:
             print(f"{name}: {len(new_jobs)} new matching posting(s).")
             try:
                 send_discord_notification(webhook_url, name, new_jobs)
@@ -1272,7 +1440,9 @@ def main():
                 print(f"WARN: failed to notify for {name}: {exc}", file=sys.stderr)
                 any_errors = True
             else:
-                notified_ids.update(job_id for job_id, _, _, _ in eligible_jobs)
+                notified_ids.update(job[0] for job in eligible_jobs)
+                for key in new_keys:
+                    posting_keys[key] = today.isoformat()
         else:
             print(f"{name}: no new matching postings.")
 
@@ -1283,6 +1453,7 @@ def main():
         state[notified_state_key] = sorted(notified_ids)
         time.sleep(float(source.get("request_delay", 1)))
 
+    state[POSTING_KEYS_STATE_KEY] = dict(sorted(posting_keys.items()))
     save_state(state)
     if any_errors:
         sys.exit(2)

@@ -41,8 +41,42 @@ class AdapterTests(unittest.TestCase):
             "linkedin",
             "indeed",
             "ziprecruiter",
+            "freehire",
         }
         self.assertEqual(expected, set(job_monitor.FETCHERS))
+
+    @patch("job_monitor.time.sleep")
+    @patch("job_monitor._get_json")
+    def test_freehire_pages_dedupes_and_returns_company(self, get_json, _sleep):
+        def job(slug, title="Software Engineer", closed=None):
+            return {
+                "public_slug": slug,
+                "title": title,
+                "url": f"https://boards.test/{slug}",
+                "company": "Acme",
+                "location": "New York, NY",
+                "work_mode": "hybrid",
+                "description": "Build APIs in Python.",
+                "closed_at": closed,
+            }
+
+        get_json.side_effect = [
+            {"data": [job("a"), job("b", closed="2026-11-01")], "meta": {"total": 3}},
+            {"data": [job("c", "Backend &amp; API Engineer")], "meta": {"total": 3}},
+            {"data": [job("a")], "meta": {"total": 1}},
+        ]
+        jobs = job_monitor.fetch_freehire(
+            {"queries": ["q1", "q2"], "cities": ["New York"], "page_size": 2, "max_pages": 2}
+        )
+
+        self.assertEqual([j[0] for j in jobs], ["a", "c"])
+        self.assertEqual(jobs[1][1], "Backend & API Engineer")
+        self.assertEqual(jobs[0][3], "New York, NY, hybrid")
+        self.assertEqual(jobs[0][6], "Acme")
+        first_params = dict(get_json.call_args_list[0].kwargs["params"])
+        self.assertEqual(first_params["q"], "q1")
+        self.assertEqual(first_params["cities"], "New York")
+        self.assertEqual(dict(get_json.call_args_list[1].kwargs["params"])["offset"], 2)
 
     @patch("job_monitor._get_json")
     def test_greenhouse_lever_and_ashby_retain_locations_and_context(self, get_json):
@@ -677,7 +711,7 @@ class EndToEndTests(unittest.TestCase):
                 "skills",
                 "location",
                 "score below threshold: 35 < 45",
-                "no strong title/context category or early-career signal",
+                "no role category in title or team",
             ],
         )
 
@@ -761,14 +795,14 @@ class EndToEndTests(unittest.TestCase):
                             "Cloud Engineer",
                             "https://jobs.test/existing-match",
                             ["General"],
-                            90,
+                            55,
                             "General, location",
                         ),
                         (
                             "Platform Engineer",
                             "https://jobs.test/new",
                             ["General"],
-                            90,
+                            55,
                             "General, location",
                         ),
                     ],
@@ -848,8 +882,8 @@ class EndToEndTests(unittest.TestCase):
         self.assertTrue(
             any(
                 "DEBUG REJECT [Acme]" in line
-                and '"skills"' in line
-                and '"score below threshold: 35 < 45"' in line
+                and '"no role category in title or team"' in line
+                and '"score below threshold: 15 < 45"' in line
                 for line in rendered
             )
         )
@@ -889,7 +923,155 @@ class EndToEndTests(unittest.TestCase):
         self.assertNotIn("early-career", result["matched"])
         self.assertFalse(job_monitor._has_eligibility_signal(result))
 
-    def test_two_body_only_category_matches_are_an_eligibility_signal(self):
+    def test_same_posting_from_two_sources_alerts_once(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            config_path = Path(temp_dir) / "companies.yaml"
+            state_path = Path(temp_dir) / "state.json"
+            config_path.write_text(
+                "companies:\n"
+                "  - name: Acme\n"
+                "    ats: greenhouse\n"
+                "    slug: acme\n"
+                "    keywords: [software engineer]\n"
+                "searches:\n"
+                "  - id: agg\n"
+                "    name: Aggregator\n"
+                "    ats: lever\n"
+                "    aggregator: true\n"
+                "    keywords: [software engineer]\n",
+                encoding="utf-8",
+            )
+            state_path.write_text("{}", encoding="utf-8")
+            ats = Mock(return_value=[("a1", "Software Engineer", "https://acme.test/a1", "New York, NY")])
+            agg = Mock(
+                return_value=[
+                    ("x1", "Software Engineer", "https://agg.test/x1", "New York, NY", "", "", "Acme, Inc."),
+                    ("x2", "Software Engineer", "https://agg.test/x2", "New York, NY", "", "", "Other Co"),
+                ]
+            )
+            with (
+                patch.object(job_monitor, "CONFIG_PATH", config_path),
+                patch.object(job_monitor, "STATE_PATH", state_path),
+                patch.object(job_monitor, "PROFILE_PATH", Path(temp_dir) / "profile.yaml"),
+                patch.object(job_monitor, "TRACKER_PATH", Path(temp_dir) / "tracker.csv"),
+                patch.dict(job_monitor.FETCHERS, {"greenhouse": ats, "lever": agg}),
+                patch.dict(os.environ, {"DISCORD_WEBHOOK_URL": "https://discord.test/hook"}),
+                patch("job_monitor.send_discord_notification") as notify,
+                patch("job_monitor.time.sleep"),
+            ):
+                job_monitor.main()
+            sent = {call.args[1]: [job[0] for job in call.args[2]] for call in notify.call_args_list}
+            saved = json.loads(state_path.read_text(encoding="utf-8"))
+
+        self.assertEqual(sent["Acme"], ["Software Engineer"])
+        self.assertEqual(sent["Aggregator"], ["Software Engineer @ Other Co"])
+        self.assertIn("x1", saved["lever:agg:notified-v2"])
+        self.assertIn("acme|software engineer", saved[job_monitor.POSTING_KEYS_STATE_KEY])
+
+    def test_excluded_companies_and_mid_level_digits_are_not_notified(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            config_path = Path(temp_dir) / "companies.yaml"
+            config_path.write_text(
+                "searches:\n"
+                "  - id: agg\n"
+                "    name: Aggregator\n"
+                "    ats: lever\n"
+                "    aggregator: true\n"
+                "    keywords: [software engineer]\n"
+                "    exclude_keywords: [engineer 2, l2]\n"
+                "    exclude_companies: [Jobgether]\n",
+                encoding="utf-8",
+            )
+            agg = Mock(
+                return_value=[
+                    ("j1", "Software Engineer", "https://agg.test/j1", "Remote - US", "", "", "Jobgether"),
+                    ("j2", "Software Engineer 2", "https://agg.test/j2", "Remote - US", "", "", "Acme"),
+                    ("j3", "Software Engineer (L2)", "https://agg.test/j3", "Remote - US", "", "", "Acme"),
+                    ("j4", "Software Engineer 2026 New Grad", "https://agg.test/j4", "Remote - US", "", "", "Acme"),
+                ]
+            )
+            with (
+                patch.object(job_monitor, "CONFIG_PATH", config_path),
+                patch.object(job_monitor, "STATE_PATH", Path(temp_dir) / "state.json"),
+                patch.object(job_monitor, "PROFILE_PATH", Path(temp_dir) / "profile.yaml"),
+                patch.object(job_monitor, "TRACKER_PATH", Path(temp_dir) / "tracker.csv"),
+                patch.dict(job_monitor.FETCHERS, {"lever": agg}),
+                patch.dict(os.environ, {"DISCORD_WEBHOOK_URL": "https://discord.test/hook"}),
+                patch("job_monitor.send_discord_notification") as notify,
+                patch("job_monitor.time.sleep"),
+            ):
+                job_monitor.main()
+        sent = [job[0] for job in notify.call_args.args[2]]
+        self.assertEqual(sent, ["Software Engineer 2026 New Grad @ Acme"])
+
+    def test_quiet_first_run_records_backlog_without_alerting(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            config_path = Path(temp_dir) / "companies.yaml"
+            state_path = Path(temp_dir) / "state.json"
+            config_path.write_text(
+                "searches:\n"
+                "  - id: agg\n"
+                "    name: Aggregator\n"
+                "    ats: lever\n"
+                "    aggregator: true\n"
+                "    quiet_first_run: true\n"
+                "    keywords: [software engineer]\n",
+                encoding="utf-8",
+            )
+            state_path.write_text("{}", encoding="utf-8")
+            agg = Mock(return_value=[("j1", "Software Engineer", "https://agg.test/j1", "Remote - US", "", "", "Acme")])
+            with (
+                patch.object(job_monitor, "CONFIG_PATH", config_path),
+                patch.object(job_monitor, "STATE_PATH", state_path),
+                patch.object(job_monitor, "PROFILE_PATH", Path(temp_dir) / "profile.yaml"),
+                patch.object(job_monitor, "TRACKER_PATH", Path(temp_dir) / "tracker.csv"),
+                patch.dict(job_monitor.FETCHERS, {"lever": agg}),
+                patch.dict(os.environ, {"DISCORD_WEBHOOK_URL": "https://discord.test/hook"}),
+                patch("job_monitor.send_discord_notification") as notify,
+                patch("job_monitor.time.sleep"),
+            ):
+                job_monitor.main()
+                notify.assert_not_called()
+                agg.return_value = agg.return_value + [
+                    ("j2", "Backend Software Engineer", "https://agg.test/j2", "Remote - US", "", "", "Acme")
+                ]
+                job_monitor.main()
+            sent = [job[0] for job in notify.call_args.args[2]]
+        self.assertEqual(sent, ["Backend Software Engineer @ Acme"])
+
+    def test_require_early_career_source_option(self):
+        source = {
+            "keyword_categories": {"SWE": {"title": ["software engineer"]}},
+            "early_career_keywords": ["new grad", "engineer i"],
+            "require_early_career": True,
+        }
+        threshold = score.DEFAULT_SCORE_THRESHOLD
+        unstated, result, _ = job_monitor.evaluate_job(
+            source, {}, threshold, "Software Engineer", "Remote - US", "", "Build APIs."
+        )
+        new_grad, _, _ = job_monitor.evaluate_job(
+            source, {}, threshold, "Software Engineer, New Grad", "Remote - US", "", "Build APIs."
+        )
+        entry_level_body, _, _ = job_monitor.evaluate_job(
+            source, {}, threshold, "Software Engineer", "Remote - US", "", "An entry-level role."
+        )
+        self.assertFalse(unstated)
+        self.assertIn("no early-career signal (required by source)", result["failed"])
+        self.assertTrue(new_grad)
+        self.assertTrue(entry_level_body)
+
+    def test_posting_keys_expire(self):
+        from datetime import date as real_date
+
+        state = {job_monitor.POSTING_KEYS_STATE_KEY: {"a|b": "2026-01-01", "c|d": "2026-11-01"}}
+        keys = job_monitor._load_posting_keys(state, real_date(2026, 11, 17))
+        self.assertEqual(keys, {"c|d": "2026-11-01"})
+        self.assertEqual(job_monitor.posting_key("Acme, Inc.", "Software Engineer (NYC)"), "acme|software engineer nyc")
+
+    def test_body_only_category_matches_are_not_an_eligibility_signal(self):
+        # Reverses 8ae1266: oracle evaluation showed description-only matches
+        # letting sales and operations roles through. The role must be in the
+        # title or team/department.
         source = {
             "keyword_categories": {
                 "DevOps": {
@@ -906,10 +1088,10 @@ class EndToEndTests(unittest.TestCase):
         }
 
         result = score.score_job(
-            "Software Engineer",
+            "Account Executive",
             "Remote",
-            "Engineering",
-            "Build services on AWS and Kubernetes with CI/CD automation.",
+            "Sales",
+            "Sell services built on AWS and Kubernetes with CI/CD automation.",
             source,
             {},
             location_matches=True,
@@ -917,8 +1099,89 @@ class EndToEndTests(unittest.TestCase):
 
         self.assertEqual(result["categories"], ["DevOps", "AWS/Cloud"])
         self.assertFalse(result["strong_category_match"])
-        self.assertNotIn("early-career", result["matched"])
-        self.assertTrue(job_monitor._has_eligibility_signal(result))
+        self.assertFalse(job_monitor._has_eligibility_signal(result))
+
+    def test_level_and_location_alone_do_not_pass(self):
+        # The open scoring bug: right level + right location used to reach the
+        # threshold with no skill fit (25 + 20 = 45).
+        source = {
+            "keyword_categories": {
+                "Data Analytics": {"title": ["data analyst"], "context": ["analytics"]},
+            },
+            "early_career_keywords": ["junior", "entry level"],
+            "exclude_keywords": ["senior"],
+        }
+        profile = {"skills": {"data_analytics": ["analytics"]}}
+        threshold = score.DEFAULT_SCORE_THRESHOLD
+        notified, result, _ = job_monitor.evaluate_job(
+            source,
+            profile,
+            threshold,
+            "Junior Marketing Coordinator",
+            "New York, NY",
+            "Marketing",
+            "0-2 years of experience. You will report on campaign analytics.",
+        )
+        self.assertFalse(notified)
+        self.assertLess(result["score"], threshold)
+
+    def test_role_in_title_with_junior_signal_passes(self):
+        source = {
+            "keyword_categories": {
+                "Software Engineering": {"title": ["software engineer"], "context": []},
+            },
+            "early_career_keywords": ["junior", "engineer i"],
+            "exclude_keywords": ["senior", "engineer ii"],
+        }
+        notified, result, _ = job_monitor.evaluate_job(
+            source, {}, score.DEFAULT_SCORE_THRESHOLD,
+            "Software Engineer I", "New York, NY", "", "Build backend services in Python.",
+        )
+        self.assertTrue(notified)
+        self.assertIn("early-career", result["matched"])
+
+    def test_years_of_experience_gate(self):
+        self.assertEqual(score.required_years("3+ years of experience with Python"), 3)
+        self.assertEqual(score.required_years("1-3 years of experience"), 1)
+        self.assertEqual(score.required_years("minimum of 4 years of professional experience"), 4)
+        self.assertEqual(score.required_years("5 plus years working in SaaS"), 5)
+        self.assertIsNone(score.required_years("4 years of experience in lieu of a degree"))
+        self.assertIsNone(score.required_years("401(k) vesting after 3 years"))
+        self.assertIsNone(score.required_years("We have grown 10 years in a row"))
+
+        source = {"keyword_categories": {"SWE": {"title": ["software engineer"]}}}
+        result = score.score_job(
+            "Software Engineer", "New York, NY", "", "Requires 3+ years of experience.",
+            source, {}, location_matches=True,
+        )
+        self.assertTrue(result["veto"])
+        relaxed = score.score_job(
+            "Software Engineer", "New York, NY", "", "Requires 3+ years of experience.",
+            source, {"preferences": {"max_years_experience": 4}}, location_matches=True,
+        )
+        self.assertFalse(relaxed["veto"])
+
+    def test_non_role_titles_are_vetoed(self):
+        source = {
+            "keyword_categories": {"SWE": {"title": ["software engineer"]}},
+            "non_role_title_keywords": ["general application", "talent community"],
+        }
+        result = score.score_job(
+            "Software Engineer - Talent Community", "Remote", "", "", source, {},
+        )
+        self.assertTrue(result["veto"])
+        self.assertEqual(result["summary"], "veto: not a specific role")
+
+    def test_canadian_remote_locations_are_not_us_remote(self):
+        location_filter = {
+            "include": ["New York"],
+            "include_remote": True,
+            "remote_include": ["United States", "USA", "US"],
+            "allow_unspecified_remote": True,
+            "allow_unknown": False,
+        }
+        self.assertFalse(job_monitor.matches_location("Mississauga, remote", location_filter))
+        self.assertTrue(job_monitor.matches_location("Remote - US", location_filter))
 
 
 if __name__ == "__main__":
