@@ -321,8 +321,12 @@ companies:
     ats: recruitee
     slug: "faktionbv1"
 
+  # Disabled 2026-11-18: Workday answers 429 to GitHub's runners on the first
+  # request (since 2026-11-16), even at low volume. freehire indexes this
+  # employer from its own servers; the freehire searches cover its NYC-area
+  # and US-remote early-career roles.
   - name: "Workday"
-    enabled: true
+    enabled: false
     ats: workday
     host: "workday.wd5.myworkdayjobs.com"
     tenant: "workday"
@@ -363,23 +367,35 @@ companies:
     ats: ashby
     slug: "traba"
 
+  # Disabled 2026-11-18: Workday answers 429 to GitHub's runners on the first
+  # request (since 2026-11-16), even at low volume. freehire indexes this
+  # employer from its own servers; the freehire searches cover its NYC-area
+  # and US-remote early-career roles.
   - name: "Leidos"
-    enabled: true
+    enabled: false
     ats: workday
     host: "leidos.wd5.myworkdayjobs.com"
     tenant: "leidos"
     site: "external"
     search_text: "Junior"
 
+  # Disabled 2026-11-18: Workday answers 429 to GitHub's runners on the first
+  # request (since 2026-11-16), even at low volume. freehire indexes this
+  # employer from its own servers; the freehire searches cover its NYC-area
+  # and US-remote early-career roles.
   - name: "Globus Medical"
-    enabled: true
+    enabled: false
     ats: workday
     host: "globusmedical.wd5.myworkdayjobs.com"
     tenant: "globusmedical"
     site: "gmed_careers"
 
+  # Disabled 2026-11-18: Workday answers 429 to GitHub's runners on the first
+  # request (since 2026-11-16), even at low volume. freehire indexes this
+  # employer from its own servers; the freehire searches cover its NYC-area
+  # and US-remote early-career roles.
   - name: "Acrisure"
-    enabled: true
+    enabled: false
     ats: workday
     host: "acrisure.wd1.myworkdayjobs.com"
     tenant: "acrisure"

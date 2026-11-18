@@ -320,6 +320,9 @@ Every request is retried once after a timeout, connection error, 429 or 5xx
 a single slow response does not mark the whole run as failed. Disable a source
 whose endpoint is gone (as with Beacon Software's 404 since 2026-10-28) rather
 than leaving it to fail every run: a permanently red run hides new failures.
+The four Workday sources (Workday, Leidos, Globus Medical, Acrisure) are
+disabled for that reason: Workday has answered 429 to GitHub's runners since
+2026-11-16 on the first request, and freehire indexes those employers.
 
 ## Local verification
 
