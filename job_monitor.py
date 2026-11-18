@@ -18,7 +18,7 @@ from xml.etree import ElementTree
 import requests
 import yaml
 
-from score import score_job, score_threshold
+from score import contains_phrase, score_job, score_threshold, title_or_context_categories
 
 CONFIG_PATH = Path("companies.yaml")
 PROFILE_PATH = Path("profile.yaml")
@@ -389,8 +389,45 @@ def matches_location(location, location_filter):
     )
 
 
+RETRY_STATUSES = {429, 500, 502, 503, 504}
+RETRY_DELAY_SECONDS = 5
+MAX_RETRY_AFTER_SECONDS = 30
+
+
+def _retry_delay(response):
+    """Seconds to wait before a retry: the server's Retry-After, capped."""
+    value = str((response.headers or {}).get("Retry-After", "")).strip()
+    if value.isdigit():
+        return min(int(value), MAX_RETRY_AFTER_SECONDS)
+    return RETRY_DELAY_SECONDS
+
+
+def _request(method, url, **kwargs):
+    """Send one HTTP request, retrying once on a timeout, 429 or 5xx.
+
+    A single retry absorbs the occasional slow ATS response and a short rate
+    limit without turning a whole scheduled run red; a source that fails twice
+    is still reported as failed.
+    """
+    send = getattr(requests, method)
+    for attempt in range(2):
+        try:
+            response = send(url, **kwargs)
+        except (requests.Timeout, requests.ConnectionError):
+            if attempt:
+                raise
+            time.sleep(RETRY_DELAY_SECONDS)
+            continue
+        if response.status_code in RETRY_STATUSES and not attempt:
+            time.sleep(_retry_delay(response))
+            continue
+        return response
+    return response
+
+
 def _get_json(url, **kwargs):
-    response = requests.get(
+    response = _request(
+        "get",
         url,
         headers={"Accept": "application/json", "User-Agent": USER_AGENT},
         timeout=REQUEST_TIMEOUT,
@@ -398,6 +435,20 @@ def _get_json(url, **kwargs):
     )
     response.raise_for_status()
     return response.json()
+
+
+def _passes_title_and_location(source, title, location):
+    """The title and location gates of score_job, without a description.
+
+    Used to decide which postings are worth a per-posting detail request.
+    """
+    for keyword in source.get("exclude_keywords", []) + source.get("non_role_title_keywords", []):
+        if contains_phrase(title, keyword):
+            return False
+    categories = source.get("keyword_categories", source.get("keywords", []))
+    if not title_or_context_categories(title, "", categories):
+        return False
+    return matches_location(location, source.get("location_filter"))
 
 
 def fetch_greenhouse(source):
@@ -584,8 +635,19 @@ def _workday_origin(source):
     return host.rstrip("/") if "://" in host else f"https://{host.rstrip('/')}"
 
 
-def fetch_workday(source):
-    """Return all postings from a Workday external career site."""
+def fetch_workday(source, known_ids=None):
+    """Return all postings from a Workday external career site.
+
+    Descriptions need one extra request per posting, so they are fetched only
+    for postings not seen on an earlier run (``known_ids``) whose title and
+    location could pass the scoring gates. A known posting comes back with
+    ``description=None``, meaning "already evaluated, skip it"; a new posting
+    that fails the title/location gates comes back with an empty description.
+    Fetching every description on every run (~1,100 requests across four
+    tenants) got the GitHub Actions runners rate-limited (HTTP 429) from
+    2026-11-16.
+    """
+    known_ids = set(known_ids or ())
     tenant = _source_value(source, "tenant") or _source_value(source, "slug")
     site = _source_value(source, "site")
     if not tenant or not site:
@@ -601,7 +663,8 @@ def fetch_workday(source):
     jobs = []
 
     while True:
-        response = requests.post(
+        response = _request(
+            "post",
             api_url,
             headers={
                 "Accept": "application/json",
@@ -626,10 +689,19 @@ def fetch_workday(source):
             path = job.get("externalPath", "")
             job_id = str(job.get("jobReqId") or path or job.get("title"))
             detail_path = path if str(path).startswith("/job/") else f"/job/{path}"
+            location = _location_text(
+                job.get("locationsText"),
+                job.get("location"),
+                job.get("bulletFields", [None])[0] if job.get("bulletFields") else None,
+            )
             description = ""
-            if path:
+            if job_id in known_ids:
+                description = None
+            elif path and _passes_title_and_location(source, job.get("title", ""), location):
                 try:
-                    detail_response = requests.get(
+                    time.sleep(float(_source_value(source, "detail_delay", 0.25)))
+                    detail_response = _request(
+                        "get",
                         f"{origin}/wday/cxs/{tenant}/{site}{detail_path}",
                         headers={"Accept": "application/json", "User-Agent": USER_AGENT},
                         timeout=REQUEST_TIMEOUT,
@@ -647,13 +719,7 @@ def fetch_workday(source):
                     job_id,
                     job.get("title", "Untitled"),
                     f"{career_url}{path}",
-                    _location_text(
-                        job.get("locationsText"),
-                        job.get("location"),
-                        job.get("bulletFields", [None])[0]
-                        if job.get("bulletFields")
-                        else None,
-                    ),
+                    location,
                     "",
                     description,
                 )
@@ -1062,6 +1128,10 @@ def fetch_freehire(source):
     return list(jobs.values())
 
 
+# Fetchers that accept the previous run's inventory and skip per-posting
+# detail requests for postings already evaluated.
+KNOWN_ID_FETCHERS = {"workday"}
+
 FETCHERS = {
     "greenhouse": fetch_greenhouse,
     "lever": fetch_lever,
@@ -1156,7 +1226,7 @@ def _normalize_job(job):
         str(url),
         str(location or ""),
         str(context or ""),
-        str(description or ""),
+        None if description is None else str(description),
         str(company or ""),
     )
 
@@ -1356,7 +1426,10 @@ def main():
             state_key = _state_key(source, provider)
             notified_state_key = _notified_state_key(state_key)
             notified_ids = set(state.get(notified_state_key, []))
-            jobs = fetcher(source)
+            if provider in KNOWN_ID_FETCHERS:
+                jobs = fetcher(source, known_ids=state.get(state_key, []))
+            else:
+                jobs = fetcher(source)
         except Exception as exc:
             print(f"WARN: failed to fetch {name} ({provider}): {exc}", file=sys.stderr)
             any_errors = True
@@ -1372,6 +1445,9 @@ def main():
         scored_jobs = []
         rejection_counts = Counter()
         for job_id, title, url, location, context, description, company in normalized_jobs:
+            if description is None:
+                # Evaluated on an earlier run; the fetcher skipped its detail.
+                continue
             is_eligible, result, has_eligibility_signal = evaluate_job(
                 source, profile, threshold, title, location, context, description
             )
