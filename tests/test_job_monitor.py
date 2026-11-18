@@ -1172,6 +1172,21 @@ class EndToEndTests(unittest.TestCase):
         self.assertTrue(result["veto"])
         self.assertEqual(result["summary"], "veto: not a specific role")
 
+    def test_nyc_among_other_cities_is_local(self):
+        location_filter = {
+            "include": ["New York", "NYC", "Manhattan", "Brooklyn"],
+            "include_remote": True,
+            "remote_include": ["United States", "USA", "US"],
+            "allow_unknown": False,
+        }
+        self.assertTrue(
+            job_monitor.matches_location("Palo Alto, CA / NYC / SF / Seattle", location_filter)
+        )
+        self.assertFalse(job_monitor.matches_location("Brooklyn Park, MN", location_filter))
+        self.assertFalse(
+            job_monitor.matches_location("Seattle, WA / Manhattan, KS", location_filter)
+        )
+
     def test_canadian_remote_locations_are_not_us_remote(self):
         location_filter = {
             "include": ["New York"],

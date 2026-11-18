@@ -336,8 +336,18 @@ def matches_location(location, location_filter):
         return bool(location_filter.get("allow_unknown", False))
 
     state_tokens = set(re.findall(r"\b[A-Z]{2}\b", location.upper()))
+    # Unambiguous NYC-area names count as local even when the listing also
+    # names other states ("Palo Alto, CA / NYC / SF / Seattle").
     has_local_region = bool(state_tokens & {"NY", "NJ"}) or any(
-        _has_location_term(location, term) for term in ("new york", "new jersey")
+        _has_location_term(location, term)
+        for term in (
+            "new york",
+            "new jersey",
+            "nyc",
+            "jersey city",
+            "hoboken",
+        )
+        # Not "manhattan"/"brooklyn": Manhattan, KS and Brooklyn Park, MN exist.
     )
     has_other_state = bool(state_tokens & US_STATE_ABBREVIATIONS) or any(
         _has_location_term(location, state) for state in OTHER_US_STATE_NAMES
