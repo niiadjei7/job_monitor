@@ -248,8 +248,10 @@ class AdapterTests(unittest.TestCase):
             ],
         )
 
+    @patch("job_monitor.time.sleep")
+    @patch("job_monitor.requests.get", return_value=FakeResponse({}, status=404))
     @patch("job_monitor.requests.post")
-    def test_workday_paginates_and_builds_public_urls(self, post):
+    def test_workday_paginates_and_builds_public_urls(self, post, _get, _sleep):
         post.side_effect = [
             FakeResponse(
                 {
@@ -306,6 +308,99 @@ class AdapterTests(unittest.TestCase):
         )
         self.assertEqual(post.call_count, 2)
         self.assertEqual(post.call_args_list[0].kwargs["json"]["searchText"], "junior")
+
+
+    @patch("job_monitor.time.sleep")
+    @patch("job_monitor.requests.get")
+    @patch("job_monitor.requests.post")
+    def test_workday_fetches_details_only_for_new_likely_postings(self, post, get, _sleep):
+        post.return_value = FakeResponse(
+            {
+                "total": 3,
+                "jobPostings": [
+                    {"title": "Software Engineer I", "externalPath": "/job/known", "locationsText": "New York, NY"},
+                    {"title": "Software Engineer I", "externalPath": "/job/new", "locationsText": "New York, NY"},
+                    {"title": "Payroll Specialist", "externalPath": "/job/payroll", "locationsText": "New York, NY"},
+                ],
+            }
+        )
+        get.return_value = FakeResponse({"jobPostingInfo": {"jobDescription": "<p>Build APIs.</p>"}})
+        source = {
+            "ats": "workday",
+            "host": "acme.wd5.myworkdayjobs.com",
+            "tenant": "acme",
+            "site": "Careers",
+            "keyword_categories": {"SWE": {"title": ["software engineer"]}},
+            "location_filter": {"include": ["New York"]},
+        }
+
+        jobs = job_monitor.fetch_workday(source, known_ids=["/job/known"])
+
+        descriptions = {job[0]: job[5] for job in jobs}
+        self.assertEqual(
+            descriptions,
+            {"/job/known": None, "/job/new": "Build APIs.", "/job/payroll": ""},
+        )
+        self.assertEqual(get.call_count, 1)
+        self.assertTrue(get.call_args.args[0].endswith("/job/new"))
+
+    @patch("job_monitor.time.sleep")
+    @patch("job_monitor.requests.get")
+    def test_request_retries_once_on_rate_limit_and_timeout(self, get, sleep):
+        limited = FakeResponse({}, status=429)
+        limited.headers["Retry-After"] = "120"
+        get.side_effect = [limited, FakeResponse({"ok": True})]
+        self.assertEqual(job_monitor._get_json("https://ats.test/jobs"), {"ok": True})
+        sleep.assert_called_with(job_monitor.MAX_RETRY_AFTER_SECONDS)
+
+        get.side_effect = [requests.Timeout("slow"), FakeResponse({"ok": 2})]
+        self.assertEqual(job_monitor._get_json("https://ats.test/jobs"), {"ok": 2})
+
+        get.side_effect = [requests.Timeout("slow"), requests.Timeout("still slow")]
+        with self.assertRaises(requests.Timeout):
+            job_monitor._get_json("https://ats.test/jobs")
+
+        get.side_effect = [FakeResponse({}, status=429), FakeResponse({}, status=429)]
+        with self.assertRaises(requests.HTTPError):
+            job_monitor._get_json("https://ats.test/jobs")
+
+    def test_main_skips_postings_already_evaluated(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            config_path = Path(temp_dir) / "companies.yaml"
+            state_path = Path(temp_dir) / "state.json"
+            config_path.write_text(
+                "companies:\n"
+                "  - name: Acme\n"
+                "    ats: workday\n"
+                "    tenant: acme\n"
+                "    site: Careers\n"
+                "    keywords: [software engineer]\n",
+                encoding="utf-8",
+            )
+            state_path.write_text(json.dumps({"workday:acme": ["old"]}), encoding="utf-8")
+            fetcher = Mock(
+                return_value=[
+                    ("old", "Software Engineer", "https://acme.test/old", "New York, NY", "", None),
+                    ("new", "Software Engineer", "https://acme.test/new", "New York, NY", "", "Build APIs."),
+                ]
+            )
+            with (
+                patch.object(job_monitor, "CONFIG_PATH", config_path),
+                patch.object(job_monitor, "STATE_PATH", state_path),
+                patch.object(job_monitor, "PROFILE_PATH", Path(temp_dir) / "profile.yaml"),
+                patch.object(job_monitor, "TRACKER_PATH", Path(temp_dir) / "tracker.csv"),
+                patch.dict(job_monitor.FETCHERS, {"workday": fetcher}),
+                patch.dict(os.environ, {"DISCORD_WEBHOOK_URL": "https://discord.test/hook"}),
+                patch("job_monitor.send_discord_notification") as notify,
+                patch("job_monitor.time.sleep"),
+            ):
+                job_monitor.main()
+            saved = json.loads(state_path.read_text(encoding="utf-8"))
+
+        self.assertEqual(fetcher.call_args.kwargs["known_ids"], ["old"])
+        self.assertEqual([job[0] for job in notify.call_args.args[2]], ["Software Engineer"])
+        self.assertEqual(saved["workday:acme"], ["new", "old"])
+        self.assertEqual(saved["workday:acme:notified-v2"], ["new"])
 
 
 class FeedTests(unittest.TestCase):
@@ -457,6 +552,8 @@ class ConfigurationTests(unittest.TestCase):
             self.assertTrue(location_filter.get("allow_unspecified_remote"))
 
         configured_names = {source["name"] for source in enabled_sources}
+        # Its Ashby board has returned 404 since 2026-10-28.
+        self.assertNotIn("Beacon Software", configured_names)
         self.assertTrue(
             {
                 "Palantir",

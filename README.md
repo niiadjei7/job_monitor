@@ -217,6 +217,15 @@ cannot be monitored with this adapter. `search_text` is optional; use it on very
 large boards to have Workday narrow the result set before title keywords are
 applied locally.
 
+Workday's list endpoint has no descriptions, so each description costs one more
+request. Job Monitor fetches a description only for a posting it has not seen on
+an earlier run and whose title and location could pass the scoring gates;
+postings already evaluated are skipped (a scoring change therefore applies to
+new Workday postings, not to ones already seen). Fetching every description on
+every run, about 1,100 requests across four tenants, got the Actions runners
+rate-limited (HTTP 429) from 2026-11-16; the current approach makes about 56
+list requests plus a handful of description requests per run.
+
 ### Jobvite
 
 Jobvite provides each customer a job-feed URL. If the URL contains a key, store
@@ -305,6 +314,12 @@ omitting jobs beyond the first message.
 Failed sources leave their previous state untouched. The process exits with code
 2 after checking the remaining sources, making partial failures visible in the
 Actions UI without losing successful results.
+
+Every request is retried once after a timeout, connection error, 429 or 5xx
+(waiting for the server's `Retry-After`, capped at 30 seconds, or 5 seconds), so
+a single slow response does not mark the whole run as failed. Disable a source
+whose endpoint is gone (as with Beacon Software's 404 since 2026-10-28) rather
+than leaving it to fail every run: a permanently red run hides new failures.
 
 ## Local verification
 

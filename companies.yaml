@@ -299,8 +299,10 @@ companies:
     ats: ashby
     slug: "ashby"
 
+  # Disabled 2026-11-18: this Ashby board has returned 404 since 2026-10-28
+  # (board moved or closed). Re-enable with the new board slug if found.
   - name: "Beacon Software"
-    enabled: true
+    enabled: false
     ats: ashby
     slug: "beaconsoftware"
 
