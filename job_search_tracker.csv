@@ -576,6 +576,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Ashby,306a353b-aab5-49d6-a711-a77aa0f5a660,Staff Design Engineer - UK,https://jobs.ashbyhq.com/Ashby/306a353b-aab5-49d6-a711-a77aa0f5a660,0,,,2026-09-18
 2026-11-12,Ashby,31f604bd-a660-427f-9522-6bbb2539d6e2,Global Payroll Lead,https://jobs.ashbyhq.com/Ashby/31f604bd-a660-427f-9522-6bbb2539d6e2,0,,,2026-11-19
 2026-10-06,Ashby,32d634ed-b34b-41cc-980b-aa7a8b8f6b3a,Sr. Support Operations Manager,https://jobs.ashbyhq.com/ashby/32d634ed-b34b-41cc-980b-aa7a8b8f6b3a,0,,,2026-10-13
+2026-11-18,Ashby,330eb697-6e76-4033-9e73-7bd6c841a27a,Support Manager - EMEA,https://jobs.ashbyhq.com/Ashby/330eb697-6e76-4033-9e73-7bd6c841a27a,0,,,2026-11-25
 2026-09-11,Ashby,35a01a05-8efd-4bc3-a4bf-0a31d902102d,"Manager of Implementations, High Touch - EMEA",https://jobs.ashbyhq.com/Ashby/35a01a05-8efd-4bc3-a4bf-0a31d902102d,0,,,2026-09-18
 2026-09-11,Ashby,36df1986-8af2-4cc4-a96a-4f307d493ac0,Enterprise Account Executive - Americas (East),https://jobs.ashbyhq.com/Ashby/36df1986-8af2-4cc4-a96a-4f307d493ac0,46,,,2026-09-18
 2026-09-11,Ashby,38281574-0880-473a-a4f1-bfbb7eedfa18,Mid-Market Customer Success Manager - Americas,https://jobs.ashbyhq.com/Ashby/38281574-0880-473a-a4f1-bfbb7eedfa18,0,,,2026-09-18
@@ -629,7 +630,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Ashby,a07aeb2d-3113-4ab4-866d-60004d1d25de,Startup Customer Success Manager - Americas,https://jobs.ashbyhq.com/ashby/a07aeb2d-3113-4ab4-866d-60004d1d25de,0,,,2026-09-18
 2026-10-27,Ashby,a4110b0d-9af7-4724-9fd7-fb3615db5954,Head of Global Support,https://jobs.ashbyhq.com/Ashby/a4110b0d-9af7-4724-9fd7-fb3615db5954,0,,,2026-11-03
 2026-09-11,Ashby,a6b309d5-fa4b-42b9-a1a2-653a882a5e60,Senior Strategic Implementation Specialist - Americas (PST),https://jobs.ashbyhq.com/ashby/a6b309d5-fa4b-42b9-a1a2-653a882a5e60,0,,,2026-09-18
-2026-10-08,Ashby,a819e537-3a23-4615-bbf8-4ee065d7e25d,"HR Business Partner, EMEA",https://jobs.ashbyhq.com/ashby/a819e537-3a23-4615-bbf8-4ee065d7e25d,15,,,2026-10-15
+2026-10-08,Ashby,a819e537-3a23-4615-bbf8-4ee065d7e25d,"HR Business Partner, EMEA",https://jobs.ashbyhq.com/Ashby/a819e537-3a23-4615-bbf8-4ee065d7e25d,15,,,2026-10-15
 2026-10-30,Ashby,ac5a2281-806d-4aed-b742-69527b3e4575,"Sales Leader, Enterprise - Americas ",https://jobs.ashbyhq.com/Ashby/ac5a2281-806d-4aed-b742-69527b3e4575,57,,,2026-11-06
 2026-10-20,Ashby,ae0bf8c6-f327-48de-9902-9f509667d02d,"Snr. Marketing Manager, Enterprise ABM - EMEA",https://jobs.ashbyhq.com/ashby/ae0bf8c6-f327-48de-9902-9f509667d02d,0,,,2026-10-27
 2026-09-11,Ashby,ae720f13-ad8b-4fdd-a8c3-5625bdc83a33,Staff Platform Engineer - UK,https://jobs.ashbyhq.com/Ashby/ae720f13-ad8b-4fdd-a8c3-5625bdc83a33,0,,,2026-09-18
@@ -1435,7 +1436,9 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-22,Greenhouse,8208105,"Manager, Corporate IT",https://job-boards.greenhouse.io/greenhouse/jobs/8208105?gh_jid=8208105,0,,,2026-09-29
 2026-09-25,Greenhouse,8211770,"Senior Program Manager, GTM & Field Enablement",https://job-boards.greenhouse.io/greenhouse/jobs/8211770?gh_jid=8211770,0,,,2026-10-02
 2026-09-18,Greenhouse,8211828,Senior Software Engineer,https://job-boards.greenhouse.io/greenhouse/jobs/8211828?gh_jid=8211828,0,,,2026-09-25
+2026-11-18,Greenhouse,8214706,Senior Software Engineer,https://job-boards.greenhouse.io/greenhouse/jobs/8214706?gh_jid=8214706,0,,,2026-11-25
 2026-09-18,Greenhouse,8214721,Software Engineer,https://job-boards.greenhouse.io/greenhouse/jobs/8214721?gh_jid=8214721,37,,,2026-09-25
+2026-11-18,Greenhouse,8214722,Software Engineer,https://job-boards.greenhouse.io/greenhouse/jobs/8214722?gh_jid=8214722,37,,,2026-11-25
 2026-10-07,Greenhouse,8220443,Senior Implementation Consultant,https://job-boards.greenhouse.io/greenhouse/jobs/8220443?gh_jid=8220443,0,,,2026-10-14
 2026-09-24,Greenhouse,8222047,Strategic Consultant ,https://job-boards.greenhouse.io/greenhouse/jobs/8222047?gh_jid=8222047,15,,,2026-10-01
 2026-09-24,Greenhouse,8227655,Strategic Consultant I,https://job-boards.greenhouse.io/greenhouse/jobs/8227655?gh_jid=8227655,15,,,2026-10-01
@@ -1452,6 +1455,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-11-05,Greenhouse,8335475,"Manager, Enterprise Sales",https://job-boards.greenhouse.io/greenhouse/jobs/8335475?gh_jid=8335475,0,,,2026-11-12
 2026-10-30,Greenhouse,8335591,"Senior Sales Engineer, APAC",https://job-boards.greenhouse.io/greenhouse/jobs/8335591?gh_jid=8335591,0,,,2026-11-06
 2026-11-06,Greenhouse,8348436,Lead Employment Counsel,https://job-boards.greenhouse.io/greenhouse/jobs/8348436?gh_jid=8348436,0,,,2026-11-13
+2026-11-18,Greenhouse,8352771,"Recruiting Operations Consultant, Managed Services",https://job-boards.greenhouse.io/greenhouse/jobs/8352771?gh_jid=8352771,20,,,2026-11-25
 2026-11-10,Greenhouse,8353338,Senior Account Manager,https://job-boards.greenhouse.io/greenhouse/jobs/8353338?gh_jid=8353338,0,,,2026-11-17
 2026-11-13,Greenhouse,8357016,Software Engineer,https://job-boards.greenhouse.io/greenhouse/jobs/8357016?gh_jid=8357016,37,,,2026-11-20
 2026-11-13,Greenhouse,8359138,Senior Software Engineer,https://job-boards.greenhouse.io/greenhouse/jobs/8359138?gh_jid=8359138,0,,,2026-11-20
@@ -1465,7 +1469,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Handshake,0768448c-677f-404f-bccc-7d1583e5ee10,Senior Engagement Manager,https://jobs.ashbyhq.com/handshake/0768448c-677f-404f-bccc-7d1583e5ee10,0,,,2026-09-18
 2026-09-11,Handshake,081f7a0a-d40c-461b-8ac8-ff36355c56c9,"Engineering Manager, AI Evaluation",https://jobs.ashbyhq.com/handshake/081f7a0a-d40c-461b-8ac8-ff36355c56c9,0,,,2026-09-18
 2026-09-28,Handshake,08651bf1-c977-49d4-9a82-e8a770bb9970,"Member of Technical Staff, AI Engineering",https://jobs.ashbyhq.com/handshake/08651bf1-c977-49d4-9a82-e8a770bb9970,0,,,2026-10-05
-2026-10-15,Handshake,0940746f-8856-449e-b629-0890daadbdd7,"Director / Senior Director, AI Product Counsel",https://jobs.ashbyhq.com/handshake/0940746f-8856-449e-b629-0890daadbdd7,0,,,2026-10-22
+2026-10-15,Handshake,0940746f-8856-449e-b629-0890daadbdd7,"Director, AI Product Counsel",https://jobs.ashbyhq.com/handshake/0940746f-8856-449e-b629-0890daadbdd7,0,,,2026-10-22
 2026-11-05,Handshake,09d15a6d-4eea-414b-91ca-3e2628a0b43d,"Strategic Projects Lead, STEM",https://jobs.ashbyhq.com/handshake/09d15a6d-4eea-414b-91ca-3e2628a0b43d,0,,,2026-11-12
 2026-09-11,Handshake,0b652757-a760-48c5-bd54-26464b3fd1d4,"AI Model Policy Trainer, Generalist (Seattle)",https://jobs.ashbyhq.com/handshake/0b652757-a760-48c5-bd54-26464b3fd1d4,15,,,2026-09-18
 2026-10-01,Handshake,0d46db60-b8ff-4735-8b64-1454034072e3,Senior Partner Insights Manager - EDU,https://jobs.ashbyhq.com/handshake/0d46db60-b8ff-4735-8b64-1454034072e3,0,,,2026-10-08
@@ -1544,6 +1548,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,Handshake,9c1fe075-be13-468f-bc0f-c8cfb5d62581,"Staff Software Engineer, Consumer Experience",https://jobs.ashbyhq.com/handshake/9c1fe075-be13-468f-bc0f-c8cfb5d62581,0,,,2026-09-18
 2026-09-11,Handshake,9f946d08-5483-4ed7-9c29-27406ad4492f,"Strategic Projects Lead, Safety",https://jobs.ashbyhq.com/handshake/9f946d08-5483-4ed7-9c29-27406ad4492f,0,,,2026-09-18
 2026-09-11,Handshake,9ff88fb2-c121-4fda-8d4f-918b571e0257,"Senior Manager, Mid Market Sales",https://jobs.ashbyhq.com/handshake/9ff88fb2-c121-4fda-8d4f-918b571e0257,0,,,2026-09-18
+2026-11-18,Handshake,a1e2aef1-666c-4c0e-9cec-70bbd3392b6d,"Strategic Customer Success Manager, Federal",https://jobs.ashbyhq.com/handshake/a1e2aef1-666c-4c0e-9cec-70bbd3392b6d,0,,,2026-11-25
 2026-09-11,Handshake,a4d765fd-567b-4d27-b614-a2735af19f0a,Enterprise Customer Success Manager,https://jobs.ashbyhq.com/handshake/a4d765fd-567b-4d27-b614-a2735af19f0a,0,,,2026-09-18
 2026-09-28,Handshake,a94b9f88-8916-4dc4-967f-33b08e33bf3a,Enterprise Account Manager,https://jobs.ashbyhq.com/handshake/a94b9f88-8916-4dc4-967f-33b08e33bf3a,0,,,2026-10-05
 2026-11-05,Handshake,a9f89a81-db49-491a-a4ce-35b85b7f4b7f,Enterprise Customer Success Manager,https://jobs.ashbyhq.com/handshake/a9f89a81-db49-491a-a4ce-35b85b7f4b7f,0,,,2026-11-12
@@ -1599,6 +1604,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-10-09,Handshake,fb47a304-2ea1-4971-81cd-5183619f9a81,"Member of Technical Staff, Coding Agents",https://jobs.ashbyhq.com/handshake/fb47a304-2ea1-4971-81cd-5183619f9a81,0,,,2026-10-16
 2026-10-03,Handshake,fb7c8deb-fc87-425c-b446-33dcfc1247c5,Revenue Enablement Manager,https://jobs.ashbyhq.com/handshake/fb7c8deb-fc87-425c-b446-33dcfc1247c5,0,,,2026-10-10
 2026-10-08,Handshake,fbb20e50-434b-4ffd-82b5-33e4c92d7aec,Recruiting Coordinator (Contract),https://jobs.ashbyhq.com/handshake/fbb20e50-434b-4ffd-82b5-33e4c92d7aec,15,,,2026-10-15
+2026-11-18,Handshake,fc042441-b093-4f16-a308-5c6e8baea669,Senior Applied AI Engineer,https://jobs.ashbyhq.com/handshake/fc042441-b093-4f16-a308-5c6e8baea669,0,,,2026-11-25
 2026-10-09,Handshake,fc2cf0ff-51e5-49f3-95d2-532dc5f70cfd,Marketing Lead,https://jobs.ashbyhq.com/handshake/fc2cf0ff-51e5-49f3-95d2-532dc5f70cfd,0,,,2026-10-16
 2026-09-11,Handshake,fcd727f8-6390-4aef-9052-818ff710b013,Director of Communications,https://jobs.ashbyhq.com/handshake/fcd727f8-6390-4aef-9052-818ff710b013,0,,,2026-09-18
 2026-09-11,Leidos,/job/2019-DISA-HQ-Fort-George-G-Meade-MD/Senior-ICAM-Federation-and-App-Integration-Engineer_R-00183979,Senior ICAM Federation and App Integration Engineer,https://leidos.wd5.myworkdayjobs.com/external/job/2019-DISA-HQ-Fort-George-G-Meade-MD/Senior-ICAM-Federation-and-App-Integration-Engineer_R-00183979,0,,,2026-09-18
@@ -2362,7 +2368,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-15,Palantir,a237973c-cb29-41fe-9c80-416e6f42e087,Administrative Business Partner - ShipOS,https://jobs.lever.co/palantir/a237973c-cb29-41fe-9c80-416e6f42e087,15,,,2026-09-22
 2026-09-24,Palantir,a2e9ab0f-4dd1-4744-92b9-edc7ae393c58,Forward Deployed Software Engineer - US Government,https://jobs.lever.co/palantir/a2e9ab0f-4dd1-4744-92b9-edc7ae393c58,15,,,2026-10-01
 2026-09-11,Palantir,a39bf84c-6648-4871-bd07-9b882d401c4c,Forward Deployed Software Engineer - Korea Forward Deployed,https://jobs.lever.co/palantir/a39bf84c-6648-4871-bd07-9b882d401c4c,15,,,2026-09-18
-2026-09-11,Palantir,a3eaa0ef-3378-495f-8308-edbd9a93d26c,Web Design Engineer,https://jobs.lever.co/palantir/a3eaa0ef-3378-495f-8308-edbd9a93d26c,35,,,2026-09-18
+2026-09-11,Palantir,a3eaa0ef-3378-495f-8308-edbd9a93d26c,Web Design Engineer,https://jobs.lever.co/palantir/a3eaa0ef-3378-495f-8308-edbd9a93d26c,46,,,2026-09-18
 2026-10-16,Palantir,a468565d-8502-4baf-8788-b7ffe233b725,Operations Analyst - US Government Security,https://jobs.lever.co/palantir/a468565d-8502-4baf-8788-b7ffe233b725,15,,,2026-10-23
 2026-09-11,Palantir,a483f41b-0da9-42ea-8ed6-cbf6eb93cc6d,"Software Engineer, Internship - Defense Tech",https://jobs.lever.co/palantir/a483f41b-0da9-42ea-8ed6-cbf6eb93cc6d,26,,,2026-09-18
 2026-09-11,Palantir,a49d4181-a289-435a-b581-7f5af0497c8e,"Deployment Strategist, Internship - US Government",https://jobs.lever.co/palantir/a49d4181-a289-435a-b581-7f5af0497c8e,26,,,2026-09-18
@@ -2526,7 +2532,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-11-06,PointClickCare,230b8d92-f07c-4f44-b888-7f862314af15,Principal Application Engineer (Salesforce),https://jobs.lever.co/pointclickcare/230b8d92-f07c-4f44-b888-7f862314af15,0,,,2026-11-13
 2026-09-11,PointClickCare,27ea212e-092c-4567-bb56-fc17a71fcc4c,Principal Software Engineer - Big Data & Java,https://jobs.lever.co/pointclickcare/27ea212e-092c-4567-bb56-fc17a71fcc4c,0,,,2026-09-18
 2026-09-11,PointClickCare,28537fcc-b49a-4187-a3fe-a2016af68fe4,Canada Sales - Talent Community,https://jobs.lever.co/pointclickcare/28537fcc-b49a-4187-a3fe-a2016af68fe4,46,,,2026-09-18
-2026-11-16,PointClickCare,29937081-c433-4573-bc55-47dce4debe58,(US) Deal Desk Analyst,https://jobs.lever.co/pointclickcare/29937081-c433-4573-bc55-47dce4debe58,26,,,2026-11-23
+2026-11-16,PointClickCare,29937081-c433-4573-bc55-47dce4debe58,(US) Deal Desk Analyst,https://jobs.lever.co/pointclickcare/29937081-c433-4573-bc55-47dce4debe58,46,,,2026-11-23
 2026-09-11,PointClickCare,2ad9ffba-40de-4995-bd62-4af1159eefb7,Finance Contracts Analyst,https://jobs.lever.co/pointclickcare/2ad9ffba-40de-4995-bd62-4af1159eefb7,26,,,2026-09-18
 2026-11-16,PointClickCare,2ada0b8c-4c24-47c3-8d53-56898a3228d8,(US) Sr. Revenue Operations Manager - Acute & Payer Partner,https://jobs.lever.co/pointclickcare/2ada0b8c-4c24-47c3-8d53-56898a3228d8,0,,,2026-11-23
 2026-09-22,PointClickCare,2b300ef7-13b9-4f51-82d2-ed6a4ab1aa71,Sr. Financial Analyst,https://jobs.lever.co/pointclickcare/2b300ef7-13b9-4f51-82d2-ed6a4ab1aa71,0,,,2026-09-29
@@ -2995,6 +3001,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-11-05,Vercel,6248589004,"Manager, Startup Sales - Activations",https://job-boards.greenhouse.io/vercel/jobs/6248589004,0,,,2026-11-12
 2026-11-05,Vercel,6248594004,"Manager, Startup Sales - Greenfield",https://job-boards.greenhouse.io/vercel/jobs/6248594004,0,,,2026-11-12
 2026-11-05,Vercel,6248603004,"Manager, Startup Sales - Install Base",https://job-boards.greenhouse.io/vercel/jobs/6248603004,0,,,2026-11-12
+2026-11-18,Vercel,6262094004,"Field Marketing Manager, Enterprise",https://job-boards.greenhouse.io/vercel/jobs/6262094004,0,,,2026-11-25
 2026-11-16,Vercel,6262657004,Senior Strategic Sourcing Manager - Engineering,https://job-boards.greenhouse.io/vercel/jobs/6262657004,0,,,2026-11-23
 2026-09-11,WHOOP,00aad80c-4670-4e0b-86bc-ec9595603fd8,"Senior Software Engineer, Data Platform",https://jobs.ashbyhq.com/whoop/00aad80c-4670-4e0b-86bc-ec9595603fd8,0,,,2026-09-18
 2026-09-11,WHOOP,00dd5761-0d8f-4ad1-9dcd-15919648bf06,Senior Materials Program Manager,https://jobs.ashbyhq.com/whoop/00dd5761-0d8f-4ad1-9dcd-15919648bf06,0,,,2026-09-18
@@ -3065,7 +3072,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-10-13,WHOOP,3f62d9ab-12f9-453e-af99-c2bbc6155a22,Senior Global Environmental Compliance Specialist,https://jobs.ashbyhq.com/whoop/3f62d9ab-12f9-453e-af99-c2bbc6155a22,0,,,2026-10-20
 2026-09-14,WHOOP,3f9bc8e3-bb38-4a9a-b955-9f28ca4e23c9,Senior Hardware Engineering Program Manager,https://jobs.ashbyhq.com/whoop/3f9bc8e3-bb38-4a9a-b955-9f28ca4e23c9,0,,,2026-09-21
 2026-10-22,WHOOP,40eca7f4-b75f-40a9-a525-18a083a9405e,Product Counsel,https://jobs.ashbyhq.com/whoop/40eca7f4-b75f-40a9-a525-18a083a9405e,11,,,2026-10-29
-2026-09-11,WHOOP,412ef632-7883-4100-bb3c-501accf1fcf0,Product Analyst,https://jobs.ashbyhq.com/whoop/412ef632-7883-4100-bb3c-501accf1fcf0,26,,,2026-09-18
+2026-09-11,WHOOP,412ef632-7883-4100-bb3c-501accf1fcf0,"Senior Business Analyst, Hardware",https://jobs.ashbyhq.com/whoop/412ef632-7883-4100-bb3c-501accf1fcf0,0,,,2026-09-18
 2026-10-06,WHOOP,41da26a4-a28f-4e94-a8d1-a89d5dd1448c,Manufacturing Engineer II,https://jobs.ashbyhq.com/whoop/41da26a4-a28f-4e94-a8d1-a89d5dd1448c,0,,,2026-10-13
 2026-10-14,WHOOP,422da18d-adfc-41d7-ad01-d3e001250e86,Senior iOS Engineer (Connectivity),https://jobs.ashbyhq.com/whoop/422da18d-adfc-41d7-ad01-d3e001250e86,0,,,2026-10-21
 2026-11-04,WHOOP,42b8eb6f-1075-4a87-839e-9ff6ad8774c2,"Senior Manager, Trade Marketing, EU (12-Month Contract)",https://jobs.ashbyhq.com/whoop/42b8eb6f-1075-4a87-839e-9ff6ad8774c2,0,,,2026-11-11
@@ -3089,6 +3096,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-21,WHOOP,5266ab61-3aeb-4002-9114-322d3b2b3b00,Electrical Engineering Lead,https://jobs.ashbyhq.com/whoop/5266ab61-3aeb-4002-9114-322d3b2b3b00,0,,,2026-09-28
 2026-09-16,WHOOP,54a72338-8e97-4d24-a1f7-d44132ae48d8,"Program Manager, Foundation AI",https://jobs.ashbyhq.com/whoop/54a72338-8e97-4d24-a1f7-d44132ae48d8,0,,,2026-09-23
 2026-09-11,WHOOP,5502fb12-e948-4f62-8db6-b725fb3dc8e5,"Senior Machine Learning Engineer, Core Algorithms",https://jobs.ashbyhq.com/whoop/5502fb12-e948-4f62-8db6-b725fb3dc8e5,0,,,2026-09-18
+2026-11-18,WHOOP,562fb149-ae52-42b4-9963-cea9ef9995f3,Senior Security Engineer,https://jobs.ashbyhq.com/whoop/562fb149-ae52-42b4-9963-cea9ef9995f3,0,,,2026-11-25
 2026-09-11,WHOOP,5926d7a7-cf4b-491f-9cce-859f4da48ace,"Software Engineering Manager, Growth",https://jobs.ashbyhq.com/whoop/5926d7a7-cf4b-491f-9cce-859f4da48ace,0,,,2026-09-18
 2026-09-11,WHOOP,5a8aa306-a578-4819-b046-17abf5cbf50e,Embedded QA Engineering Manager (Hardware Accelerate),https://jobs.ashbyhq.com/whoop/5a8aa306-a578-4819-b046-17abf5cbf50e,0,,,2026-09-18
 2026-09-11,WHOOP,5b653a47-3ac1-4209-9cef-9838409bb8ed,Senior iOS Engineer (Core),https://jobs.ashbyhq.com/whoop/5b653a47-3ac1-4209-9cef-9838409bb8ed,0,,,2026-09-18
@@ -3214,6 +3222,7 @@ date_scraped,source,job_id,title,url,score,status,date_applied,follow_up_due
 2026-09-11,WHOOP,d14ac01e-5274-43da-b41d-19fe6ac0f588,Security Detection Engineer,https://jobs.ashbyhq.com/whoop/d14ac01e-5274-43da-b41d-19fe6ac0f588,48,,,2026-09-18
 2026-09-11,WHOOP,d20f3868-66e9-42e0-819e-4de6fc2b523b,"Retail Lead, WHOOP Qatar",https://jobs.ashbyhq.com/whoop/d20f3868-66e9-42e0-819e-4de6fc2b523b,0,,,2026-09-18
 2026-11-09,WHOOP,d31312c2-236a-45f1-8da7-61a7ca8d1622,"Software Engineer I (Backend, Growth)",https://jobs.ashbyhq.com/whoop/d31312c2-236a-45f1-8da7-61a7ca8d1622,58,,,2026-11-16
+2026-11-18,WHOOP,d4a657c1-cf85-49d1-bfa8-dfad9cf9e888,"Software Engineering Manager, Business Systems",https://jobs.ashbyhq.com/whoop/d4a657c1-cf85-49d1-bfa8-dfad9cf9e888,0,,,2026-11-25
 2026-09-24,WHOOP,d4e630b2-cde5-4c81-a531-46c095b818ed,"Senior Director, Healthcare Product",https://jobs.ashbyhq.com/whoop/d4e630b2-cde5-4c81-a531-46c095b818ed,0,,,2026-10-01
 2026-10-09,WHOOP,d691a4e7-8e41-40da-8f7c-316805ae5947,Business Operations Program Manager ,https://jobs.ashbyhq.com/whoop/d691a4e7-8e41-40da-8f7c-316805ae5947,0,,,2026-10-16
 2026-09-11,WHOOP,d74b7719-b05f-4c76-9042-7079a837d794,"NPI Hardware Quality Engineer, Accessories",https://jobs.ashbyhq.com/whoop/d74b7719-b05f-4c76-9042-7079a837d794,0,,,2026-09-18
