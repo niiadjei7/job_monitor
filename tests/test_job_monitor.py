@@ -563,10 +563,12 @@ class ConfigurationTests(unittest.TestCase):
                 "WHOOP",
                 "Lightfield",
                 "Traba",
-                "Leidos",
-                "Globus Medical",
-                "Acrisure",
             }.issubset(configured_names)
+        )
+        # Workday answers 429 to GitHub's runners since 2026-11-16; freehire
+        # covers these employers instead.
+        self.assertTrue(
+            {"Workday", "Leidos", "Globus Medical", "Acrisure"}.isdisjoint(configured_names)
         )
 
     def test_load_config_combines_companies_and_searches(self):
