@@ -6,9 +6,12 @@ import re
 DEFAULT_SCORE_THRESHOLD = 45
 STRICT_SCORE_THRESHOLD = 60
 
+DEFAULT_MAX_YEARS_EXPERIENCE = 3
+
 JUNIOR_PATTERNS = [
-    r"\b0\s*-\s*2\s+years?\b",
-    r"\b0\s*-\s*1\s+years?\b",
+    r"\b0\s*-\s*[12]\s+years?\b",
+    r"\b1\s*-\s*[23]\s+years?\b",
+    r"\b1\+?\s+years?\b",
     r"\bno experience necessary\b",
     r"\brecent graduate\b",
     r"\bentry[- ]level\b",
@@ -18,11 +21,22 @@ JUNIOR_PATTERNS = [
 ]
 
 SENIOR_PATTERNS = [
-    r"\b5\+?\s+years?\b",
-    r"\b7\+?\s+years?\b",
-    r"\b10\+?\s+years?\b",
     r"\bextensive experience\b",
 ]
+
+# "3+ years", "3-5 years", "minimum of 4 years", "5 plus years" ... tied to
+# experience. The lower bound of a range is what the posting requires.
+YEARS_PATTERN = re.compile(
+    r"(?<![\d.$])(?P<low>\d{1,2})\s*(?:\+|plus)?\s*"
+    r"(?:(?:-|\u2013|\u2014|to)\s*(?P<high>\d{1,2})\s*\+?\s*)?"
+    r"years?(?:'s)?\b(?P<after>[^.;\n]{0,80})",
+    re.IGNORECASE,
+)
+EXPERIENCE_WORDS = re.compile(
+    r"\bexperience|\bexperienced\b|\bbackground\b|\bworking\b|\bsimilar role\b|\bin the field\b",
+    re.IGNORECASE,
+)
+SUBSTITUTION_WORDS = re.compile(r"\bin lieu\b|\bequivalent\b|\binstead of\b", re.IGNORECASE)
 
 SALARY_CONTEXT_PATTERN = re.compile(
     r"\b(salary|compensation|pay|base pay|base salary|annually|annualized|per year)\b|/year|/yr",
@@ -117,6 +131,52 @@ def has_title_or_context_category_match(title, context, keyword_categories):
     return any(contains_phrase(combined_text, term) for term in keyword_categories or [])
 
 
+def required_years(text):
+    """Return the most years of experience the text asks for, or None.
+
+    Only numbers tied to experience count ("3+ years of experience"), and a
+    degree substitution ("4 years of experience in lieu of a degree") is
+    ignored. For a range, the lower bound is the requirement.
+    """
+    text = str(text or "")
+    found = []
+    for match in YEARS_PATTERN.finditer(text):
+        after = match.group("after")
+        before = text[max(0, match.start() - 40) : match.start()]
+        if not EXPERIENCE_WORDS.search(after) and not re.search(r"experience\W*$", before, re.I):
+            continue
+        if SUBSTITUTION_WORDS.search(after) or SUBSTITUTION_WORDS.search(before):
+            continue
+        low = int(match.group("low"))
+        if low <= 20:
+            found.append(low)
+    return max(found) if found else None
+
+
+def title_or_context_categories(title, context, keyword_categories):
+    """Category labels whose role terms appear in the title or team/department."""
+    if not keyword_categories:
+        return ["General"]
+    title_text = str(title or "")
+    context_text = str(context or "")
+    combined_text = " | ".join(v.strip() for v in (title_text, context_text) if v.strip())
+    if not isinstance(keyword_categories, dict):
+        if any(contains_phrase(combined_text, term) for term in keyword_categories):
+            return ["General"]
+        return []
+    labels = []
+    for label, terms in keyword_categories.items():
+        if isinstance(terms, dict):
+            hit = any(contains_phrase(title_text, term) for term in terms.get("title", [])) or any(
+                contains_phrase(context_text, term) for term in terms.get("context", [])
+            )
+        else:
+            hit = any(contains_phrase(combined_text, term) for term in terms or [])
+        if hit:
+            labels.append(str(label))
+    return labels
+
+
 def parse_salary_low(text):
     text = str(text or "")
     values = []
@@ -141,6 +201,18 @@ def parse_salary_low(text):
     return min(values) if values else None
 
 
+def _veto(reason, summary):
+    return {
+        "score": 0,
+        "matched": [],
+        "failed": [reason],
+        "veto": True,
+        "categories": [],
+        "strong_category_match": False,
+        "summary": summary,
+    }
+
+
 def score_job(
     title,
     location,
@@ -150,76 +222,101 @@ def score_job(
     profile,
     location_matches=True,
 ):
+    """Score a posting 0-100 and record which gates it passed or failed.
+
+    Gates (any one vetoes): a senior title, a non-role title, a profile
+    deal-breaker phrase, or a stated experience requirement at or above
+    ``preferences.max_years_experience`` (default 3).
+
+    Score, used for the threshold and for ordering:
+      role    40 title match, 30 team/department match only, 0 otherwise
+      depth   0-15, 3 per distinct skill term found in the description
+      level   25 early-career, 15 not stated, 10 two years asked, 0 "extensive"
+    Location is a separate requirement and is not scored.
+    """
     text = " | ".join(str(value or "") for value in (title, context, description))
     matched = []
     failed = []
+    preferences = profile.get("preferences") or {}
 
-    exclude_keywords = source.get("exclude_keywords", [])
-    for keyword in exclude_keywords:
+    for keyword in source.get("exclude_keywords", []):
         if contains_phrase(title, keyword):
-            return {
-                "score": 0,
-                "matched": [],
-                "failed": [f"title seniority: {keyword}"],
-                "veto": True,
-                "categories": [],
-                "summary": "veto: title seniority",
-            }
+            return _veto(f"title seniority: {keyword}", "veto: title seniority")
 
-    deal_breakers = (profile.get("preferences") or {}).get("deal_breaker_phrases", [])
-    for phrase in deal_breakers:
+    for keyword in source.get("non_role_title_keywords", []):
+        if contains_phrase(title, keyword):
+            return _veto(f"not a specific role: {keyword}", "veto: not a specific role")
+
+    for phrase in preferences.get("deal_breaker_phrases", []):
         if contains_phrase(description, phrase):
-            return {
-                "score": 0,
-                "matched": [],
-                "failed": [f"deal-breaker: {phrase}"],
-                "veto": True,
-                "categories": [],
-                "summary": "veto: deal-breaker",
-            }
+            return _veto(f"deal-breaker: {phrase}", "veto: deal-breaker")
 
-    skill_score, categories, missing_categories = skill_match_score(
-        text, source.get("keyword_categories", source.get("keywords", [])), profile
-    )
-    strong_category_match = has_title_or_context_category_match(
-        title, context, source.get("keyword_categories", source.get("keywords", []))
-    )
-    if categories:
-        matched.extend([f"skills: {category}" for category in categories])
+    max_years = int(preferences.get("max_years_experience", DEFAULT_MAX_YEARS_EXPERIENCE))
+    years = required_years(description)
+    if years is not None and years >= max_years:
+        return _veto(f"experience: {years}+ years asked", "veto: years of experience")
+
+    keyword_categories = source.get("keyword_categories", source.get("keywords", []))
+    role_categories = title_or_context_categories(title, context, keyword_categories)
+    title_categories = title_or_context_categories(title, "", keyword_categories)
+    strong_category_match = bool(role_categories)
+    if title_categories:
+        role_score = 40
+    elif role_categories:
+        role_score = 30
     else:
-        failed.append("skills")
+        role_score = 0
+        failed.append("no role category in title or team")
 
-    seniority_score = 15
+    categories_info = category_terms(keyword_categories, profile)
+    _, body_categories, _ = skill_match_score(description, keyword_categories, profile)
+    skill_terms = {
+        str(term).casefold()
+        for item in categories_info.values()
+        for term in item["terms"]
+        if str(term).strip()
+    }
+    depth_hits = sorted(term for term in skill_terms if contains_phrase(description, term))
+    depth_score = min(15, 3 * len(depth_hits))
+    categories = list(dict.fromkeys(role_categories + body_categories))
+    if role_categories:
+        matched.extend(f"role: {label}" for label in role_categories)
+    if depth_hits:
+        matched.append(f"skills in description: {len(depth_hits)}")
+
     if regex_match_any(description, JUNIOR_PATTERNS) or any(
         contains_phrase(title, phrase) for phrase in source.get("early_career_keywords", [])
     ):
         seniority_score = 25
         matched.append("early-career")
+    elif years == 2:
+        seniority_score = 10
+        failed.append("2 years asked")
     elif regex_match_any(description, SENIOR_PATTERNS):
         seniority_score = 0
-        failed.append("senior experience")
+        failed.append("extensive experience asked")
     else:
+        seniority_score = 15
         matched.append("ambiguous seniority")
 
-    location_score = 20 if location_matches else 0
     if location_matches:
         matched.append("location")
     else:
         failed.append("location")
 
     salary_low = parse_salary_low(text)
-    min_salary = (profile.get("preferences") or {}).get("min_salary")
+    min_salary = preferences.get("min_salary")
     if salary_low and min_salary and salary_low < int(min_salary):
         failed.append(f"compensation below floor: ${salary_low:,}")
     elif salary_low and min_salary:
         matched.append(f"compensation >= ${int(min_salary):,}")
 
-    score = min(100, skill_score + seniority_score + location_score)
+    score = min(100, role_score + depth_score + seniority_score)
     summary_bits = categories[:2] + [item for item in ("early-career", "location") if item in matched]
     return {
         "score": score,
         "matched": matched,
-        "failed": failed + [f"missing {category}" for category in missing_categories if not categories],
+        "failed": failed,
         "veto": False,
         "categories": categories,
         "strong_category_match": strong_category_match,

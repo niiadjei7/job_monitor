@@ -18,6 +18,7 @@ so no server is required.
 | Workday | External career-site endpoint | Host, tenant, and site |
 | Jobvite | Customer XML/JSON feed | Feed URL supplied by Jobvite |
 | ZipRecruiter | Official job-search MCP endpoint | Search query; no secret |
+| freehire.me | Public aggregator JSON API (~50 ATS platforms and boards) | Queries plus cities or countries; no key |
 | LinkedIn | Approved RSS/Atom/XML/JSON feed only | Approved feed URL |
 | Indeed | Approved RSS/Atom/XML/JSON feed only | Approved feed URL |
 
@@ -27,8 +28,21 @@ feed or API export. This avoids account blocks, unstable HTML parsers, and terms
 violations. ZipRecruiter's official search currently returns only a small result
 page per request, so use focused queries.
 
-The checked-in `companies.yaml` currently activates only sources that can run
-through public company-career endpoints. Jobvite, LinkedIn, and Indeed are not
+freehire.me collects postings from many ATS platforms and job boards (some of
+them LinkedIn listings) into one schema with full descriptions, so it widens the
+pool without Job Monitor scraping any site itself. Its `cities` and `countries`
+filters are ORed by the API, so each freehire search uses one or the other.
+Two options exist for broad sources like this: `quiet_first_run: true` records
+the existing backlog on a source's first run without alerting, and
+`exclude_companies` drops job relays and gig marketplaces by company name.
+`require_early_career: true` alerts only on postings with an explicit
+early-career signal (title keyword or phrases such as "new grad", "entry level",
+"0-2 years"). The checked-in freehire searches use it: a live dry run on
+2026-11-17 found about 85 eligible postings a day from freehire, of which about
+10 a day carried that signal.
+
+The checked-in `companies.yaml` activates public company-career endpoints plus
+two freehire searches (NYC area and US remote). Jobvite, LinkedIn, and Indeed are not
 active because no approved feed URLs are configured. ZipRecruiter is not active
 because its public MCP endpoint rate-limits the scheduled requests.
 
@@ -52,11 +66,50 @@ run finish before relying on notifications.
 
 ## Company source configuration
 
-Every checked-in company entry uses `ats`, provider-specific identifiers,
-`keyword_categories`, and the shared early-career and exclusion filters. A
-posting must match at least one specialty category **and** an early-career title
-phrase, and it must not match a seniority exclusion. Terms are literal,
-case-insensitive whole words or phrases; use `sre`, not regex such as `\bsre\b`.
+Every checked-in source inherits `source_defaults`: the role categories, the
+early-career and seniority title lists, non-role titles and the location filter.
+A source can override any of them. Terms are literal, case-insensitive whole
+words or phrases; use `sre`, not regex such as `\bsre\b`.
+
+### How a posting is scored (`score.py`)
+
+A posting is **vetoed** (score 0) by any of:
+
+- a seniority title term (`senior`, `staff`, `manager`, `engineer ii`, ...);
+- a non-role title (`general application`, `talent community`, ...);
+- a `preferences.deal_breaker_phrases` entry in the description;
+- a stated experience requirement at or above
+  `preferences.max_years_experience` (default 3; "1-3 years" counts as 1, and
+  "4 years of experience in lieu of a degree" is ignored).
+
+Otherwise it scores up to 80:
+
+| Part | Points |
+| --- | --- |
+| Role | 40 if a category's `title` term is in the title, 30 if only a `context` term is in the team/department |
+| Skill depth | 3 per distinct category or profile skill term in the description, up to 15 |
+| Level | 25 early-career signal, 15 not stated, 10 "2 years", 0 "extensive experience" |
+
+It is notified when it is not vetoed, the location filter passes, it has a role
+match in the title or team, and the score reaches the threshold (45 in
+early-career mode, 60 otherwise). Description words alone never qualify a
+posting, and location earns no points because it is already required.
+
+### Oracle check
+
+`tests/oracle_eval.py` measures these rules against a private, labelled set of
+real postings (kept in the git-ignored `tests/oracle/`). Run it after any change
+to scoring terms or rules:
+
+```bash
+python tests/oracle_eval.py export "<labelled oracle .csv>"   # once
+python tests/oracle_eval.py eval --details
+```
+
+`tests/test_oracle.py` turns the same check into regression tests; it is
+skipped when the private data is absent, as in CI.
+
+### Categories
 
 Each category can define separate `title` and `context` phrases. Context is ATS
 team or department metadata when available. This allows `Software Engineer I`
@@ -241,7 +294,9 @@ The default cron expression is `0 */3 * * *`, which runs every three hours in
 UTC. Edit `.github/workflows/job-monitor.yml` to change it.
 
 `state.json` stores both the current source inventory and a separate set of job
-IDs successfully delivered to Discord. This allows newly eligible jobs to be
+IDs successfully delivered to Discord. It also keeps `notified-postings:v1`, a
+company + title key for every delivered posting (kept 90 days), so the same job
+found on a company board and on an aggregator alerts once. This allows newly eligible jobs to be
 reconsidered after a filter correction without resending jobs already delivered.
 The `notified-v2` state starts with one catch-up pass after this migration. Large
 catch-up sets are sent to Discord in complete chunks of ten rather than silently
