@@ -16,6 +16,7 @@ so no server is required.
 | Workable | Public careers endpoint | Account slug |
 | Recruitee | Public Careers Site API | Careers subdomain |
 | Workday | External career-site endpoint | Host, tenant, and site |
+| iCIMS | Published `sitemap.xml` plus schema.org `JobPosting` data on job pages | Portal host |
 | Jobvite | Customer XML/JSON feed | Feed URL supplied by Jobvite |
 | ZipRecruiter | Official job-search MCP endpoint | Search query; no secret |
 | freehire.me | Public aggregator JSON API (~50 ATS platforms and boards) | Queries plus cities or countries; no key |
@@ -225,6 +226,40 @@ new Workday postings, not to ones already seen). Fetching every description on
 every run, about 1,100 requests across four tenants, got the Actions runners
 rate-limited (HTTP 429) from 2026-11-16; the current approach makes about 56
 list requests plus a handful of description requests per run.
+
+### iCIMS
+
+iCIMS (common at hospitals) has no public jobs API; its job feed and Job Portal
+API are for approved partners. Each portal does publish two things for search
+engines, and its robots.txt allows both: `sitemap.xml`, listing every open job,
+and a schema.org `JobPosting` block on each job page (title, employer, address,
+category, dates, full description). The adapter reads only those structured
+parts, never the page layout.
+
+```yaml
+  - name: "Acme Health"
+    ats: icims
+    host: "careers-acmehealth.icims.com"
+    max_details_per_run: 40   # optional, default 40
+```
+
+The sitemap has no locations or descriptions, so it works like Workday: a job
+page is requested only for a posting not seen before whose title passes the
+title gates, and known postings are skipped. At most `max_details_per_run` pages
+are requested per run; the rest are picked up on later runs, so a first run
+against a board with hundreds of jobs doesn't send hundreds of requests at once.
+Postings whose `validThrough` date has passed are recorded but not evaluated.
+Some employers use one template description for many roles (Emory's RN postings
+share one), so the title often carries the unit and shift.
+
+### Checking a new source from GitHub's runners
+
+A board can answer from home and still block GitHub's runners (Workday did).
+Before adding one, run the **Source probe** workflow (Actions tab, or
+`gh workflow run source-probe.yml -f ats=icims -f host=<host>`). It runs
+`tools/probe_source.py`, which fetches the board once, prints the postings,
+request count and HTTP statuses, and saves or sends nothing. It also runs on
+pull requests that change the probe.
 
 ### Jobvite
 

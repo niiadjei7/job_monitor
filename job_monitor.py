@@ -12,7 +12,7 @@ import time
 from collections import Counter
 from datetime import date, timedelta
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import unquote, urlparse
 from xml.etree import ElementTree
 
 import requests
@@ -437,18 +437,23 @@ def _get_json(url, **kwargs):
     return response.json()
 
 
+def _passes_title_gates(source, title):
+    """The title gates of score_job: no excluded word, and a role category."""
+    for keyword in source.get("exclude_keywords", []) + source.get("non_role_title_keywords", []):
+        if contains_phrase(title, keyword):
+            return False
+    categories = source.get("keyword_categories", source.get("keywords", []))
+    return bool(title_or_context_categories(title, "", categories))
+
+
 def _passes_title_and_location(source, title, location):
     """The title and location gates of score_job, without a description.
 
     Used to decide which postings are worth a per-posting detail request.
     """
-    for keyword in source.get("exclude_keywords", []) + source.get("non_role_title_keywords", []):
-        if contains_phrase(title, keyword):
-            return False
-    categories = source.get("keyword_categories", source.get("keywords", []))
-    if not title_or_context_categories(title, "", categories):
-        return False
-    return matches_location(location, source.get("location_filter"))
+    return _passes_title_gates(source, title) and matches_location(
+        location, source.get("location_filter")
+    )
 
 
 def fetch_greenhouse(source):
@@ -729,6 +734,149 @@ def fetch_workday(source, known_ids=None):
         if not page or (total is not None and offset >= total):
             break
 
+    return jobs
+
+
+ICIMS_JOB_PATH = re.compile(r"/jobs/(\d+)/([^/?#]+)/job")
+ICIMS_LD_JSON = re.compile(
+    r'<script[^>]*type=["\']application/ld\+json["\'][^>]*>(.*?)</script>', re.S | re.I
+)
+
+
+def _icims_origin(source):
+    host = _source_value(source, "host") or _source_value(source, "base_url")
+    if not host:
+        raise ValueError("iCIMS sources require host, e.g. careers-acme.icims.com")
+    parsed = urlparse(host if "://" in host else f"https://{host}")
+    return f"{parsed.scheme}://{parsed.netloc}"
+
+
+def _icims_sitemap(origin):
+    """Return [(job_id, url, slug_title)] from an iCIMS portal's sitemap.xml."""
+    response = _request(
+        "get",
+        f"{origin}/sitemap.xml",
+        headers={"Accept": "application/xml", "User-Agent": USER_AGENT},
+        timeout=REQUEST_TIMEOUT,
+    )
+    response.raise_for_status()
+    postings = {}
+    for element in ElementTree.fromstring(response.content).iter():
+        if _local_name(element.tag) != "loc" or not element.text:
+            continue
+        url = element.text.strip()
+        match = ICIMS_JOB_PATH.search(url)
+        if match and match.group(1) not in postings:
+            slug = unquote(match.group(2)).replace("-", " ")
+            postings[match.group(1)] = (match.group(1), url, re.sub(r"\s+", " ", slug).strip())
+    return list(postings.values())
+
+
+def _icims_job_posting(page_html):
+    """The schema.org JobPosting block from an iCIMS job page, or {}."""
+    for block in ICIMS_LD_JSON.findall(page_html or ""):
+        try:
+            data = json.loads(block.strip())
+        except ValueError:
+            continue
+        candidates = data if isinstance(data, list) else data.get("@graph", [data])
+        for item in candidates:
+            if isinstance(item, dict) and item.get("@type") == "JobPosting":
+                return item
+    return {}
+
+
+def _icims_location(posting):
+    places = posting.get("jobLocation") or []
+    if isinstance(places, dict):
+        places = [places]
+    parts = []
+    for place in places:
+        address = place.get("address", {}) if isinstance(place, dict) else {}
+        if isinstance(address, dict):
+            parts.append(
+                _location_text(
+                    address.get("addressLocality"),
+                    address.get("addressRegion"),
+                    address.get("addressCountry"),
+                )
+            )
+    if str(posting.get("jobLocationType", "")).upper() == "TELECOMMUTE":
+        parts.append("Remote")
+    return "; ".join(part for part in parts if part)
+
+
+def _icims_expired(posting, today):
+    valid_through = str(posting.get("validThrough") or "")[:10]
+    try:
+        return date.fromisoformat(valid_through) < today
+    except ValueError:
+        return False
+
+
+def fetch_icims(source, known_ids=None, today=None):
+    """Return postings from an iCIMS career portal.
+
+    iCIMS has no public jobs API (its feed and Job Portal API are for approved
+    partners). Each portal does publish, for search engines, a ``sitemap.xml``
+    listing every open job and a schema.org ``JobPosting`` block on each job
+    page; robots.txt allows both. This reads only those published, structured
+    parts, never the page layout.
+
+    Like Workday: the sitemap gives IDs and a title from the URL; a job page is
+    requested only for a posting not in ``known_ids`` whose title passes the
+    title gates. Known postings return ``description=None``. At most
+    ``max_details_per_run`` pages are requested per run (default 40); new
+    postings past that are left out so the next run picks them up, which keeps
+    a first run against a large hospital board from becoming hundreds of
+    requests at once.
+    """
+    known_ids = set(known_ids or ())
+    today = today or date.today()
+    origin = _icims_origin(source)
+    budget = int(_source_value(source, "max_details_per_run", 40))
+    delay = float(_source_value(source, "detail_delay", 0.5))
+    jobs = []
+    for job_id, url, slug_title in _icims_sitemap(origin):
+        if job_id in known_ids:
+            jobs.append((job_id, slug_title, url, "", "", None))
+            continue
+        if not _passes_title_gates(source, slug_title):
+            jobs.append((job_id, slug_title, url, "", "", ""))
+            continue
+        if budget <= 0:
+            continue
+        budget -= 1
+        time.sleep(delay)
+        try:
+            response = _request(
+                "get",
+                url,
+                params={"in_iframe": 1},
+                headers={"Accept": "text/html", "User-Agent": USER_AGENT},
+                timeout=REQUEST_TIMEOUT,
+            )
+        except requests.RequestException:
+            continue
+        if response.status_code >= 400:
+            continue
+        posting = _icims_job_posting(response.text)
+        if not posting:
+            continue
+        if _icims_expired(posting, today):
+            # Record it so later runs don't spend a request on it again.
+            jobs.append((job_id, slug_title, url, "", "", ""))
+            continue
+        jobs.append(
+            (
+                job_id,
+                html.unescape(str(posting.get("title") or slug_title)),
+                url,
+                _icims_location(posting),
+                str(posting.get("occupationalCategory") or ""),
+                _description_text(posting.get("description")),
+            )
+        )
     return jobs
 
 
@@ -1130,13 +1278,14 @@ def fetch_freehire(source):
 
 # Fetchers that accept the previous run's inventory and skip per-posting
 # detail requests for postings already evaluated.
-KNOWN_ID_FETCHERS = {"workday"}
+KNOWN_ID_FETCHERS = {"workday", "icims"}
 
 FETCHERS = {
     "greenhouse": fetch_greenhouse,
     "lever": fetch_lever,
     "ashby": fetch_ashby,
     "workday": fetch_workday,
+    "icims": fetch_icims,
     "smartrecruiters": fetch_smartrecruiters,
     "workable": fetch_workable,
     "recruitee": fetch_recruitee,

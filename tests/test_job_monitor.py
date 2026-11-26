@@ -34,6 +34,7 @@ class AdapterTests(unittest.TestCase):
             "lever",
             "ashby",
             "workday",
+            "icims",
             "smartrecruiters",
             "workable",
             "recruitee",
@@ -343,6 +344,110 @@ class AdapterTests(unittest.TestCase):
         )
         self.assertEqual(get.call_count, 1)
         self.assertTrue(get.call_args.args[0].endswith("/job/new"))
+
+    ICIMS_SITEMAP = b"""<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://nursing-acme.icims.com/jobs/intro</loc></url>
+  <url><loc>https://nursing-acme.icims.com/jobs/101/medical-surgical-rn%2c-7am-7%3a30pm/job</loc></url>
+  <url><loc>https://nursing-acme.icims.com/jobs/102/rn-nurse-residency-program/job</loc></url>
+  <url><loc>https://nursing-acme.icims.com/jobs/103/charge-nurse---icu/job</loc></url>
+  <url><loc>https://nursing-acme.icims.com/jobs/104/patient-access-representative/job</loc></url>
+  <url><loc>https://nursing-acme.icims.com/jobs/105/rn-residency---oncology/job</loc></url>
+</urlset>"""
+
+    @staticmethod
+    def _icims_page(title, valid_through="2099-01-01T05:00:00.000Z"):
+        posting = {
+            "@context": "http://schema.org",
+            "@type": "JobPosting",
+            "title": title,
+            "description": "<p>New graduates welcome. Active NJ RN license.</p>",
+            "occupationalCategory": "Nursing",
+            "validThrough": valid_through,
+            "jobLocation": [
+                {"address": {"addressLocality": "Newark", "addressRegion": "NJ", "addressCountry": "US"}}
+            ],
+        }
+        return FakeResponse(
+            content=(
+                "<html><head><script type=\"application/ld+json\">"
+                + json.dumps(posting)
+                + "</script></head><body>layout we never read</body></html>"
+            ).encode("utf-8"),
+            content_type="text/html",
+        )
+
+    @patch("job_monitor.time.sleep")
+    @patch("job_monitor.requests.get")
+    def test_icims_reads_sitemap_and_structured_data_for_new_postings(self, get, _sleep):
+        pages = {
+            "/jobs/102/": self._icims_page("RN Nurse Residency Program"),
+            "/jobs/105/": self._icims_page("RN Residency - Oncology", "2020-01-01T05:00:00.000Z"),
+        }
+
+        def respond(url, **kwargs):
+            if url.endswith("/sitemap.xml"):
+                return FakeResponse(content=self.ICIMS_SITEMAP, content_type="application/xml")
+            for fragment, page in pages.items():
+                if fragment in url:
+                    return page
+            raise AssertionError(f"unexpected request {url}")
+
+        get.side_effect = respond
+        source = {
+            "ats": "icims",
+            "host": "nursing-acme.icims.com",
+            "keyword_categories": {"Nursing": {"title": ["rn", "registered nurse", "nurse resident"]}},
+            "non_role_title_keywords": ["charge nurse"],
+            "location_filter": {"include": ["NJ"]},
+        }
+
+        jobs = {job[0]: job for job in job_monitor.fetch_icims(source, known_ids=["101"])}
+
+        self.assertEqual(set(jobs), {"101", "102", "103", "104", "105"})
+        self.assertIsNone(jobs["101"][5])  # known: skipped, no request
+        self.assertEqual(jobs["103"][5], "")  # title gate failed: no request
+        self.assertEqual(jobs["104"][5], "")
+        self.assertEqual(jobs["105"][5], "")  # expired: recorded, not evaluated
+        self.assertEqual(
+            jobs["102"],
+            (
+                "102",
+                "RN Nurse Residency Program",
+                "https://nursing-acme.icims.com/jobs/102/rn-nurse-residency-program/job",
+                "Newark, NJ, US",
+                "Nursing",
+                "New graduates welcome. Active NJ RN license.",
+            ),
+        )
+        requested = [call.args[0] for call in get.call_args_list]
+        self.assertEqual(len(requested), 3)  # sitemap + 102 + 105
+        self.assertEqual(get.call_args_list[1].kwargs["params"], {"in_iframe": 1})
+
+    @patch("job_monitor.time.sleep")
+    @patch("job_monitor.requests.get")
+    def test_icims_caps_detail_requests_and_leaves_the_rest_for_next_run(self, get, _sleep):
+        def respond(url, **kwargs):
+            if url.endswith("/sitemap.xml"):
+                return FakeResponse(content=self.ICIMS_SITEMAP, content_type="application/xml")
+            return self._icims_page("Registered Nurse")
+
+        get.side_effect = respond
+        source = {
+            "host": "https://nursing-acme.icims.com/jobs/search",
+            "keyword_categories": {"Nursing": {"title": ["rn"]}},
+            "max_details_per_run": 1,
+        }
+
+        ids = [job[0] for job in job_monitor.fetch_icims(source)]
+
+        self.assertEqual(get.call_count, 2)
+        self.assertIn("101", ids)
+        self.assertNotIn("102", ids)  # over the cap: not recorded, fetched next run
+        self.assertNotIn("105", ids)
+        self.assertIn("104", ids)  # failed the title gate, needs no request
+        self.assertIn("icims", job_monitor.KNOWN_ID_FETCHERS)
+        self.assertIs(job_monitor.FETCHERS["icims"], job_monitor.fetch_icims)
 
     @patch("job_monitor.time.sleep")
     @patch("job_monitor.requests.get")
