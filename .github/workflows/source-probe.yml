@@ -1,0 +1,49 @@
+name: Source probe
+
+# Checks that a job board answers GitHub's runners before it is added to
+# companies.yaml. Workday answered from home but returned HTTP 429 here.
+# Nothing is saved or sent: see tools/probe_source.py.
+
+on:
+  pull_request:
+    paths:
+      - tools/probe_source.py
+      - .github/workflows/source-probe.yml
+  workflow_dispatch:
+    inputs:
+      ats:
+        description: "Fetcher to probe"
+        required: true
+        default: icims
+        type: choice
+        options: [icims, workday]
+      host:
+        description: "Board host, e.g. careers-acme.icims.com"
+        required: true
+        default: nursing-emory.icims.com
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Probe the board
+        env:
+          ATS: ${{ inputs.ats || 'icims' }}
+          HOST: ${{ inputs.host || 'nursing-emory.icims.com' }}
+        run: python -u tools/probe_source.py --ats "$ATS" --host "$HOST"
